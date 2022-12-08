@@ -15,4 +15,26 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("home/index");
         return modelAndView;
     }
+
+    @GetMapping(value="product",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getProduct() {
+        ModelAndView modelAndView = new ModelAndView("home/product");
+        return modelAndView;
+    }
+
+
+    @GetMapping(value="community",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getCommunity() {
+        ModelAndView modelAndView = new ModelAndView("home/community");
+        return modelAndView;
+    }
+
+    @GetMapping(value="festival",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getFestival() {
+        ModelAndView modelAndView = new ModelAndView("home/festival");
+        return modelAndView;
+    }
 }
