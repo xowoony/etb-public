@@ -6,97 +6,40 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>잔이비어 :: HOME</title>
+    <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&display=swap">
     <script defer th:src="@{/home/resources/scripts/index.js}"></script>
 </head>
-<body>
-<!--  header  -->
-<!--<th:block th:replace="~{fragments/body :: header}"></th:block>-->
-<!--<th:block th:replace="~{fragments/body :: cover}"></th:block>-->
-<!--  header  -->
-<header>
-    <div class="spring">
-        <div class="category">
-            <a class="home" th:href="@{/}">HOME</a>
-            <a class="project" th:href="@{/project}">PROJECT</a>
-            <a class="blog" th:href="@{/blog}">BLOG</a>
-            <a class="skills" th:href="@{skills}">SKILLS</a>
-            <a class="contact" th:href="@{contact}">CONTACT</a>
-        </div>
-    </div>
+<body id="smoothScroll">
+    <!--  header  -->
+    <th:block th:replace="~{fragments/body :: header}"></th:block>
+    <!--무언가를 불러오고 있습니다 loading-->
+    <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
-</header>
-
-
-
-<!--main-->
-<main id="smoothScroll">
-    <!--homeSection1 -->
-    <section class="home-section1" id="homeSection1">
-        <div class="title-box" id="titleBox">
-            <div class="dev">developer</div>
-            <div class="title">SO WOON</div>
-        </div>
-    </section>
-    <div class="spring"></div>
-    <!--homeSection2-->
-    <section class="home-section2" id="homeSection2">
-        <div class="introduce">
-            <div class="introduce-container">
-                <div class="introduce-title">ABOUT SO WOON</div>
-                <div class="introduce-content">
-                    <p>안녕하세요. 새로운 것에 대해 호기심이 많고 탐험하는 것을 즐기는 개발자 정소운 입니다.</p>
-                    <p>공부를 처음 시작할 때 특히 개발은 '탐험과 닮아있다' 라는 생각이 문득 들었던 적이 있습니다.</p>
-                    <p>스스로 목표를 세우고, 시도하고, 시도의 과정에서 다양한 문제들을 만나고,</p>
-                    <p>그 문제들을 해결해 나가고, 해결해 나가는 과정에서 한 단계 더 성장하는</p>
-                    <p>탐험과 같은 개발의 모든 과정이 정말 매력적이라 생각하였고,</p>
-                    <p>그 매력으로 지금도 계속 공부해 나가고 있습니다.</p>
-                </div>
+    <!--  main  -->
+    <main>
+        <!--  homeSection1  -->
+        <section class="home-section1" id="homeSection1">
+            <div class="title-box1" id="titleBox1">
+                <div class="title">section1</div>
             </div>
-        </div>
-    </section>
-    <!--homeSection3-->
-    <section class="home-section3" id="homeSection3">
-        <!--   학력사항 테이블 전체     -->
-        <table class="education">
-            <!--  학력사항 타이틀 -->
-            <caption class="education-title">EDUCATION</caption>
-            <tbody class="education-table">
-            <tr>
-                <th class="table-spring">계명대학교</th>
-                <td class="table-wide-spring">체육학 전공</td>
-                <td class="table-spring">2013. 03 ~ 2016. 08</td>
-            </tr>
-            <tr>
-                <th>코리아 IT 아카데미</th>
-                <td class="table-wide-spring">임베디드 소프트웨어 융합 풀스택 개발자 양성과정</td>
-                <td class="table-spring">2022. 08 ~ 2023. 02</td>
-            </tr>
-            </tbody>
-        </table>
-
-    </section>
-    <!--homeSection4-->
-    <section class="home-section4" id="homeSection4">
-        <div class="add-container">
-            <div class="add-title">SO WOON</div>
-            <div class="add-content">
-                <div class="add-text">어쩌고 저쩌고</div>
+        </section>
+        <div class="spring"></div>
+        <!--  homeSection2  -->
+        <section class="home-section2" id="homeSection2">
+            <div class="title-box2" id="titleBox2">
+                <div class="title">section2</div>
             </div>
-        </div>
-    </section>
-</main>
-<!--  footer  -->
-<footer>
-    <section class="footer-section1" id="footerSection1">
-        <div class="fix-footer" id="fixFooter">
-            <div class="title">©2022 by Empty Beer</div>
-        </div>
-    </section>
-</footer>
+        </section>
+        <!--  homeSection3  -->
+        <section class="home-section3" id="homeSection3">
+            <div class="title-box3" id="titleBox3">
+                <div class="title">section3</div>
+            </div>
+        </section>
+    </main>
+    <!--  footer  -->
+    <th:block th:replace="~{fragments/body :: footer}"></th:block>
 </body>
 </html>
