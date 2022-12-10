@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+/*카테고리 글씨체*/
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
+/*페이지 전체 기본 폰트*/
+html {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body > main {
+    width: 100%;
+}
+
+
+/*loading - visible 속성 none */
+body > .loading-cover {
+    display: none;
+}
+
+/*body 전체*/
+body {
+    width: 100%;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: unset;
+}
+
+/*헤더 간격 띄우기*/
+body > header > .spring {
+    background-color: rgba(0, 0, 0, 40%);
+    height: 8rem;
+    width: 100vw;
+}
+
+/*카테고리*/
+body > header {
+    position: fixed;
+    top: 0;
+    /* width: 100% */
+    left: 0;
+    right: 0;
+}
+
+/*카테고리 오른쪽 정렬*/
+body > header > .spring > .category {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 4.5rem;
+    padding-top: 3.5rem;
+    font-size: 1rem;
+    font-family: 'Dosis', sans-serif;
+}
+
+/*HOME 카테고리*/
+body > header > .spring > .category > .home {
+    margin-right: 1.2rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*PRODUCT 카테고리*/
+body > header > .spring > .category > .product {
+    margin-right: 1.2rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*COMMUNITY 카테고리*/
+body > header > .spring > .category > .community {
+    margin-right: 1.2rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*FESTIVAL 카테고리*/
+body > header > .spring > .category > .festival {
+    margin-right: 1.2rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+
+/*footer*/
+body > footer > .footer-section1 {
+    background-color: rgb(10, 10, 10);
+    background-color: rgba(0, 0, 0, 40%);
+    color: rgb(255, 255, 255);
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    position: fixed;
+    padding: 1.5rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
