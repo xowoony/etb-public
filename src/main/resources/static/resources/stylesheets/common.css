@@ -9,8 +9,7 @@ html {
 }
 
 body > main {
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
 }
 
 
@@ -42,7 +41,7 @@ body > #smoothScroll {
 
 /*섹션 전체*/
 body > #smoothScroll > section {
-    height: 500px;
+    height: 100%;
     scroll-snap-align: start;
     -ms-scroll-snap-coordinate: 0 0;
     transition: all ease 2s 0s;
