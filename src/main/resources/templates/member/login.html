@@ -5,28 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>잔이비어 :: HOME</title>
+    <title>잔이비어 :: login</title>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
-    <script defer th:src="@{/home/resources/scripts/index.js}"></script>
+    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/product.css}">
+    <script defer th:src="@{/home/resources/scripts/product.js}"></script>
 </head>
-<body>
+<body id="smoothScroll">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main id="smoothScroll">
+<main>
     <!--  homeSection1  -->
     <section class="home-section1" id="homeSection1">
         <div class="title-box1" id="titleBox1">
-            <span class="title1">옥같은 잔치를 벌여</span>
-            <span class="title2">꽃에 앉고 달에 취하니</span>
-            <div class="home-button">
-                <button class="next-button" id="commonButton">Scroll Down</button>
-            </div>
+            <div class="title">section1</div>
         </div>
     </section>
     <div class="spring"></div>

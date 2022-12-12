@@ -17,6 +17,25 @@ body > .loading-cover {
     display: none;
 }
 
+
+/*common 버튼 박스 속성*/
+#commonButton {
+    background-color: rgba(0, 0, 0, 0%);
+    height: 3rem;
+    width: 8rem;
+    color: rgb(201, 201, 201);
+
+    margin-left: 46%;
+    margin-top: 3.5rem;
+}
+/*common 버튼 hover*/
+#commonButton:hover{
+    background-color: rgba(0, 0, 0, 20%);
+    color: rgb(0,0,0);
+}
+
+
+
 /*body 전체*/
 body {
     width: 100%;
@@ -112,7 +131,6 @@ body > header > .spring > .category > .start {
     text-decoration: none;
     color: rgb(255,255,255);
     margin-left: 0.5rem;
-
 }
 
 /*footer*/
