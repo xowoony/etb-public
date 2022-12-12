@@ -1,0 +1,137 @@
+main {
+    color: rgb(0, 0, 0);
+    margin-top: 10rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+h2 {
+    font: inherit;
+    font-size: 2rem;
+    margin: unset;
+    padding: unset;
+}
+
+#reviewForm > table > tbody > tr > th{
+    text-align: left;
+    font-weight: 400;
+}
+
+.beer-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    display: flex;
+    padding: 1rem 5rem 1.5rem 0rem;
+}
+
+.beer-container > .beer-image {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    margin-right: 3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.beer-container > .beer-image > img {
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    border-radius: 2rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.beer-container > .content > .beer-name{
+    margin-bottom: 0.25rem;
+}
+
+.score-container {
+    padding: 1rem 0 1rem 0rem;
+
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.score-container > .score {
+    color: rgb(211, 84, 0);
+    font-size: 1.375rem;
+    font-weight: 600;
+}
+
+.score-container > .full-score {
+    color: rgb(128, 139, 150);
+    font-size: 0.9rem;
+}
+
+.score-container > .star-container {
+    color: rgb(213, 216, 220);
+    flex: 1;
+    letter-spacing: -0.125rem;
+    font-size: 1.375rem;
+    margin-left: 0.5rem;
+    text-align: right;
+}
+
+.score-container > .star-container > .star {
+    cursor: pointer;
+}
+
+.score-container > .star-container > .star.selected {
+    color: rgb(255, 191, 0);
+}
+
+
+#reviewForm > table > tbody > tr .title {
+    padding: 0 0 0.25rem 0.25rem;
+}
+
+#reviewForm > table > tbody > tr .title > .text-limit {
+    font-size: 0.85rem;
+}
+
+#reviewForm > table > tbody > tr > th > .title > .icon {
+    color: rgb(55, 178, 182);
+}
+
+#reviewForm > table > tbody > tr > td > .title > .icon {
+    color: rgb(232, 106, 106);
+}
+
+#reviewForm > table > tbody > tr .content > input{
+    width: 22.5rem;
+    height: 17.5rem;
+    background-color: rgb(232, 228, 226);
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+}
+
+#reviewForm > table > tbody > tr .text-count{
+    color: rgb(100, 95, 95);
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+    padding-right: 0.25rem;
+    text-align: right;
+}
+
+#reviewForm > table > tbody > tr .text-count > .color {
+    color: rgb(232, 106, 106);;
+}
+
+#reviewForm > table > tbody > tr > th > .text-count {
+    padding-right: 3.5rem;
+}
+
+#reviewForm > div > .submit-button {
+    margin: 0.75rem 0.35rem 0 0;
+    float: right;
+}
