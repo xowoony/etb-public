@@ -19,7 +19,7 @@ body > .loading-cover {
 
 
 /*common 버튼 박스 속성*/
-#commonButton {
+.commonButton {
     background-color: rgba(0, 0, 0, 0%);
     height: 3rem;
     width: 8rem;
@@ -29,7 +29,7 @@ body > .loading-cover {
     margin-top: 3.5rem;
 }
 /*common 버튼 hover*/
-#commonButton:hover{
+.commonButton:hover{
     background-color: rgba(0, 0, 0, 20%);
     color: rgb(0,0,0);
 }

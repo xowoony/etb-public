@@ -37,4 +37,13 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("home/festival");
         return modelAndView;
     }
+
+    @GetMapping(value = "login",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getLogin() {
+        ModelAndView modelAndView = new ModelAndView("home/login");
+        return modelAndView;
+    }
+
+
 }
