@@ -26,24 +26,24 @@ body > main > .home-section1 > .title-box1 > .title2 {
     margin-left: 33.5rem;
 }
 
-/*버튼 전체 위치조정*/
-body > main > .home-section1 > .title-box1 > .home-button {
-    margin-left: 46%;
-    margin-top: 3.5rem;
-}
+/*!*버튼 전체 위치조정*!*/
+/*body > main > .home-section1 > .title-box1 > .home-button {*/
+/*    margin-left: 46%;*/
+/*    margin-top: 3.5rem;*/
+/*}*/
 
-/*버튼 박스 속성*/
-body > #smoothScroll > .home-section1 > .title-box1 > .home-button > .next-button {
-    background-color: rgba(0, 0, 0, 0%);
-    height: 3rem;
-    width: 8rem;
-    color: rgb(201, 201, 201);
-}
-/*버튼 hover*/
-body > #smoothScroll > .home-section1 > .title-box1 > .home-button > .next-button:hover{
-    background-color: rgba(0, 0, 0, 20%);
-    color: rgb(0,0,0);
-}
+/*!*버튼 박스 속성*!*/
+/*body > #smoothScroll > .home-section1 > .title-box1 > .home-button > .next-button {*/
+/*    background-color: rgba(0, 0, 0, 0%);*/
+/*    height: 3rem;*/
+/*    width: 8rem;*/
+/*    color: rgb(201, 201, 201);*/
+/*}*/
+/*!*버튼 hover*!*/
+/*body > #smoothScroll > .home-section1 > .title-box1 > .home-button > .next-button:hover{*/
+/*    background-color: rgba(0, 0, 0, 20%);*/
+/*    color: rgb(0,0,0);*/
+/*}*/
 
 
 /*homeSection2*/
