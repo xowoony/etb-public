@@ -12,7 +12,6 @@ body > main {
     width: 100%;
 }
 
-
 /*loading - visible 속성 none */
 body > .loading-cover {
     display: none;
@@ -46,7 +45,6 @@ body > #smoothScroll > section {
     -ms-scroll-snap-coordinate: 0 0;
     transition: all ease 2s 0s;
 }
-
 
 /*헤더 간격 띄우기*/
 body > header > .spring {
@@ -103,6 +101,21 @@ body > header > .spring > .category > .festival {
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
+
+/*사람 아이콘*/
+body > header > .spring > .category > span > .icon{
+    margin-left: 1rem;
+}
+
+/*시작하기 글씨*/
+body > header > .spring > .category > .start {
+    text-decoration: none;
+    color: rgb(255,255,255);
+    margin-left: 0.5rem;
+
+}
+
+
 
 
 /*footer*/

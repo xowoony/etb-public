@@ -12,34 +12,38 @@
     <script defer th:src="@{/home/resources/scripts/index.js}"></script>
 </head>
 <body>
-    <!--  header  -->
-    <th:block th:replace="~{fragments/body :: header}"></th:block>
-    <!--무언가를 불러오고 있습니다 loading-->
-    <th:block th:replace="~{fragments/body :: cover}"></th:block>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
 
-    <!--  main  -->
-    <main id="smoothScroll">
-        <!--  homeSection1  -->
-        <section class="home-section1" id="homeSection1">
-            <div class="title-box1" id="titleBox1">
-                <div class="title">section1</div>
+<!--  main  -->
+<main id="smoothScroll">
+    <!--  homeSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <div class="title-box1" id="titleBox1">
+            <span class="title1">옥같은 잔치를 벌여</span>
+            <span class="title2">꽃에 앉고 달에 취하니</span>
+            <div class="home-button">
+                <button class="next-button" id="nextButton">Scroll Down</button>
             </div>
-        </section>
-        <div class="spring"></div>
-        <!--  homeSection2  -->
-        <section class="home-section2" id="homeSection2">
-            <div class="title-box2" id="titleBox2">
-                <div class="title">section2</div>
-            </div>
-        </section>
-        <!--  homeSection3  -->
-        <section class="home-section3" id="homeSection3">
-            <div class="title-box3" id="titleBox3">
-                <div class="title">section3</div>
-            </div>
-        </section>
-    </main>
-    <!--  footer  -->
-    <th:block th:replace="~{fragments/body :: footer}"></th:block>
+        </div>
+    </section>
+    <div class="spring"></div>
+    <!--  homeSection2  -->
+    <section class="home-section2" id="homeSection2">
+        <div class="title-box2" id="titleBox2">
+            <div class="title">section2</div>
+        </div>
+    </section>
+    <!--  homeSection3  -->
+    <section class="home-section3" id="homeSection3">
+        <div class="title-box3" id="titleBox3">
+            <div class="title">section3</div>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
 </body>
 </html>
