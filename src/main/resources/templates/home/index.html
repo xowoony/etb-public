@@ -11,14 +11,14 @@
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
     <script defer th:src="@{/home/resources/scripts/index.js}"></script>
 </head>
-<body id="smoothScroll">
+<body>
     <!--  header  -->
     <th:block th:replace="~{fragments/body :: header}"></th:block>
     <!--무언가를 불러오고 있습니다 loading-->
     <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
     <!--  main  -->
-    <main>
+    <main id="smoothScroll">
         <!--  homeSection1  -->
         <section class="home-section1" id="homeSection1">
             <div class="title-box1" id="titleBox1">
