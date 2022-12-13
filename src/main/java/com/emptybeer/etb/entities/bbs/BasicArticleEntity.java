@@ -58,7 +58,7 @@ public class BasicArticleEntity {
         this.title = title;
     }
 
-    public String getContent() {
+    public String getContent()    {
         return content;
     }
 

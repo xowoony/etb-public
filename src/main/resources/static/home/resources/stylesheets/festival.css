@@ -36,8 +36,13 @@ body >#smoothScroll > .festival-container > div {
     height: 20rem;
 }
 
-body >#smoothScroll > .festival-container > div > .image {
+body >#smoothScroll > .festival-container > div > a >.image {
     width: 100%;
     height: 100%;
 
+}
+
+body >#smoothScroll > .festival-container > div > a >.image:hover {
+    transform:scale(1.1);
+    transition: transform .5s;
 }
