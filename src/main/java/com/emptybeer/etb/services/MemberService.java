@@ -10,6 +10,7 @@ import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IMemberMapper;
 import com.emptybeer.etb.utils.CryptoUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.util.DateUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -70,7 +70,7 @@ public class MemberService {
         authSalt = authSaltHashBuilder.toString();
 
         Date createdOn = new Date();
-        Date expiresOn = DateUtils.addMinutes(createdOn, 5);
+        Date expiresOn = DateUtils.addMinutes(createdOn,5);
 
 
         emailAuth.setEmail(user.getEmail());
@@ -177,7 +177,7 @@ public class MemberService {
 
         authSalt = CryptoUtils.hashSha512(authSalt);
         Date createOn = new Date(); // 현재일시
-        Date expiresOn = DateUtils.addMinutes(createOn, 5); // 5분 미래
+        Date expiresOn = org.apache.commons.lang3.time.DateUtils.addMinutes(createOn, 5); // 5분 미래
         emailAuth.setCode(authCode);
         emailAuth.setSalt(authSalt);
         emailAuth.setCreateOn(createOn);
