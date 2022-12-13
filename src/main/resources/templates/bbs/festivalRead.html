@@ -8,8 +8,8 @@
     <title>잔이비어 :: FESTIVAL소개</title>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/festivalRead.css}">
-    <script defer th:src="@{/home/resources/scripts/festivalRead.js}"></script>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalRead.css}">
+    <script defer th:src="@{/bbs/resources/scripts/festivalRead.js}"></script>
 </head>
 <body>
 <!--  header  -->
@@ -20,7 +20,33 @@
 <!--  main  -->
 <main id="smoothScroll">
     <!--    margin top 10rem 지정-->
-    <div>성공</div>
+    <div class="festival-container">
+        <div class="image-container">
+            <img src="https://img.insight.co.kr/static/2019/06/29/700/314b2za481tttx0f25aq.jpg">
+        </div>
+
+        <div class="content">
+            <div class="title">치맥 페스티벌</div>
+            <div class="festival-info">
+                <table id="info-table">
+                    <tr>
+                        <td>Period</td>
+                        <td>2022.12.01 ~ 2022.12.10</td>
+                    </tr>
+
+                    <tr>
+                        <td>Address</td>
+                        <td>대구광역시 달서구 공원순환로 36</td>
+                    </tr>
+
+                    <tr>
+                        <td>Contact</td>
+                        <td>000-1111-2222</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 

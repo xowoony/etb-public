@@ -28,4 +28,14 @@ public class BbsController {
         ModelAndView modelAndView = new ModelAndView("bbs/reviewWrite");
         return modelAndView;
     }
+
+
+    //축제 소개 페이지 호출
+    @GetMapping(value="/festivalRead",
+    produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getFestivalRead(){
+        ModelAndView modelAndView = new ModelAndView("bbs/festivalRead");
+
+        return modelAndView;
+    }
 }

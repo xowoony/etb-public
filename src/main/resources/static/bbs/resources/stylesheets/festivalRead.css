@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+body > main {
+    margin-top: 10rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+body > main > .festival-container {
+    width: 75%;
+}
+
+
+body > main > .festival-container > .image-container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+body > main > .festival-container > .image-container > img {
+    padding-left: 8rem;
+    width: 55%;
+}
+
+body > main > .festival-container > .content {
+    background-image: url("/static/bbs/resources/images/festival_background.jpg");
+    background-size: 100% 100%;
+    z-index: auto;
+}
+
+
+body > main > .festival-container > .content > .title {
+    font-weight: 700;
+    font-size: 3rem;
+    font-family: "Baskerville Old Face";
+    text-align: center;
+    color: black;
+}
+
+
+body > main > .festival-container > .content > .festival-info {
+    padding-left: 15rem;
+}
+
+
+body > main > .festival-container > .content > .festival-info > #info-table {
+    padding-top: 3rem;
+    width: 100%;
+    height: 400px;
+    font-weight: bold;
+    font-size: 2rem;
+    color: black;
+}
+
