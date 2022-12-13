@@ -1,0 +1,555 @@
+@charset "UTF-8";
+
+body > .main > .content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+body > .main > .content > .form {
+    width: 100%;
+    max-width: 50rem;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    margin-top: 4rem;
+}
+
+body > .main > .content > .form > .title-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+body > .main > .content > .form > .title-container > .title {
+    flex: 1;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+body > .main > .content > .form > .title-container > .step-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .form > .title-container > .step-container > .step {
+    width: 2rem;
+    height: 2rem;
+    border: 0.125rem solid rgb(213, 216, 220);
+    border-radius: 50%;
+    box-sizing: border-box;
+    color: rgb(128, 139, 150);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+body > .main > .content > .form.step1 > .title-container > .step-container > .step.step1,
+body > .main > .content > .form.step2 > .title-container > .step-container > .step.step2,
+body > .main > .content > .form.step3 > .title-container > .step-container > .step.step3{
+    background-color: rgb(0, 0, 0);
+    border: 0.125rem solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+body > .main > .content > .form.step2 > .title-container > .step-container > .step.step1,
+body > .main > .content > .form.step3 > .title-container > .step-container > .step.step1,
+body > .main > .content > .form.step3 > .title-container > .step-container > .step.step2 {
+    background-color: rgb(213, 216, 220);
+    border: 0.125rem solid rgb(213, 216, 220);
+    color: rgb(171, 178, 185);
+}
+
+body > .main > .content > .form.step2 > .title-container > .step-container > .step.step1 + .line,
+body > .main > .content > .form.step3 > .title-container > .step-container > .step.step1 + .line,
+body > .main > .content > .form.step3 > .title-container > .step-container > .step.step2 + .line {
+    background-color: rgb(213, 216, 220);
+}
+
+body > .main > .content > .form > .title-container > .step-container > .line {
+    width: 0.375rem;
+    height: 0.125rem;
+    background-color: rgb(171, 178, 185);
+}
+
+body > .main > .content > .form > .title-container > .step-container > .text {
+    color: rgb(86, 101, 115);
+    font-size: 0.95rem;
+    margin-right: 0.75rem;
+}
+
+body > .main > .content > .form > .step {
+    align-items: stretch;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .form.step1 > .step.step1,
+body > .main > .content > .form.step2 > .step.step2,
+body > .main > .content > .form.step3 > .step.step3 {
+    display:flex
+}
+
+
+
+
+
+
+body > .main > .content > .form > .step.step1 > .label {
+    margin-bottom: 1.5rem;
+}
+
+
+body > .main > .content > .form > .step.step1  > .label > .title {
+    font-size: 1.375rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+body > .main > .content > .form > .step.step1  > .label > .title::before {
+    top: 0.0625rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    margin-right: 0.625rem;
+    position: relative;
+}
+
+body > .main > .content > .form > .step.step1 > .label > .term {
+    padding-top: 1rem;
+    height: 20rem;
+    resize: none;
+}
+
+
+body > .main > .content > .form > .step.step2 > .table {
+
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > th {
+    padding-right: 1rem;
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr:not(:last-child) > th,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr:not(:last-child) > td {
+    padding-bottom: 0.75rem;
+}
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.address {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email > .input {
+    margin-right: 0.5rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label {
+    display: block;
+}
+
+
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email + label.email,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.password + label.password,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.address   + label.address {
+    margin-top: 0.375rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label > input + input {
+    margin-left: 0.5rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .warning {
+    color:rgb(231, 76, 60);
+    display: none;
+    font-size: 90%;
+    margin-top: 0.5rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .warning.visible{
+    display:block;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .panel.address {
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 70%);
+    display: none;
+    position: fixed;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .panel.address.visible {
+    display: block;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .panel.address > .dialog {
+    top:50%;
+    left:50%;
+    width: 100%;
+    height: 100%;
+    max-width: 27.5rem;
+    max-height: 30rem;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    transform:translate(-50%, -50%);
+}
+
+body > .main > .content > .form > .step.step3 {
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .form.step3 > .step.step3 {
+    display: flex;
+}
+
+body > .main > .content > .form > .step.step3 > .title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+}
+
+body > .main > .content > .form > .step.step3 > .message {
+    line-height: 150%;
+    text-align: center;
+}
+
+body > .main > .content > .form > .warning {
+    align-items: center;
+    background-color: rgb(231, 76, 60);
+    border-radius: 0.5rem;
+    color: rgb(255, 255, 255);
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2.5rem;
+    padding: 1rem 1.125rem;
+}
+
+body > .main > .content > .form > .warning > .text {
+    flex: 1;
+    margin-left: 0.875rem;
+}
+
+body > .main > .content > .form > .warning.visible {
+    display: flex;
+}
+
+
+body > .main > .content > .form > .button-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+
+body > .main > .content > .form > .button-container > .button {
+    background-color: rgb(128, 139, 150);
+    border-radius: 0.5rem;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 1rem 3rem;
+    user-select: unset;
+    margin-top: 1rem;
+}
+
+
+body > .main > .content > .form > .button-container > .button:hover {
+    background-color: rgb(44, 62, 80);
+}
+
+
+body > .main > .content > .form > .button-container > .button:active {
+    background-color: rgb(86, 101, 115);
+}
+
+body > .main > .content > .form > .button-container > .button.green {
+    background-color: rgb(0, 0, 0);
+}
+
+body > .main > .content > .form > .button-container > .button.green:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+body > .main > .content > .form > .button-container > .button.green:active {
+    background-color: rgb(0, 0, 0);
+}
+
+
+/*common css*/
+
+h1,h2,h3,h4,h5,h6 {
+    font: inherit;
+    margin: unset;
+    padding: unset;
+}
+
+input, select, textarea {
+    appearance: none;
+    background-color: unset;
+    border: unset;
+    color: unset;
+    font: inherit;
+    margin: unset;
+    outline: none;
+    padding: unset;
+}
+
+.--object-input {
+    width: 95%;
+    background-color: rgba(0, 0, 0, 25%);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    border-radius: 0.375rem;
+    padding: 0.625rem 0.875rem;
+}
+
+.--object-input:disabled {
+    background-color: rgb(234, 236, 238);
+    color: rgb(171, 178, 185);
+    /*filter:brightness(90%);*/
+}
+
+.--object-check {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    user-select: none;
+}
+
+.--object-check > input[type=checkbox] {
+    display: none;
+}
+
+.--object-check > .--checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    border-radius: 0.25rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex: 0 0 1.125rem;
+    /*flex-grow, shrink, basis = 0  == > 모바일*/
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0.75rem;
+    overflow: hidden;
+}
+
+.--object-check > input[type=checkbox]:checked ~ .--checkbox {
+    background-color: rgb(0, 0, 0);
+    border: 0.0625rem solid rgb(220, 213, 215);
+}
+
+
+.--object-button {
+    background-color: rgb(0, 0, 0);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color:rgb(255, 255,255);
+    cursor: pointer;
+    padding: 0.624rem 0.825rem;
+}
+
+.--object-button:hover {
+    background-color: rgb(87, 86, 86);
+
+}
+
+.--object-button:active{
+    background-color: rgb(130, 170, 204);
+}
+
+.--object-button:disabled {
+    background-color: rgb(213, 216, 220);
+    color: rgb(171, 178, 185);
+    cursor: default;
+    pointer-events: none;
+}
+
+.--cover {
+    top : 0;
+    left:0;
+    width: 100%;;
+    height: 100%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 80%);
+    color:rgba(255, 255, 255);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position:fixed;
+    z-index:9;
+
+}
+
+
+.--cover.visible {
+    display: flex;
+}
+
+
+/*.--cover > .--icon {*/
+/*    width: 4rem;*/
+/*    height: 4rem;*/
+/*    animation-name: anim-cover-icon;*/
+/*    animation-duration: 1000ms;*/
+/*    animation-iteration-count: infinite;*/
+/*    animation-timing-function: linear;*/
+/*    pointer-events: none;*/
+/*    user-select: none;*/
+/*    -webkit-user-drag: none;*/
+/*}*/
+
+/*로딩 페이지 아이콘 돌리기*/
+@keyframes anim-cover-icon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*.--cover > .--text {*/
+/*    max-width: 25rem;*/
+/*    font-size: 1.375rem;*/
+/*    line-height: 150%;*/
+/*    margin-top: 2rem;*/
+/*    pointer-events: none;*/
+/*    text-align: center;*/
+/*    user-select: none;*/
+/*    white-space: pre-wrap;*/
+
+/*}*/
+
+body {
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    color: rgb(252, 252, 252);
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1rem;
+    min-height: 100%;
+    margin: unset;
+    overflow: hidden auto;
+    position: absolute;
+}
+
+body > .--main {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+body > .--main > .--content {
+    width: 100%;
+    max-width: 70rem;
+}
+
+
+body > .--header {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 0.0625rem solid rgb(213, 216, 220);
+    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);
+}
+
+body > .--header > .--content {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1rem 0;
+}
+body > .--header > .--content > .--logo-container > .--logo {
+    height: 2.5rem;
+}
+body > .--header > .--content > .--menu {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin: unset;
+    padding: unset;
+}
+
+body > .--header > .--content > .--menu.--main {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 2.5rem;
+}
+
+body > .--header > .--content > .--menu > .--item + .--item {
+    margin-left: 1.25rem;
+}
+
+body > .--header > .--content > .--menu > .--item > .--link {
+    color: rgb(128, 139, 150);
+    text-decoration: none;
+}
+
+body > .--header > .--content > .--menu > .--item > .--link {
+    color: rgb(128, 139, 150);
+    text-decoration: none;
+}
+
+body > .--header > .--content > .--menu > .--item > .--link:hover {
+    color: rgb(86, 101, 115);
+}
+
+body > .--header > .--content > .--menu > .--item > .--link:active {
+    color: rgb(44, 62, 80);
+}
+
+body > .--main {
+    flex: 1;
+}
+
+body > .--footer {
+    background-color: #191f28;
+    color: #b0b8c1;
+    border-top: 0.0625rem solid rgb(213, 216, 220);
+    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);
+}
