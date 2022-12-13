@@ -16,9 +16,15 @@
 <main>
     <!--    <div class="review-unsigned" th:if="${session.user == null}">로그인 후 리뷰를 작성할 수 있어요.</div>-->
     <form class="review-form" id="reviewForm">
-        <input name="placeIndex" hidden>
+        <input name="beerIndex" hidden>
         <input type="hidden" name="score" value="0">
-        <input hidden multiple accept="image/*" type="file" name="images">
+        <div class="button-container">
+            <div class="button" rel="backButton">
+                    <span class="icon">
+                        <i class="fa-solid fa-circle-chevron-left"></i>
+                    </span>
+            </div>
+        </div>
         <h2 class="title">리뷰 작성</h2>
         <table>
             <tbody>
@@ -41,8 +47,8 @@
                         <span class="score" rel="score">-</span>
                         <span class="full-score">/ 5</span>
                         <div class="star-container" rel="starContainer">
-                            <i class="star fa-solid fa-star selected"></i>
-                            <i class="star fa-solid fa-star selected"></i>
+                            <i class="star fa-solid fa-star"></i>
+                            <i class="star fa-solid fa-star"></i>
                             <i class="star fa-solid fa-star"></i>
                             <i class="star fa-solid fa-star"></i>
                             <i class="star fa-solid fa-star"></i>
@@ -72,13 +78,13 @@
             </tr>
             <tr>
                 <th>
-                    <div class="content">
-                        <textarea autofocus maxlength="10000" placeholder="좋았던 점을 작성해주세요."></textarea>
+                    <div class="content" id="contentGood">
+                        <textarea autofocus maxlength="5000" placeholder="좋았던 점을 작성해 주세요."></textarea>
                     </div>
                 </th>
                 <td>
-                    <div class="content">
-                        <textarea maxlength="10000" placeholder="아쉬운 점을 작성해주세요."></textarea>
+                    <div class="content" id="contentBad">
+                        <textarea maxlength="5000" placeholder="아쉬운 점을 작성해 주세요."></textarea>
                     </div>
                 </td>
             </tr>
@@ -87,14 +93,14 @@
                     <div class="text-count">
                         <span class="color">23</span>
                         <span class="normal">/</span>
-                        <span class="normal">10000</span>
+                        <span class="normal">5000</span>
                     </div>
                 </th>
                 <td>
                     <div class="text-count">
                         <span class="color">23</span>
                         <span class="normal">/</span>
-                        <span class="normal">10000</span>
+                        <span class="normal">5000</span>
                     </div>
                 </td>
             </tr>
