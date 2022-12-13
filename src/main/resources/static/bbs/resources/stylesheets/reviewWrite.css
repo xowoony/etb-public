@@ -1,3 +1,7 @@
+@charset "UTF-8";
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+
 main {
     color: rgb(0, 0, 0);
     margin-top: 9.5rem;
@@ -13,7 +17,7 @@ main {
     color: rgba(100, 95, 95, 30%);
     cursor: pointer;
     font-size: 1.75rem;
-    margin: 0.27rem 0 0 -3.5rem;
+    margin: 0.3rem 0 0 -3.5rem;
     position: fixed;
 }
 

@@ -8,9 +8,11 @@ public class ReviewArticleEntity {
     private String userEmail;
     private String boardId;
     private int beerIndex;
-    private String title;
     private int score;
-    private String content;
+    private String contentGood;
+
+    private String contentBad;
+
     private int view;
     private Date writtenOn;
     private Date modifiedOn;
@@ -60,14 +62,6 @@ public class ReviewArticleEntity {
         this.beerIndex = beerIndex;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getScore() {
         return score;
     }
@@ -76,12 +70,21 @@ public class ReviewArticleEntity {
         this.score = score;
     }
 
-    public String getContent() {
-        return content;
+    public String getContentGood() {
+        return contentGood;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContentGood(String contentGood) {
+        this.contentGood = contentGood;
+    }
+
+    public String getContentBad() {
+        return contentBad;
+    }
+
+    public ReviewArticleEntity setContentBad(String contentBad) {
+        this.contentBad = contentBad;
+        return this;
     }
 
     public int getView() {
