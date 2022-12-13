@@ -30,8 +30,14 @@ body > .--main > #form > .title {
 
 /*이메일 글씨*/
 body > .--main > #form > tbody > tr > #email {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
+
+body > .--main > #form >.table > tbody > tr > td > label > .register > a {
+    color: rgb(255,255,255);
+    text-decoration: none;
+}
+
 
 /*경고창*/
 #form > .table .warning-row {
@@ -83,7 +89,7 @@ body > .--main > #form > .table > tbody > tr > td > label > #login-button:hover 
 
 
 
-/*선생님 css*/
+/*common css*/
 
 h1,h2,h3,h4,h5,h6 {
     font: inherit;
@@ -103,7 +109,7 @@ input, select, textarea {
 }
 
 .--object-input {
-    width: 100%;
+    width: 92.5%;
     background-color: rgb(255, 255, 255);
     border: 0.0625rem solid rgb(213, 216, 220);
     border-radius: 0.375rem;
@@ -129,22 +135,22 @@ input, select, textarea {
     display: none;
 }
 
-.--object-check > .--checkbox {
-    width: 1.25rem;
-    height: 1.25rem;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    border: 0.0625rem solid rgb(213, 216, 220);
-    border-radius: 0.25rem;
-    color: rgb(255, 255, 255);
-    display: flex;
-    flex: 0 0 1.125rem;
-    /*flex-grow, shrink, basis = 0  == > 모바일*/
-    flex-direction: row;
-    justify-content: center;
-    margin-right: 0.75rem;
-    overflow: hidden;
-}
+/*.--object-check > .--checkbox {*/
+/*    width: 1.25rem;*/
+/*    height: 1.25rem;*/
+/*    align-items: center;*/
+/*    background-color: rgb(255, 255, 255);*/
+/*    border: 0.0625rem solid rgb(213, 216, 220);*/
+/*    border-radius: 0.25rem;*/
+/*    color: rgb(255, 255, 255);*/
+/*    display: flex;*/
+/*    flex: 0 0 1.125rem;*/
+/*    !*flex-grow, shrink, basis = 0  == > 모바일*!*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    margin-right: 0.75rem;*/
+/*    overflow: hidden;*/
+/*}*/
 
 .--object-check > input[type=checkbox]:checked ~ .--checkbox {
     background-color: rgb(22, 113, 241);
@@ -236,9 +242,9 @@ input, select, textarea {
 body {
     top: 0;
     left: 0;
-    width: 100%;
-    background-color: rgb(234, 236, 238);
-    color: rgb(23, 32, 42);
+    width: 95%;
+    background-color: rgb(34, 34, 40);
+    color: rgb(220, 213, 215);
     align-items: stretch;
     display: flex;
     flex-direction: column;
@@ -249,6 +255,7 @@ body {
     overflow: hidden auto;
     position: absolute;
 }
+
 body > .--header,
 body > .--main,
 body > .--footer {

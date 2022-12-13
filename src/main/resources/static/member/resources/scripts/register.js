@@ -213,39 +213,24 @@ form['emailSend'].addEventListener('click', () => {
                         form.querySelector('[rel="emailWarning"]').classList.add('visible');
                         form['email'].focus();
                         form['email'].select();
-                    // 얘가 들어가는 이유는 뭐에요? 결과가 success도 아니도 email_duplicated도 아닐 때 즉 알 수 없는 이유로 전송하지 못했을 때 다시 시도하라는 얘기르 해줘야 됨
                 }
 
                 console.log('이게');
                 console.log(xhr.responseText);
                 console.log('이렇게 변함');
-                console.log(JSON.parse(xhr.responseText)); // 얘는 문자열을 오브젝트로 바꿔줌 (자바의 오브젝트로 바뀜-바뀔 수 있는 경우에)
-                // {"result":""success, "salt":"ce9ac..."}
-                // -> JSON.parse -> 를 쓰면
-                /*
-                {
-                result : 'success',
-                salt : 'ce9ac...'
-                }  오브젝트 꼬라지로 돌려준다.
-                 */
-                // console.log(responseObject['result']);   // success가 찍힘
-                // console.log(responseObject['salt']);     // fa77 뭐시기가 찍힘.
-                //  //텍스트가 콘솔에 표시된다. 응답 테스트를 콘솔에 찍는다 라고 해놨기 때문에 이메일 인증 버튼을 누르면
+                console.log(JSON.parse(xhr.responseText));
             } else {
                 form.querySelector('[rel="emailWarning"]').innerText = '서버와 통신하지 못하였습니다. 잠시 후 다시 시도해 주세요.';
                 // 이너텍스트로 표시해준다.
                 form.querySelector('[rel="emailWarning"]').classList.add('visible');
-                // 클래스가 추가된다. (css로 가보면 visible일때 => block스타일로 보여주겠다고 해놨음)
             }
         }
     };
     xhr.send(formData);
-    // 요청을 보낸 뒤에 readyState가 바뀐다.
-    //formData를 꼭 적어줘야 요청이 실려가게 된다. (주의)
 });
 
 form['emailVerify'].addEventListener('click', () => {
-    if (form['emailAuthCode'].value === '') {   // 빈 상태라면
+    if (form['emailAuthCode'].value === '') {
 
     }
 
@@ -265,7 +250,7 @@ form['emailVerify'].addEventListener('click', () => {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append('email', form['email'].value);
-    formData.append('code', form['emailAuthCode'].value); // email의 name
+    formData.append('code', form['emailAuthCode'].value);
     formData.append('salt', form['emailAuthSalt'].value);
     xhr.open('PATCH', 'email');
     xhr.onreadystatechange = () => {

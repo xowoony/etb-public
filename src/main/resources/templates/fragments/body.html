@@ -11,7 +11,8 @@
             <span>
                 <i class="fa-sharp fa-solid fa-user icon"></i>
             </span>
-            <a class="login" th:href="@{member/login}">시작하기</a>
+            <a class="login" href="http://localhost:8080/member/login">시작하기</a>
+<!--            <a class="login" th:href="@{member/login}">시작하기</a>-->
         </div>
     </div>
 </header>
@@ -26,9 +27,9 @@
 
 
 <!--무언가를 불러오고 있습니다 loading-->
-<div class="loading-cover" id="loadingCover" th:fragment="cover">
+<div class="loading-cover" id="cover" th:fragment="cover">
     <img alt="" class="--icon" th:src="@{/resources/images/loading.png}">
-    <span class="loading-text" rel="loadingText">무언가를 불러오고 있습니다. 잠시만 기다려 주세요.</span>
+    <span class="loading-text" rel="text">무언가를 불러오고 있습니다. 잠시만 기다려 주세요.</span>
 </div>
 
 </html>
