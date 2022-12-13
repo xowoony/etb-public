@@ -35,7 +35,7 @@ public class MemberController {
     @GetMapping(value = "login",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getLogin() {
-        ModelAndView modelAndView = new ModelAndView("home/login");
+        ModelAndView modelAndView = new ModelAndView("member/login");
         return modelAndView;
     }
 

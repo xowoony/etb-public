@@ -16,6 +16,8 @@ body > .main > .content > .form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    margin-top: 4rem;
 }
 
 body > .main > .content > .form > .title-container {
@@ -45,7 +47,7 @@ body > .main > .content > .form > .title-container > .step-container > .step {
     border: 0.125rem solid rgb(213, 216, 220);
     border-radius: 50%;
     box-sizing: border-box;
-    color: rgb(255, 255, 255);
+    color: rgb(128, 139, 150);
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -84,7 +86,7 @@ body > .main > .content > .form > .title-container > .step-container > .line {
 }
 
 body > .main > .content > .form > .title-container > .step-container > .text {
-    color: rgb(222, 223, 224);
+    color: rgb(86, 101, 115);
     font-size: 0.95rem;
     margin-right: 0.75rem;
 }
@@ -306,14 +308,7 @@ body > .main > .content > .form > .button-container > .button.green:active {
 }
 
 
-
-
-/*선생님css*/
-
-html {
-    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-weight: 400;
-}
+/*common css*/
 
 h1,h2,h3,h4,h5,h6 {
     font: inherit;
@@ -333,11 +328,10 @@ input, select, textarea {
 }
 
 .--object-input {
-    width: 95.3%;
+    width: 95%;
     background-color: rgba(0, 0, 0, 25%);
     border: 0.0625rem solid rgb(213, 216, 220);
     border-radius: 0.375rem;
-    color: rgb(255,255,255);
     padding: 0.625rem 0.875rem;
 }
 
@@ -379,7 +373,7 @@ input, select, textarea {
 
 .--object-check > input[type=checkbox]:checked ~ .--checkbox {
     background-color: rgb(0, 0, 0);
-    border: 0.0625rem solid rgb(255, 255, 255);
+    border: 0.0625rem solid rgb(220, 213, 215);
 }
 
 
@@ -430,17 +424,17 @@ input, select, textarea {
 }
 
 
-.--cover > .--icon {
-    width: 4rem;
-    height: 4rem;
-    animation-name: anim-cover-icon;
-    animation-duration: 1000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-}
+/*.--cover > .--icon {*/
+/*    width: 4rem;*/
+/*    height: 4rem;*/
+/*    animation-name: anim-cover-icon;*/
+/*    animation-duration: 1000ms;*/
+/*    animation-iteration-count: infinite;*/
+/*    animation-timing-function: linear;*/
+/*    pointer-events: none;*/
+/*    user-select: none;*/
+/*    -webkit-user-drag: none;*/
+/*}*/
 
 /*로딩 페이지 아이콘 돌리기*/
 @keyframes anim-cover-icon {
@@ -452,84 +446,80 @@ input, select, textarea {
     }
 }
 
-.--cover > .--text {
-    max-width: 25rem;
-    font-size: 1.375rem;
-    line-height: 150%;
-    margin-top: 2rem;
-    pointer-events: none;
-    text-align: center;
-    user-select: none;
-    white-space: pre-wrap;
+/*.--cover > .--text {*/
+/*    max-width: 25rem;*/
+/*    font-size: 1.375rem;*/
+/*    line-height: 150%;*/
+/*    margin-top: 2rem;*/
+/*    pointer-events: none;*/
+/*    text-align: center;*/
+/*    user-select: none;*/
+/*    white-space: pre-wrap;*/
 
-}
+/*}*/
 
 body {
-    /*top: 0;*/
-    /*left: 0;*/
-    /*width: 100%;*/
-    background-color: rgb(28, 29, 35);
-    color: rgb(255, 255, 255);
-    /*align-items: stretch;*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: flex-start;*/
-    /*font-size: 1rem;*/
-    /*min-height: 100%;*/
-    /*margin: unset;*/
-    /*overflow: hidden auto;*/
-    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    color: rgb(252, 252, 252);
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1rem;
+    min-height: 100%;
+    margin: unset;
+    overflow: hidden auto;
+    position: absolute;
 }
-/*body > .--header,*/
-/*body > .--main,*/
-/*body > .--footer {*/
-/*    align-items: flex-start;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*}*/
 
-/*body > .--header > .--content,*/
-/*body > .--main > .--content{*/
-/*!*body > .--footer > .--content {*!*/
-/*    width: 100%;*/
-/*    max-width: 70rem;*/
-/*    margin: 0 2rem;*/
-/*}*/
+body > .--main {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+body > .--main > .--content {
+    width: 100%;
+    max-width: 70rem;
+}
 
 
-/*body > .--header {*/
-/*    background-color: rgb(255, 255, 255);*/
-/*    border-bottom: 0.0625rem solid rgb(213, 216, 220);*/
-/*    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);*/
-/*}*/
+body > .--header {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 0.0625rem solid rgb(213, 216, 220);
+    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);
+}
 
-/*body > .--header > .--content {*/
-/*    align-items: center;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: flex-start;*/
-/*    padding: 1rem 0;*/
-/*}*/
-/*body > .--header > .--content > .--logo-container > .--logo {*/
-/*    height: 2.5rem;*/
-/*}*/
-/*body > .--header > .--content > .--menu {*/
-/*    align-items: center;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: flex-start;*/
-/*    list-style-type: none;*/
-/*    margin: unset;*/
-/*    padding: unset;*/
-/*}*/
+body > .--header > .--content {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1rem 0;
+}
+body > .--header > .--content > .--logo-container > .--logo {
+    height: 2.5rem;
+}
+body > .--header > .--content > .--menu {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin: unset;
+    padding: unset;
+}
 
-/*body > .--header > .--content > .--menu.--main {*/
-/*    flex: 1;*/
-/*    font-size: 1.25rem;*/
-/*    font-weight: 500;*/
-/*    margin-left: 2.5rem;*/
-/*}*/
+body > .--header > .--content > .--menu.--main {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 2.5rem;
+}
 
 body > .--header > .--content > .--menu > .--item + .--item {
     margin-left: 1.25rem;
@@ -555,8 +545,11 @@ body > .--header > .--content > .--menu > .--item > .--link:active {
 
 body > .--main {
     flex: 1;
-    margin-top: 4.5rem;
 }
 
-
-
+body > .--footer {
+    background-color: #191f28;
+    color: #b0b8c1;
+    border-top: 0.0625rem solid rgb(213, 216, 220);
+    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);
+}

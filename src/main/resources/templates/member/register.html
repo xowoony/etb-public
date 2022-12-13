@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 회원가입</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+<!--    <link rel="stylesheet" th:href="@{/resources/stylesheets/common.css}">-->
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/register.css}">
+    <script src="https://kit.fontawesome.com/08367f1c3f.js" crossorigin="anonymous"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!--    <script defer th:src="@{/resources/scripts/common.js}"></script>-->
+    <script defer th:src="@{/member/resources/scripts/register.js}"></script>
+</head>
+<body>
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main class="--main main">
+    <div class="--content content">
+        <form class="form step1" id="form">
+            <div class="title-container">
+                <h2 class="title">회원가입</h2>
+                <div class="step-container">
+                    <span class="text" rel="stepText">이용약관 및 개인정보 처리방침</span>
+                    <span class="step step1">1</span>
+                    <span class="line"></span>
+                    <span class="step step2">2</span>
+                    <span class="line"></span>
+                    <span class="step step3">3</span>
+                </div>
+            </div>
+            <div class="step step1">
+                <label class="label">
+                    <h2 class="title">서비스 이용약관</h2>
+                    <textarea class="--object-input term" readonly>서비스 이용약관</textarea>
+                </label>
+                <label class="label">
+                    <h2 class="title">개인정보 처리방침</h2>
+                    <textarea class="--object-input term" readonly>개인정보 처리방침</textarea>
+                </label>
+                <label class="--object-check">
+                    <input name="termAgree" type="checkbox">
+                    <span class="--checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+                    <span class="--text">위 서비스 이용약관 및 개인정보 처리방침을 읽어보았고 이해하였으며 동의합니다.</span>
+                </label>
+            </div>
+            <div class="step step2">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <label class="label email">
+                                <span hidden>이메일</span>
+                                <input class="--object-input input" maxlength="50" name="email"
+                                       placeholder="이메일 주소를 입력해 주세요." type="email">
+                                <input class="--object-button" name="emailSend" value="인증번호 전송" type="button">
+                            </label>
+                            <label class="label email">
+                                <span hidden>인증번호</span>
+                                <input class="--object-input input" disabled maxlength="6" name="emailAuthCode"
+                                       placeholder="이메일 인증번호를 입력해 주세요." type="text">
+                                <input name="emailAuthSalt" type="hidden">
+                                <input class="--object-button" disabled name="emailVerify" value="인증번호 확인"
+                                       type="button">
+                            </label>
+                            <span class="warning" rel="emailWarning">이메일 주소를 입력해 주세요.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td>
+                            <label class="label password">
+                                <span hidden>비밀번호</span>
+                                <input class="--object-input input" maxlength="50" name="password"
+                                       placeholder="비밀번호를 입력해 주세요." type="password">
+                            </label>
+                            <label class="label password">
+                                <span hidden>비밀번호 재입력</span>
+                                <input class="--object-input input" maxlength="50" name="passwordCheck"
+                                       placeholder="비밀번호를 한 번 더 입력해 주세요." type="password">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td>
+                            <label class="label">
+                                <span hidden>닉네임</span>
+                                <input class="--object-input input" maxlength="10" name="nickname"
+                                       placeholder="닉네임을 입력해 주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td>
+                            <label class="label">
+                                <span hidden>이름</span>
+                                <input class="--object-input input" maxlength="50" name="name"
+                                       placeholder="이름을 입력해 주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td>
+                            <label class="label">
+                                <span hidden>연락처</span>
+                                <input class="--object-input input" maxlength="12" name="contact"
+                                       placeholder="연락처를 ' - ' 없이 입력해 주세요" type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>
+                            <label class="label address">
+                                <span hidden>우편번호</span>
+                                <input class="--object-input input" maxlength="6" name="addressPostal"
+                                       placeholder="우편번호" readonly type="text">
+                                <input class="--object-button" name="addressFind" value="주소 찾기" type="button">
+                            </label>
+                            <label class="label address">
+                                <span hidden>기본 주소</span>
+                                <input class="--object-input input" maxlength="100" name="addressPrimary"
+                                       placeholder="주소 찾기를 통해 주소를 입력해 주세요" readonly type="text">
+                            </label>
+                            <label class="label address">
+                                <span hidden>상세 주소</span>
+                                <input class="--object-input input" maxlength="100" name="addressSecondary"
+                                       placeholder="상세주소를 입력해 주세요" type="text">
+                            </label>
+                            <div class="panel address" rel="addressFindPanel">
+                                <div class="dialog" rel="addressFindPanelDialog"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="step step3">
+                <span class="title">회원가입 완료</span>
+                <span class="message"><b>스터디</b>에 회원가입해 주셔서 감사드립니다. <br>아래 <i>로그인하러 가기</i>버튼을 클릭하여 로그인 해주세요.</span>
+            </div>
+
+            <div class="warning" rel="warning">
+                <i class=" icon fa-solid fa-circle-exclamation"></i>
+                <div class="text" rel="warningText">서비스 이용약관 및 개인정보 처리방침을 읽고 동의해 주세요.</div>
+            </div>
+
+            <div class="button-container">
+                <div class="button green" rel="nextButton">
+                    <span class="text">다음</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>
+
