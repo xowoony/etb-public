@@ -8,10 +8,6 @@ html {
     font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
-body > main {
-    width: 100%;
-}
-
 /*loading - visible 속성 none */
 body > .loading-cover {
     display: none;
@@ -91,6 +87,7 @@ body > header > .spring > .category {
     padding-top: 3.5rem;
     font-size: 1rem;
     font-family: 'Dosis', sans-serif;
+
 }
 
 /*HOME 카테고리*/
@@ -127,7 +124,7 @@ body > header > .spring > .category > span > .icon{
 }
 
 /*시작하기 글씨*/
-body > header > .spring > .category > .start {
+body > header > .spring > .category > .login {
     text-decoration: none;
     color: rgb(255,255,255);
     margin-left: 0.5rem;
