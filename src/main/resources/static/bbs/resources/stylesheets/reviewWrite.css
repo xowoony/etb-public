@@ -21,6 +21,10 @@ main {
     position: fixed;
 }
 
+#reviewForm > .button-container > .button > .icon:hover {
+    filter: brightness(140%);
+}
+
 /*타이틀 - 리뷰작성*/
 h2 {
     font: inherit;
@@ -177,4 +181,8 @@ h2 {
     margin: 0.75rem 0.35rem 0 0;
     float: right;
     padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+}
+
+#reviewForm > div > .submit-button:hover {
+    filter: brightness(110%);
 }

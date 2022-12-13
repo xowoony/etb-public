@@ -17,6 +17,7 @@
     <!--    <div class="review-unsigned" th:if="${session.user == null}">로그인 후 리뷰를 작성할 수 있어요.</div>-->
     <form class="review-form" id="reviewForm">
         <input name="beerIndex" hidden>
+<!--        <input name="bid" type="hidden" th:value="${bid}">-->
         <input type="hidden" name="score" value="0">
         <div class="button-container">
             <div class="button" rel="backButton">
