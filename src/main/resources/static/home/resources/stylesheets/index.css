@@ -15,16 +15,32 @@ body > main > .home-section1 > .title-box1 {
 body > main > .home-section1 > .title-box1 > .title1 {
     font-size: 3rem;
     font-family: 'Gowun Batang', serif;
-    margin-left: 35rem;
-    margin-top: 7rem;
+    /*margin-left: 35rem;*/
+    /*margin-top: 7rem;*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/*꽃에 앉고 달에 취하니*/
 body > main > .home-section1 > .title-box1 > .title2 {
     font-size: 3rem;
     font-family: 'Gowun Batang', serif;
-    margin-left: 33.5rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+
+/*!*꽃에 앉고 달에 취하니*!*/
+/*body > main > .home-section1 > .title-box1 > .title2 {*/
+/*    font-size: 3rem;*/
+/*    font-family: 'Gowun Batang', serif;*/
+/*    margin-left: 33.5rem;*/
+/*}*/
 
 /*!*버튼 전체 위치조정*!*/
 /*body > main > .home-section1 > .title-box1 > .home-button {*/
