@@ -3,14 +3,77 @@ package com.emptybeer.etb.entities.member;
 import java.util.Date;
 import java.util.Objects;
 
-public class EmailAuthEntity {
+public class EmailAuthEntity{
     private int index;
     private String email;
     private String code;
     private String salt;
-    private Date createOn;
+    private Date createdOn;
     private Date expiresOn;
-    private boolean expiredFlag;
+    private boolean isExpired;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public EmailAuthEntity setIndex(int index) {
+        this.index = index;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public EmailAuthEntity setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public EmailAuthEntity setCode(String code) {
+        this.code = code;
+        return this;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public EmailAuthEntity setSalt(String salt) {
+        this.salt = salt;
+        return this;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public EmailAuthEntity setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
+
+    public Date getExpiresOn() {
+        return expiresOn;
+    }
+
+    public EmailAuthEntity setExpiresOn(Date expiresOn) {
+        this.expiresOn = expiresOn;
+        return this;
+    }
+
+    public boolean isExpired() {
+        return isExpired;
+    }
+
+    public EmailAuthEntity setExpired(boolean expired) {
+        isExpired = expired;
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -24,60 +87,6 @@ public class EmailAuthEntity {
     public int hashCode() {
         return Objects.hash(index);
     }
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public Date getCreateOn() {
-        return createOn;
-    }
-
-    public void setCreateOn(Date createOn) {
-        this.createOn = createOn;
-    }
-
-    public Date getExpiresOn() {
-        return expiresOn;
-    }
-
-    public void setExpiresOn(Date expiresOn) {
-        this.expiresOn = expiresOn;
-    }
-
-    public boolean isExpiredFlag() {
-        return expiredFlag;
-    }
-
-    public void setExpiredFlag(boolean expiredFlag) {
-        this.expiredFlag = expiredFlag;
-    }
 }
+
+

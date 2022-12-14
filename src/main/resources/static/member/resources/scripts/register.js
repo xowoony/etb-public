@@ -215,10 +215,10 @@ form['emailSend'].addEventListener('click', () => {
                         form['email'].select();
                 }
 
-                console.log('이게');
-                console.log(xhr.responseText);
-                console.log('이렇게 변함');
-                console.log(JSON.parse(xhr.responseText));
+                // console.log('이게');
+                // console.log(xhr.responseText);
+                // console.log('이렇게 변함');
+                // console.log(JSON.parse(xhr.responseText));
             } else {
                 form.querySelector('[rel="emailWarning"]').innerText = '서버와 통신하지 못하였습니다. 잠시 후 다시 시도해 주세요.';
                 // 이너텍스트로 표시해준다.

@@ -76,9 +76,9 @@ public class MemberService {
         emailAuth.setEmail(user.getEmail());
         emailAuth.setCode(authCode);
         emailAuth.setSalt(authSalt);
-        emailAuth.setCreateOn(createdOn);
+        emailAuth.setCreatedOn(createdOn);
         emailAuth.setExpiresOn(expiresOn);
-        emailAuth.setExpiredFlag(false);
+        emailAuth.setExpired(false);
 
         if (this.memberMapper.insertEmailAuth(emailAuth) == 0) {
             return CommonResult.FAILURE;
@@ -119,7 +119,7 @@ public class MemberService {
 
 
         //expired 올바른 인증번호를 입력하고 누르면 True가 되어야만 한다.
-        existingEmailAuth.setExpiredFlag(true);
+        existingEmailAuth.setExpired(true);
         if (this.memberMapper.updateEmailAuth(existingEmailAuth) == 0) {
             // 영향을 받은 레코드 갯수가 0일 경우
             return CommonResult.FAILURE;
@@ -136,7 +136,7 @@ public class MemberService {
                 emailAuth.getSalt());
         // 2. <1>에서 가져온 새로운 객체가 null 이거나 이가 가진 isExpired() 호출 결과가 false 인 경우 'RegisterResult.EMAIL_NOT_VERIFIED'를 결과로 반환하기. (없음으로 만들어야 함).
 
-        if (existingEmailAuth == null || !existingEmailAuth.isExpiredFlag()) {
+        if (existingEmailAuth == null || !existingEmailAuth.isExpired()) {
             // 이메일인증을 정상적으로 완료하지 않았을 때
             // RegisterResult enums만들어 주고 와야함.
             return RegisterResult.EMAIL_NOT_VERIFIED;
@@ -180,9 +180,9 @@ public class MemberService {
         Date expiresOn = org.apache.commons.lang3.time.DateUtils.addMinutes(createOn, 5); // 5분 미래
         emailAuth.setCode(authCode);
         emailAuth.setSalt(authSalt);
-        emailAuth.setCreateOn(createOn);
+        emailAuth.setCreatedOn(createOn);
         emailAuth.setExpiresOn(expiresOn);
-        emailAuth.setExpiredFlag(false);
+        emailAuth.setExpired(false);
         if (this.memberMapper.insertEmailAuth(emailAuth) == 0) {
             return CommonResult.FAILURE;
         }
@@ -211,7 +211,7 @@ public class MemberService {
     public Enum<? extends IResult> recoverPasswordcheck(EmailAuthEntity emailAuth) {
         // Membermapper.xml select
         EmailAuthEntity existingEmailAuth = this.memberMapper.selectEmailAuthByIndex(emailAuth.getIndex());
-        if (existingEmailAuth == null || !existingEmailAuth.isExpiredFlag()) {
+        if (existingEmailAuth == null || !existingEmailAuth.isExpired()) {
             return CommonResult.FAILURE;
         }
         emailAuth.setCode(existingEmailAuth.getCode());
@@ -232,7 +232,7 @@ public class MemberService {
         if (new Date().compareTo(existingEmailAuth.getExpiresOn()) > 0) {
             return CommonResult.FAILURE;
         }
-        existingEmailAuth.setExpiredFlag(true);
+        existingEmailAuth.setExpired(true);
         if (this.memberMapper.updateEmailAuth(existingEmailAuth) == 0) {
             return CommonResult.FAILURE;
         }
@@ -248,7 +248,7 @@ public class MemberService {
                 emailAuth.getEmail(),
                 emailAuth.getCode(),
                 emailAuth.getSalt());
-        if (existingEmailAuth == null || !existingEmailAuth.isExpiredFlag()) {
+        if (existingEmailAuth == null || !existingEmailAuth.isExpired()) {
             return CommonResult.FAILURE;
         }
         // 이메일 인증이 아직 안됐거나 인증 시간이 5분이 지나서 만료되었을 경우 실패를 반환한다.
