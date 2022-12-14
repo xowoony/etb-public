@@ -424,17 +424,17 @@ input, select, textarea {
 }
 
 
-/*.--cover > .--icon {*/
-/*    width: 4rem;*/
-/*    height: 4rem;*/
-/*    animation-name: anim-cover-icon;*/
-/*    animation-duration: 1000ms;*/
-/*    animation-iteration-count: infinite;*/
-/*    animation-timing-function: linear;*/
-/*    pointer-events: none;*/
-/*    user-select: none;*/
-/*    -webkit-user-drag: none;*/
-/*}*/
+.--cover > .--icon {
+    width: 4rem;
+    height: 4rem;
+    animation-name: anim-cover-icon;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
 
 /*로딩 페이지 아이콘 돌리기*/
 @keyframes anim-cover-icon {
@@ -446,17 +446,17 @@ input, select, textarea {
     }
 }
 
-/*.--cover > .--text {*/
-/*    max-width: 25rem;*/
-/*    font-size: 1.375rem;*/
-/*    line-height: 150%;*/
-/*    margin-top: 2rem;*/
-/*    pointer-events: none;*/
-/*    text-align: center;*/
-/*    user-select: none;*/
-/*    white-space: pre-wrap;*/
+.--cover > .--text {
+    max-width: 25rem;
+    font-size: 1.375rem;
+    line-height: 150%;
+    margin-top: 2rem;
+    pointer-events: none;
+    text-align: center;
+    user-select: none;
+    white-space: pre-wrap;
 
-/*}*/
+}
 
 body {
     top: 0;
