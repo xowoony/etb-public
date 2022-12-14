@@ -91,3 +91,16 @@ body > main > .festival-infoContainer > #content > thead > tr > td:first-child{
 body > main > .festival-infoContainer > #content > thead > tr > td+td{
     padding-left: 15rem;
 }
+
+
+
+body > main > .festival-infoContainer > .map-container {
+    width: 75%;
+    margin-left: 11rem;
+}
+
+body > main > .festival-infoContainer > .map-container > #map{
+    margin-left: 15rem;
+    width: 400px;
+    height: 400px;
+}

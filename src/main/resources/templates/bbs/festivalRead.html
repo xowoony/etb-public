@@ -10,6 +10,7 @@
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalRead.css}">
     <script defer th:src="@{/bbs/resources/scripts/festivalRead.js}"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8a4e7818536b52ee031c365250072a9"></script>
 </head>
 <body>
 <!--  header  -->
@@ -52,9 +53,15 @@
                 <td>Contact</td>
                 <td>000-1111-2222</td>
             </tr>
-
+            <tr>
+                <td>Map</td>
+            </tr>
             </thead>
         </table>
+
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
     </div>
 
 
