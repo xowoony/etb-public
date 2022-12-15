@@ -96,11 +96,14 @@ body > main > .festival-infoContainer > #content > thead > tr > td+td{
 
 body > main > .festival-infoContainer > .map-container {
     width: 75%;
+    height: 60%;
     margin-left: 11rem;
+    margin-bottom: 15rem;
 }
 
 body > main > .festival-infoContainer > .map-container > #map{
     margin-left: 15rem;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 500px;
+    z-index: 0;
 }
