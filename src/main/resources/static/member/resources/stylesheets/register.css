@@ -392,7 +392,7 @@ input, select, textarea {
 }
 
 .--object-button:active{
-    background-color: rgb(130, 170, 204);
+    background-color: rgb(87, 86, 86);
 }
 
 .--object-button:disabled {
@@ -424,17 +424,17 @@ input, select, textarea {
 }
 
 
-/*.--cover > .--icon {*/
-/*    width: 4rem;*/
-/*    height: 4rem;*/
-/*    animation-name: anim-cover-icon;*/
-/*    animation-duration: 1000ms;*/
-/*    animation-iteration-count: infinite;*/
-/*    animation-timing-function: linear;*/
-/*    pointer-events: none;*/
-/*    user-select: none;*/
-/*    -webkit-user-drag: none;*/
-/*}*/
+.--cover > .--icon {
+    width: 4rem;
+    height: 4rem;
+    animation-name: anim-cover-icon;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
 
 /*로딩 페이지 아이콘 돌리기*/
 @keyframes anim-cover-icon {
@@ -446,17 +446,17 @@ input, select, textarea {
     }
 }
 
-/*.--cover > .--text {*/
-/*    max-width: 25rem;*/
-/*    font-size: 1.375rem;*/
-/*    line-height: 150%;*/
-/*    margin-top: 2rem;*/
-/*    pointer-events: none;*/
-/*    text-align: center;*/
-/*    user-select: none;*/
-/*    white-space: pre-wrap;*/
+.--cover > .--text {
+    max-width: 25rem;
+    font-size: 1.375rem;
+    line-height: 150%;
+    margin-top: 2rem;
+    pointer-events: none;
+    text-align: center;
+    user-select: none;
+    white-space: pre-wrap;
 
-/*}*/
+}
 
 body {
     top: 0;
@@ -547,9 +547,9 @@ body > .--main {
     flex: 1;
 }
 
-body > .--footer {
-    background-color: #191f28;
-    color: #b0b8c1;
-    border-top: 0.0625rem solid rgb(213, 216, 220);
-    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);
-}
+/*body > .--footer {*/
+/*    background-color: #191f28;*/
+/*    color: #b0b8c1;*/
+/*    border-top: 0.0625rem solid rgb(213, 216, 220);*/
+/*    box-shadow: 0 0 0.5rem 0.0625rem rgba(0, 0, 0, 10%);*/
+/*}*/
