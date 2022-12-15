@@ -57,7 +57,6 @@ public class BbsController {
         if (user == null) {
             result = WriteResult.NOT_SIGNED;
         } else {
-
             reviewArticle.setUserEmail(user.getEmail());
 
             result = this.bbsService.reviewAdd(user, reviewArticle);
