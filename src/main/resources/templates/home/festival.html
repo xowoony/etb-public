@@ -11,33 +11,34 @@
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/festival.css}">
     <script defer th:src="@{/home/resources/scripts/festival.js}"></script>
 </head>
-<body id="smoothScroll">
+<body>
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main>
-    <!--  homeSection1  -->
-    <section class="home-section1" id="homeSection1">
-        <div class="title-box1" id="titleBox1">
-            <div class="title">section1</div>
+<main id="smoothScroll">
+<!--    margin top 10rem 지정-->
+    <div class="title">
+        <i>FESTIVAL</i>
+    </div>
+    <div class="festival-imageContainer">
+        <div>
+            <a th:href="@{bbs/festivalRead}"><img class="image" src="/bbs/resources/images/dog.jpg"></a>
         </div>
-    </section>
-    <div class="spring"></div>
-    <!--  homeSection2  -->
-    <section class="home-section2" id="homeSection2">
-        <div class="title-box2" id="titleBox2">
-            <div class="title">section2</div>
+        <div>
+            <a th:href="@{bbs/festivalRead}"><img class="image" src="/bbs/resources/images/cat.jpg"></a>
         </div>
-    </section>
-    <!--  homeSection3  -->
-    <section class="home-section3" id="homeSection3">
-        <div class="title-box3" id="titleBox3">
-            <div class="title">section3</div>
+        <div>
+            <a th:href="@{bbs/festivalRead}">
+                <img class="image" src="/bbs/resources/images/chicken.jpg">
+            </a>
         </div>
-    </section>
+        <div>
+            <a th:href="@{bbs/festivalRead}"><img class="image" src="/bbs/resources/images/cow.jpg"></a>
+        </div>
+    </div>
 </main>
 <!--  footer  -->
 <th:block th:replace="~{fragments/body :: footer}"></th:block>

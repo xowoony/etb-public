@@ -42,6 +42,7 @@ form.onsubmit = (e) => {
                 switch (responseObject['result']) {
                     case'success':
                         alert('성공적으로 로그인 되었습니다.');
+                        window.history.back();
                         break;
                     default:
                         alert('로그인에 실패하였습니다.다시 시도해 주세요.');
