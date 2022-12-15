@@ -20,17 +20,34 @@ for (let i = 0; i < reviewStarArray.length; i++) {
     });
 }
 
+
+// 실시간 글자수 세기
+let inputGood = document.getElementById('inputGood');
+let inputBad = document.getElementById('inputBad');
+let goodTextCount = document.getElementById('goodTextCount');
+let badTextCount = document.getElementById('badTextCount');
+
+inputGood.addEventListener(('input'), ()=> {
+    // 좋았던 점 글자수세기(공백포함)
+    goodTextCount.innerHTML = `${inputGood.value.length}`;
+});
+inputBad.addEventListener(('input'), ()=>{
+    // 아쉬운 점 글자수세기(공백포함)
+    badTextCount.innerHTML = `${inputBad.value.length}`;
+});
+
+// 리뷰 등록 버튼 클릭
 reviewForm.onsubmit = e => {
     if (reviewForm['score'].value === '0') {
         alert('별점을 선택해 주세요.');
         return false;
     }
-    if (reviewForm['contentGood'].value === '' || reviewForm['contentGood'].value.length < 20) {
+    if (inputGood.value === '' || `${inputGood.value.length}` < 20) {
         alert('내용을 20자 이상 입력해 주세요.');
         reviewForm['contentGood'].focus();
         return false;
     }
-    if (reviewForm['contentBad'].value === '' || reviewForm['contentBad'].value.length < 20) {
+    if (inputBad.value === '' || `${inputBad.value.length}` < 20) {
         alert('내용을 20자 이상 입력해 주세요.');
         reviewForm['contentBad'].focus();
         return false;
@@ -41,10 +58,10 @@ reviewForm.onsubmit = e => {
     const formData = new FormData();
     formData.append('beerIndex', reviewForm['beerIndex'].value);
     formData.append('score', reviewForm['score'].value);
-    formData.append('contentGood', reviewForm['contentGood'].value);
-    formData.append('contentBad', reviewForm['contentBad'].value);
+    formData.append('contentGood', inputGood.value);
+    formData.append('contentBad', inputBad.value);
 
-    xhr.open('POST', './bbs/reviewWrite');
+    xhr.open('POST', './reviewWrite');
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status >=200 && xhr.status < 300) {
@@ -55,7 +72,7 @@ reviewForm.onsubmit = e => {
                         break;
                     case 'success':
                         const aid = responseObject['aid'];
-                        window.location.href = `read?aid=${aid}`;
+                        window.location.href = `reviewList?aid=${aid}`;
                         break;
                     default:
                         alert('알 수 없는 이유로 리뷰를 작성하지 못하였습니다. 잠시 후 다시 시도해 주세요.');

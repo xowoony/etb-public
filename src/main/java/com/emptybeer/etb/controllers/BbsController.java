@@ -1,6 +1,7 @@
 package com.emptybeer.etb.controllers;
 
 import com.emptybeer.etb.entities.bbs.*;
+import com.emptybeer.etb.entities.data.*;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
@@ -25,26 +26,18 @@ public class BbsController {
 
     @GetMapping(value = "reviewWrite",
     produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "bid", required = false) String bid) {
+    public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                       @RequestParam(value = "beerIndex") int beerIndex) {
         ModelAndView modelAndView;
 
         if (user == null) { // 로그인이 안 되어 있을 때
             modelAndView = new ModelAndView("redirect:/member/login");
         } else {    // 로그인이 되어 있을 때
             modelAndView = new ModelAndView("bbs/reviewWrite");
+            BeerEntity beer = this.bbsService.getBeer(beerIndex);
 
-            if (bid == null || this.bbsService.getBoard(bid) == null) {
-                modelAndView.addObject("result", CommonResult.FAILURE.name());
-            } else {
-                modelAndView.addObject("result", CommonResult.SUCCESS.name());
-
-                // html 제목에 연결되는 부분 (자유게시판, Q&A, 공지사항)
-                BoardEntity board = this.bbsService.getBoard(bid);
-//                modelAndView.addObject("board", board.getText());
-                modelAndView.addObject("bid", board.getId());
-            }
+            modelAndView.addObject("beer", beer);
         }
-
         return modelAndView;
     }
 
@@ -53,7 +46,7 @@ public class BbsController {
     @PostMapping(value = "reviewWrite",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String postReviewWrite(String bid, @SessionAttribute(value = "user", required = false) UserEntity user, ReviewArticleEntity reviewArticle) {
+    public String postReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user, ReviewArticleEntity reviewArticle) {
         // SessionAttribute 는 쿠키 (로그인 되어 있을 떄만 어쩌구)
 
         Enum<?> result;
@@ -62,14 +55,10 @@ public class BbsController {
 
         if (user == null) {
             result = WriteResult.NOT_ALLOWED;
-        } else if (bid == null) {
-            result = WriteResult.NO_SUCH_BOARD;
-
         } else {
             reviewArticle.setUserEmail(user.getEmail());
-            reviewArticle.setBoardId(bid);
 
-            result = this.bbsService.reviewWrite(reviewArticle);
+            result = this.bbsService.reviewAdd(reviewArticle);
             if (result == CommonResult.SUCCESS) {
                 responseObject.put("aid", reviewArticle.getIndex());
             }
