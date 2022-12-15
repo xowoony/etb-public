@@ -70,6 +70,9 @@ reviewForm.onsubmit = e => {
                     case 'not_signed':
                         alert('로그인되어있지 않습니다. 로그인 후 다시 시도해 주세요.');
                         break;
+                    case 'no_more_review':
+                        alert('이미 작성된 리뷰가 있습니다.');
+                        break;
                     case 'success':
                         const aid = responseObject['aid'];
                         window.location.href = `reviewList?aid=${aid}`;

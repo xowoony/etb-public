@@ -3,6 +3,7 @@ package com.emptybeer.etb.services;
 import com.emptybeer.etb.entities.bbs.BoardEntity;
 import com.emptybeer.etb.entities.bbs.ReviewArticleEntity;
 import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
@@ -29,7 +30,10 @@ public class BbsService {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
     }
 
-    public Enum<? extends IResult> reviewAdd(ReviewArticleEntity reviewArticle) {
+    public Enum<? extends IResult> reviewAdd(UserEntity user, ReviewArticleEntity reviewArticle) {
+        if (this.bbsMapper.selectReviewByBeerIndex(user.getEmail(), reviewArticle.getBeerIndex()) > 0) {
+            return WriteResult.NO_MORE_REVIEW;
+        }
         return this.bbsMapper.insertReviewArticle(reviewArticle) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;

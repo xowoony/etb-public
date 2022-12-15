@@ -37,4 +37,10 @@
                 IFNULL(#{writtenOn}, DEFAULT(`written_on`)),
                 IFNULL(#{modifiedOn}, DEFAULT(`modified_on`)))
     </insert>
+    <select id="selectReviewByBeerIndex" resultType="int">
+        SELECT COUNT(*)
+        FROM etb_bbs.review_articles
+        WHERE user_email = #{userEmail}
+          AND beer_index = #{beerIndex}
+    </select>
 </mapper>

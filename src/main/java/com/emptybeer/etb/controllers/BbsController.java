@@ -24,8 +24,10 @@ public class BbsController {
         this.bbsService = bbsService;
     }
 
+
+    //리뷰 글쓰기  >> 한사람당 맥주 리뷰 한개만 가능하게 만들기
     @GetMapping(value = "reviewWrite",
-    produces = MediaType.TEXT_HTML_VALUE)
+            produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user,
                                        @RequestParam(value = "beerIndex") int beerIndex) {
         ModelAndView modelAndView;
@@ -50,15 +52,15 @@ public class BbsController {
         // SessionAttribute 는 쿠키 (로그인 되어 있을 떄만 어쩌구)
 
         Enum<?> result;
-        int index = 0;
         JSONObject responseObject = new JSONObject();
 
         if (user == null) {
-            result = WriteResult.NOT_ALLOWED;
+            result = WriteResult.NOT_SIGNED;
         } else {
+
             reviewArticle.setUserEmail(user.getEmail());
 
-            result = this.bbsService.reviewAdd(reviewArticle);
+            result = this.bbsService.reviewAdd(user, reviewArticle);
             if (result == CommonResult.SUCCESS) {
                 responseObject.put("aid", reviewArticle.getIndex());
             }
@@ -67,5 +69,43 @@ public class BbsController {
         responseObject.put("result", result.name().toLowerCase());
         responseObject.put("aid", reviewArticle.getIndex());
         return responseObject.toString();
+    }
+
+
+//    // 리뷰 리스트
+//    @RequestMapping(value = "reviewList",
+//            method = RequestMethod.GET,
+//            produces = MediaType.TEXT_HTML_VALUE)
+//    public ModelAndView getReviewList(
+//            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+//            @RequestParam(value = "criterion", required = false) String criterion,
+//            @RequestParam(value = "keyword", required = false) String keyword) {
+//        page = Math.max(1, page);
+//        // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
+//        ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
+//
+//        if (board != null) {
+//            int totalCount = this.bbsService.getArticleCount(criterion, keyword);
+//
+//            // int totalCount = this.bbsService.getArticleCount(board);
+//            PagingModel paging = new PagingModel(totalCount, page);
+//            // System.out.printf("이동 가능한 최소 페이지 : %d\n", paging.minPage);
+//            // System.out.printf("이동 가능한 최대 페이지 : %d\n", paging.maxPage);
+//            // System.out.printf("표시 시작 페이지 : %d\n", paging.startPage);
+//            // System.out.printf("표시 끝 페이지 : %d\n", paging.endPage);
+//            modelAndView.addObject("paging", paging);
+//
+//            ArticleReadVo[] articles = this.bbsService.getArticles(board, paging, criterion, keyword);
+//            modelAndView.addObject("articles", articles);
+//        }
+//        return modelAndView;
+//    }
+
+    @RequestMapping(value = "reviewList",
+            method = RequestMethod.GET,
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getReviewList() {
+        ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
+        return modelAndView;
     }
 }
