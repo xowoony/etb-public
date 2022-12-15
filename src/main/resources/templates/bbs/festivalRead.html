@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: FESTIVAL소개</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalRead.css}">
+    <script defer th:src="@{/bbs/resources/scripts/festivalRead.js}"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8a4e7818536b52ee031c365250072a9"></script>
+</head>
+<body>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main id="smoothScroll">
+    <!--    margin top 10rem 지정-->
+
+    <!--  페스티벌 관련 이미지 컨테이너  -->
+    <div class="festival-imageContainer">
+        <div class="main-imageContainer">
+            <img src="/bbs/resources/images/dog.jpg">
+        </div>
+        <div class="side-imageContainer">
+            <img src="/bbs/resources/images/cat.jpg">
+            <img src="/bbs/resources/images/chicken.jpg">
+            <img src="/bbs/resources/images/cow.jpg">
+        </div>
+    </div>
+
+    <!--  페스티벌 관련 내용 컨테이너  -->
+    <div class="festival-infoContainer">
+        <div class="title">대구 치맥 페스티벌</div>
+        <table id="content">
+            <thead>
+            <tr>
+                <td>Period</td>
+                <td>2022.12.01 ~ 2022.12.10</td>
+            </tr>
+
+            <tr>
+                <td>Location</td>
+                <td>대구 달서구 공원순환로 36 두류공원</td>
+            </tr>
+
+            <tr>
+                <td>Contact</td>
+                <td>000-1111-2222</td>
+            </tr>
+            <tr>
+                <td>Map</td>
+            </tr>
+            </thead>
+        </table>
+
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+
+
+    </div>
+
+
+
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>
