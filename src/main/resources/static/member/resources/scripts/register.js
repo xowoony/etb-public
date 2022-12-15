@@ -21,6 +21,7 @@ const EmailWarning = {
     }
 };
 
+
 form.querySelector('[rel="nextButton"]').addEventListener('click', () => {
     // 다 입력후 다음버튼을 눌렀을 때
     form.querySelector('[rel="warning"]').classList.remove('visible');
@@ -175,12 +176,12 @@ form['emailSend'].addEventListener('click', () => {
     }
 
     // XHR 시작. (위의 작업들을 다 지나쳐 왔을 경우 - 제대로 값들을 다 입력했을 경우)
-    Cover.show('인증번호를 전송하고 있습니다.\n잠시만 기다려 주세요.');   // 외우세요
+    Cover.show('인증번호를 전송하고 있습니다.\n잠시만 기다려 주세요.');
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append('email', form['email'].value);
     // 앞부분 email은 RequestParam에서 받을 value값이 되고, 뒤에 email은 form 태그안 input 태그 안에 있는
-    // email이란 name값을 가진 value임.
+    // email이란 name값을 가진 value이다.
     xhr.open('POST', './email'); // post방식, RequestMapping의 ./email 은 POST를 요청할 도메인이다.
     xhr.onreadystatechange = () => {        // 이 함수는 추후에 실행된다.
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -229,10 +230,6 @@ form['emailSend'].addEventListener('click', () => {
 });
 
 form['emailVerify'].addEventListener('click', () => {
-    if (form['emailAuthCode'].value === '') {
-
-    }
-
     if (form['emailAuthCode'].value === '') {
         EmailWarning.show('인증번호를 입력해 주세요.');
         form['emailAuthCode'].focus();
