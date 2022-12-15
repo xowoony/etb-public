@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     background-color: #232323;
-    margin-top: 3rem;
+    /*margin-top: 3rem;*/
 }
 
 #form {
@@ -26,7 +26,8 @@ body > .--main > #form > .title {
     font-size: 2rem;
     font-weight: 500;
     margin-bottom: 2.5rem;
-
+    border-bottom: 0.0625rem solid rgb(255,255,255);
+    padding-bottom: 1rem;
 
 }
 
@@ -85,7 +86,7 @@ body > .--main > #form > .table > tbody > tr > td > label > #login-button {
 }
 
 body > .--main > #form > .table > tbody > tr > td > label > #login-button:hover {
-    background-color: rgba(0, 0, 0, 15%);
+    background-color: rgba(0, 0, 0, 35%);
     color: rgb(255, 255, 255);
 }
 
@@ -137,22 +138,22 @@ input, select, textarea {
     display: none;
 }
 
-/*.--object-check > .--checkbox {*/
-/*    width: 1.25rem;*/
-/*    height: 1.25rem;*/
-/*    align-items: center;*/
-/*    background-color: rgb(255, 255, 255);*/
-/*    border: 0.0625rem solid rgb(213, 216, 220);*/
-/*    border-radius: 0.25rem;*/
-/*    color: rgb(255, 255, 255);*/
-/*    display: flex;*/
-/*    flex: 0 0 1.125rem;*/
-/*    !*flex-grow, shrink, basis = 0  == > 모바일*!*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*    margin-right: 0.75rem;*/
-/*    overflow: hidden;*/
-/*}*/
+.--object-check > .--checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    border-radius: 0.25rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex: 0 0 1.125rem;
+    /*flex-grow, shrink, basis = 0  == > 모바일*/
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0.75rem;
+    overflow: hidden;
+}
 
 .--object-check > input[type=checkbox]:checked ~ .--checkbox {
     background-color: rgb(22, 113, 241);
@@ -269,7 +270,7 @@ body > .--header > .--content > .--menu > .--item > .--link {
 }
 
 body > .--header > .--content > .--menu > .--item > .--link:hover {
-    color: rgb(86, 101, 115);
+    color: rgb(104, 106, 108);
 }
 
 body > .--header > .--content > .--menu > .--item > .--link:active {

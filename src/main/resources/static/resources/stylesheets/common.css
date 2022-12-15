@@ -18,30 +18,28 @@ body > .loading-cover {
 /*common 버튼 박스 속성*/
 .commonButton {
     background-color: rgba(0, 0, 0, 0%);
-    height: 3rem;
-    width: 8rem;
     color: rgb(201, 201, 201);
-
-    margin-left: 46%;
-    margin-top: 3.5rem;
+    border: 0.0625rem solid rgb(255,255,255);
+    padding: 1rem 1.5rem;
 }
+
 /*common 버튼 hover*/
 .commonButton:hover{
     background-color: rgba(0, 0, 0, 20%);
-    color: rgb(0,0,0);
+    color: rgb(220, 213, 215);
 }
-
 
 
 /*body 전체*/
 body {
-    width: 100%;
     align-items: center;
-    color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
     margin: unset;
+    width: 100%;
+    color: rgb(255, 255, 255);
 }
 
 
