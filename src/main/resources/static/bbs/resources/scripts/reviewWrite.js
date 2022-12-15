@@ -25,12 +25,12 @@ reviewForm.onsubmit = e => {
         alert('별점을 선택해 주세요.');
         return false;
     }
-    if (reviewForm['contentGood'].value === '' || reviewForm['contentGood'].length < 20) {
+    if (reviewForm['contentGood'].value === '' || reviewForm['contentGood'].value.length < 20) {
         alert('내용을 20자 이상 입력해 주세요.');
         reviewForm['contentGood'].focus();
         return false;
     }
-    if (reviewForm['contentBad'].value === '' || reviewForm['contentBad'].length < 20) {
+    if (reviewForm['contentBad'].value === '' || reviewForm['contentBad'].value.length < 20) {
         alert('내용을 20자 이상 입력해 주세요.');
         reviewForm['contentBad'].focus();
         return false;
