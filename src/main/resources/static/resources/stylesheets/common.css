@@ -75,6 +75,8 @@ body > header {
     /* width: 100% */
     left: 0;
     right: 0;
+
+    z-index: 2;
 }
 
 /*카테고리 오른쪽 정렬*/

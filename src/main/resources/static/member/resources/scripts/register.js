@@ -117,7 +117,6 @@ form.querySelector('[rel="nextButton"]').addEventListener('click', () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 // 만약 readyState가 완료되었다면.
                 Cover.hide();
-                // 커버가 덮여서 어둡게 변하나?
                 if (xhr.status >= 200 && xhr.status < 300) {
                     // 상태 코드가 200 이상 300 미만일 경우
                     const responseObject = JSON.parse(xhr.responseText);
