@@ -47,14 +47,12 @@
             <tr class="warning-row" rel="warningRow">
                 <td>
                     <span class="warning">
-                        <i class="icon fa-solid fa-triangle-exclamation"></i>
                         <span class="text">이메일을 입력해 주세요.</span>
                     </span>
                 </td>
             </tr>
             <!--로그인 버튼-->
             <tr>
-<!--                <th id="login"></th>-->
                 <td>
                     <label class="login-container">
                         <input class="login-button" id="login-button" name="loginButton"
@@ -62,38 +60,21 @@
                     </label>
                 </td>
             </tr>
-            <!-- 아직 계정이 없으신가요?-->
+            <!-- 회원가입 & 이메일 찾기 & 비밀번호 재설정-->
             <tr>
-                <th id="register"></th>
                 <td>
                     <label>
                         <span class="register" id="registerButton"
                               type="submit" value="회원가입">
-                            <a th:href="@{/member/register}">회원가입</a>
+                            <a th:href="@{/member/register}">회원가입 |</a>
                         </span>
-                    </label>
-                </td>
-            </tr>
-            <!--이메일을 잊으셨나요?-->
-            <tr>
-                <th id="forgetEmail"></th>
-                <td>
-                    <label>
                         <span class="forgetEml" id="forgetEml" name="forgetEml"
                               type="submit" value="이메일 찾기">
-                            <a th:href="@{/member/recoverEmail}">이메일 찾기</a>
+                            <a th:href="@{/member/recoverEmail}"> 이메일 찾기 |</a>
                         </span>
-                    </label>
-                </td>
-            </tr>
-            <!--비밀번호를 잊으셨나요? 비밀번호 재설정하기-->
-            <tr>
-                <th id="forgetPassword"></th>
-                <td>
-                    <label>
                         <span class="forgetPswd" id="forgetPswd" name="forgetPswd"
                               type="submit" value="비밀번호 재설정하기">
-                            <a th:href="@{/member/recoverPassword}">비밀번호 재설정하기</a>
+                            <a th:href="@{/member/recoverPassword}"> 비밀번호 재설정</a>
                         </span>
                     </label>
                 </td>
