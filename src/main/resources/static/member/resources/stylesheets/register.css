@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+body > main {
+    width: 100%;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-image: url("/resources/images/home-background.png");
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    /*height: 100%;*/
+}
+
 body > .main > .content {
     align-items: center;
     display: flex;
@@ -12,11 +30,10 @@ body > .main > .content {
 body > .main > .content > .form {
     width: 100%;
     max-width: 50rem;
-    align-items: stretch;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-
+    justify-content: center;
     margin-top: 4rem;
 }
 
@@ -57,35 +74,36 @@ body > .main > .content > .form > .title-container > .step-container > .step {
     user-select: none;
 }
 
-body > .main > .content > .form.step1 > .title-container > .step-container > .step.step1,
-body > .main > .content > .form.step2 > .title-container > .step-container > .step.step2,
-body > .main > .content > .form.step3 > .title-container > .step-container > .step.step3{
+/*스텝 표시*/
+body > .main > .content > .form.step1 >  .step-container > .step.step1,
+body > .main > .content > .form.step2 >  .step-container > .step.step2,
+body > .main > .content > .form.step3 >  .step-container > .step.step3{
     background-color: rgb(0, 0, 0);
     border: 0.125rem solid rgb(0, 0, 0);
     color: rgb(255, 255, 255);
 }
 
-body > .main > .content > .form.step2 > .title-container > .step-container > .step.step1,
-body > .main > .content > .form.step3 > .title-container > .step-container > .step.step1,
-body > .main > .content > .form.step3 > .title-container > .step-container > .step.step2 {
+body > .main > .content > .form.step2 >  .step-container > .step.step1,
+body > .main > .content > .form.step3 >  .step-container > .step.step1,
+body > .main > .content > .form.step3 >  .step-container > .step.step2 {
     background-color: rgb(213, 216, 220);
     border: 0.125rem solid rgb(213, 216, 220);
     color: rgb(171, 178, 185);
 }
 
-body > .main > .content > .form.step2 > .title-container > .step-container > .step.step1 + .line,
-body > .main > .content > .form.step3 > .title-container > .step-container > .step.step1 + .line,
-body > .main > .content > .form.step3 > .title-container > .step-container > .step.step2 + .line {
+body > .main > .content > .form.step2 >  .step-container > .step.step1 + .line,
+body > .main > .content > .form.step3 >  .step-container > .step.step1 + .line,
+body > .main > .content > .form.step3 >  .step-container > .step.step2 + .line {
     background-color: rgb(213, 216, 220);
 }
 
-body > .main > .content > .form > .title-container > .step-container > .line {
+body > .main > .content > .form >  .step-container > .line {
     width: 0.375rem;
     height: 0.125rem;
     background-color: rgb(171, 178, 185);
 }
 
-body > .main > .content > .form > .title-container > .step-container > .text {
+body > .main > .content > .form >  .step-container > .text {
     color: rgb(86, 101, 115);
     font-size: 0.95rem;
     margin-right: 0.75rem;
@@ -101,8 +119,10 @@ body > .main > .content > .form > .step {
 body > .main > .content > .form.step1 > .step.step1,
 body > .main > .content > .form.step2 > .step.step2,
 body > .main > .content > .form.step3 > .step.step3 {
-    display:flex
+    display: flex;
+    width: 100%;
 }
+
 
 
 

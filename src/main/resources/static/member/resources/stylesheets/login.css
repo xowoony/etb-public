@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /*로그인 글씨체*/
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 
 body {
     width: 100%;
@@ -50,7 +52,8 @@ body > main > form > .table > tbody {
 body > main > form > .table > .title {
     color: rgb(255, 255, 255);
     font-size: 2.5rem;
-    font-family: 'Gowun Dodum', sans-serif;
+    /*font-family: 'Gowun Dodum', sans-serif;*/
+    font-family: 'Do Hyeon', sans-serif;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 0.0625rem solid rgb(255, 255, 255);
