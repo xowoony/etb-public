@@ -20,36 +20,31 @@
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main class="--main main">
+<main>
     <form name="form" id="form">
-        <h1 class="title">로그인</h1>
         <table class="table">
+            <caption class="title">로그인</caption>
             <tbody>
             <!--이메일 입력창-->
             <tr>
-                <th rowspan="1" id="email">이메일</th>
                 <td>
-                    <label class="label email">
-                        <span hidden>이메일</span>
-                        <input autofocus class="--object-input input" maxlength="50" name="email"
+                    <label class="email">
+                        <input autofocus class="email-input" maxlength="50" name="email" id="email"
                                placeholder="이메일 주소를 입력해 주세요." type="email">
                     </label>
                 </td>
             </tr>
             <!-- 비밀번호 입력창-->
             <tr>
-                <th rowspan="1" id="password">비밀번호</th>
                 <td>
                     <label class="label password">
-                        <span hidden>이메일</span>
-                        <input autofocus class="--object-input input" maxlength="50" name="password"
+                        <input autofocus class="--object-input input" maxlength="50" name="password" id="password"
                                placeholder="비밀번호를 입력해 주세요." type="password">
                     </label>
                 </td>
             </tr>
             <!--경고창 - 이메일 or 비밀번호를 입력해주세요-->
             <tr class="warning-row" rel="warningRow">
-                <th></th>
                 <td>
                     <span class="warning">
                         <i class="icon fa-solid fa-triangle-exclamation"></i>
@@ -71,7 +66,6 @@
             <tr>
                 <th id="register"></th>
                 <td>
-                    <span>아직 계정이 없으신가요?</span>
                     <label>
                         <span class="register" id="registerButton"
                               type="submit" value="회원가입">
@@ -84,7 +78,6 @@
             <tr>
                 <th id="forgetEmail"></th>
                 <td>
-                    <span>이메일을 잊으셨나요?</span>
                     <label>
                         <span class="forgetEml" id="forgetEml" name="forgetEml"
                               type="submit" value="이메일 찾기">
@@ -97,7 +90,6 @@
             <tr>
                 <th id="forgetPassword"></th>
                 <td>
-                    <span>비밀번호를 잊으셨나요?</span>
                     <label>
                         <span class="forgetPswd" id="forgetPswd" name="forgetPswd"
                               type="submit" value="비밀번호 재설정하기">
