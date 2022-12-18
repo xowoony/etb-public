@@ -107,4 +107,6 @@ public class BbsController {
         ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
         return modelAndView;
     }
+
+
 }
