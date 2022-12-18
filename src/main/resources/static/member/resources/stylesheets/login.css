@@ -1,5 +1,6 @@
 @charset "UTF-8";
-
+/*로그인 글씨체*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
 body {
     width: 100%;
@@ -35,7 +36,7 @@ form {
 
 /*테이블 전체*/
 body > main > form > .table {
-    border: 0.05rem solid rgb(255, 255, 255);
+    /*border: 0.05rem solid rgb(255, 255, 255);*/
     max-width: 80rem;
 }
 
@@ -44,20 +45,23 @@ body > main > form > .table > tbody {
     display: flex;
     flex-direction: column;
     justify-content: center;
-/* width: 30rem; */
-/* height: 25rem;*/
+    /* width: 30rem; */
+    /* height: 25rem;*/
 }
 
 
 body > main > form > .table > .title {
-color: rgb(255, 255, 255);
-font-size: 3rem;
-font-family: 'Gowun Batang', serif;
+    color: rgb(255, 255, 255);
+    font-size: 2.5rem;
+    font-family: 'Gowun Dodum', sans-serif;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid rgb(255,255,255);
 }
 
 
 /*이메일 입력창 내부*/
-body > main > form > .table  > tbody > tr > td > .email >.email-input {
+body > main > form > .table > tbody > tr > td > .email > .email-input {
     border: 0.0625rem solid rgb(255, 255, 255);
     /* border-radius: 0.3rem; */
     background-color: rgba(0, 0, 0, 25%);
@@ -68,7 +72,7 @@ body > main > form > .table  > tbody > tr > td > .email >.email-input {
 }
 
 /*비밀번호 입력창 내부*/
-body > main > form > .table  > tbody > tr > td > .password >.password-input {
+body > main > form > .table > tbody > tr > td > .password > .password-input {
     border: 0.0625rem solid rgb(255, 255, 255);
     /* border-radius: 0.3rem; */
     background-color: rgba(0, 0, 0, 25%);
@@ -77,7 +81,6 @@ body > main > form > .table  > tbody > tr > td > .password >.password-input {
     width: 20rem;
     font-size: 1rem;
 }
-
 
 
 /*!*로그인 글씨*!*/
@@ -141,16 +144,24 @@ body > main > form > .table  > tbody > tr > td > .password >.password-input {
     text-align: justify;
 }
 
-
-body>main>form>.table> tbody>tr> td>.login-container > .login-button{
-    border: 0.0625rem solid rgb(255, 255, 255);
+/*로그인 버튼*/
+body > main > form > .table > tbody > tr > td > .login-container > .login-button {
+    /* border: 0.0625rem solid rgb(255, 255, 255); */
     /* border-radius: 0.3rem; */
-    background-color: rgba(0, 0, 0, 25%);
+    background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     padding: 1rem 1.25rem;
     width: 22.6rem;
     font-size: 1rem;
 }
+
+/*로그인 버튼 hover 시*/
+body > main > form > .table > tbody > tr > td > .login-container > .login-button:hover {
+    background-color: rgba(0, 0, 0, 0.29);
+    color: rgb(220, 213, 215);
+    cursor: pointer;
+}
+
 /*!*로그인 버튼*!*/
 /*body > .--main > #form > .table > tbody > tr > td > label > #login-button {*/
 /*    background-color: rgb(0, 0, 0);*/
