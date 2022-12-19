@@ -68,7 +68,14 @@
         </table>
     </section>
     <section class="review-list">
-        <div class="first">REVIEW</div>
+        <div class="first">
+            REVIEW
+            <div class="button-container" id="buttonContainer">
+                <a class="write-button" th:href="@{/bbs/reviewWrite (beerIndex=${beer.getIndex()})}">
+                    <i class="fa-solid fa-square-pen"></i>
+                </a>
+            </div>
+        </div>
         <span class="rating-container">
             <span class="star-container">
                 <i class="star filled fa-solid fa-star"></i>
@@ -78,8 +85,8 @@
                 <i class="star fa-solid fa-star"></i>
             </span>
             <span class="score">4.1</span>
-            <span class="review-count">리뷰 13</span>
-            <span class="review-count">자세히보기</span>
+            <span class="review-count">2,700</span>
+            <span class="detail-review">자세히보기></span>
         </span>
         <div class="form-container">
             <span class="sort1">추천순</span>
@@ -142,11 +149,8 @@
                 <span class="like-count">7</span>
                 <span>명이 추천 함</span>
                 <input class="review-like" id="reviewLikeButton" type="button" value="추천하기">
-                <input type="button" class="Declaration" id="declaButton" value="신고하기">
+                <input type="button" class="declaration" id="declaButton" value="신고하기">
             </div>
-        </div>
-        <div class="button-container" id="buttonContainer">
-            <a class="--object-button" th:href="@{/bbs/reviewWrite (beerIndex=${beer.getIndex()})}">글쓰기</a>
         </div>
         <div class="page-container"
              th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">

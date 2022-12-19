@@ -194,6 +194,17 @@ body {
     margin: 5vh 0 1rem 0;
     font-size: 2rem;
     font-weight: 550;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.review-list > .first > .button-container > .write-button > i {
+    /*font-size: 1.8rem;*/
+    margin-left: 1rem;
+    color: rgba(87, 127, 236, 0.8);
 }
 
 .review-list > .rating-container {
@@ -221,6 +232,24 @@ body {
 
 .review-list > .rating-container > .star-container > .star.filled {
     color: rgb(255, 191, 0);
+}
+
+.review-list > .rating-container > .score {
+    font-size: 1.5rem;
+}
+
+.review-list > .rating-container > .review-count{
+    font-size: 0.9rem;
+    color: #888888;
+    margin: 0.3rem 0 0 0.5rem;
+}
+
+.review-list > .rating-container > .detail-review {
+    cursor: pointer;
+    margin: 0.3rem 0 0 0.5rem;
+    line-height: 44px;
+    font-size: 0.9rem;
+    color: #346aff;
 }
 
 .review-list > .form-container {
@@ -252,10 +281,15 @@ body {
     color: #9a9a9a;
 }
 
+.review-list > .form-container > .search-form {
+    margin-left: auto;
+}
+
 .review-list > .review-container {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     padding: 2rem 0 2rem 0;
+    margin-bottom: 2rem;
 }
 
 .review-list > .review-container > .head-container {
@@ -306,6 +340,7 @@ body {
 
 .review-list > .review-container > .review-content {
     margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .review-list > .review-container > .review-content > .good-review {
@@ -335,6 +370,41 @@ body {
     margin-right: 0.5rem;
 }
 
+.review-list > .review-container > .foot {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .review-list > .review-container > .foot > span {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+}
+
+.review-list > .review-container > .foot > .like-count {
+    font-weight: 500;
+}
+
+.review-list > .review-container > .foot > .review-like {
+    width: 80px;
+    height: 26px;
+    margin-left: 10px;
+    padding: 0;
+    border: 1px solid #346aff;
+    color: #346aff;
+    background-color: #fff;
+    letter-spacing: -1px;
+    outline: 0;
+}
+
+.review-list > .review-container > .foot > .declaration {
+    border: none;
+    color: #346aff;
+    background-color: unset;
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
+.review-list > .page-container {
+    align-self: center;
 }
