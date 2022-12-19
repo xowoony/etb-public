@@ -61,7 +61,7 @@ form.onsubmit = (e) => {
                         form['contact'].setAttribute('disabled', 'disabled');
                         form['loginButton'].setAttribute('disabled', 'disabled');
                         form.querySelector('.emailAlertText').classList.add('visible');
-                        emailAlertText.innerText = '입력하신 이름과 연락처를 가진 회원의 이메일은\n' + responseObject['email'] + '\n입니다.';
+                        emailAlertText.innerText = '찾으시는 회원님의 이메일은\n' + responseObject['email'] + '\n입니다.';
                         form.querySelector('.goLoginText').classList.add('visible');
                         // alert('찾으시는 이메일은\n'+ responseObject['email'] + '입니다.');
                         // window.location.href = `/member/login`;

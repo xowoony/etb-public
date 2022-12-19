@@ -251,6 +251,12 @@ body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .labe
     justify-content: flex-start;
 }
 
+/*주소찾기 버튼*/
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.address > .address-button{
+    margin-left: 1rem;
+    padding: 1rem 1.6rem;
+}
+
 body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email > .input {
     margin-right: 0.5rem;
 }
