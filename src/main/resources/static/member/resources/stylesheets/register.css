@@ -43,7 +43,7 @@ body > .main > .content > .form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: 6rem;
 }
 
 
@@ -317,7 +317,7 @@ body > .main > .content > .form > .warning {
     display: none;
     flex-direction: row;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 1rem;
     padding: 1rem 1.125rem;
 }
 
@@ -345,6 +345,7 @@ body > .main > .content > .form > .button-container > .button {
     padding: 1rem 3rem;
     user-select: unset;
     margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
 body > .main > .content > .form > .button-container > .button:hover {
@@ -409,6 +410,8 @@ input, select, textarea {
     flex-direction: row;
     justify-content: flex-start;
     user-select: none;
+
+    margin-top: 1rem;
 }
 
 .--object-check > input[type=checkbox] {
@@ -440,11 +443,12 @@ input, select, textarea {
 
 .--object-button {
     background-color: rgb(0, 0, 0);
-    /*border-radius: 0.5rem;*/
-    box-sizing: border-box;
+    /* border-radius: 0.5rem; */
+    /* box-sizing: border-box; */
     color: rgb(255, 255, 255);
     cursor: pointer;
-    padding: 0.624rem 0.825rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
 }
 
 .--object-button:hover {
