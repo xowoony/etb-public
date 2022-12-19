@@ -131,7 +131,7 @@ form.querySelector('[rel="nextButton"]').addEventListener('click', () => {
                             // 이메일 인증이 제대로 되었을 경우
                             // form.querySelector('[rel="stepText"]').innerText = '회원가입 완료';
                             // 오른쪽 이용약관 및 개인정보 처리방침 글씨가 회원가입 완료로 바뀐다.
-                            form.querySelector('[rel="nextButton"]').innerText = '로그인하러 가기';
+                            form.querySelector('[rel="nextButton"]').innerText = '로그인하기';
                             // 초록색 다음버튼이 로그인하러가기 라고 바뀐다.
                             form.classList.remove('step2');
                             // step2 클래스가 삭제된다.

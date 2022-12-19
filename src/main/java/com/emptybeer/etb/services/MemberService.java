@@ -42,7 +42,6 @@ public class MemberService {
 
 
     @Transactional
-
     public Enum<? extends IResult> sendEmailAuth(UserEntity user, EmailAuthEntity emailAuth)
             throws NoSuchAlgorithmException, MessagingException {
         UserEntity existingUser = this.memberMapper.selectUserByEmail(user.getEmail());
@@ -53,8 +52,8 @@ public class MemberService {
             // 이메일이 복사되었다.
         }
         String authCode = RandomStringUtils.randomNumeric(6);
-        // 테스트코드로 해볼거에요. (test디렉토리-> RandomTest에서)
-        // 랜덤한 숫자 문자열 6자리를 돌려줌
+        // 테스트코드 (test디렉토리-> RandomTest)
+        // 랜덤한 숫자 문자열 6자리를 돌려준다
         // apache.commons 의존성 추가 후 작성
         String authSalt = String.format("%s%s%f%f",
                 user.getEmail(),
@@ -286,7 +285,8 @@ public class MemberService {
         if (findEmail == null) {
             return CommonResult.FAILURE;
         }
-        user.setEmail(user.getEmail());
+//        user.setEmail(user.getEmail());
+        user.setEmail(findEmail.getEmail());
         return CommonResult.SUCCESS;
     }
 
