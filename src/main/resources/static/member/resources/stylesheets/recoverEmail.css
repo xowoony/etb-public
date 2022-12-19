@@ -58,10 +58,9 @@ form {
 
 /*버튼 비활성화*/
 #form > .table > tbody > tr > td > label > .--object-input:disabled {
-    background-color: rgb(220, 213, 215);
-    color: rgb(171, 178, 185);
     cursor: default;
     pointer-events: none;
+    width: 93%;
 }
 
 
@@ -79,9 +78,14 @@ form {
 /*이메일 찾기 버튼 비활성화*/
 #form > .table > tbody > tr > td > label > #login-button:disabled {
     background-color: rgb(213, 216, 220);
+    /*color: rgb(171, 178, 185);*/
+    /*cursor: default;*/
+    /*pointer-events: none;*/
+    /* background-color: rgb(220, 213, 215); */
     color: rgb(171, 178, 185);
     cursor: default;
     pointer-events: none;
+    width: 100%;
 }
 
 
@@ -208,7 +212,7 @@ input, select, textarea {
 
 .--object-input {
     width: 20rem;
-    background-color: rgb(255, 255, 255);
+    /*background-color: rgb(255, 255, 255);*/
     border: 0.0625rem solid rgb(213, 216, 220);
     /* border-radius: 0.375rem; */
     padding: 0.625rem 0.875rem;

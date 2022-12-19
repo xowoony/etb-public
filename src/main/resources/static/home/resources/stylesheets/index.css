@@ -37,6 +37,7 @@ body > main > .home-section1 > .title-box1 > .home-button{
 
 body > main > .home-section1 > .title-box1 > .home-button > .commonButton {
     text-decoration: none;
+    padding: 1rem 3rem;
 }
 
 
