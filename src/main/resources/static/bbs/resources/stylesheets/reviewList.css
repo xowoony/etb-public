@@ -99,7 +99,7 @@ body {
 
 .beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid.visible {
     display: flex;
-    color: red;
+    color: rgb(223, 1, 1);
 }
 
 .beer-detail > .part-1 > .content-container > .content {
@@ -122,6 +122,10 @@ body {
 
 .beer-detail > .part-1 > .content-container > .content > .page-2.visible {
     display: flex;
+}
+
+.beer-detail > .part-1 > .content-container > .content > .detail-button {
+    margin-top: 0.2rem;
 }
 
 .beer-detail > .part-2 {
