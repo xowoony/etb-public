@@ -8,11 +8,11 @@
     <title>잔이비어 :: 회원가입</title>
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-<!--    <link rel="stylesheet" th:href="@{/resources/stylesheets/common.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{/resources/stylesheets/common.css}">-->
     <link rel="stylesheet" th:href="@{/member/resources/stylesheets/register.css}">
     <script src="https://kit.fontawesome.com/08367f1c3f.js" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!--    <script defer th:src="@{/resources/scripts/common.js}"></script>-->
+    <!--    <script defer th:src="@{/resources/scripts/common.js}"></script>-->
     <script defer th:src="@{/member/resources/scripts/register.js}"></script>
 </head>
 <body>
@@ -23,33 +23,42 @@
         <form class="form step1" id="form">
             <div class="title-container">
                 <h2 class="title">잔이비어 회원가입</h2>
-
             </div>
-            <div class="text" rel="stepText">이용약관 및 개인정보 처리방침</div>
-            <div class="step-container">
-                <span class="step step1">1</span>
-                <span class="line"></span>
-                <span class="step step2">2</span>
-                <span class="line"></span>
-                <span class="step step3">3</span>
-            </div>
+            <!--     step 1, 2, 3       -->
+            <table class="step-container">
+                <tbody>
+                    <tr class="step-box">
+                        <td class="step step1">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <div>1. 약관동의</div>
+                        </td>
+                        <td class="step step2">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <div>2. 개인정보 입력</div>
+                        </td>
+                        <td class="step step3">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <div>3. 회원가입 완료</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--     step1       -->
             <div class="step step1">
                 <label class="label">
-                    <h2 class="title">서비스 이용약관</h2>
-                    <textarea class="--object-input term" readonly>서비스 이용약관</textarea>
-                </label>
-                <label class="label">
-                    <h2 class="title">개인정보 처리방침</h2>
-                    <textarea class="--object-input term" readonly>개인정보 처리방침</textarea>
+                    <span class="title">회원가입을 위해 약관을 읽고 동의해 주세요.
+                    </span>
+                    <textarea class="--object-input term" readonly>잔이비어 약관 어쩌고 저쩌고 </textarea>
                 </label>
                 <label class="--object-check">
                     <input name="termAgree" type="checkbox">
                     <span class="--checkbox">
                         <i class="fa-solid fa-check"></i>
                     </span>
-                    <span class="--text">위 서비스 이용약관 및 개인정보 처리방침을 읽어보았고 이해하였으며 동의합니다.</span>
+                    <span class="--text">위 이용약관을 읽어보았고 이해하였으며 동의합니다.</span>
                 </label>
             </div>
+            <!--     step2       -->
             <div class="step step2">
                 <table class="table">
                     <tbody>
@@ -147,20 +156,19 @@
             </div>
 
             <div class="step step3">
-                <span class="title">회원가입 완료</span>
+                <span class="title">잔이비어 회원이 되신 것을 축하드립니다</span>
                 <span class="message"><b>잔이비어</b>에 회원가입해 주셔서 감사드립니다. <br>아래 <i>로그인하러 가기 </i>버튼을 클릭하여 로그인 해주세요.</span>
             </div>
 
             <div class="warning" rel="warning">
-                <i class=" icon fa-solid fa-circle-exclamation"></i>
+<!--                <i class=" icon fa-solid fa-circle-exclamation"></i>-->
                 <div class="text" rel="warningText">서비스 이용약관 및 개인정보 처리방침을 읽고 동의해 주세요.</div>
             </div>
 
             <div class="button-container">
                 <div class="button green" rel="nextButton">
-                    <span class="text">다음</span>
+                    <span class="text">NEXT</span>
                     <i class="fa-solid fa-chevron-right"></i>
-
                 </div>
             </div>
         </form>
