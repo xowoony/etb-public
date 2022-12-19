@@ -13,7 +13,7 @@
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
-<main>
+<main id="smoothScroll">
     <section class="beer-detail">
         <div class="part-1">
             <div class="button-container">
@@ -41,7 +41,6 @@
                     </div>
                     <div class="page-2">
                         세계적 명성의 수제맥주 브랜드 미켈러(Mikkeller)와 더부스가 함께 만든 페일에일로, 대동강 물이 들어가지 않았다는 이유로 중간의 '동' 자를 Censored(검열되었다) 스티커로 가린 채 '대강 페일에일'로 판매되고 있다. 오렌지, 감귤, 청포도를 연상시키는 홉의 향기가 기분 좋게 후각을 자극하며, 가볍고 고소한 몰트의 맛과 쌉싸름한 끝 맛이 깔끔하게 이어지는 훌륭한 밸런스의 맥주. 가벼운 바디감과 적은 쓴맛으로 수제맥주에 익숙하지 않은 사람도 부담 없이 마실 수 있다.
-                        세계적 명성의 수제맥주 브랜드 미켈러(Mikkeller)와 더부스가 함께 만든 페일에일로, 대동강 물이 들어가지 않았다는 이유로 중간의 '동' 자를 Censored(검열되었다) 스티커로 가린 채 '대강 페일에일'로 판매되고 있다. 오렌지, 감귤, 청포도를 연상시키는 홉의 향기가 기분 좋게 후각을 자극하며, 가볍고 고소한 몰트의 맛과 쌉싸름한 끝 맛이 깔끔하게 이어지는 훌륭한 밸런스의 맥주. 가벼운 바디감과 적은 쓴맛으로 수제맥주에 익숙하지 않은 사람도 부담 없이 마실 수 있다.
                     </div>
                     <input type="button" class="detail-button" rel="detailButton" value="자세히 보기">
                 </div>
@@ -68,89 +67,66 @@
             </tbody>
         </table>
     </section>
-<!--    <section class="review-list">-->
-<!--        <div>Review</div>-->
-<!--        <div class="beer-name">바르슈타이너 프리미엄 필스너 500ml</div>-->
-<!--        <form class="search-form" id="searchForm" method="get">-->
-<!--            <label class="label">-->
-<!--                <span hidden>검색 기준</span>-->
-<!--                <select name="criterion" class="&#45;&#45;object-input" th:with="criterion = ${#request.getParameter('criterion')}">-->
-<!--                    &lt;!&ndash;                    th:with는 변수 선언임&ndash;&gt;-->
-<!--                    <option value="all" th:selected="${criterion == null || criterion.equals('all')}">내용</option>-->
-<!--                    <option value="nickname" th:selected="${criterion != null && criterion.equals('nickname')}">작성자</option>-->
-<!--                </select>-->
-<!--            </label>-->
-<!--            <label class="label">-->
-<!--                <span hidden>검색어</span>-->
-<!--                <input type="text" class="&#45;&#45;object-input" maxlength="50" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">-->
-<!--            </label>-->
-<!--            <input type="hidden" name="bid" th:value="${board.getId()}">-->
-<!--            <input type="submit" class="search-button" value="검색">-->
-<!--        </form>-->
-<!--        <table class="table" id="table">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>번호</th>-->
-<!--                <th>제목</th>-->
-<!--                <th>작성자</th>-->
-<!--                <th>조회수</th>-->
-<!--                <th>추천수</th>-->
-<!--                <th>일시</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="article : ${articles}">-->
-<!--                <td th:text="${article.getIndex()}"></td>-->
-<!--                <td>-->
-<!--                    <a class="title" th:href="@{/bbs/read (aid=${article.getIndex()})}">-->
-<!--                        <span class="text" th:text="${article.getTitle()}"></span>-->
-<!--                        <span class="comment" th:text="${'[' + article.getCommentCount() + ']'}"></span>-->
-<!--                    </a>-->
-<!--                </td>-->
-<!--                <td th:text="${article.getUserNickname()}"></td>-->
-<!--                <td th:text="${article.getView()}"></td>-->
-<!--                <td>0</td>-->
-<!--                <td th:text="${#dates.format(article.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}"></td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--            <tfoot>-->
-<!--            <tr>-->
-<!--                <td colspan="6">-->
-<!--                    <div class="page-container"-->
-<!--                         th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">-->
-<!--                        <a class="page"-->
-<!--                           th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"-->
-<!--                           th:if="${paging.requestPage > 1}">-->
-<!--                            <i class="fa-solid fa-angles-left"></i>-->
-<!--                        </a>-->
-<!--                        <a class="page"-->
-<!--                           th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"-->
-<!--                           th:if="${paging.requestPage > 1}">-->
-<!--                            <i class="fa-solid fa-angle-left"></i>-->
-<!--                        </a>-->
-<!--                        <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"-->
-<!--                           th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"-->
-<!--                           th:text="${page}"-->
-<!--                           th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>-->
-<!--                        <a class="page"-->
-<!--                           th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"-->
-<!--                           th:if="${paging.requestPage < paging.maxPage}">-->
-<!--                            <i class="fa-solid fa-angle-right"></i>-->
-<!--                        </a>-->
-<!--                        <a class="page"-->
-<!--                           th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"-->
-<!--                           th:if="${paging.requestPage < paging.maxPage}">-->
-<!--                            <i class="fa-solid fa-angles-right"></i>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            </tfoot>-->
-<!--        </table>-->
-<!--        <div class="button-container" id="buttonContainer">-->
-<!--            <a class="&#45;&#45;object-button" th:href="@{/bbs/write (bid=${board.getId()})}">글쓰기</a>-->
-<!--        </div>-->
-<!--    </section>-->
+    <section class="review-list">
+        <div>Review</div>
+        <span class="rating-container">
+                <span class="star-container">
+                <i class="star filled fa-solid fa-star"></i>
+                <i class="star filled fa-solid fa-star"></i>
+                <i class="star filled fa-solid fa-star"></i>
+                <i class="star filled fa-solid fa-star"></i>
+                <i class="star fa-solid fa-star"></i>
+            </span>
+            <span class="score">4.1</span>
+            <span class="count">7건</span>
+            <span class="review-count">리뷰 13</span>
+        </span>
+        <form class="search-form" id="searchForm" method="get">
+            <label class="label">
+                <span hidden>검색 기준</span>
+                <select name="criterion" class="--object-input" th:with="criterion = ${#request.getParameter('criterion')}">
+                    <!--                    th:with는 변수 선언임-->
+                    <option value="content" th:selected="${criterion == null || criterion.equals('content')}">내용</option>
+                    <option value="nickname" th:selected="${criterion != null && criterion.equals('nickname')}">작성자</option>
+                </select>
+            </label>
+            <label class="label">
+                <span hidden>검색어</span>
+                <input type="text" class="--object-input" maxlength="50" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
+            </label>
+            <input type="submit" class="search-button" value="검색">
+        </form>
+        <div class="page-container"
+             th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angles-left"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+               th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+               th:text="${page}"
+               th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angles-right"></i>
+            </a>
+        </div>
+        <div class="button-container" id="buttonContainer">
+            <a class="--object-button" th:href="@{/bbs/reviewWrite (beerIndex=${beer.getIndex()})}">글쓰기</a>
+        </div>
+    </section>
 </main>
 <!--  footer  -->
 <th:block th:replace="~{fragments/body :: footer}"></th:block>

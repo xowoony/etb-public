@@ -3,6 +3,12 @@ body {
     /*user-select: none;*/
 }
 
+#smoothScroll {height:100vh; overflow:auto; scroll-snap-type:y mandatory; -ms-scroll-snap-type:mandatory;}
+#smoothScroll>section {padding:10px; height:500px; scroll-snap-align:start; -ms-scroll-snap-coordinate:0 0;}
+/*#smoothScroll>section:nth-child(3n+1) {background:gold;}*/
+#smoothScroll>section:nth-child(3n+2) {background:skyblue;}
+#smoothScroll>section:nth-child(3n) {background:pink;}
+
 .beer-detail {
     align-items: stretch;
     display: flex;
@@ -11,12 +17,24 @@ body {
 }
 
 .beer-detail > .part-1 {
-    margin: 20vh 0 1rem 0;
+    margin: 5vh 0 1rem 0;
 
-    align-items: stretch;
+    align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
+
+    /*margin: 20vh 0 1rem 0;*/
+
+    /*align-items: stretch;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: flex-start;*/
+}
+
+.beer-detail > .part-1 > .button-container > .button {
+    position: relative;
+    top: -17vh;
 }
 
 .beer-detail > .part-1 > .button-container > .button > .icon {
@@ -61,7 +79,7 @@ body {
 .beer-detail > .part-1 > .content-container > .title {
     font-size: 2rem;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 
     align-items: stretch;
     display: flex;
@@ -103,7 +121,7 @@ body {
 }
 
 .beer-detail > .part-1 > .content-container > .content {
-    height: 11.7rem;
+    height: 12rem;
     margin-bottom: auto;
     overflow: scroll;
 }
@@ -129,11 +147,13 @@ body {
 }
 
 .beer-detail > .part-2 {
+    width: 53.5rem;
     background-color: white;
     border-collapse: collapse;
     text-align: left;
     line-height: 1.5;
     margin: 20px 10px;
+    align-self: center;
 }
 
 .beer-detail > .part-2 > tbody > tr {

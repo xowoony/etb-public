@@ -8,6 +8,8 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
+import com.emptybeer.etb.models.PagingModel;
+import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +39,16 @@ public class BbsService {
         return this.bbsMapper.insertReviewArticle(reviewArticle) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
+    }
+
+    public int getReviewArticleCount(BeerEntity beer, String criterion, String keyword) {
+        return this.bbsMapper.selectReviewArticleCountByBeerIndex(beer.getIndex(), criterion, keyword);
+    }
+
+    public ReviewArticleVo[] getReviewArticles(BeerEntity beer, PagingModel paging, String criterion, String keyword) {
+        return this.bbsMapper.selectReviewArticleByBeerIndex(
+                beer.getIndex(), criterion, keyword,
+                paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
     }
 }

@@ -5,7 +5,9 @@ import com.emptybeer.etb.entities.data.*;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
+import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BbsService;
+import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -71,42 +73,33 @@ public class BbsController {
     }
 
 
-//    // 리뷰 리스트
-//    @RequestMapping(value = "reviewList",
-//            method = RequestMethod.GET,
-//            produces = MediaType.TEXT_HTML_VALUE)
-//    public ModelAndView getReviewList(
-//            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-//            @RequestParam(value = "criterion", required = false) String criterion,
-//            @RequestParam(value = "keyword", required = false) String keyword) {
-//        page = Math.max(1, page);
-//        // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
-//        ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
-//
-//        if (board != null) {
-//            int totalCount = this.bbsService.getArticleCount(criterion, keyword);
-//
-//            // int totalCount = this.bbsService.getArticleCount(board);
-//            PagingModel paging = new PagingModel(totalCount, page);
-//            // System.out.printf("이동 가능한 최소 페이지 : %d\n", paging.minPage);
-//            // System.out.printf("이동 가능한 최대 페이지 : %d\n", paging.maxPage);
-//            // System.out.printf("표시 시작 페이지 : %d\n", paging.startPage);
-//            // System.out.printf("표시 끝 페이지 : %d\n", paging.endPage);
-//            modelAndView.addObject("paging", paging);
-//
-//            ArticleReadVo[] articles = this.bbsService.getArticles(board, paging, criterion, keyword);
-//            modelAndView.addObject("articles", articles);
-//        }
-//        return modelAndView;
-//    }
-
-    @RequestMapping(value = "reviewList",
-            method = RequestMethod.GET,
+    // 리뷰 리스트
+    @GetMapping(value = "reviewList",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getReviewList() {
+    public ModelAndView getReviewList(@RequestParam(value = "beerIndex") int beerIndex,
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "criterion", required = false) String criterion,
+            @RequestParam(value = "keyword", required = false) String keyword) {
+        page = Math.max(1, page);
+        // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
         ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
+        BeerEntity beer = this.bbsService.getBeer(beerIndex);
+        modelAndView.addObject("beer", beer);
+
+        int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
+
+
+        // int totalCount = this.bbsService.getArticleCount(board);
+        PagingModel paging = new PagingModel(totalCount, page);
+        // System.out.printf("이동 가능한 최소 페이지 : %d\n", paging.minPage);
+        // System.out.printf("이동 가능한 최대 페이지 : %d\n", paging.maxPage);
+        // System.out.printf("표시 시작 페이지 : %d\n", paging.startPage);
+        // System.out.printf("표시 끝 페이지 : %d\n", paging.endPage);
+        modelAndView.addObject("paging", paging);
+
+        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beer, paging, criterion, keyword);
+        modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }
-
 
 }
