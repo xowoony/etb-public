@@ -28,15 +28,15 @@ form.querySelector('[rel="nextButton"]').addEventListener('click', () => {
     if (form.classList.contains('step1')) {
         if (!form['termAgree'].checked) {
             // 만약 서비스 약관 동의에 체크를 하지 않았다면
-            form.querySelector('[rel="warningText"]').innerText = '서비스 이용약관 및 개인정보 처리방침을 읽고 동의해 주세요.';
+            form.querySelector('[rel="warningText"]').innerText = '서비스 이용약관을 읽고 동의해 주세요.';
             //서비스 이용약관 및 개인정보 처리방침을 읽고 동의해 주세요. 자리에
             // innerText로 인해서 글씨가 바뀌게 된다. (경고 메시지 출력)
             form.querySelector('[rel="warning"]').classList.add('visible');
             // 클래스가 추가된다.
             return;
         }
-        form.querySelector('[rel="stepText"]').innerText = '개인정보 입력';
-        form.classList.remove('step1');
+        // form.querySelector('[rel="stepText"]').innerText = '개인정보 입력';
+        form.classList.remove('step1')
         // step1 글씨가 사라지게 됨
         form.classList.add('step2');
         // step2 클래스가 추가된다.
@@ -129,9 +129,9 @@ form.querySelector('[rel="nextButton"]').addEventListener('click', () => {
                             break;
                         case 'success':
                             // 이메일 인증이 제대로 되었을 경우
-                            form.querySelector('[rel="stepText"]').innerText = '회원가입 완료';
+                            // form.querySelector('[rel="stepText"]').innerText = '회원가입 완료';
                             // 오른쪽 이용약관 및 개인정보 처리방침 글씨가 회원가입 완료로 바뀐다.
-                            form.querySelector('[rel="nextButton"]').innerText = '로그인하러 가기';
+                            form.querySelector('[rel="nextButton"]').innerText = '로그인하기';
                             // 초록색 다음버튼이 로그인하러가기 라고 바뀐다.
                             form.classList.remove('step2');
                             // step2 클래스가 삭제된다.

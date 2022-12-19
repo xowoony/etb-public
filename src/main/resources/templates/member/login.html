@@ -20,88 +20,61 @@
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main class="--main main">
+<main>
     <form name="form" id="form">
-        <h1 class="title">로그인을 위해<br>이메일과 비밀번호를 입력하세요</h1>
         <table class="table">
+            <caption class="title">로그인</caption>
             <tbody>
             <!--이메일 입력창-->
             <tr>
-                <th rowspan="1" id="email">이메일</th>
                 <td>
-                    <label class="label email">
-                        <span hidden>이메일</span>
-                        <input autofocus class="--object-input input" maxlength="50" name="email"
+                    <label class="email">
+                        <input autofocus class="email-input" maxlength="50" name="email" id="email"
                                placeholder="이메일 주소를 입력해 주세요." type="email">
                     </label>
                 </td>
             </tr>
             <!-- 비밀번호 입력창-->
             <tr>
-                <th rowspan="1" id="password">비밀번호</th>
                 <td>
-                    <label class="label password">
-                        <span hidden>이메일</span>
-                        <input autofocus class="--object-input input" maxlength="50" name="password"
+                    <label class="password">
+                        <input autofocus class="password-input" maxlength="50" name="password" id="password"
                                placeholder="비밀번호를 입력해 주세요." type="password">
                     </label>
                 </td>
             </tr>
             <!--경고창 - 이메일 or 비밀번호를 입력해주세요-->
             <tr class="warning-row" rel="warningRow">
-                <th></th>
                 <td>
                     <span class="warning">
-                        <i class="icon fa-solid fa-triangle-exclamation"></i>
                         <span class="text">이메일을 입력해 주세요.</span>
                     </span>
                 </td>
             </tr>
             <!--로그인 버튼-->
             <tr>
-                <th id="login"></th>
                 <td>
-                    <label>
+                    <label class="login-container">
                         <input class="login-button" id="login-button" name="loginButton"
                                type="submit" value="로그인" href="#">
                     </label>
                 </td>
             </tr>
-            <!-- 아직 계정이 없으신가요?-->
+            <!-- 회원가입 & 이메일 찾기 & 비밀번호 재설정-->
             <tr>
-                <th id="register"></th>
                 <td>
-                    <span>아직 계정이 없으신가요?</span>
                     <label>
                         <span class="register" id="registerButton"
                               type="submit" value="회원가입">
-                            <a th:href="@{/member/register}">회원가입</a>
+                            <a th:href="@{/member/register}">회원가입 |</a>
                         </span>
-                    </label>
-                </td>
-            </tr>
-            <!--이메일을 잊으셨나요?-->
-            <tr>
-                <th id="forgetEmail"></th>
-                <td>
-                    <span>이메일을 잊으셨나요?</span>
-                    <label>
                         <span class="forgetEml" id="forgetEml" name="forgetEml"
                               type="submit" value="이메일 찾기">
-                            <a th:href="@{/member/recoverEmail}">이메일 찾기</a>
+                            <a th:href="@{/member/recoverEmail}"> 이메일 찾기 |</a>
                         </span>
-                    </label>
-                </td>
-            </tr>
-            <!--비밀번호를 잊으셨나요? 비밀번호 재설정하기-->
-            <tr>
-                <th id="forgetPassword"></th>
-                <td>
-                    <span>비밀번호를 잊으셨나요?</span>
-                    <label>
                         <span class="forgetPswd" id="forgetPswd" name="forgetPswd"
                               type="submit" value="비밀번호 재설정하기">
-                            <a th:href="@{/member/recoverPassword}">비밀번호 재설정하기</a>
+                            <a th:href="@{/member/recoverPassword}"> 비밀번호 재설정</a>
                         </span>
                     </label>
                 </td>

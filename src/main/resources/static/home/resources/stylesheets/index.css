@@ -2,14 +2,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 
 
-/*homeSection1 - 대문*/
-body > main > .home-section1 {
-    background-color: rgb(67, 67, 72);
+/*main*/
+body > main {
+    background-image: url("/resources/images/home-background.png");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
 }
 
-body > main > .home-section1 > .title-box1 {
-    padding-top: 11.5rem;
+/*homeSection1*/
+body > main > .home-section1 {
+    /*background-color: rgb(67, 67, 72);*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+
+/*commonButton*/
+body > main > .home-section1 > .title-box1 > .home-button{
+    margin-top: 3rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+body > main > .home-section1 > .title-box1 > .home-button > .commonButton {
+    text-decoration: none;
+    padding: 1rem 3rem;
+}
+
 
 /*옥같은 잔치를 벌여*/
 body > main > .home-section1 > .title-box1 > .title1 {
@@ -22,6 +52,7 @@ body > main > .home-section1 > .title-box1 > .title1 {
     justify-content: center;
 }
 
+/*꽃에 앉고 달에 취하니*/
 body > main > .home-section1 > .title-box1 > .title2 {
     font-size: 3rem;
     font-family: 'Gowun Batang', serif;
@@ -33,47 +64,12 @@ body > main > .home-section1 > .title-box1 > .title2 {
 }
 
 
-/*!*꽃에 앉고 달에 취하니*!*/
-/*body > main > .home-section1 > .title-box1 > .title2 {*/
-/*    font-size: 3rem;*/
-/*    font-family: 'Gowun Batang', serif;*/
-/*    margin-left: 33.5rem;*/
-/*}*/
-
-/*!*버튼 전체 위치조정*!*/
-/*body > main > .home-section1 > .title-box1 > .home-button {*/
-/*    margin-left: 46%;*/
-/*    margin-top: 3.5rem;*/
-/*}*/
-
-/*!*버튼 박스 속성*!*/
-/*body > #smoothScroll > .home-section1 > .title-box1 > .home-button > .next-button {*/
-/*    background-color: rgba(0, 0, 0, 0%);*/
-/*    height: 3rem;*/
-/*    width: 8rem;*/
-/*    color: rgb(201, 201, 201);*/
-/*}*/
-/*!*버튼 hover*!*/
-/*body > #smoothScroll > .home-section1 > .title-box1 > .home-button > .next-button:hover{*/
-/*    background-color: rgba(0, 0, 0, 20%);*/
-/*    color: rgb(0,0,0);*/
-/*}*/
-
-
 /*homeSection2*/
-body > main > .home-section2 {
-    background-color: #8a99b9;
-}
-
 body > main > .home-section2 > .title-box {
     padding-top: 5rem;
 }
 
 /*homeSection3 */
-body > main > .home-section3 {
-    background-color: #b0f3e6;
-}
-
 body > main > .home-section3 > .title-box {
     padding-top: 5rem;
 }

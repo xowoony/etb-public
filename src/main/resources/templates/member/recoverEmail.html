@@ -16,7 +16,8 @@
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 <main class="--main main">
-    <form name="form" id="form">
+    <form name="form" id="form" rel="form">
+<!--        <form name="form" id="form">-->
         <div class="title-container">
             <h1 class="title">이메일 찾기</h1>
         </div>
@@ -58,7 +59,7 @@
                 <th></th>
                 <td>
                     <span>
-                        <span class="emailAlertText">입력하신 이름과 연락처를 가진 회원의 이메일은<b rel="message"><div>입니다</div></b></span>
+                        <span class="emailAlertText">찾으시는 회원님의 이메일은<b rel="message"><div>입니다</div></b></span>
                     </span>
                 </td>
             </tr>
@@ -69,17 +70,17 @@
                 <td>
                     <label class="warningLogin">
                         <input class="goLoginText" id="goLoginText" name="goLoginText"
-                               type="submit" value="로그인하러 가기" onclick="location.href='login'">
+                               type="submit" value="로그인하기" onclick="location.href='login'">
                     </label>
                 </td>
             </tr>
 
             <!--경고창 - 이름 or 연락처를 입력해주세요-->
             <tr class="warning-row" rel="warningRow">
-                <th></th>
+<!--                <th></th>-->
                 <td>
                     <span class="warning">
-                        <i class="icon fa-solid fa-triangle-exclamation"></i>
+<!--                        <i class="icon fa-solid fa-triangle-exclamation"></i>-->
                         <span class="text"></span>
                     </span>
                 </td>

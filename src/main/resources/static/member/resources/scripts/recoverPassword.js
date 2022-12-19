@@ -111,7 +111,7 @@ form['recover'].addEventListener('click', () => {
                 const responseObject = JSON.parse(xhr.responseText);
                 switch (responseObject['result']) {
                     case'success':
-                        alert('비밀번호를 성공적으로 재설정하였습니다.\n\n확인을 누르면 로그인 페이지로 이동합니다.');
+                        alert('비밀번호를 성공적으로 재설정하였습니다.\n확인을 누르면 로그인 페이지로 이동합니다.');
                         window.location.href = 'login';
                         break;
                     default:
