@@ -1,0 +1,156 @@
+body {
+    color: rgb(0, 0, 0);
+    /*user-select: none;*/
+}
+
+.beer-detail {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.beer-detail > .part-1 {
+    margin: 20vh 0 1rem 0;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.beer-detail > .part-1 > .button-container > .button > .icon {
+    color: rgba(100, 95, 95, 30%);
+    cursor: pointer;
+    font-size: 1.75rem;
+    margin: 0.3rem 0 0 -3.5rem;
+    /*position: fixed;*/
+}
+
+.beer-detail > .part-1 > .beer-image {
+    width: 25rem;
+    height: 20rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    margin-right: 3.25rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.beer-detail > .part-1 > .beer-image > img {
+    width: 25rem;
+    height: auto;
+    border-radius: 2rem;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.beer-detail > .part-1 > .content-container {
+    width: 25rem;
+    height: 20rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.beer-detail > .part-1 > .content-container > .title {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .like-button {
+    margin-left: auto;
+    font-size: 1.8rem;
+    padding: 0.5rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .like-button > div {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-regular {
+    display: none;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-regular.visible {
+    display: flex;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid {
+    display: none;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid.visible {
+    display: flex;
+    color: red;
+}
+
+.beer-detail > .part-1 > .content-container > .content {
+    height: 11.7rem;
+    margin-bottom: auto;
+    overflow: scroll;
+}
+
+.beer-detail > .part-1 > .content-container > .content > .page-1 {
+    display: none;
+}
+
+.beer-detail > .part-1 > .content-container > .content > .page-1.visible {
+    display: flex;
+}
+
+.beer-detail > .part-1 > .content-container > .content > .page-2 {
+    display: none;
+}
+
+.beer-detail > .part-1 > .content-container > .content > .page-2.visible {
+    display: flex;
+}
+
+.beer-detail > .part-2 {
+    background-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    margin: 20px 10px;
+}
+
+.beer-detail > .part-2 > tbody > tr {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.beer-detail > .part-2 > tbody > tr > th {
+    width: 150px;
+    background-color: #e3e3e3;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.beer-detail > .part-2 > tbody > tr > td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.beer-detail > .part-2 > tbody > tr > .even {
+    background-color: #ededed;
+}

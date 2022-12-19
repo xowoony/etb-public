@@ -1,8 +1,9 @@
 const reviewForm = window.document.getElementById('reviewForm');
 
+// 뒤로가기 버튼
 reviewForm.querySelector('[rel="backButton"]').addEventListener('click', () => {
     window.history.back();
-})
+});
 
 reviewForm['beerSelectButton'].addEventListener('click', () => {
     window.location.href = '/product'
