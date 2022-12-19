@@ -192,10 +192,18 @@ body > .main > .content > .form > .step-container > tbody > .step-box {
 
 /*약관 박스*/
 body > .main > .content > .form > .step.step1 > .label > .term {
-    padding-top: 1rem;
+    /*padding-top: 1rem;*/
     height: 20rem;
     resize: none;
+
+    width: 40rem;
+
+    background-color: rgba(0, 0, 0, 25%);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    /*border-radius: 0.375rem;*/
+    padding: 0.625rem 0.875rem;
 }
+
 
 /*약관에 동의해주세요*/
 body > .main > .content > .form > .step.step1 > .label > .title {
@@ -390,11 +398,13 @@ input, select, textarea {
 }
 
 .--object-input {
-    width: 40rem;
+    /*width: 40rem;*/
+    width: 30rem;
     background-color: rgba(0, 0, 0, 25%);
     border: 0.0625rem solid rgb(213, 216, 220);
     /*border-radius: 0.375rem;*/
     padding: 0.625rem 0.875rem;
+
 }
 
 .--object-input:disabled {
