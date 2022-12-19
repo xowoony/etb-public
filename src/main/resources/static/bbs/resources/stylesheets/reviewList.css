@@ -127,6 +127,12 @@ body {
     overflow: scroll;
 }
 
+.beer-detail > .part-1 > .content-container > .content::-webkit-scrollbar,
+.beer-detail > .part-1 > .content-container > .content::-webkit-scrollbar-thumb,
+.beer-detail > .part-1 > .content-container > .content::-webkit-scrollbar-track {
+    display: none;
+}
+
 .beer-detail > .part-1 > .content-container > .content > .page-1 {
     display: none;
 }
