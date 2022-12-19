@@ -3,10 +3,11 @@ body {
     /*user-select: none;*/
 }
 
+/*section 부드러운 스크롤*/
 #smoothScroll {height:100vh; overflow:auto; scroll-snap-type:y mandatory; -ms-scroll-snap-type:mandatory;}
 #smoothScroll>section {padding:10px; height:500px; scroll-snap-align:start; -ms-scroll-snap-coordinate:0 0;}
 /*#smoothScroll>section:nth-child(3n+1) {background:gold;}*/
-#smoothScroll>section:nth-child(3n+2) {background:skyblue;}
+/*#smoothScroll>section:nth-child(3n+2) {background:skyblue;}*/
 #smoothScroll>section:nth-child(3n) {background:pink;}
 
 .beer-detail {
@@ -34,7 +35,7 @@ body {
 
 .beer-detail > .part-1 > .button-container > .button {
     position: relative;
-    top: -17vh;
+    top: -15.5vh;
 }
 
 .beer-detail > .part-1 > .button-container > .button > .icon {
@@ -177,4 +178,163 @@ body {
 
 .beer-detail > .part-2 > tbody > tr > .even {
     background-color: #ededed;
+}
+
+
+/*section 2 review list*/
+#smoothScroll > .review-list {
+    padding: 0 3rem;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-list > .first {
+    margin: 5vh 0 1rem 0;
+    font-size: 2rem;
+    font-weight: 550;
+}
+
+.review-list > .rating-container {
+    margin-bottom: 1rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.review-list > .rating-container > span + span {
+    margin-left: 1rem;
+}
+
+.review-list > .rating-container > .star-container {
+    font-size: 2rem;
+    color: rgb(213, 216, 220);
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.review-list > .rating-container > .star-container > .star.filled {
+    color: rgb(255, 191, 0);
+}
+
+.review-list > .form-container {
+    background-color: #555;
+    color: #9a9a9a;
+    padding: 1rem;
+    margin-bottom: 2rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.review-list > .form-container > sort1:hover,
+.review-list > .form-container > sort2:hover{
+    color: white;
+}
+
+.review-list > .form-container > sort1.selected,
+.review-list > .form-container > sort2.selected{
+    color: white;
+}
+
+.review-list > .form-container > .sort-bar {
+    /*display: inline-block;*/
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #9a9a9a;
+}
+
+.review-list > .review-container {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 2rem 0 2rem 0;
+}
+
+.review-list > .review-container > .head-container {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+
+.review-list > .review-container > .head-container > .menu-icon {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin: -1rem 1rem 0 auto;
+}
+
+.review-list > .review-container > .head-container > .user-info {
+    margin-bottom: 1rem;
+}
+
+.review-list > .review-container > .head-container > .user-info > .nickname {
+    margin-bottom: 0.2rem;
+}
+
+.review-list > .review-container > .head-container > .user-info > .star-container {
+    font-size: 1rem;
+    color: rgb(213, 216, 220);
+}
+
+.review-list > .review-container > .head-container > .user-info > .star-container > i + i {
+    margin-left: -0.25rem;
+}
+
+.review-list > .review-container > .head-container > .user-info > .star-container > .star.filled {
+    color: rgb(255, 191, 0);
+}
+
+.review-list > .review-container > .head-container > .user-info > .created-on {
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.review-list > .review-container > .beer-info {
+    font-size: 0.85rem;
+    font-weight: 350;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.review-list > .review-container > .review-content {
+    margin-bottom: 1rem;
+}
+
+.review-list > .review-container > .review-content > .good-review {
+    margin-bottom: 0.5rem;
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*좋았던 점(웃음) 아이콘 색 설정*/
+.review-list > .review-container > .review-content > .good-review > .icon {
+    color: rgba(55, 178, 182, 80%);
+    margin-right: 0.5rem;
+}
+
+.review-list > .review-container > .review-content > .bad-review {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*아쉬운 점(울상) 아이콘 색 설정*/
+.review-list > .review-container > .review-content > .bad-review > .icon {
+    color: rgba(232, 106, 106, 80%);
+    margin-right: 0.5rem;
+}
+
+.review-list > .review-container > .foot > span {
+    font-size: 0.75rem;
 }

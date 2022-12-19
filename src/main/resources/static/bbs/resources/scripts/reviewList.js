@@ -15,13 +15,13 @@ document.querySelector('[rel="backButton"]').addEventListener('click', () => {
 const detailButton = window.document.querySelector('[rel="detailButton"]');
 
 detailButton.addEventListener('click', () => {
-    if (detailButton.value === '자세히 보기') {
+    if (detailButton.value === '자세히보기') {
         document.querySelector('.page-1').classList.remove('visible');
         document.querySelector('.page-2').classList.add('visible');
         detailButton.value = '접기';
     } else {
         document.querySelector('.page-1').classList.add('visible');
         document.querySelector('.page-2').classList.remove('visible');
-        detailButton.value = '자세히 보기';
+        detailButton.value = '자세히보기';
     }
 });

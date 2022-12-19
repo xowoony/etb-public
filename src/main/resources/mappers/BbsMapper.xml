@@ -70,12 +70,9 @@
         `reviewArticle`.view AS `view`,
         `reviewArticle`.written_on AS `writtenOn`,
         `reviewArticle`.modified_on AS `modifiedOn`,
-        `user`.`nickname` AS `usernickname`,
-        COUNT(`comment`.`index`) AS `commentCount`
+        `user`.`nickname` AS `usernickname`
         FROM etb_bbs.review_articles AS `reviewArticle`
         LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
-        LEFT JOIN `etb_bbs`.`review_comments` AS `comment`
-        ON `reviewArticle`.`index` = `comment`.`article_index`
         WHERE `reviewArticle`.`beer_index` = #{beerIndex}
         <if test="criterion != null and criterion.equals('content')">
             AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
