@@ -48,6 +48,9 @@ public class MemberController {
         Enum<?> result = this.memberService.login(user);
         if(result == CommonResult.SUCCESS) {
             session.setAttribute("user", user); // 해당 요소에 user 이름의 user 값을 가지는 HTML 속성을 추가한다.
+
+            // 세션 유저 닉네임 값 불러오기
+            session.setAttribute("nickname", user.getNickname());
             System.out.println("이메일/비밀번호 맞음.");
         } else {
             System.out.println("이메일/비밀번호 틀림.");
@@ -224,7 +227,8 @@ public class MemberController {
         return responseObject.toString();
     }
 
-    
+    // 세션 유저 닉네임 정보 불러오기
+
 
 
 

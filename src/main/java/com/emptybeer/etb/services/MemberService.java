@@ -156,7 +156,7 @@ public class MemberService {
     }
 
     @Transactional
-    // recoverPasswordSend 리펙터링 하라는데
+    // recoverPasswordSend 리펙터링
     public Enum<? extends IResult> recoverPasswordSend(EmailAuthEntity emailAuth) throws MessagingException {
         UserEntity existingUser = this.memberMapper.selectUserByEmail(emailAuth.getEmail());
         // user가 가지고 있는 Email값을 넣는다. 여기 user는 위 user랑 같다. 위 user는 컨트롤러가 준다.
@@ -287,6 +287,16 @@ public class MemberService {
         }
 //        user.setEmail(user.getEmail());
         user.setEmail(findEmail.getEmail());
+        return CommonResult.SUCCESS;
+    }
+
+    // 세션 유저 닉네임 정보 불러오기
+    @Transactional
+    public Enum<? extends IResult> userNickname(UserEntity user){
+        UserEntity findNickname = this.memberMapper.selectUserNickname(user.getNickname());
+        if (findNickname == null) {
+            return CommonResult.FAILURE;
+        }
         return CommonResult.SUCCESS;
     }
 
