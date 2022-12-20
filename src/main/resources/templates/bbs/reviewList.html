@@ -29,7 +29,8 @@
             <div class="content-container">
                 <div class="title">
                     <div class="beer-name" th:text="${beer.getName()}">바르슈타이너 프리미엄 필스너 500ml</div>
-                    <span class="like-button" rel="likeButton">
+                    <span class="like-button" id="beerLikeButton">
+                        <span hidden>추천</span>
                         <i class="fa-regular fa-heart visible"></i>
                         <i class="fa-solid fa-heart"></i>
                         <div class="like-count">20</div>
@@ -106,6 +107,7 @@
                     <input type="text" class="--object-input" maxlength="50" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
                 </label>
                 <input type="submit" class="search-button" value="검색">
+                <input type="hidden" name="beerIndex" th:value="${beer.getIndex()}">
             </form>
         </div>
         <div class="review-container blank" th:if="${reviewArticles} == null">

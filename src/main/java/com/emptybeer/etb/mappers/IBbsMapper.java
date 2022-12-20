@@ -2,6 +2,7 @@ package com.emptybeer.etb.mappers;
 
 import com.emptybeer.etb.entities.bbs.*;
 import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.vos.BeerVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
@@ -28,4 +29,7 @@ public interface IBbsMapper {
                                                      @Param(value = "keyword") String keyword,
                                                      @Param(value = "limit") int limit,
                                                      @Param(value = "offset") int offset);
+
+    int insertBeerLike(BeerLikeEntity beerLike);
+    int deleteBeerLike(BeerLikeEntity beerLike);
 }

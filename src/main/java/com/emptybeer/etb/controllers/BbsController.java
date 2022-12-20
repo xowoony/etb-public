@@ -79,6 +79,42 @@ public class BbsController {
         return responseObject.toString();
     }
 
+    // 리뷰 맥주 이미지 가져오기
+    @GetMapping(value = "reviewList")
+    public ResponseEntity<byte[]> getBeerImage(@RequestParam(value = "beerIndex") int beerIndex) {
+        ResponseEntity<byte[]> responseEntity;
+        BeerEntity beer = this.bbsService.getBeer(beerIndex);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf(beer.getImageType()));
+        headers.setContentLength(beer.getImage().length);
+        responseEntity = new ResponseEntity<>(beer.getImage(), headers, HttpStatus.OK);
+        return responseEntity;
+    }
+
+    // 리뷰 맥주 좋아요 기능
+    @PostMapping(value = "reviewList",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                  BeerLikeEntity beerLike) {
+        JSONObject responseObject = new JSONObject();
+        Enum<?> result = this.bbsService.beerLike(beerLike, user);
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
+
+    // 리뷰 맥주 좋아요 취소 기능
+    @DeleteMapping(value = "reviewList",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                               BeerLikeEntity beerLike) {
+        JSONObject responseObject = new JSONObject();
+        Enum<?> result = this.bbsService.beerUnlike(beerLike, user);
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
+
 
     // 리뷰 리스트
     @GetMapping(value = "reviewList",
@@ -108,6 +144,8 @@ public class BbsController {
         modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }
+
+
 
 
 //    // 리뷰 읽기
@@ -142,15 +180,5 @@ public class BbsController {
 //    }
 
 
-    // 리뷰 맥주 이미지 가져오기
-    @GetMapping(value = "reviewList")
-    public ResponseEntity<byte[]> getBeerImage(@RequestParam(value = "beerIndex") int beerIndex) {
-        ResponseEntity<byte[]> responseEntity;
-        BeerEntity beer = this.bbsService.getBeer(beerIndex);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf(beer.getImageType()));
-        headers.setContentLength(beer.getImage().length);
-        responseEntity = new ResponseEntity<>(beer.getImage(), headers, HttpStatus.OK);
-        return responseEntity;
-    }
+
 }

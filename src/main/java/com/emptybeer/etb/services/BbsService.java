@@ -3,6 +3,7 @@ package com.emptybeer.etb.services;
 import com.emptybeer.etb.entities.bbs.BoardEntity;
 import com.emptybeer.etb.entities.bbs.ReviewArticleEntity;
 import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
@@ -31,6 +32,29 @@ public class BbsService {
 
     public BeerVo getBeer(int beerIndex) {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
+    }
+
+    // 맥주 좋아요
+    public Enum<? extends IResult> beerLike(BeerLikeEntity beerLike, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        beerLike.setUserEmail(user.getEmail());
+        return this.bbsMapper.insertBeerLike(beerLike) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
+    // 맥주 좋아요 취소
+
+    public Enum<? extends IResult> beerUnlike(BeerLikeEntity beerLike, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        beerLike.setUserEmail(user.getEmail());
+        return this.bbsMapper.deleteBeerLike(beerLike) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
     }
 
     public Enum<? extends IResult> reviewAdd(UserEntity user, ReviewArticleEntity reviewArticle) {

@@ -8,7 +8,7 @@ body {
 #smoothScroll>section {padding:10px; height:500px; scroll-snap-align:start; -ms-scroll-snap-coordinate:0 0;}
 /*#smoothScroll>section:nth-child(3n+1) {background:gold;}*/
 /*#smoothScroll>section:nth-child(3n+2) {background:skyblue;}*/
-#smoothScroll>section:nth-child(3n) {background:pink;}
+/*#smoothScroll>section:nth-child(3n) {background:pink;}*/
 
 .beer-detail {
     align-items: stretch;
