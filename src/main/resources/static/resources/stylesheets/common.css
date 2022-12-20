@@ -53,14 +53,12 @@ body > .loading-cover {
     padding-left: 0px;
 
 
-
 }
 
 /*시작하기 글씨 간격*/
 .category > .start {
     margin-left: 1.5rem;
 }
-
 
 
 .category > li > a {
@@ -76,25 +74,49 @@ body > .loading-cover {
 
 .category > li:hover .depth_1 {
     display: block;
-    list-style:none;
-
+    list-style: none;
 }
 
-.category > li >.depth_1 {
+.category > li > .depth_1 {
     display: none;
     position: absolute;
     left: 0;
     right: 0;
     text-align: center;
-
+    list-style: none;
 }
 
-.category li >.depth_1 a {
+/*카테고리 타이틀들 hover시 색깔 변화*/
+.category> li > a:hover{
+    color: rgba(237, 250, 0, 0.67);
+}
+
+
+/*카테고리 드롭다운 메뉴 상세 속성*/
+.category> li > .depth_1 > li > a {
     display: block;
     padding: 1rem;
 
-    background-color: rgb(222 225 45 / 40%);
-    color: #fff;
+    background-color: rgb(222 225 45 / 25%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/*드롭다운 메뉴 안 글씨 hover 시 색깔*/
+.category> li > .depth_1 > li > a:hover{
+    /*color: rgb(238, 203, 61);*/
+    color: rgb(237, 250, 0);
+}
+
+.category> li > .depth_1 > .product-board > a{
+    font-size: 0.8rem;
+}
+
+
+.category> li > .depth_1 > .community-board > a{
+    font-size: 0.8rem;
 }
 
 
@@ -180,8 +202,6 @@ body > header > .spring > .category > .etb-logo {
 }
 
 
-
-
 /*잔이비어 로고*/
 body > header > .spring > .category > li > .title-logo {
     height: 100%;
@@ -233,7 +253,6 @@ body > header > .spring > .category > li > span > .login {
     color: rgb(255, 255, 255);
     margin-left: 0.5rem;
 }
-
 
 
 /*footer*/
