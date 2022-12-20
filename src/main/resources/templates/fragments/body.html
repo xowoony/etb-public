@@ -3,18 +3,53 @@
 <!--공통 header-->
 <header th:fragment="header">
     <div class="spring">
-        <div class="category">
-            <a class="title-logo" th:href="@{/}">잔이비어</a>
-            <a class="home" th:href="@{/}">HOME</a>
-            <a class="product" th:href="@{/product}">PRODUCT</a>
-            <a class="community" th:href="@{/community}">COMMUNITY</a>
-            <a class="festival" th:href="@{/festival}">FESTIVAL</a>
-            <span>
+        <ul class="category">
+            <li class="etb-logo">
+                <a class="title-logo" th:href="@{/}">잔이비어</a>
+            </li>
+            <li>
+                <a class="home" th:href="@{/}">HOME</a>
+            </li>
+            <li>
+                <a class="product" th:href="@{/product}">PRODUCT</a>
+                <ul class="depth_1">
+                    <li class="product-board"><a href="#">BEER</a></li>
+                    <li class="product-board"><a href="#">REVIEW</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="community" th:href="@{/community}">COMMUNITY</a>
+                <ul class="depth_1">
+                    <li class="community-board"><a href="#">자유게시판</a></li>
+                    <li class="community-board"><a href="#">모임게시판</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="festival" th:href="@{/festival}">FESTIVAL</a>
+            </li>
+            <!-- 로그인 했을 경우  -->
+            <li class="start" th:if="${session.user != null}">
                 <i class="fa-sharp fa-solid fa-user icon"></i>
-            </span>
-            <a class="login" href="http://localhost:8080/member/login">시작하기</a>
-<!--            <a class="login" th:href="@{member/login}">시작하기</a>-->
-        </div>
+                <span>
+                    <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
+                </span>
+                <ul class="depth_1">
+                    <li class="user-board">
+                        <a href="#">마이페이지</a>
+                    </li>
+                    <li class="user-board">
+                        <a th:href="@{/member/logout}">로그아웃</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 로그인 안했을 경우  -->
+            <li class="start" th:if="${session.user == null}">
+                <i class="fa-sharp fa-solid fa-user icon"></i>
+                <span>
+                  <a class="login" href="http://localhost:8080/member/login">시작하기</a>
+                </span>
+            </li>
+        </ul>
     </div>
 </header>
 <!--공통 footer-->

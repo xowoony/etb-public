@@ -8,10 +8,10 @@
     <title>잔이비어 :: COMMUNITY</title>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/community.css}">
-    <script defer th:src="@{/home/resources/scripts/community.js}"></script>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/community.css}">
+    <script defer th:src="@{/bbs/resources/scripts/community.js}"></script>
 </head>
-<body id="smoothScroll">
+<body>
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
@@ -19,23 +19,24 @@
 
 <!--  main  -->
 <main>
-    <!--  homeSection1  -->
     <section class="home-section1" id="homeSection1">
+        <!--  Section1  -->
         <div class="title-box1" id="titleBox1">
-            <div class="title">section1</div>
+            <div class="title">COMMUNITY</div>
+            <div class="title-content">맥주와 관련한 다양한 정보를 나눌 수 있는
+                잔이비어의 커뮤니티를 소개합니다.
+            </div>
         </div>
-    </section>
-    <div class="spring"></div>
-    <!--  homeSection2  -->
-    <section class="home-section2" id="homeSection2">
+        <!--  Section2  -->
         <div class="title-box2" id="titleBox2">
-            <div class="title">section2</div>
-        </div>
-    </section>
-    <!--  homeSection3  -->
-    <section class="home-section3" id="homeSection3">
-        <div class="title-box3" id="titleBox3">
-            <div class="title">section3</div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="free">자유게시판</td>
+                        <td class="team">모임게시판</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 </main>

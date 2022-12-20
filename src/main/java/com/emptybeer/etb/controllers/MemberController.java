@@ -47,6 +47,7 @@ public class MemberController {
     public String postLogin(HttpSession session, UserEntity user) {
         Enum<?> result = this.memberService.login(user);
         if(result == CommonResult.SUCCESS) {
+            JSONObject responseObject = new JSONObject();
             session.setAttribute("user", user); // 해당 요소에 user 이름의 user 값을 가지는 HTML 속성을 추가한다.
             System.out.println("이메일/비밀번호 맞음.");
         } else {
@@ -223,9 +224,6 @@ public class MemberController {
         }
         return responseObject.toString();
     }
-
-    
-
 
 
 
