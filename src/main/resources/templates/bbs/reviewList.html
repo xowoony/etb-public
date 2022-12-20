@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <th class="even">용량</th>
-                <td th:text="${beer.getVolume()} == null ? '-' : ${beer.getVolume()}">500ml</td>
+                <td th:text="${beer.getVolume() == null ? '-' : beer.getVolume()}">500ml</td>
             </tr>
             <tr>
                 <th> 도수</th>
