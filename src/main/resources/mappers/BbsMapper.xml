@@ -10,19 +10,20 @@
         WHERE BINARY `id` = #{id}
         LIMIT 1
     </select>
-    <select id="selectBeerByIndex" resultType="com.emptybeer.etb.entities.data.BeerEntity">
-        SELECT `index`        AS `index`,
-               `name`         AS `name`,
-               image          AS `image`,
-               image_type     AS `imageType`,
-               mfr            AS `mfr`,
-               calorie        AS `calorie`,
-               volume         AS `volume`,
-               degree         AS `degree`,
-               `description`  AS `description`,
-               category_index AS `categoryIndex`,
-               created_on     AS `createdOn`,
-               modified_on    AS `modifiedOn`
+    <select id="selectBeerByIndex" resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `index`                 AS `index`,
+               `name`                  AS `name`,
+               image                   AS `image`,
+               image_type              AS `imageType`,
+               mfr                     AS `mfr`,
+               calorie                 AS `calorie`,
+               volume                  AS `volume`,
+               degree                  AS `degree`,
+               `description`           AS `description`,
+               LEFT(`description`, 68) AS `descriptionShort`,
+               category_index          AS `categoryIndex`,
+               created_on              AS `createdOn`,
+               modified_on             AS `modifiedOn`
         FROM etb_data.beers
         WHERE `index` = #{beerIndex}
     </select>
@@ -85,4 +86,17 @@
         ORDER BY `reviewArticle`.`index` DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
+    <insert id="insertBeerLike"
+            parameterType="com.emptybeer.etb.entities.data.BeerLikeEntity">
+        INSERT INTO etb_data.beer_likes (`user_email`, `beer_index`, `created_on`)
+        VALUES (#{userEmail}, #{beerIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+    <delete id="deleteBeerLike"
+            parameterType="com.emptybeer.etb.entities.data.BeerLikeEntity">
+        DELETE
+        FROM etb_data.beer_likes
+        WHERE user_email = #{userEmail}
+          AND `beer_index` = #{beerIndex}
+        LIMIT 1
+    </delete>
 </mapper>

@@ -24,22 +24,23 @@
                 </div>
             </div>
             <div class="beer-image">
-                <img th:src="@{/resources/images/바르슈타이너 프리미엄 필스너.webp}" alt="">
+                <img th:src="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}" alt="">
             </div>
             <div class="content-container">
                 <div class="title">
-                    <div class="beer-name">바르슈타이너 프리미엄 필스너 500ml</div>
-                    <span class="like-button" rel="likeButton">
+                    <div class="beer-name" th:text="${beer.getName()}">바르슈타이너 프리미엄 필스너 500ml</div>
+                    <span class="like-button" id="beerLikeButton">
+                        <span hidden>추천</span>
                         <i class="fa-regular fa-heart visible"></i>
                         <i class="fa-solid fa-heart"></i>
                         <div class="like-count">20</div>
                     </span>
                 </div>
                 <div class="content">
-                    <div class="page-1 visible">
+                    <div class="page-1 visible" th:text="${beer.getDescriptionShort()}">
                         세계적 명성의 수제맥주 브랜드 미켈러(Mikkeller)와 더부스가 함께 만든 페일에일로, 대동강 물이 들어가지 않았다는 이유로
                     </div>
-                    <div class="page-2">
+                    <div class="page-2" th:text="${beer.getDescription()}">
                         세계적 명성의 수제맥주 브랜드 미켈러(Mikkeller)와 더부스가 함께 만든 페일에일로, 대동강 물이 들어가지 않았다는 이유로 중간의 '동' 자를 Censored(검열되었다) 스티커로 가린 채 '대강 페일에일'로 판매되고 있다. 오렌지, 감귤, 청포도를 연상시키는 홉의 향기가 기분 좋게 후각을 자극하며, 가볍고 고소한 몰트의 맛과 쌉싸름한 끝 맛이 깔끔하게 이어지는 훌륭한 밸런스의 맥주. 가벼운 바디감과 적은 쓴맛으로 수제맥주에 익숙하지 않은 사람도 부담 없이 마실 수 있다.
                     </div>
                     <input type="button" class="detail-button" rel="detailButton" value="자세히보기">
@@ -50,19 +51,19 @@
             <tbody>
             <tr>
                 <th>제조사</th>
-                <td>바르슈타이너</td>
+                <td th:text="${beer.getMfr()}">바르슈타이너</td>
             </tr>
             <tr>
                 <th class="even">용량</th>
-                <td>500ml</td>
+                <td th:text="${beer.getVolume() == null ? '-' : beer.getVolume()}">500ml</td>
             </tr>
             <tr>
                 <th> 도수</th>
-                <td>4.8%</td>
+                <td th:text="${beer.getDegree()}">4.8%</td>
             </tr>
             <tr>
                 <th class="even">카테고리</th>
-                <td>해외맥주</td>
+                <td th:text="${beer.getCategoryIndex()}">해외맥주</td>
             </tr>
             </tbody>
         </table>
@@ -106,7 +107,13 @@
                     <input type="text" class="--object-input" maxlength="50" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
                 </label>
                 <input type="submit" class="search-button" value="검색">
+                <input type="hidden" name="beerIndex" th:value="${beer.getIndex()}">
             </form>
+        </div>
+        <div class="review-container blank" th:if="${reviewArticles} == null">
+            <div>
+                등록된 리뷰가 없습니다.
+            </div>
         </div>
         <div class="review-container">
             <div class="head-container">

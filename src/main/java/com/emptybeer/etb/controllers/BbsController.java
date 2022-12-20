@@ -7,10 +7,15 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BbsService;
+import com.emptybeer.etb.services.DataService;
+import com.emptybeer.etb.vos.BeerVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,10 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class BbsController {
 
     private final BbsService bbsService;
+    private final DataService dataService;
 
     @Autowired
-    public BbsController(BbsService bbsService) {
+    public BbsController(BbsService bbsService, DataService dataService) {
         this.bbsService = bbsService;
+        this.dataService = dataService;
     }
 
 
@@ -72,6 +79,42 @@ public class BbsController {
         return responseObject.toString();
     }
 
+    // 리뷰 맥주 이미지 가져오기
+    @GetMapping(value = "reviewList")
+    public ResponseEntity<byte[]> getBeerImage(@RequestParam(value = "beerIndex") int beerIndex) {
+        ResponseEntity<byte[]> responseEntity;
+        BeerEntity beer = this.bbsService.getBeer(beerIndex);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf(beer.getImageType()));
+        headers.setContentLength(beer.getImage().length);
+        responseEntity = new ResponseEntity<>(beer.getImage(), headers, HttpStatus.OK);
+        return responseEntity;
+    }
+
+    // 리뷰 맥주 좋아요 기능
+    @PostMapping(value = "reviewList",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                  BeerLikeEntity beerLike) {
+        JSONObject responseObject = new JSONObject();
+        Enum<?> result = this.bbsService.beerLike(beerLike, user);
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
+
+    // 리뷰 맥주 좋아요 취소 기능
+    @DeleteMapping(value = "reviewList",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                               BeerLikeEntity beerLike) {
+        JSONObject responseObject = new JSONObject();
+        Enum<?> result = this.bbsService.beerUnlike(beerLike, user);
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
+
 
     // 리뷰 리스트
     @GetMapping(value = "reviewList",
@@ -83,7 +126,7 @@ public class BbsController {
         page = Math.max(1, page);
         // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
         ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
-        BeerEntity beer = this.bbsService.getBeer(beerIndex);
+        BeerVo beer = this.bbsService.getBeer(beerIndex);
         modelAndView.addObject("beer", beer);
 
         int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
@@ -101,5 +144,41 @@ public class BbsController {
         modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }
+
+
+
+
+//    // 리뷰 읽기
+//    @GetMapping(value = "reviewList",
+//            produces = MediaType.TEXT_HTML_VALUE)
+//    @ResponseBody
+//    public String getReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
+//                                @RequestParam(value = "beerIndex") int beerIndex) {
+//        JSONArray responseArray = new JSONArray();
+//        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beerIndex, user);
+//
+//        for (ReviewArticleVo reviewArticle : reviewArticles) {
+//            JSONObject reviewObject = new JSONObject();
+//            reviewObject.put("index", reviewArticle.getIndex());
+//            reviewObject.put("userEmail", reviewArticle.getUserEmail());
+//            reviewObject.put("beerIndex", reviewArticle.getBeerIndex());
+//            reviewObject.put("userNickname", reviewArticle.getUserNickname());
+//            reviewObject.put("score", reviewArticle.getScore());
+//            reviewObject.put("contentGood", reviewArticle.getContentGood());
+//            reviewObject.put("contentBad", reviewArticle.getContentBad());
+//            reviewObject.put("modifiedOn", new SimpleDateFormat("yyyy.MM.dd").format(reviewArticle.getModifiedOn()));
+//            // new SimpleDataFormat("형식").format([Date 타입 객체]) : [Date 타입 객체]가 가진 일시를 원하는 형식의 문자열로 만들어 버린다.
+//            reviewObject.put("isSigned", true);    // 로그인이 되어 있으면 true
+//            reviewObject.put("isMine", user.getEmail().equals(reviewArticle.getUserEmail())); // 로그인이 되어 있고, 그 유저가
+//            reviewObject.put("isLiked", reviewArticle.isLiked());
+//            reviewObject.put("likeCount", reviewArticle.getLikeCount());
+//            responseArray.put(reviewObject);
+//
+//        }
+//
+//        return responseArray.toString();
+//    }
+
+
 
 }
