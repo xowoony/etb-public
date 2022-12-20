@@ -8,36 +8,24 @@
     <title>잔이비어 :: COMMUNITY</title>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/community.css}">
-    <script defer th:src="@{/home/resources/scripts/community.js}"></script>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/community.css}">
+    <script defer th:src="@{/bbs/resources/scripts/community.js}"></script>
 </head>
-<body id="smoothScroll">
+<body>
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main>
+<main id="smoothScroll">
     <!--  homeSection1  -->
     <section class="home-section1" id="homeSection1">
         <div class="title-box1" id="titleBox1">
-            <div class="title">section1</div>
+           소운짱
         </div>
     </section>
     <div class="spring"></div>
-    <!--  homeSection2  -->
-    <section class="home-section2" id="homeSection2">
-        <div class="title-box2" id="titleBox2">
-            <div class="title">section2</div>
-        </div>
-    </section>
-    <!--  homeSection3  -->
-    <section class="home-section3" id="homeSection3">
-        <div class="title-box3" id="titleBox3">
-            <div class="title">section3</div>
-        </div>
-    </section>
 </main>
 <!--  footer  -->
 <th:block th:replace="~{fragments/body :: footer}"></th:block>
