@@ -69,7 +69,7 @@ public class MemberService {
         authSalt = authSaltHashBuilder.toString();
 
         Date createdOn = new Date();
-        Date expiresOn = DateUtils.addMinutes(createdOn,5);
+        Date expiresOn = DateUtils.addMinutes(createdOn, 5);
 
 
         emailAuth.setEmail(user.getEmail());
@@ -273,6 +273,7 @@ public class MemberService {
             return CommonResult.FAILURE;
         }
         System.out.println("성공!!!!");
+        user.setNickname(existingUser.getNickname());
         return CommonResult.SUCCESS;
     }
 
@@ -292,7 +293,7 @@ public class MemberService {
 
     // 세션 유저 닉네임 정보 불러오기
     @Transactional
-    public Enum<? extends IResult> userNickname(UserEntity user){
+    public Enum<? extends IResult> userNickname(UserEntity user) {
         UserEntity findNickname = this.memberMapper.selectUserNickname(user.getNickname());
         if (findNickname == null) {
             return CommonResult.FAILURE;

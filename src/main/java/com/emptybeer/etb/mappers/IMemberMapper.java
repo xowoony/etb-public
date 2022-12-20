@@ -32,4 +32,5 @@ public interface IMemberMapper {
                                        @Param(value = "contact") String contact);
 
     UserEntity selectUserNickname(@Param(value="nickname") String nickname);
+
 }
