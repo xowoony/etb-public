@@ -119,6 +119,14 @@ body > .loading-cover {
     font-size: 0.8rem;
 }
 
+.category>.start .depth_1 > .user-board > a{
+    font-size: 0.8rem;
+    padding: 0.8rem;
+}
+
+
+
+
 
 /*common 버튼 박스 속성*/
 .commonButton {
