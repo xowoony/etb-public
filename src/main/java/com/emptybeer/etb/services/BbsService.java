@@ -9,6 +9,7 @@ import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.models.PagingModel;
+import com.emptybeer.etb.vos.BeerVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class BbsService {
         return this.bbsMapper.selectBoardById(id);
     }
 
-    public BeerEntity getBeer(int beerIndex) {
+    public BeerVo getBeer(int beerIndex) {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
     }
 
@@ -51,4 +52,12 @@ public class BbsService {
                 paging.countPerPage,
                 (paging.requestPage - 1) * paging.countPerPage);
     }
+
+//    // 글 읽기 + 닉네임 불러오기
+//    public ReviewArticleVo[] reviewReadArticles(UserEntity signedUser, int index) {
+//        ReviewArticleVo reviewArticle = this.bbsMapper.selectReviewLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
+//
+//        reviewArticle.setIndex(this.bbsMapper.updateArticle(article));
+//        return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
+//    }
 }

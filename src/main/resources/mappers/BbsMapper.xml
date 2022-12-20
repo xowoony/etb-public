@@ -10,19 +10,20 @@
         WHERE BINARY `id` = #{id}
         LIMIT 1
     </select>
-    <select id="selectBeerByIndex" resultType="com.emptybeer.etb.entities.data.BeerEntity">
-        SELECT `index`        AS `index`,
-               `name`         AS `name`,
-               image          AS `image`,
-               image_type     AS `imageType`,
-               mfr            AS `mfr`,
-               calorie        AS `calorie`,
-               volume         AS `volume`,
-               degree         AS `degree`,
-               `description`  AS `description`,
-               category_index AS `categoryIndex`,
-               created_on     AS `createdOn`,
-               modified_on    AS `modifiedOn`
+    <select id="selectBeerByIndex" resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `index`                 AS `index`,
+               `name`                  AS `name`,
+               image                   AS `image`,
+               image_type              AS `imageType`,
+               mfr                     AS `mfr`,
+               calorie                 AS `calorie`,
+               volume                  AS `volume`,
+               degree                  AS `degree`,
+               `description`           AS `description`,
+               LEFT(`description`, 70) AS `descriptionShort`,
+               category_index          AS `categoryIndex`,
+               created_on              AS `createdOn`,
+               modified_on             AS `modifiedOn`
         FROM etb_data.beers
         WHERE `index` = #{beerIndex}
     </select>

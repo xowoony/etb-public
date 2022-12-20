@@ -18,7 +18,8 @@ body {
 }
 
 .beer-detail > .part-1 {
-    margin: 5vh 0 1rem 0;
+    /*margin: 5vh 0 1rem 0;*/
+    margin-top: 6vh;
 
     align-items: center;
     display: flex;
@@ -57,8 +58,8 @@ body {
 }
 
 .beer-detail > .part-1 > .beer-image > img {
-    width: 25rem;
-    height: auto;
+    width: auto;
+    height: 20rem;
     border-radius: 2rem;
     position: absolute;
 
@@ -86,6 +87,10 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+}
+
+.beer-detail > .part-1 > .content-container > .title > .beer-name {
+    align-self: center;
 }
 
 .beer-detail > .part-1 > .content-container > .title > .like-button {
@@ -189,11 +194,11 @@ body {
 
 /*section 2 review list*/
 #smoothScroll > .review-list {
-    padding: 0 3rem;
+    padding: 7rem 3rem 0 3rem;
     align-items: stretch;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .review-list > .first {
@@ -262,7 +267,7 @@ body {
     background-color: #555;
     color: #9a9a9a;
     padding: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 
     align-items: stretch;
     display: flex;
@@ -292,11 +297,19 @@ body {
 }
 
 .review-list > .review-container {
-    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     padding: 2rem 0 2rem 0;
-    margin-bottom: 2rem;
+    /*margin-bottom: 2rem;*/
 }
+
+/*리뷰 없으면 띄우는 것*/
+.review-list > .review-container.blank {
+    font-size: 0.9rem;
+}
+
+/*.review-list > .review-container.blank.visible {*/
+/*    display: flex;*/
+/*}*/
 
 .review-list > .review-container > .head-container {
     align-items: stretch;
@@ -389,6 +402,7 @@ body {
 
 .review-list > .review-container > .foot > .like-count {
     font-weight: 500;
+    margin-bottom: 0.1rem;
 }
 
 .review-list > .review-container > .foot > .review-like {
@@ -413,4 +427,5 @@ body {
 
 .review-list > .page-container {
     align-self: center;
+    margin-top: 2rem;
 }

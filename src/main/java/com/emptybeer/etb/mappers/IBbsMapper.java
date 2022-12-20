@@ -3,6 +3,7 @@ package com.emptybeer.etb.mappers;
 import com.emptybeer.etb.entities.bbs.*;
 import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
+import com.emptybeer.etb.vos.BeerVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
 public interface IBbsMapper {
     BoardEntity selectBoardById(@Param(value = "id") String id);
 
-    BeerEntity selectBeerByIndex(@Param(value = "beerIndex") int beerIndex);
+    BeerVo selectBeerByIndex(@Param(value = "beerIndex") int beerIndex);
 
     int insertReviewArticle(ReviewArticleEntity reviewArticle);
 
