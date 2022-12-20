@@ -87,13 +87,13 @@ body > .loading-cover {
 }
 
 /*카테고리 타이틀들 hover시 색깔 변화*/
-.category> li > a:hover{
+.category > li > a:hover {
     color: rgba(237, 250, 0, 0.67);
 }
 
 
 /*카테고리 드롭다운 메뉴 상세 속성*/
-.category> li > .depth_1 > li > a {
+.category > li > .depth_1 > li > a {
     display: block;
     padding: 1rem;
 
@@ -105,27 +105,24 @@ body > .loading-cover {
 }
 
 /*드롭다운 메뉴 안 글씨 hover 시 색깔*/
-.category> li > .depth_1 > li > a:hover{
+.category > li > .depth_1 > li > a:hover {
     /*color: rgb(238, 203, 61);*/
     color: rgb(237, 250, 0);
 }
 
-.category> li > .depth_1 > .product-board > a{
+.category > li > .depth_1 > .product-board > a {
     font-size: 0.8rem;
 }
 
 
-.category> li > .depth_1 > .community-board > a{
+.category > li > .depth_1 > .community-board > a {
     font-size: 0.8rem;
 }
 
-.category>.start .depth_1 > .user-board > a{
+.category > .start > .depth_1 > .user-board > a {
     font-size: 0.8rem;
     padding: 0.8rem;
 }
-
-
-
 
 
 /*common 버튼 박스 속성*/
