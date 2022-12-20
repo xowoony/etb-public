@@ -11,30 +11,33 @@
         LIMIT 1
     </select>
     <select id="selectBeerByIndex" resultType="com.emptybeer.etb.vos.BeerVo">
-        SELECT `index`                 AS `index`,
-               `name`                  AS `name`,
-               image                   AS `image`,
-               image_type              AS `imageType`,
-               mfr                     AS `mfr`,
-               calorie                 AS `calorie`,
-               volume                  AS `volume`,
-               degree                  AS `degree`,
-               `description`           AS `description`,
+        SELECT `beer`.`index`          AS `index`,
+               `beer`.`name`           AS `name`,
+               `beer`.image            AS `image`,
+               `beer`.image_type       AS `imageType`,
+               `beer`.mfr              AS `mfr`,
+               `beer`.calorie          AS `calorie`,
+               `beer`.volume           AS `volume`,
+               `beer`.degree           AS `degree`,
+               `beer`.`description`    AS `description`,
                LEFT(`description`, 68) AS `descriptionShort`,
-               category_index          AS `categoryIndex`,
-               created_on              AS `createdOn`,
-               modified_on             AS `modifiedOn`
-        FROM etb_data.beers
-        WHERE `index` = #{beerIndex}
+               `beer`.`category_index` AS `categoryIndex`,
+               `beerCategory`.`text`   AS `categoryText`,
+               `beer`.created_on       AS `createdOn`,
+               `beer`.modified_on      AS `modifiedOn`
+        FROM etb_data.beers AS `beer`
+                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+                           ON `beer`.`category_index` = `beerCategory`.`index`
+        WHERE `beer`.`index` = #{beerIndex}
     </select>
     <insert id="insertReviewArticle"
             useGeneratedKeys="true"
             keyColumn="index"
             keyProperty="index"
             parameterType="com.emptybeer.etb.entities.bbs.ReviewArticleEntity">
-        INSERT INTO `etb_bbs`.`review_articles` (user_email, beer_index, score, content_good, content_bad, view,
+        INSERT INTO `etb_bbs`.`review_articles` (user_email, beer_index, score, content_good, content_bad, declaration,
                                                  written_on, modified_on)
-        VALUES (#{userEmail}, #{beerIndex}, #{score}, #{contentGood}, #{contentBad}, #{view},
+        VALUES (#{userEmail}, #{beerIndex}, #{score}, #{contentGood}, #{contentBad}, #{declaration},
                 IFNULL(#{writtenOn}, DEFAULT(`written_on`)),
                 IFNULL(#{modifiedOn}, DEFAULT(`modified_on`)))
     </insert>
@@ -68,7 +71,7 @@
         `reviewArticle`.score AS `score`,
         `reviewArticle`.`content_good` AS `contentGood`,
         `reviewArticle`.`content_bad` AS `contentBad`,
-        `reviewArticle`.view AS `view`,
+        `reviewArticle`.declaration AS `declaration`,
         `reviewArticle`.written_on AS `writtenOn`,
         `reviewArticle`.modified_on AS `modifiedOn`,
         `user`.`nickname` AS `usernickname`

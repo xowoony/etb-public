@@ -156,7 +156,18 @@ body {
 }
 
 .beer-detail > .part-1 > .content-container > .content > .detail-button {
+    font-size: 0.9rem;
+    border: unset;
+    background-color: unset;
     margin-top: 0.2rem;
+    padding: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #555555;
+}
+
+.beer-detail > .part-1 > .content-container > .content > .detail-button:hover {
+    filter: brightness(160%);
 }
 
 .beer-detail > .part-2 {
@@ -276,13 +287,18 @@ body {
     justify-content: flex-start;
 }
 
-.review-list > .form-container > sort1:hover,
-.review-list > .form-container > sort2:hover{
+.review-list > .form-container > .sort1,
+.review-list > .form-container > .sort2 {
+    cursor: pointer;
+}
+
+.review-list > .form-container > .sort1:hover,
+.review-list > .form-container > .sort2:hover{
     color: white;
 }
 
-.review-list > .form-container > sort1.selected,
-.review-list > .form-container > sort2.selected{
+.review-list > .form-container > .sort1.selected,
+.review-list > .form-container > .sort2.selected{
     color: white;
 }
 
@@ -291,6 +307,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     color: #9a9a9a;
+    user-select: none;
 }
 
 .review-list > .form-container > .search-form {

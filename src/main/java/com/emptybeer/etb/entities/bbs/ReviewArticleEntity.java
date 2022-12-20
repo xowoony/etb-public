@@ -13,7 +13,7 @@ public class ReviewArticleEntity {
 
     private String contentBad;
 
-    private int view;
+    private int declaration;
     private Date writtenOn;
     private Date modifiedOn;
 
@@ -87,12 +87,12 @@ public class ReviewArticleEntity {
         return this;
     }
 
-    public int getView() {
-        return view;
+    public int getDeclaration() {
+        return declaration;
     }
 
-    public void setView(int view) {
-        this.view = view;
+    public void setDeclaration(int declaration) {
+        this.declaration = declaration;
     }
 
     public Date getWrittenOn() {
