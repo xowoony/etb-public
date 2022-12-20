@@ -34,8 +34,12 @@
                     <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
                 </span>
                 <ul class="depth_1">
-                    <li class="user-board"><a href="#">마이페이지</a></li>
-                    <li class="user-board"><a href="#">로그아웃</a></li>
+                    <li class="user-board">
+                        <a href="#">마이페이지</a>
+                    </li>
+                    <li class="user-board">
+                        <a th:href="@{/member/logout}">로그아웃</a>
+                    </li>
                 </ul>
             </li>
             <!-- 로그인 안했을 경우  -->
