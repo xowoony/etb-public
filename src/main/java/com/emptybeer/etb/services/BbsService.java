@@ -46,7 +46,6 @@ public class BbsService {
     }
 
     // 맥주 좋아요 취소
-
     public Enum<? extends IResult> beerUnlike(BeerLikeEntity beerLike, UserEntity user) {
         if (user == null) {
             return CommonResult.FAILURE;

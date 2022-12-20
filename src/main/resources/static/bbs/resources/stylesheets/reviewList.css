@@ -61,7 +61,7 @@ body {
 .beer-detail > .part-1 > .beer-image > img {
     width: auto;
     height: 20rem;
-    border-radius: 2rem;
+    /*border-radius: 2rem;*/
     position: absolute;
 
     top: 50%;

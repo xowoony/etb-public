@@ -33,10 +33,12 @@
                 <th>
                     <div class="beer-container">
                         <div class="beer-image">
-                            <img th:src="@{/resources/images/바르슈타이너 프리미엄 필스너.webp}" alt="">
+                            <a class="beer-contact-button" th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
+                                <img th:src="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}" alt="">
+                            </a>
                         </div>
                         <div class="content">
-                            <div class="beer-name">바르슈타이너 프리미엄 필스너 500ml</div>
+                            <div class="beer-name" th:text="${beer.getName()}">바르슈타이너 프리미엄 필스너 500ml</div>
                             <div id="smallButton">
                                 <input class="small-button" type="button" name="beerSelectButton" value="제품 변경">
                             </div>

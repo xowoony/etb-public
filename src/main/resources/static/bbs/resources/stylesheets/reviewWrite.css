@@ -42,31 +42,34 @@ h2 {
 
 /*맥주 이미지 및 제품명, 제품선택 container 간격 및 정렬*/
 .beer-container {
+    width: 20rem;
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     display: flex;
-    padding: 1rem 5rem 1.25rem 0rem;
+    /*padding: 1rem 5rem 1.25rem 0rem;*/
+    padding: 0.5rem 5rem 0.75rem 0rem;
 }
 
 /*맥주 이미지 크기 및 크롭 설정 1, 이미지와 제품명 사이 간격 설정*/
 .beer-container > .beer-image {
-    width: 3.75rem;
-    height: 3.75rem;
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgb(240, 240, 240);
     border-radius: 1rem;
-    margin-right: 3rem;
+    margin: 0 2rem 0 1rem;
     overflow: hidden;
     position: relative;
 }
 
 /*맥주 이미지 크기 및 크롭 설정 2*/
-.beer-container > .beer-image > img {
+.beer-container > .beer-image > .beer-contact-button > img {
     top: 50%;
     left: 50%;
     width: auto;
     height: 100%;
-    border-radius: 2rem;
+    /*border-radius: 2rem;*/
     position: absolute;
     transform: translate(-50%, -50%);
 }
