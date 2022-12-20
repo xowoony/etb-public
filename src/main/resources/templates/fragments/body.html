@@ -28,10 +28,18 @@
                 <a class="festival" th:href="@{/festival}">FESTIVAL</a>
             </li>
 
-            <li class="start">
+            <li class="start" th:if="${session.user == null}">
                 <i class="fa-sharp fa-solid fa-user icon"></i>
                 <span>
-                  <a class="login" href="http://localhost:8080/member/login">시작하기</a>
+                <!-- 로그인 안했을 경우  -->
+                  <a class="login" href="http://localhost:8080/member/login" >시작하기</a>
+                </span>
+            </li>
+            <li class="start" th:if="${session.user != null}" >
+                <i class="fa-sharp fa-solid fa-user icon"></i>
+                <span>
+                    <!-- 로그인 했을 경우  -->
+                    <a class="login" href="#" th:text="${session.user.getEmail()}">양파쿵야님</a>
                 </span>
             </li>
 
