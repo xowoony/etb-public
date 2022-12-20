@@ -101,10 +101,14 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .free {
 
     width: 50%;
     height: 100%;
+
+    background-image: url("/home/resources/images/free.JPG");
+    background-position: center;
+    background-size: cover;
 }
 
 /*모임게시판*/
-body > main > .home-section1 > .title-box2 > table > tbody > tr > .team{
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -112,4 +116,9 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .team{
 
     width: 50%;
     height: 100%;
+
+
+    background-image: url("/home/resources/images/team.jpg");
+    background-position: center;
+    background-size: cover;
 }
