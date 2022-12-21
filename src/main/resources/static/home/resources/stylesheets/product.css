@@ -39,7 +39,7 @@ body > main > .home-section1 {
 
 /*homeSection1*/
 body > main > .home-section1 > .title-box1 {
-    background-image: url("/resources/images/home-background.png");
+    background-image: url("/static/resources/images/home-background.png");
     background-position: center;
     background-size: cover;
     top: 0;
@@ -106,7 +106,7 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .free {
     justify-content: flex-start;
     width: 50%;
     height: 100%;
-    background-image: url("/home/resources/images/free.jpg");
+    background-image: url("/static/home/resources/images/free.jpg");
     background-position: center;
     background-size: cover;
     border-top: 0.02rem solid rgb(159 159 159);
@@ -167,7 +167,7 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .team {
     width: 50%;
     height: 100%;
 
-    background-image: url("/home/resources/images/team.jpg");
+    background-image: url("/static/home/resources/images/team.jpg");
     background-position: center;
     background-size: cover;
 

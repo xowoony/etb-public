@@ -110,18 +110,24 @@ body > .loading-cover {
     color: rgb(237, 250, 0);
 }
 
+/*드롭다운 - BEER, REVIEW 글씨 사이즈*/
 .category > li > .depth_1 > .product-board > a {
     font-size: 0.8rem;
 }
 
-
+/*드롭다운 - 자유게시판, 모임게시판 글씨 사이즈*/
 .category > li > .depth_1 > .community-board > a {
     font-size: 0.8rem;
 }
 
+
 .category > .start > .depth_1 > .user-board > a {
     font-size: 0.8rem;
-    padding: 0.8rem;
+    padding: 0.5rem;
+}
+
+.category >.start > .my {
+    width: 100%;
 }
 
 
