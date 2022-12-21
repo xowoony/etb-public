@@ -39,13 +39,13 @@ body > main > .home-section1 {
 
 /*homeSection1*/
 body > main > .home-section1 > .title-box1 {
-    background-image: url("/static/resources/images/home-background.png");
+    background-image: url("/resources/images/home-background.png");
     background-position: center;
     background-size: cover;
     top: 0;
     left: 0;
     width: 100%;
-    height: 42%;
+    height: 47%;
     /*position: fixed;*/
 
     align-items: center;
@@ -64,14 +64,14 @@ body > main > .home-section1 > .title-box1 > .title {
 /*맥주와 관련한 다양한 정보를 ~*/
 body > main > .home-section1 > .title-box1 > .title-content {
     font-family: 'Gowun Batang', serif;
-    margin-bottom: 3rem;
+    margin-bottom: 4.5rem;
 }
 
 
 /*section2*/
 body > main > .home-section1 > .title-box2 {
     width: 100%;
-    height: 58%;
+    height: 53%;
     background-color: rgba(0, 0, 0, 0.78);
 
     align-items: center;
@@ -106,7 +106,7 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .free {
     justify-content: flex-start;
     width: 50%;
     height: 100%;
-    background-image: url("/static/home/resources/images/free.jpg");
+    background-image: url("/home/resources/images/free.jpg");
     background-position: center;
     background-size: cover;
     border-top: 0.02rem solid rgb(159 159 159);
@@ -167,7 +167,7 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .team {
     width: 50%;
     height: 100%;
 
-    background-image: url("/static/home/resources/images/team.jpg");
+    background-image: url("/home/resources/images/team.jpg");
     background-position: center;
     background-size: cover;
 
