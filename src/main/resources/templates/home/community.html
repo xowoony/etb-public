@@ -8,8 +8,8 @@
     <title>잔이비어 :: COMMUNITY</title>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/community.css}">
-    <script defer th:src="@{/bbs/resources/scripts/community.js}"></script>
+    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/community.css}">
+    <script defer th:src="@{/home/resources/scripts/community.js}"></script>
 </head>
 <body>
 <!--  header  -->
@@ -33,13 +33,27 @@
                 <tbody>
                 <tr>
                     <td class="free">
-                        <div>
+                        <div class="free-title">
                             자유게시판
+                        </div>
+                        <div class="free-content">
+                            <div>맥주에 대해 자유롭게 글을 쓰고</div>
+                            <div>의견을 나눌 수 있는 공간입니다.</div>
+                            <div class="free-button">
+                                <a href="#">GO</a>
+                            </div>
                         </div>
                     </td>
                     <td class="team">
-                        <div>
+                        <div class="team-title">
                             모임게시판
+                        </div>
+                        <div class="team-content">
+                            <div>맥주 관련 모임을</div>
+                            <div>추진할 수 있는 공간입니다.</div>
+                            <div class="team-button">
+                                <a href="#">GO</a>
+                            </div>
                         </div>
 
                     </td>
