@@ -108,6 +108,7 @@ public class BbsService {
         reviewArticle.setUserEmail(existingArticle.getUserEmail());
         reviewArticle.setBoardId(existingArticle.getBoardId());
         reviewArticle.setBeerIndex(existingArticle.getBeerIndex());
+        reviewArticle.setBeerName(existingArticle.getBeerName());
         reviewArticle.setScore(existingArticle.getScore());
         reviewArticle.setContentGood(existingArticle.getContentGood());
         reviewArticle.setContentBad(existingArticle.getContentBad());

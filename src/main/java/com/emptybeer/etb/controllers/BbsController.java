@@ -164,7 +164,7 @@ public class BbsController {
 
 
     // 리뷰 수정하기
-    @GetMapping(value = "modify",
+    @GetMapping(value = "reviewModify",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getModify(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "aid") int aid) {
         ModelAndView modelAndView = new ModelAndView("bbs/reviewModify");
@@ -176,11 +176,12 @@ public class BbsController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "modify",
+    @RequestMapping(value = "reviewModify",
             method = RequestMethod.PATCH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String patchModify(@SessionAttribute(value = "user", required = false) UserEntity user, ReviewArticleVo reviewArticle,
+    public String patchModify(@SessionAttribute(value = "user", required = false) UserEntity user,
+                              ReviewArticleVo reviewArticle,
                               @RequestParam(value = "aid") int aid) {
         reviewArticle.setIndex(aid);
         Enum<?> result = this.bbsService.modifyReview(reviewArticle, user);

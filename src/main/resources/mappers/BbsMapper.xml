@@ -152,6 +152,7 @@
                `reviewArticle`.`user_email`   AS `userEmail`,
                `reviewArticle`.`board_id`     AS `boardId`,
                `reviewArticle`.`beer_index`   AS `beerIndex`,
+               `beer`.`name`                  AS `beerName`,
                `reviewArticle`.`score`        AS `score`,
                `reviewArticle`.`content_good` AS `contentGood`,
                `reviewArticle`.`content_bad`  AS `contentBad`,
@@ -161,7 +162,8 @@
                `user`.`nickname`              AS `userNickname`
         FROM `etb_bbs`.`review_articles` AS `reviewArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
-        WHERE BINARY `index` = #{index}
+                 LEFT JOIN `etb_data`.beers AS `beer` ON `reviewArticle`.`beer_index` = `beer`.`index`
+        WHERE BINARY `reviewArticle`.`index` = #{index}
         LIMIT 1
     </select>
 </mapper>

@@ -2,15 +2,15 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>잔이비어 :: Review 읽기</title>
+    <title>잔이비어 :: Review 수정</title>
 <!--    <script th:if="${ == null}">-->
 <!--        alert('존재하지 않는 게시글 입니다.');-->
 <!--        window.history.back();-->
 <!--    </script>-->
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewRead.css}">
-    <script defer th:src="@{/bbs/resources/scripts/reviewRead.js}"></script>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewModify.css}">
+    <script defer th:src="@{/bbs/resources/scripts/reviewModify.js}"></script>
 </head>
 <body>
 <!--  header  -->
@@ -20,7 +20,8 @@
 <main>
     <form class="review-form" id="reviewForm">
         <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
-        <input type="hidden" name="score" value="0">
+        <input name="aid" type="hidden" th:value="${reviewArticle.getIndex()}">
+        <input type="hidden" name="score" th:value="${reviewArticle.getScore()}">
         <div class="button-container">
             <div class="button" rel="backButton">
                     <span class="icon">
@@ -28,7 +29,7 @@
                     </span>
             </div>
         </div>
-        <h2 class="title">리뷰 읽기</h2>
+        <h2 class="title">리뷰 수정</h2>
         <table>
             <tbody>
             <tr>
@@ -40,7 +41,6 @@
                             </a>
                         </div>
                         <div class="content">
-                            <!--/*@thymesVar id="reviewArticle" type="com.emptybeer.etb.vos.ReviewArticleVo"*/-->
                             <div class="beer-name" th:text="${reviewArticle.getBeerName()}">바르슈타이너 프리미엄 필스너 500ml</div>
                             <div id="smallButton">
                                 <input class="small-button" type="button" name="beerSelectButton" value="제품 변경">
@@ -50,7 +50,6 @@
                 </th>
                 <td>
                     <div class="score-container">
-                        <!--/*@thymesVar id="reviewArticle" type="com.emptybeer.etb.vos.ReviewArticleVo"*/-->
                         <span class="score" rel="score" th:text="${reviewArticle.getScore()}">-</span>
                         <span class="full-score">/ 5</span>
                         <div class="star-container" rel="starContainer">
@@ -86,12 +85,12 @@
             <tr>
                 <th>
                     <div class="content" rel="contentGood">
-                        <textarea id="inputGood" autofocus maxlength="5000" readonly th:text="${reviewArticle.getContentGood()}"></textarea>
+                        <textarea id="inputGood" autofocus maxlength="5000" placeholder="좋았던 점을 작성해 주세요." th:text="${reviewArticle.getContentGood()}"></textarea>
                     </div>
                 </th>
                 <td>
                     <div class="content" rel="contentBad">
-                        <textarea id="inputBad" maxlength="5000" readonly th:text="${reviewArticle.getContentBad()}"></textarea>
+                        <textarea id="inputBad" maxlength="5000" placeholder="아쉬운 점을 작성해 주세요." th:text="${reviewArticle.getContentBad()}"></textarea>
                     </div>
                 </td>
             </tr>
@@ -105,7 +104,7 @@
                 </th>
                 <td>
                     <div class="text-count">
-                        <span class="color" id="badTextCount" th:text="${reviewArticle.getContentBad().length()}">0</span>
+                        <span class="color" id="badTextCount" th:text="${reviewArticle.getContentGood().length()}">0</span>
                         <span class="normal">/</span>
                         <span class="normal">5000</span>
                     </div>
@@ -114,7 +113,7 @@
             </tbody>
         </table>
         <div>
-            <input type="button" id="goModifyButton" class="go-modify-button button1" value="수정하기">
+            <input type="submit" id="goModifyButton" class="go-modify-button button1" value="수정하기">
         </div>
     </form>
 </main>
