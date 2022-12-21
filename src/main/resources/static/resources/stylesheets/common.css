@@ -280,4 +280,9 @@ body > footer > .footer-section1 {
     justify-content: center;
 }
 
+/*사람 아이콘 항상 흰색*/
+.fa-user:before {
+    content: "\f007";
+    color: white;
+}
 

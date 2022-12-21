@@ -1,3 +1,6 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400&display=swap');
+
 body {
     color: rgb(0, 0, 0);
     /*user-select: none;*/
@@ -7,7 +10,11 @@ body {
 #smoothScroll {height:100vh; overflow:auto; scroll-snap-type:y mandatory; -ms-scroll-snap-type:mandatory;}
 #smoothScroll>section {padding:10px; height:500px; scroll-snap-align:start; -ms-scroll-snap-coordinate:0 0;}
 /*#smoothScroll>section:nth-child(3n+1) {background:gold;}*/
-/*#smoothScroll>section:nth-child(3n+2) {background:skyblue;}*/
+#smoothScroll>section:nth-child(3n+2) {
+    /*background:skyblue;*/
+    height: 100vh;
+    scroll-snap-type: none;
+}
 /*#smoothScroll>section:nth-child(3n) {background:pink;}*/
 
 .beer-detail {
@@ -92,6 +99,7 @@ body {
 
 .beer-detail > .part-1 > .content-container > .title > .beer-name {
     align-self: center;
+    font-family: 'Noto Serif KR', serif;
 }
 
 .beer-detail > .part-1 > .content-container > .title > .like-button {

@@ -15,8 +15,10 @@ public interface IBbsMapper {
 
     BeerVo selectBeerByIndex(@Param(value = "beerIndex") int beerIndex);
 
+    // 리뷰 등록
     int insertReviewArticle(ReviewArticleEntity reviewArticle);
 
+    // 개인이 적은 맥주당 리뷰 개수 확인(중복 등록 방지)
     int selectReviewByBeerIndex(@Param(value = "userEmail") String userEmail,
                                 @Param(value = "beerIndex") int beerIndex);
 

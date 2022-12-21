@@ -132,6 +132,7 @@ public class BbsController {
         modelAndView.addObject("beer", beer);
 
         int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
+        modelAndView.addObject("reviewCount", totalCount);
 
 
         // int totalCount = this.bbsService.getArticleCount(board);
@@ -209,40 +210,5 @@ public class BbsController {
         responseObject.put("result", result.name().toLowerCase());
         return responseObject.toString();
     }
-
-
-
-//    // 리뷰 읽기
-//    @GetMapping(value = "reviewList",
-//            produces = MediaType.TEXT_HTML_VALUE)
-//    @ResponseBody
-//    public String getReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
-//                                @RequestParam(value = "beerIndex") int beerIndex) {
-//        JSONArray responseArray = new JSONArray();
-//        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beerIndex, user);
-//
-//        for (ReviewArticleVo reviewArticle : reviewArticles) {
-//            JSONObject reviewObject = new JSONObject();
-//            reviewObject.put("index", reviewArticle.getIndex());
-//            reviewObject.put("userEmail", reviewArticle.getUserEmail());
-//            reviewObject.put("beerIndex", reviewArticle.getBeerIndex());
-//            reviewObject.put("userNickname", reviewArticle.getUserNickname());
-//            reviewObject.put("score", reviewArticle.getScore());
-//            reviewObject.put("contentGood", reviewArticle.getContentGood());
-//            reviewObject.put("contentBad", reviewArticle.getContentBad());
-//            reviewObject.put("modifiedOn", new SimpleDateFormat("yyyy.MM.dd").format(reviewArticle.getModifiedOn()));
-//            // new SimpleDataFormat("형식").format([Date 타입 객체]) : [Date 타입 객체]가 가진 일시를 원하는 형식의 문자열로 만들어 버린다.
-//            reviewObject.put("isSigned", true);    // 로그인이 되어 있으면 true
-//            reviewObject.put("isMine", user.getEmail().equals(reviewArticle.getUserEmail())); // 로그인이 되어 있고, 그 유저가
-//            reviewObject.put("isLiked", reviewArticle.isLiked());
-//            reviewObject.put("likeCount", reviewArticle.getLikeCount());
-//            responseArray.put(reviewObject);
-//
-//        }
-//
-//        return responseArray.toString();
-//    }
-
-
 
 }
