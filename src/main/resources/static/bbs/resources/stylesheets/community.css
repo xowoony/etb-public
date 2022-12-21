@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 /*COMMUNITY 타이틀 폰트*/
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 html {
     width: 100%;
@@ -97,19 +98,43 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .free {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
+    justify-content: flex-start;
     width: 50%;
     height: 100%;
+    background-image: url(/home/resources/images/free.JPG);
+    background-position: center;
+    background-size: cover;
+    border-top: 0.02rem solid rgb(159 159 159);
+    border-right: 0.02rem solid rgb(159,159,159);
+}
+
+/*자유게시판안 텍스트*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > div {
+    margin-top: 4rem;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 3rem;
 }
 
 /*모임게시판*/
-body > main > .home-section1 > .title-box2 > table > tbody > tr > .team{
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 
     width: 50%;
     height: 100%;
+
+    background-image: url("/home/resources/images/team.jpg");
+    background-position: center;
+    background-size: cover;
+
+    border-top: 0.02rem solid rgb(159 159 159);
+}
+
+/*모임게시판 안 텍스트*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > div{
+    margin-top: 2.5rem;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 3rem;
 }
