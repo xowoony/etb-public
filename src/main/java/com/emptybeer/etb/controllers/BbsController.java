@@ -176,6 +176,8 @@ public class BbsController {
         return modelAndView;
     }
 
+
+    // 게시글 수정
     @RequestMapping(value = "reviewModify",
             method = RequestMethod.PATCH,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -193,6 +195,20 @@ public class BbsController {
         return responseObject.toString();
     }
 
+
+    // 게시글 삭제
+    @DeleteMapping(value = "reviewRead",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
+                             @RequestParam(value = "aid") int aid) {
+        ReviewArticleVo reviewArticle = new ReviewArticleVo();
+        reviewArticle.setIndex(aid);
+        Enum<?> result = this.bbsService.deleteReview(reviewArticle, user);
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
 
 
 

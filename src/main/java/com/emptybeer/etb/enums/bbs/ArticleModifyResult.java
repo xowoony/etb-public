@@ -6,6 +6,6 @@ public enum ArticleModifyResult implements IResult {
 
     NOT_SIGNED,
     NO_SUCH_ARTICLE,
-    NOT_ALLOWED,
+    NOT_ALLOWED
 
 }

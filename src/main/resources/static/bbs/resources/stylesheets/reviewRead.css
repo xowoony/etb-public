@@ -166,7 +166,7 @@ h2 {
 
 /*입력 글자 수 부분 디자인*/
 #reviewForm > table > tbody > tr .text-count > .color {
-    color: rgb(232, 106, 106);;
+    color: rgb(232, 106, 106);
 }
 
 /*왼쪽 '입력글자 / 5000' 부분 위치 조정*/
@@ -174,8 +174,15 @@ h2 {
     padding-right: 3.25rem;
 }
 
-/*등록 버튼 디자인*/
-#reviewForm > div > .button1 {
+/*수정 삭제 버튼 디자인*/
+#reviewForm > .modify-delete {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#reviewForm > .modify-delete > .button1 {
     background-color: rgb(99, 218, 214);
     border: none;
     border-radius: 0.7rem;
@@ -188,6 +195,11 @@ h2 {
     font-size: 0.9rem;
 }
 
-#reviewForm > div > .button1:hover {
+#reviewForm > .modify-delete > .button1.delete-button {
+    background-color: rgba(232, 106, 106, 80%);
+    /*margin-right: auto;*/
+}
+
+#reviewForm > .modify-delete > .button1:hover {
     filter: brightness(110%);
 }

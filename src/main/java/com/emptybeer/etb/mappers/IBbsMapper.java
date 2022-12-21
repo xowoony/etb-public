@@ -36,9 +36,12 @@ public interface IBbsMapper {
     ReviewArticleVo selectLikeIndex(@Param(value = "userEmail") String userEmail,
                                   @Param(value = "index") int index);
 
-    // 게시글 수정
+    // 리뷰 수정
     int updateReview(ReviewArticleVo reviewArticle);
 
-    // 글 읽기
+    // 리뷰 읽기
     ReviewArticleVo selectIndex(@Param(value = "index") int index);
+
+    // 리뷰 삭제
+    int deleteReviewByIndex(@Param(value = "index") int index);
 }

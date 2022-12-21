@@ -39,6 +39,7 @@ inputBad.addEventListener(('input'), ()=>{
 
 // 리뷰 등록 버튼 클릭
 reviewForm.onsubmit = e => {
+    e.preventDefault();
     if (reviewForm['score'].value === '0') {
         alert('별점을 선택해 주세요.');
         return false;
@@ -54,7 +55,6 @@ reviewForm.onsubmit = e => {
         return false;
     }
 
-    e.preventDefault();
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append('beerIndex', reviewForm['beerIndex'].value);

@@ -59,6 +59,8 @@ public class BbsService {
                 : CommonResult.FAILURE;
     }
 
+
+    // 리뷰 등록
     public Enum<? extends IResult> reviewAdd(UserEntity user, ReviewArticleEntity reviewArticle) {
         if (this.bbsMapper.selectReviewByBeerIndex(user.getEmail(), reviewArticle.getBeerIndex()) > 0) {
             return WriteResult.NO_MORE_REVIEW;
@@ -87,7 +89,7 @@ public class BbsService {
     }
 
 
-    // 게시글 수정
+    // 리뷰 수정
     public Enum<? extends IResult> prepareModifyReview(ReviewArticleVo reviewArticle, UserEntity user) {
 
         if (user == null) {
@@ -136,6 +138,22 @@ public class BbsService {
         existingArticle.setContentBad(reviewArticle.getContentBad());
         existingArticle.setModifiedOn(new Date());
         return this.bbsMapper.updateReview(existingArticle) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
+
+    // 리뷰 삭제
+    public Enum<? extends IResult> deleteReview(ReviewArticleVo reviewArticle, UserEntity user) {
+        ReviewArticleVo existingArticle = this.bbsMapper.selectIndex(reviewArticle.getIndex());
+        if (existingArticle == null) {
+            return ArticleModifyResult.NO_SUCH_ARTICLE;
+        }
+        if (user == null || !user.getEmail().equals(existingArticle.getUserEmail())) {
+            return ArticleModifyResult.NOT_ALLOWED;
+        }
+
+        return this.bbsMapper.deleteReviewByIndex(reviewArticle.getIndex()) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
     }

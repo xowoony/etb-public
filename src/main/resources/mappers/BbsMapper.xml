@@ -166,4 +166,10 @@
         WHERE BINARY `reviewArticle`.`index` = #{index}
         LIMIT 1
     </select>
+    <delete id="deleteReviewByIndex"
+            parameterType="com.emptybeer.etb.vos.ReviewArticleVo">
+        DELETE
+        FROM `etb_bbs`.review_articles
+        WHERE `index` = #{index}
+    </delete>
 </mapper>

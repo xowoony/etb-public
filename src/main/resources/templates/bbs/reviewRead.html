@@ -21,6 +21,7 @@
     <form class="review-form" id="reviewForm">
         <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
         <input type="hidden" name="score" value="0">
+        <input type="hidden" name="aid" th:value="${reviewArticle.getIndex()}">
         <div class="button-container">
             <div class="button" rel="backButton">
                     <span class="icon">
@@ -113,8 +114,9 @@
             </tr>
             </tbody>
         </table>
-        <div>
-            <a class="go-modify-button button1" th:href="@{./reviewModify (aid=${reviewArticle.getIndex()})}" th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">수정</a>
+        <div class="modify-delete" th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">
+            <a class="go-modify-button button1" th:href="@{./reviewModify (aid=${reviewArticle.getIndex()})}">수정</a>
+            <input type="submit" id="DeleteButton" class="delete-button button1" value="삭제">
         </div>
     </form>
 </main>
