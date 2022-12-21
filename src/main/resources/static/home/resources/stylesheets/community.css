@@ -45,7 +45,7 @@ body > main > .home-section1 > .title-box1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 42%;
+    height: 47%;
     /*position: fixed;*/
 
     align-items: center;
@@ -64,14 +64,14 @@ body > main > .home-section1 > .title-box1 > .title {
 /*맥주와 관련한 다양한 정보를 ~*/
 body > main > .home-section1 > .title-box1 > .title-content {
     font-family: 'Gowun Batang', serif;
-    margin-bottom: 3rem;
+    margin-bottom: 4.5rem;
 }
 
 
 /*section2*/
 body > main > .home-section1 > .title-box2 {
     width: 100%;
-    height: 58%;
+    height: 53%;
     background-color: rgba(0, 0, 0, 0.78);
 
     align-items: center;
