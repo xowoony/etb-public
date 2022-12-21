@@ -39,7 +39,7 @@ body > main > .home-section1 {
 
 /*homeSection1*/
 body > main > .home-section1 > .title-box1 {
-    background-image: url("/resources/images/home-background.png");
+    background-image: url("/resources/images/home-background.jpg");
     background-position: center;
     background-size: cover;
     top: 0;
@@ -124,7 +124,7 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-
 /*자유게시판 타이틀 아래 설명*/
 body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-content {
     font-family: 'Gowun Batang', serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     align-items: center;
     display: flex;
@@ -186,7 +186,7 @@ body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-
 /*모임게시판 타이틀 아래 설명*/
 body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-content {
     font-family: 'Gowun Batang', serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: rgb(0,0,0);
 
     align-items: center;
