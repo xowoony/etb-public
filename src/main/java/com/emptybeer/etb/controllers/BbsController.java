@@ -94,7 +94,7 @@ public class BbsController {
 
 
     // 리뷰 맥주 좋아요 기능
-    @PostMapping(value = "reviewList",
+    @PostMapping(value = "beerLike",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
@@ -106,7 +106,7 @@ public class BbsController {
     }
 
     // 리뷰 맥주 좋아요 취소 기능
-    @DeleteMapping(value = "reviewList",
+    @DeleteMapping(value = "beerLike",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
@@ -160,6 +160,36 @@ public class BbsController {
         modelAndView.addObject("reviewArticle", reviewArticle);
 
         return modelAndView;
+    }
+
+
+    // 리뷰 수정하기
+    @GetMapping(value = "modify",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getModify(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "aid") int aid) {
+        ModelAndView modelAndView = new ModelAndView("bbs/reviewModify");
+        ReviewArticleVo reviewArticle = new ReviewArticleVo();
+        reviewArticle.setIndex(aid);
+        Enum<?> result = this.bbsService.prepareModifyReview(reviewArticle, user);
+        modelAndView.addObject("reviewArticle", reviewArticle);
+        modelAndView.addObject("result", result.name());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "modify",
+            method = RequestMethod.PATCH,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchModify(@SessionAttribute(value = "user", required = false) UserEntity user, ReviewArticleVo reviewArticle,
+                              @RequestParam(value = "aid") int aid) {
+        reviewArticle.setIndex(aid);
+        Enum<?> result = this.bbsService.modifyReview(reviewArticle, user);
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        if (result == CommonResult.SUCCESS) {
+            responseObject.put("aid", aid);
+        }
+        return responseObject.toString();
     }
 
 

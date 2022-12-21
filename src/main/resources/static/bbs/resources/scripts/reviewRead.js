@@ -21,9 +21,3 @@ for (let i = 0; i < reviewStarArray.length; i++) {
     });
 }
 
-
-// 수정하기 버튼 클릭
-const goModifyButton = window.document.getElementById('goModifyButton');
-goModifyButton.addEventListener('click', () => {
-    window.location.href = '/bbs/reviewModify'
-});

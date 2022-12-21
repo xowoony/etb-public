@@ -6,6 +6,7 @@ import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
+import com.emptybeer.etb.enums.bbs.ArticleModifyResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
@@ -16,6 +17,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Date;
 
 @Service(value = "com.emptybeer.etb.services.BbsServices")
 public class BbsService {
@@ -81,5 +84,58 @@ public class BbsService {
         ReviewArticleVo reviewArticle = this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
         reviewArticle.setIndex(this.bbsMapper.updateReview(reviewArticle));
         return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
+    }
+
+
+    // 게시글 수정
+    public Enum<? extends IResult> prepareModifyReview(ReviewArticleVo reviewArticle, UserEntity user) {
+
+        if (user == null) {
+            return ArticleModifyResult.NOT_SIGNED;
+        }
+        ReviewArticleVo existingArticle = this.bbsMapper.selectIndex(reviewArticle.getIndex());
+
+        if (existingArticle == null) {
+            return ArticleModifyResult.NO_SUCH_ARTICLE;
+        }
+
+        if (!user.getEmail().equals(existingArticle.getUserEmail())) {
+            return ArticleModifyResult.NOT_ALLOWED;
+        }
+
+        // POST일 경우만 담아주면 된다?
+        reviewArticle.setIndex(existingArticle.getIndex());
+        reviewArticle.setUserEmail(existingArticle.getUserEmail());
+        reviewArticle.setBoardId(existingArticle.getBoardId());
+        reviewArticle.setBeerIndex(existingArticle.getBeerIndex());
+        reviewArticle.setScore(existingArticle.getScore());
+        reviewArticle.setContentGood(existingArticle.getContentGood());
+        reviewArticle.setContentBad(existingArticle.getContentBad());
+        reviewArticle.setDeclaration(existingArticle.getDeclaration());
+        reviewArticle.setWrittenOn(existingArticle.getWrittenOn());
+        reviewArticle.setModifiedOn(existingArticle.getModifiedOn());
+        return CommonResult.SUCCESS;
+    }
+
+
+    public Enum<? extends IResult> modifyReview(ReviewArticleVo reviewArticle, UserEntity user) {
+        if (user == null) {
+            return ArticleModifyResult.NOT_SIGNED;
+        }
+        ReviewArticleVo existingArticle = this.bbsMapper.selectIndex(reviewArticle.getIndex());
+        if (existingArticle == null) {
+            return ArticleModifyResult.NO_SUCH_ARTICLE;
+        }
+        if (!existingArticle.getUserEmail().equals(user.getEmail())) {
+            return ArticleModifyResult.NOT_ALLOWED;
+        }
+
+        existingArticle.setScore(reviewArticle.getScore());
+        existingArticle.setContentGood(reviewArticle.getContentGood());
+        existingArticle.setContentBad(reviewArticle.getContentBad());
+        existingArticle.setModifiedOn(new Date());
+        return this.bbsMapper.updateReview(existingArticle) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
     }
 }

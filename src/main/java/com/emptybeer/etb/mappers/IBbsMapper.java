@@ -38,4 +38,7 @@ public interface IBbsMapper {
 
     // 게시글 수정
     int updateReview(ReviewArticleVo reviewArticle);
+
+    // 글 읽기
+    ReviewArticleVo selectIndex(@Param(value = "index") int index);
 }

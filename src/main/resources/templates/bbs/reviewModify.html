@@ -114,7 +114,7 @@
             </tbody>
         </table>
         <div>
-            <a class="go-modify-button button1" th:href="@{./modify (aid=${reviewArticle.getIndex()})}" th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">수정중</a>
+            <input type="button" id="goModifyButton" class="go-modify-button button1" value="수정하기">
         </div>
     </form>
 </main>
