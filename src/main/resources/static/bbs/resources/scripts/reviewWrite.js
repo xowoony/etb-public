@@ -75,8 +75,9 @@ reviewForm.onsubmit = e => {
                         alert('이미 작성된 리뷰가 있습니다.');
                         break;
                     case 'success':
-                        const aid = responseObject['aid'];
-                        window.location.href = `reviewList?aid=${aid}`;
+                        alert('리뷰가 등록되었습니다.')
+                        const beerIndex = reviewForm['beerIndex'].value;
+                        window.location.href = `reviewList?beerIndex=${beerIndex}`;
                         break;
                     default:
                         alert('알 수 없는 이유로 리뷰를 작성하지 못하였습니다. 잠시 후 다시 시도해 주세요.');

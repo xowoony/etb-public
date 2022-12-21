@@ -175,7 +175,7 @@ h2 {
 }
 
 /*등록 버튼 디자인*/
-#reviewForm > div > .submit-button {
+#reviewForm > div > .button1 {
     background-color: rgb(99, 218, 214);
     border: none;
     border-radius: 0.7rem;
@@ -186,6 +186,6 @@ h2 {
     padding: 0.5rem 0.75rem 0.5rem 0.75rem;
 }
 
-#reviewForm > div > .submit-button:hover {
+#reviewForm > div > .button1:hover {
     filter: brightness(110%);
 }

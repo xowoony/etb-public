@@ -7,6 +7,17 @@ public class ReviewArticleVo extends ReviewArticleEntity {
     private boolean isLiked;    // 좋아요
     private int likeCount;  // 좋아요 개수
 
+    private String beerName;
+
+    public String getBeerName() {
+        return beerName;
+    }
+
+    public ReviewArticleVo setBeerName(String beerName) {
+        this.beerName = beerName;
+        return this;
+    }
+
     public String getUserNickname() {
         return userNickname;
     }

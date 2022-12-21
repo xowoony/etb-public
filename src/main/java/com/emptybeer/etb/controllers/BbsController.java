@@ -34,7 +34,7 @@ public class BbsController {
     }
 
 
-    //리뷰 글쓰기  >> 한사람당 맥주 리뷰 한개만 가능하게 만들기
+    //리뷰 글쓰기
     @GetMapping(value = "reviewWrite",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user,
@@ -79,8 +79,9 @@ public class BbsController {
         return responseObject.toString();
     }
 
+
     // 리뷰 맥주 이미지 가져오기
-    @GetMapping(value = "reviewList")
+    @GetMapping(value = "beerImage")
     public ResponseEntity<byte[]> getBeerImage(@RequestParam(value = "beerIndex") int beerIndex) {
         ResponseEntity<byte[]> responseEntity;
         BeerEntity beer = this.bbsService.getBeer(beerIndex);
@@ -90,6 +91,7 @@ public class BbsController {
         responseEntity = new ResponseEntity<>(beer.getImage(), headers, HttpStatus.OK);
         return responseEntity;
     }
+
 
     // 리뷰 맥주 좋아요 기능
     @PostMapping(value = "reviewList",
@@ -142,6 +144,21 @@ public class BbsController {
 
         ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beer, paging, criterion, keyword);
         modelAndView.addObject("reviewArticles", reviewArticles);
+        return modelAndView;
+    }
+
+
+    // 리뷰 읽기
+    @GetMapping(value = "reviewRead",
+            produces = MediaType.TEXT_HTML_VALUE)
+    @ResponseBody
+    public ModelAndView getReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                @RequestParam(value = "aid") int aid) {
+        ModelAndView modelAndView = new ModelAndView("bbs/reviewRead");
+        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, aid);
+
+        modelAndView.addObject("reviewArticle", reviewArticle);
+
         return modelAndView;
     }
 

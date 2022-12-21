@@ -32,4 +32,10 @@ public interface IBbsMapper {
 
     int insertBeerLike(BeerLikeEntity beerLike);
     int deleteBeerLike(BeerLikeEntity beerLike);
+
+    ReviewArticleVo selectLikeIndex(@Param(value = "userEmail") String userEmail,
+                                  @Param(value = "index") int index);
+
+    // 게시글 수정
+    int updateReview(ReviewArticleVo reviewArticle);
 }

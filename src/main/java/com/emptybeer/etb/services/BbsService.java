@@ -76,11 +76,10 @@ public class BbsService {
                 (paging.requestPage - 1) * paging.countPerPage);
     }
 
-//    // 글 읽기 + 닉네임 불러오기
-//    public ReviewArticleVo[] reviewReadArticles(UserEntity signedUser, int index) {
-//        ReviewArticleVo reviewArticle = this.bbsMapper.selectReviewLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
-//
-//        reviewArticle.setIndex(this.bbsMapper.updateArticle(article));
-//        return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
-//    }
+    // 글 읽기 + 닉네임 불러오기
+    public ReviewArticleVo reviewReadArticle(UserEntity signedUser, int index) {
+        ReviewArticleVo reviewArticle = this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
+        reviewArticle.setIndex(this.bbsMapper.updateReview(reviewArticle));
+        return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
+    }
 }
