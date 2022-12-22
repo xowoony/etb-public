@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>잔이비어 :: Review 수정</title>
-<!--    <script th:if="${ == null}">-->
-<!--        alert('존재하지 않는 게시글 입니다.');-->
-<!--        window.history.back();-->
-<!--    </script>-->
+    <script th:if="${reviewArticle.getContentGood() == null || reviewArticle.getContentBad() == null}">
+        alert('존재하지 않는 게시글 입니다.');
+        window.history.back();
+    </script>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewModify.css}">
     <script defer th:src="@{/bbs/resources/scripts/reviewModify.js}"></script>
 </head>
-<body>
+<body th:if="${reviewArticle.getContentGood() != null && reviewArticle.getContentBad() != null}">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
@@ -104,7 +104,7 @@
                 </th>
                 <td>
                     <div class="text-count">
-                        <span class="color" id="badTextCount" th:text="${reviewArticle.getContentGood().length()}">0</span>
+                        <span class="color" id="badTextCount" th:text="${reviewArticle.getContentBad().length()}">0</span>
                         <span class="normal">/</span>
                         <span class="normal">5000</span>
                     </div>
