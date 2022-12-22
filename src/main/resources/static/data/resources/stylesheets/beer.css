@@ -55,6 +55,25 @@ body > main > .beer-section > .title-box1 {
     justify-content: flex-end;
 }
 
+/*맥주선택 코너 배경*/
+body > main > .beer-section > .title-box1 > .beer-select-border {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 5rem;
+    background-color: rgb(0, 0, 0, 25%);
+}
+
+
+body > main > .beer-section > .title-box1 > .beer-select-border > select > .find-beer {
+    border: 0.0625rem solid rgb(0, 0, 0);
+    padding: 0.5rem 1rem;
+    background-color: black;
+    color: white;
+}
 
 body > main > .beer-section > .title-box1 > .title {
     font-size: 3rem;
@@ -62,8 +81,22 @@ body > main > .beer-section > .title-box1 > .title {
 }
 
 
+body > main > .beer-section > .title-box1 > .beer-select-border > .border {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid transparent;
+}
 
 body > main > .beer-section > .title-box1 > .title-content {
-    margin-bottom: 4.5rem;
+    margin-bottom: 2.5rem;
     font-family: 'Gowun Batang', serif;
+}
+
+select {
+    width: 30rem;
+    padding: 0.8em 1em;
+    font-family: inherit;
+    border-right: 16px solid transparent
 }
