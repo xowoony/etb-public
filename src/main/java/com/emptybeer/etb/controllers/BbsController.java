@@ -33,6 +33,27 @@ public class BbsController {
         this.dataService = dataService;
     }
 
+    //전체 리뷰리스트
+    @GetMapping(value = "review",
+    produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getReview(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                  @RequestParam(value = "criterion", required = false) String criterion,
+                                  @RequestParam(value = "keyword", required = false) String keyword) {
+        page = Math.max(1, page);
+        // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
+        ModelAndView modelAndView = new ModelAndView("bbs/review");
+
+//        int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
+//        modelAndView.addObject("reviewCount", totalCount);
+//
+//        PagingModel paging = new PagingModel(totalCount, page);
+//        modelAndView.addObject("paging", paging);
+//
+//        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beer, paging, criterion, keyword);
+//        modelAndView.addObject("reviewArticles", reviewArticles);
+        return modelAndView;
+    }
+
 
     //리뷰 글쓰기
     @GetMapping(value = "reviewWrite",
