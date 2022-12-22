@@ -1,3 +1,13 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+/*COMMUNITY 타이틀 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+/*GO 버튼*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+
 html {
     width: 100%;
     height: 100%;
@@ -22,15 +32,15 @@ body > main {
 }
 
 /*상단 타이틀 section*/
-body > main > .home-section1 {
+body > main > .beer-section {
     width: 100%;
     height: 100%;
     /* margin-bottom: 3rem;*/
 }
 
-/*homeSection1*/
-body > main > .home-section1 > .title-box1 {
-    background-image: url("/resources/images/home_image1.jpg");
+/*beerSection1*/
+body > main > .beer-section > .title-box1 {
+    background-image: url("/home/resources/images/beer-category.png");
     background-position: center;
     background-size: cover;
     top: 0;
@@ -43,4 +53,18 @@ body > main > .home-section1 > .title-box1 {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+
+body > main > .beer-section > .title-box1 > .title {
+    font-size: 3rem;
+    font-family: 'Secular One', sans-serif;
+
+}
+
+
+
+body > main > .beer-section > .title-box1 > .title-content {
+    margin-bottom: 4.5rem;
+    font-family: 'Gowun Batang', serif;
 }
