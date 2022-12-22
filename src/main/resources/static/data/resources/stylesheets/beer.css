@@ -1,0 +1,46 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/*main*/
+body > main {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*상단 타이틀 section*/
+body > main > .home-section1 {
+    width: 100%;
+    height: 100%;
+    /* margin-bottom: 3rem;*/
+}
+
+/*homeSection1*/
+body > main > .home-section1 > .title-box1 {
+    background-image: url("/resources/images/home_image1.jpg");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47%;
+    /*position: fixed;*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
