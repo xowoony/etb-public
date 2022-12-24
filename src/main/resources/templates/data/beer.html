@@ -19,28 +19,30 @@
 
 <!--  main  -->
 <main>
-    <!--  beerSection1  -->
-    <section class="beer-section" id="beerSection">
-        <!--  Section1  -->
-        <div class="title-box1" id="titleBox1">
-            <div class="title">BEER</div>
-            <div class="title-content">다양한 맥주를 소개합니다.
+        <!--  beerSection1  -->
+        <section class="beer-section" id="beerSection">
+            <!--  Section1  -->
+            <div class="title-box1" id="titleBox1">
+                <div class="title">BEER</div>
+                <div class="title-content">다양한 맥주를 소개합니다.
+                </div>
+                <div class="beer-select-border">
+                    <form>
+                        <select class="border">
+                            <option value="" selected disabled>맥주 종류를 선택해 주세요
+                            </option>
+                            <option class="nat" value="">국내맥주</option>
+                            <option class="for" value="">해외맥주</option>
+                        </select>
+                        <input class="find-beer" type="submit" value="찾기">
+                    </form>
+                </div>
             </div>
-            <div class="beer-select-border">
-                <select class="border">
-                    <option value="" selected disabled>맥주 종류를 선택해 주세요
-                    </option>
-                    <option value="">국내맥주</option>
-                    <option value="">해외맥주</option>
-                    <a class="find-beer" href="#">찾기</a>
-                </select>
+            <!--  Section2  -->
+            <div class="title-box2" id="titleBox2">
+                그리드
             </div>
-        </div>
-        <!--  Section2  -->
-        <div class="title-box2" id="titleBox2">
-            그리드
-        </div>
-    </section>
+        </section>
 </main>
 <!--  footer  -->
 <th:block th:replace="~{fragments/body :: footer}"></th:block>

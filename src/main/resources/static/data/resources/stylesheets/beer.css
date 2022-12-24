@@ -1,11 +1,7 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 /*COMMUNITY 타이틀 폰트*/
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-/*GO 버튼*/
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
 
 html {
@@ -29,6 +25,8 @@ body > main {
     left: 0;
     width: 100%;
     height: 100%;
+
+    overflow: auto;
 }
 
 /*상단 타이틀 section*/
@@ -59,7 +57,7 @@ body > main > .beer-section > .title-box1 {
 body > main > .beer-section > .title-box1 > .beer-select-border {
     align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 
     width: 100%;
@@ -67,36 +65,59 @@ body > main > .beer-section > .title-box1 > .beer-select-border {
     background-color: rgb(0, 0, 0, 25%);
 }
 
-
-body > main > .beer-section > .title-box1 > .beer-select-border > select > .find-beer {
-    border: 0.0625rem solid rgb(0, 0, 0);
-    padding: 0.5rem 1rem;
-    background-color: black;
-    color: white;
-}
-
+/*BEER 타이틀 글씨*/
 body > main > .beer-section > .title-box1 > .title {
     font-size: 3rem;
     font-family: 'Secular One', sans-serif;
 }
 
 
-body > main > .beer-section > .title-box1 > .beer-select-border > .border {
+/*맥주선택 select 태그 박스 top, bottom, left*/
+body > main > .beer-section > .title-box1 > .beer-select-border > form>.border {
     box-sizing: border-box;
     border-collapse: collapse;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 15px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    /*box-sizing: border-box;*/
+    /*border-collapse: collapse;*/
+    /*border-top: 15px solid transparent;*/
+    /*border-bottom: 15px solid transparent;*/
+    /*border-left: 15px solid transparent;*/
 }
 
+/*다양한 맥주를 소개합니다.*/
 body > main > .beer-section > .title-box1 > .title-content {
     margin-bottom: 2.5rem;
     font-family: 'Gowun Batang', serif;
 }
 
+/*맥주 선택 select 태그*/
 select {
     width: 30rem;
     /*padding: 0.8em 1em;*/
     font-family: inherit;
     border-right: 16px solid transparent
+}
+
+/*찾기 버튼*/
+body > main > .beer-section > .title-box1 > .beer-select-border > form >.find-beer {
+    border: 0.0625rem;
+    padding: 0.67rem 1.3rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: white;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+
+/*찾기 버튼 hover 시 */
+body > main > .beer-section > .title-box1 > .beer-select-border > form >.find-beer:hover {
+    cursor: pointer;
+}
+
+.title-box2{
+    width: 100%;
+    background-color: #dcd5d7;
+    height: 200%;
 }

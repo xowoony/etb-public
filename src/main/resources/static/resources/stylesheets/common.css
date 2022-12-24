@@ -30,7 +30,7 @@ body > .loading-cover {
     display: none;
 }
 
-/*이상하면 지우기 - 메뉴 드롭다운*/
+/*메뉴 드롭다운*/
 .category {
     margin: 0;
     list-style: none;
