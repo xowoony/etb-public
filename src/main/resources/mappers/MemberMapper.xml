@@ -156,4 +156,7 @@
         LIMIT 1
     </select>
 
+    <!-- 회원탈퇴 -->
+
+
 </mapper>

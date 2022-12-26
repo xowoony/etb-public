@@ -8,3 +8,6 @@ const Cover = {
         window.document.getElementById('cover').classList.remove('visible');
     }
 };
+
+
+// 회원탈퇴

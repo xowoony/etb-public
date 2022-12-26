@@ -5,14 +5,12 @@ import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.services.MemberService;
+import org.apache.catalina.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -68,6 +66,9 @@ public class MemberController {
         ModelAndView modelAndView = new ModelAndView("redirect:login");
         return modelAndView;
     }
+
+    // 회원탈퇴
+
 
 
     // 회원가입
