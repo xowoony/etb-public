@@ -113,27 +113,55 @@ body {
     justify-content: flex-start;
 }
 
-.beer-detail > .part-1 > .content-container > .title > .like-button > div {
+.beer-detail > .part-1 > .content-container > .title > .like-button > .like-count {
+    color: rgb(128, 139, 150);
     font-size: 0.8rem;
     margin-top: 0.3rem;
 }
 
-.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-regular {
-    display: none;
+.beer-detail > .part-1 > .content-container > .title > .like-button > .toggle {
+    width: 1.75rem;
+    height: 1.75rem;
+    /*border: 0.125rem solid rgb(171, 178, 185);*/
+    /*border-radius: 0.375rem;*/
+    color: rgb(171, 178, 185);
+    /*margin-bottom: 0.5rem;*/
+    text-decoration: none;
+
+    /*align-items: center;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
 }
 
-.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-regular.visible {
-    display: flex;
+.beer-detail > .part-1 > .content-container > .title > .like-button > .toggle:hover {
+    color: rgb(128, 139, 150);
 }
 
-.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid {
-    display: none;
+.beer-detail > .part-1 > .content-container > .title > .like-button > .toggle.prohibited{
+    cursor : not-allowed;
 }
 
-.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid.visible {
-    display: flex;
-    color: rgb(223, 1, 1);
+.beer-detail > .part-1 > .content-container > .title > .like-button.liked > .toggle {
+    color: rgb(231, 76, 60);
 }
+
+/*.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-regular {*/
+/*    display: none;*/
+/*}*/
+
+/*.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-regular.visible {*/
+/*    display: flex;*/
+/*}*/
+
+/*.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid {*/
+/*    display: none;*/
+/*}*/
+
+/*.beer-detail > .part-1 > .content-container > .title > .like-button > .fa-solid.visible {*/
+/*    display: flex;*/
+/*    color: rgb(223, 1, 1);*/
+/*}*/
 
 .beer-detail > .part-1 > .content-container > .content {
     height: 12rem;

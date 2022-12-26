@@ -110,11 +110,7 @@ h2 {
     font-size: 1.375rem;
     margin-left: 0.5rem;
     text-align: right;
-}
-
-/*별 선택시 커서*/
-.score-container > .star-container > .star {
-    cursor: pointer;
+    user-select: none;
 }
 
 /*별 채우기 디자인*/

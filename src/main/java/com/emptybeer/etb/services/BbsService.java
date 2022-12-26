@@ -39,6 +39,10 @@ public class BbsService {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
     }
 
+    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser){
+        return this.bbsMapper.selectBeerLikeByIndex(signedUser == null ? null : signedUser.getEmail(), beerIndex);
+    }
+
     // 맥주 좋아요
     public Enum<? extends IResult> beerLike(BeerLikeEntity beerLike, UserEntity user) {
         if (user == null) {

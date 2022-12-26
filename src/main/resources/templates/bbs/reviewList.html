@@ -29,11 +29,11 @@
             <div class="content-container">
                 <div class="title">
                     <div class="beer-name" th:text="${beer.getName()}">바르슈타이너 프리미엄 필스너 500ml</div>
-                    <span class="like-button" id="beerLikeButton">
-                        <span hidden>추천</span>
-                        <i class="fa-regular fa-heart visible"></i>
-                        <i class="fa-solid fa-heart"></i>
-                        <div class="like-count">20</div>
+                    <span class="like-button" id="beerLikeButton" th:classappend="${beer.isLiked() == true ? 'liked' : ''}">
+                        <a href="#" class="toggle" rel="likeToggle" th:classappend="${beer.isSigned() == true ? '' : 'prohibited'}">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                        <div class="like-count" th:text="${beer.getLikeCount()}">20</div>
                     </span>
                 </div>
                 <div class="content">

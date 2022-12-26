@@ -30,6 +30,34 @@
                            ON `beer`.`category_index` = `beerCategory`.`index`
         WHERE `beer`.`index` = #{beerIndex}
     </select>
+    <select id="selectBeerLikeByIndex" resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index`                      AS `index`,
+               `beer`.`name`                       AS `name`,
+               `beer`.image                        AS `image`,
+               `beer`.image_type                   AS `imageType`,
+               `beer`.mfr                          AS `mfr`,
+               `beer`.calorie                      AS `calorie`,
+               `beer`.volume                       AS `volume`,
+               `beer`.degree                       AS `degree`,
+               `beer`.`description`                AS `description`,
+               LEFT(`description`, 68)             AS `descriptionShort`,
+               `beer`.`category_index`             AS `categoryIndex`,
+               `beerCategory`.`text`               AS `categoryText`,
+               `beer`.created_on                   AS `createdOn`,
+               `beer`.modified_on                  AS `modifiedOn`,
+               (#{userEmail} IS NOT NULL)          AS `isSigned`,
+               COUNT(`beerLike`.`beer_index`) > 0  AS `isLiked`,
+               COUNT(`beerLikeCount`.`beer_index`) AS `likeCount`
+        FROM etb_data.beers AS `beer`
+                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+                           ON `beer`.`category_index` = `beerCategory`.`index`
+                 LEFT JOIN `etb_data`.`beer_likes` AS `beerLike`
+                           ON `beer`.`index` = `beerLike`.`beer_index`
+                               AND `beerLike`.user_email = IFNULL(#{userEmail}, '')
+                 LEFT JOIN `etb_data`.`beer_likes` AS `beerLikeCount`
+                           ON `beer`.`index` = `beerLikeCount`.`beer_index`
+        WHERE `beer`.`index` = #{beerIndex}
+    </select>
     <insert id="insertReviewArticle"
             useGeneratedKeys="true"
             keyColumn="index"

@@ -15,6 +15,9 @@ public interface IBbsMapper {
 
     BeerVo selectBeerByIndex(@Param(value = "beerIndex") int beerIndex);
 
+    BeerVo selectBeerLikeByIndex(@Param(value = "userEmail") String userEmail,
+                                 @Param(value = "beerIndex") int beerIndex);
+
     // 리뷰 등록
     int insertReviewArticle(ReviewArticleEntity reviewArticle);
 
@@ -23,8 +26,8 @@ public interface IBbsMapper {
                                 @Param(value = "beerIndex") int beerIndex);
 
     int selectReviewArticleCountByBeerIndex(@Param(value = "beerIndex") int beerIndex,
-                                    @Param(value = "criterion") String criterion,
-                                    @Param(value = "keyword") String keyword);
+                                            @Param(value = "criterion") String criterion,
+                                            @Param(value = "keyword") String keyword);
 
     ReviewArticleVo[] selectReviewArticleByBeerIndex(@Param(value = "beerIndex") int beerIndex,
                                                      @Param(value = "criterion") String criterion,
@@ -33,10 +36,11 @@ public interface IBbsMapper {
                                                      @Param(value = "offset") int offset);
 
     int insertBeerLike(BeerLikeEntity beerLike);
+
     int deleteBeerLike(BeerLikeEntity beerLike);
 
     ReviewArticleVo selectLikeIndex(@Param(value = "userEmail") String userEmail,
-                                  @Param(value = "index") int index);
+                                    @Param(value = "index") int index);
 
     // 리뷰 수정
     int updateReview(ReviewArticleVo reviewArticle);
