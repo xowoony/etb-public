@@ -6,8 +6,27 @@ public class ReviewArticleVo extends ReviewArticleEntity {
     private String userNickname;
     private boolean isLiked;    // 좋아요
     private int likeCount;  // 좋아요 개수
-
     private String beerName;
+    private int totalCount;
+    private double scoreAvg;
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public ReviewArticleVo setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+        return this;
+    }
+
+    public double getScoreAvg() {
+        return scoreAvg;
+    }
+
+    public ReviewArticleVo setScoreAvg(int scoreAvg) {
+        this.scoreAvg = scoreAvg;
+        return this;
+    }
 
     public String getBeerName() {
         return beerName;

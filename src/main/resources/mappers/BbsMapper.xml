@@ -91,6 +91,13 @@
             AND BINARY `user`.nickname = #{keyword}
         </if>
     </select>
+    <select id="selectReviewAvgByBeerIndex"
+            resultType="double">
+        SELECT ROUND(AVG(score), 1)
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        WHERE beer_index = #{beerIndex}
+        GROUP BY beer_index
+    </select>
     <select id="selectReviewArticleByBeerIndex"
             resultType="com.emptybeer.etb.vos.ReviewArticleVo">
         SELECT `reviewArticle`.`index` AS `index`,

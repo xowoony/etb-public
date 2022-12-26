@@ -29,6 +29,9 @@ public interface IBbsMapper {
                                             @Param(value = "criterion") String criterion,
                                             @Param(value = "keyword") String keyword);
 
+    // 맥주 점수 평균
+    double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
+
     ReviewArticleVo[] selectReviewArticleByBeerIndex(@Param(value = "beerIndex") int beerIndex,
                                                      @Param(value = "criterion") String criterion,
                                                      @Param(value = "keyword") String keyword,

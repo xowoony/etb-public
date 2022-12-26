@@ -36,13 +36,8 @@ inputBad.addEventListener(('input'), ()=>{
     badTextCount.innerHTML = `${inputBad.value.length}`;
 });
 
-
-// // 포커스 글자 맨 뒤로
-// window.onload = () => {
-//     inputGood.focus();
-//     inputGood.value = inputGood.value;
-// }
-
+// 포커스 글자 맨 뒤로
+inputGood.selectionStart = inputGood.selectionEnd = inputGood.value.length;
 
 //리뷰 수정 버튼 클릭
 reviewForm.onsubmit = e => {

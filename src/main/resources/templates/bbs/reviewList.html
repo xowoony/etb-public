@@ -79,14 +79,14 @@
         </div>
         <span class="rating-container">
             <span class="star-container">
-                <i class="star filled fa-solid fa-star"></i>
-                <i class="star filled fa-solid fa-star"></i>
-                <i class="star filled fa-solid fa-star"></i>
-                <i class="star filled fa-solid fa-star"></i>
-                <i class="star fa-solid fa-star"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 1 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 2 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 3 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 4 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 5 ? 'filled' : ''}"></i>
             </span>
-            <span class="score">4.1</span>
-            <span class="review-count" th:text="${reviewCount}">2,700</span>
+            <span class="score" th:text="${avgReview}">4.1</span>
+            <span class="review-count" th:text="${totalCount}">2,700</span>
             <span class="detail-review">자세히보기></span>
         </span>
         <div class="form-container">

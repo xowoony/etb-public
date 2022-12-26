@@ -53,3 +53,5 @@ if (!likeToggleElement.classList.contains('prohibited')) {
         xhr.send(formData);
     });
 }
+
+

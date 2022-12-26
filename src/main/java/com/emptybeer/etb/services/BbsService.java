@@ -80,6 +80,10 @@ public class BbsService {
         return this.bbsMapper.selectReviewArticleCountByBeerIndex(beer.getIndex(), criterion, keyword);
     }
 
+    public double getReviewAvg(BeerVo beer) {
+        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
+    }
+
     public ReviewArticleVo[] getReviewArticles(BeerEntity beer, PagingModel paging, String criterion, String keyword) {
         return this.bbsMapper.selectReviewArticleByBeerIndex(
                 beer.getIndex(), criterion, keyword,

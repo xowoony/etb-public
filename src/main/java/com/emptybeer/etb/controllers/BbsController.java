@@ -154,8 +154,9 @@ public class BbsController {
         modelAndView.addObject("beer", beer);
 
         int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
-        modelAndView.addObject("reviewCount", totalCount);
-
+        modelAndView.addObject("totalCount", totalCount);
+        double avgReview = this.bbsService.getReviewAvg(beer);
+        modelAndView.addObject("avgReview", avgReview);
 
         // int totalCount = this.bbsService.getArticleCount(board);
         PagingModel paging = new PagingModel(totalCount, page);
