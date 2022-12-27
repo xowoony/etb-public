@@ -248,6 +248,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    position: relative;
 }
 
 .review-list > .first {
@@ -312,10 +313,91 @@ body {
     color: #346aff;
 }
 
+/*.review-list > .detail-review-window {*/
+/*    top: 15.5rem;*/
+/*    left: 19.2rem;*/
+/*    width: 15rem;*/
+/*    background-color: white;*/
+/*    border: 1px solid;*/
+/*    !*z-index: 9;*!*/
+/*    position: absolute;*/
+
+/*    align-items: stretch;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .title-box2 {*/
+/*    background-color: rgb(0, 0, 0);*/
+/*    color: rgb(255, 255, 255);*/
+/*    padding: 0.5rem;*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: flex-start;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .title-box2 > .xButton {*/
+/*    margin-left: auto;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box {*/
+/*    padding: 1rem 0;*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line1 {*/
+/*    margin-bottom: 0.5rem;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line1 > .star-container {*/
+/*    font-size: 1.5rem;*/
+/*    color: rgb(213, 216, 220);*/
+/*    margin-right: 0.25rem;*/
+/*    letter-spacing: -0.1rem;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line1 > .star-container> .star.filled {*/
+/*    color: rgb(255, 191, 0);*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line2 > .rank {*/
+/*    width: 12rem;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line2 > .rank > tbody > tr > th {*/
+/*    font-size: 0.9rem;*/
+/*    font-weight: 450;*/
+/*    vertical-align: middle;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line2 > .rank > tbody > tr > td:first-of-type {*/
+/*    width: 6rem;*/
+/*}*/
+
+/*!*왜 안 먹힘?*!*/
+/*.review-list > .detail-review-window > .content-box > .line2 > .rank > tbody > tr > td:first-of-type > .container {*/
+/*    width: 100%;*/
+/*    background-color: #eee;*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line2 > .rank > tbody > tr > td:first-of-type > .container > .ranking {*/
+/*    background-color: rgb(255, 191, 0);*/
+/*}*/
+
+/*.review-list > .detail-review-window > .content-box > .line2 > .rank > tbody > tr > td:nth-of-type(2) {*/
+/*    vertical-align: middle;*/
+/*    font-size: 0.8rem;*/
+/*}*/
+
 .review-list > .form-container {
     background-color: #555;
     color: #9a9a9a;
-    padding: 1rem;
+    padding: 0.8rem;
     margin-bottom: 0.5rem;
 
     align-items: stretch;
@@ -324,22 +406,29 @@ body {
     justify-content: flex-start;
 }
 
-.review-list > .form-container > .sort1,
-.review-list > .form-container > .sort2 {
+.review-list > .form-container > .sort {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.review-list > .form-container > .sort > .sort1,
+.review-list > .form-container > .sort > .sort2 {
     cursor: pointer;
 }
 
-.review-list > .form-container > .sort1:hover,
-.review-list > .form-container > .sort2:hover{
+.review-list > .form-container > .sort > .sort1:hover,
+.review-list > .form-container > .sort > .sort2:hover{
     color: white;
 }
 
-.review-list > .form-container > .sort1.selected,
-.review-list > .form-container > .sort2.selected{
+.review-list > .form-container > .sort > .sort1.selected,
+.review-list > .form-container > .sort > .sort2.selected{
     color: white;
 }
 
-.review-list > .form-container > .sort-bar {
+.review-list > .form-container > .sort > .sort-bar {
     /*display: inline-block;*/
     margin-left: 10px;
     margin-right: 10px;
@@ -349,6 +438,28 @@ body {
 
 .review-list > .form-container > .search-form {
     margin-left: auto;
+}
+
+.review-list > .form-container > .search-form > .label:first-of-type > .--object-input {
+    width: 3rem;
+    height: 1.5rem;
+    border: none;
+}
+
+.review-list > .form-container > .search-form > .label:nth-of-type(2) {
+    position: relative;
+}
+
+.review-list > .form-container > .search-form > .label:nth-of-type(2) > .--object-input {
+    border: none;
+    width: 15rem;
+    height: 1.4rem;
+}
+
+.review-list > .form-container > .search-form > .label:nth-of-type(2) > .search-button {
+    position: absolute;
+    width: 1.2rem;
+    margin: 0.2rem 0 0 -1.5rem;
 }
 
 .review-list > .review-container {

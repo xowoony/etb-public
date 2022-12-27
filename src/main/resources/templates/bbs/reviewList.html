@@ -89,10 +89,13 @@
             <span class="review-count" th:text="${totalCount}">2,700</span>
             <span class="detail-review">자세히보기></span>
         </span>
+
         <div class="form-container">
-            <span class="sort1">추천순</span>
-            <div class="sort-bar">|</div>
-            <span class="sort2">최신순</span>
+            <div class="sort">
+                <span class="sort1">추천순</span>
+                <div class="sort-bar">|</div>
+                <span class="sort2">최신순</span>
+            </div>
             <form class="search-form" id="searchForm" method="get">
                 <label class="label">
                     <span hidden>검색 기준</span>
@@ -104,9 +107,9 @@
                 </label>
                 <label class="label">
                     <span hidden>검색어</span>
-                    <input type="text" class="--object-input" maxlength="50" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
+                    <input type="text" class="--object-input" maxlength="20" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
+                    <input type="image" class="search-button" src="https://img1a.coupangcdn.com/image/productreview/web/pdp/article/search-btn_v1.png">
                 </label>
-                <input type="submit" class="search-button" value="검색">
                 <input type="hidden" name="beerIndex" th:value="${beer.getIndex()}">
             </form>
         </div>
