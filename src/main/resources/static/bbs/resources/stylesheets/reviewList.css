@@ -432,6 +432,7 @@ body {
     /*display: inline-block;*/
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 0.15rem;
     color: #9a9a9a;
     user-select: none;
 }
@@ -491,9 +492,57 @@ body {
 }
 
 .review-list > .review-container > .head-container > .menu-icon {
+    height: 1.8rem;
     font-size: 1.5rem;
     color: #ccc;
     margin: -1rem 1rem 0 auto;
+    cursor: pointer;
+    position: relative;
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box {
+    width: 5rem;
+    font-size: 0.85rem;
+    margin-left: -3.8rem;
+    border: 1px solid rgb(80, 77, 77);
+    position: absolute;
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box.visible {
+    display: flex;
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box > .back {
+    width: 100%;
+    height: 1rem;
+    background-color: rgb(80, 77, 77);
+    cursor: auto;
+    position: relative;
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box > .back > .xButton {
+    color: white;
+    position: absolute;
+    margin-left: 4.2rem;
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box > a {
+    color: #346aff;
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.15rem;
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box > a:hover {
+    filter: brightness(120%);
+}
+
+.review-list > .review-container > .head-container > .menu-icon > .box > .modify {
+    margin-top: 0.15rem;
 }
 
 .review-list > .review-container > .head-container > .user-info {
@@ -592,6 +641,7 @@ body {
 .review-list > .review-container > .foot > .declaration {
     border: none;
     color: #346aff;
+    cursor: pointer;
     background-color: unset;
     font-size: 0.8rem;
     margin-left: auto;

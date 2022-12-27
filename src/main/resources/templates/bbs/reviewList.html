@@ -159,7 +159,9 @@
                 등록된 리뷰가 없습니다.
             </div>
         </div>
-        <div class="review-container" th:each="reviewArticle : ${reviewArticles}">
+        <form class="review-container" id="reviewListForm" th:each="reviewArticle : ${reviewArticles}">
+            <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
+            <input name="aid" type="hidden" th:value="${reviewArticle.getIndex()}">
             <div class="head-container">
                 <div class="user-info">
                     <div class="nickname" th:text="${reviewArticle.getUserNickname()}">양파쿵야</div>
@@ -173,7 +175,16 @@
                     <span class="created-on" th:text="${#dates.format(reviewArticle.getModifiedOn(), 'yyyy-MM-dd')}">2022.12.15</span>
                 </div>
                 <span class="menu-icon" th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">
-                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                    <div class="box" id="menuBox">
+                        <div class="back">
+                            <a href="#" class="xButton" id="xButton">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                        <a class="modify" th:href="@{/bbs/reviewModify (aid=${reviewArticle.getIndex()})}">수정하기</a>
+                        <a href="#" class="delete" id="deleteButton">삭제하기</a>
+                    </div>
                 </span>
             </div>
             <div class="beer-info" th:text="${reviewArticle.getBeerName()}">바르슈타이너 프리미엄 필스너 500ml</div>
@@ -202,7 +213,7 @@
                 <input class="review-like" id="reviewLikeButton" type="button" value="추천하기">
                 <input type="button" class="declaration" id="declaButton" value="신고하기">
             </div>
-        </div>
+        </form>
         <div class="page-container"
              th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
             <a class="page"
