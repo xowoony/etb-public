@@ -107,11 +107,52 @@
                 </label>
                 <label class="label">
                     <span hidden>검색어</span>
-                    <input type="text" class="--object-input" maxlength="20" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
+                    <input type="text" class="--object-input" maxlength="25" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
                     <input type="image" class="search-button" src="https://img1a.coupangcdn.com/image/productreview/web/pdp/article/search-btn_v1.png">
                 </label>
                 <input type="hidden" name="beerIndex" th:value="${beer.getIndex()}">
             </form>
+            <select name="starRank" id="starRank">
+                <option value="all">
+                    <div>모든 별점 보기</div>
+                    <div th:text="${totalCount}">6,608</div>
+                </option>
+                <option value="5">
+                    <div>최고</div>
+                    <span class="star-container">
+                        ★★★★★
+                    </span>
+                    <div>6,192</div>
+                </option>
+                <option value="4">
+                    <div>좋음</div>
+                    <span class="star-container">
+                        ★★★★
+                    </span>
+                    <div>297</div>
+                </option>
+                <option value="3">
+                    <div>보통</div>
+                    <span class="star-container">
+                        ★★★
+                    </span>
+                    <div>67</div>
+                </option>
+                <option value="2">
+                    <div>별로</div>
+                    <span class="star-container">
+                        ★★
+                    </span>
+                    <div>12</div>
+                </option>
+                <option value="1">
+                    <div>나쁨</div>
+                    <span class="star-container">
+                        ★
+                    </span>
+                    <div>40</div>
+                </option>
+            </select>
         </div>
         <div class="review-container blank" th:if="${reviewArticles} == null">
             <div>

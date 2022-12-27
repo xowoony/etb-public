@@ -452,14 +452,20 @@ body {
 
 .review-list > .form-container > .search-form > .label:nth-of-type(2) > .--object-input {
     border: none;
-    width: 15rem;
+    width: 20rem;
     height: 1.4rem;
 }
 
 .review-list > .form-container > .search-form > .label:nth-of-type(2) > .search-button {
     position: absolute;
-    width: 1.2rem;
-    margin: 0.2rem 0 0 -1.5rem;
+    width: 1rem;
+    margin: 0.25rem 0 0 -1.3rem;
+}
+
+.review-list > .form-container > select {
+    margin-left: 0.25rem;
+    border: none;
+    width: 12rem;
 }
 
 .review-list > .review-container {
