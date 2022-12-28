@@ -121,7 +121,11 @@ public class BbsController {
                                   BeerLikeEntity beerLike) {
         JSONObject responseObject = new JSONObject();
         Enum<?> result = this.bbsService.beerLike(beerLike, user);
+        BeerVo beer = this.bbsService.getBeerLike(beerLike.getBeerIndex(), user);
+
         responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isLiked", beer.isLiked());
+        responseObject.put("likeCount", beer.getLikeCount());
         return responseObject.toString();
     }
 
@@ -133,7 +137,11 @@ public class BbsController {
                                BeerLikeEntity beerLike) {
         JSONObject responseObject = new JSONObject();
         Enum<?> result = this.bbsService.beerUnlike(beerLike, user);
+        BeerVo beer = this.bbsService.getBeerLike(beerLike.getBeerIndex(), user);
+
         responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isLiked", beer.isLiked());
+        responseObject.put("likeCount", beer.getLikeCount());
         return responseObject.toString();
     }
 

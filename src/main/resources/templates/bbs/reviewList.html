@@ -87,7 +87,7 @@
             </span>
             <span class="score" th:text="${avgReview}">4.1</span>
             <span class="review-count" th:text="${totalCount}">2,700</span>
-            <span class="detail-review">자세히보기></span>
+<!--            <span class="detail-review">자세히보기></span>-->
         </span>
 
         <div class="form-container">
@@ -211,7 +211,7 @@
                 <span class="like-count">7</span>
                 <span>명이 추천 함</span>
                 <input class="review-like" id="reviewLikeButton" type="button" value="추천하기">
-                <input type="button" class="declaration" id="declaButton" value="신고하기">
+                <input type="button" class="declaration" id="declaButton" value="신고하기" th:if="${session.user == null || !session.user.getEmail().equals(reviewArticle.getUserEmail())}">
             </div>
         </form>
         <div class="page-container"

@@ -39,8 +39,15 @@ if (!likeToggleElement.classList.contains('prohibited')) {
                     switch (responseObject['result']) {
                         case 'success' :
                             // 값을 받아와서 innerText
-                            alert('추천이 반영되었습니다.');
-                            window.location.reload();
+                            // alert('추천이 반영되었습니다.');
+                            // window.location.reload();
+                            if(responseObject.isLiked == true) {
+                                document.getElementById('beerLikeButton').classList.add('liked');
+                                document.querySelector('.like-count').innerHTML = responseObject.likeCount;
+                            } else {
+                                document.getElementById('beerLikeButton').classList.remove('liked');
+                                document.querySelector('.like-count').innerHTML = responseObject.likeCount;
+                            }
                             break;
                         default:
                             alert('알 수 없는 이유로 추천결과가 반영되지 못했습니다.\n\n잠시 후 다시 시도해 주세요.');
