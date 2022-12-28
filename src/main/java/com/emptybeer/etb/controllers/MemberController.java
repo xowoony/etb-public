@@ -240,7 +240,8 @@ public class MemberController {
     @ResponseBody
     public String deleteUser(@SessionAttribute(value = "user", required = false) UserEntity user,
                              @RequestParam(value = "email") String email, // 입력한 이메일
-                             @RequestParam(value = "password") String password) {    // 입력받은 패스워드
+                             @RequestParam(value = "password") String password,
+                             HttpSession session) { // 입력받은 패스워드
         Enum<?> result;
         System.out.println("check1 " + user.getEmail());
         System.out.println("check1 " + user.getPassword());
@@ -257,8 +258,9 @@ public class MemberController {
         if (result == CommonResult.SUCCESS) {
             responseObject.put("email", user.getEmail());
             responseObject.put("password", user.getPassword());
+
         }
+        session.setAttribute("user", null);
         return responseObject.toString();
     }
-
 }
