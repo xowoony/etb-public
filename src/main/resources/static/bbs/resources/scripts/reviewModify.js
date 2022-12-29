@@ -9,17 +9,17 @@ reviewForm['beerSelectButton'].addEventListener('click', () => {
     window.location.href = '/product'
 });
 
-const reviewStarArray = Array.from(reviewForm.querySelector('[rel="starContainer"]').querySelectorAll(':scope > .star'));
-for (let i = 0; i < reviewStarArray.length; i++) {
-    reviewStarArray[i].addEventListener('click', () => {
-        reviewStarArray.forEach(x => x.classList.remove('selected'));
-        for (let j = 0; j<=i; j++) {
-            reviewStarArray[j].classList.add('selected');
-        }
-        reviewForm.querySelector('[rel="score"]').innerText = i + 1;
-        reviewForm['score'].value = i + 1;
-    });
-}
+// const reviewStarArray = Array.from(reviewForm.querySelector('[rel="starContainer"]').querySelectorAll(':scope > .star'));
+// for (let i = 0; i < reviewStarArray.length; i++) {
+//     reviewStarArray[i].addEventListener('click', () => {
+//         reviewStarArray.forEach(x => x.classList.remove('selected'));
+//         for (let j = 0; j<=i; j++) {
+//             reviewStarArray[j].classList.add('selected');
+//         }
+//         reviewForm.querySelector('[rel="score"]').innerText = i + 1;
+//         reviewForm['score'].value = i + 1;
+//     });
+// }
 
 // 실시간 글자수 세기
 let inputGood = document.getElementById('inputGood');
@@ -36,13 +36,8 @@ inputBad.addEventListener(('input'), ()=>{
     badTextCount.innerHTML = `${inputBad.value.length}`;
 });
 
-
-// // 포커스 글자 맨 뒤로
-// window.onload = () => {
-//     inputGood.focus();
-//     inputGood.value = inputGood.value;
-// }
-
+// 포커스 글자 맨 뒤로
+inputGood.selectionStart = inputGood.selectionEnd = inputGood.value.length;
 
 //리뷰 수정 버튼 클릭
 reviewForm.onsubmit = e => {

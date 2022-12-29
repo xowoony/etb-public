@@ -61,6 +61,7 @@ public class HomeController {
         return modelAndView;
     }
 
+
     //이미지를 위해 다중매핑을 사용한다.
 
     @GetMapping(value="image", produces = MediaType.IMAGE_JPEG_VALUE)
