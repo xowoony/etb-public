@@ -57,7 +57,7 @@ public class HomeController {
     public ModelAndView getFestival() {
         ModelAndView modelAndView = new ModelAndView("home/festival");
 
-        modelAndView.addObject("festivalArticles", this.bbsService.getFestivalArticle());
+//        modelAndView.addObject("festivalArticles", this.bbsService.getFestivalArticle());
 
 
         return modelAndView;
@@ -65,16 +65,16 @@ public class HomeController {
 
     //이미지를 위해 다중매핑을 사용한다.
 
-    @GetMapping(value="image", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getImage(@RequestParam(value = "index")int index) throws IOException {
-
-        ImageEntity image = this.bbsService.getImage(index);
-        HttpHeaders headers = new HttpHeaders();
-
-        // 헤더의 컨텐트 타입이 무엇을 받을지를 결정한다.(추후 해당 키워드 검색)
-        headers.add("Content-Type", image.getFileMime());
-        return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
-    }
+//    @GetMapping(value="image", produces = MediaType.IMAGE_JPEG_VALUE)
+//    public ResponseEntity<byte[]> getImage(@RequestParam(value = "index")int index) throws IOException {
+//
+//        ImageEntity image = this.bbsService.getImage(index);
+//        HttpHeaders headers = new HttpHeaders();
+//
+//        // 헤더의 컨텐트 타입이 무엇을 받을지를 결정한다.(추후 해당 키워드 검색)
+//        headers.add("Content-Type", image.getFileMime());
+//        return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
+//    }
 
 }
 
