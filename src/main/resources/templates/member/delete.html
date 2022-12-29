@@ -9,34 +9,51 @@
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/member/resources/stylesheets/delete.css}">
-    <script src="https://kit.fontawesome.com/08367f1c3f.js" crossorigin="anonymous"></script>
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script defer th:src="@{/member/resources/scripts/delete.js}"></script>
 </head>
-<body>
-<section>
-    <form id="form" th:method="delete">
-        <table>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<!--  main  -->
+<main>
+    <form id="form">
+        <table class="table">
+            <caption class="title">탈퇴하기</caption>
             <tbody>
-            <tr>
-                <td class="user-delete-title">회원탈퇴</td>
-                <td>
-                    <div>
-                        <span>이메일</span>
-                        <input id="email" name="email" class="email" type="email" placeholder="이메일을 입력하세요">
-                    </div>
-                    <div>
-                        <span>비밀번호</span>
-                        <input id="password" name="password" class="password" type="password" placeholder="비밀번호를 입력하세요">
-                    </div>
-                </td>
-                <td><button id="deleteUserButton">회원탈퇴하기</button></td>
-                <td>그동안 잔이비어를 이용해주셔서 감사합니다.</td>
-            </tr>
+                <!--이메일 입력창-->
+                <tr>
+                    <td>
+                        <label class="email">
+                            <input autofocus class="email-input" maxlength="50" name="email" id="email"
+                                   placeholder="이메일 주소를 입력해 주세요." type="email">
+                        </label>
+                    </td>
+                </tr>
+                <!-- 비밀번호 입력창-->
+                <tr>
+                    <td>
+                        <label class="password">
+                            <input autofocus class="password-input" maxlength="50" name="password" id="password"
+                                   placeholder="비밀번호를 입력해 주세요." type="password">
+                        </label>
+                    </td>
+                </tr>
+                <!--탈퇴하기 버튼-->
+                <tr>
+                    <td>
+                        <label class="delete-container">
+                            <button id="deleteUserButton">회원탈퇴</button>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>그동안 잔이비어를 이용해주셔서 감사합니다.</td>
+                </tr>
             </tbody>
         </table>
     </form>
-</section>
-
+</main>
 </body>
 </html>
