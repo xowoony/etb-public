@@ -168,7 +168,7 @@
                 등록된 리뷰가 없습니다.
             </div>
         </div>
-        <form class="review-container" id="reviewListForm" th:each="reviewArticle : ${reviewArticles}">
+        <form class="review-container" rel="reviewListForm" th:each="reviewArticle : ${reviewArticles}">
             <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
             <input name="aid" type="hidden" th:value="${reviewArticle.getIndex()}">
             <div class="head-container">
@@ -190,10 +190,10 @@
                 </div>
                 <span class="menu-icon"
                       th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">
-                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                    <i class="fa-solid fa-bars" rel="menuIcon"></i>
                     <div class="box" id="menuBox">
                         <div class="back">
-                            <a href="#" class="xButton" id="xButton">
+                            <a href="#" class="xButton" rel="xButton">
                                 <i class="fa-solid fa-xmark"></i>
                             </a>
                         </div>
@@ -230,10 +230,11 @@
                 <span class="like-count review-like-count" th:text="${reviewArticle.likeCount}">7</span>
                 <span>명이 추천 함</span>
                 <!--                여기 주의-->
-                <span class="review-like-button" id="reviewLikeButton"
+                <span class="review-like-button" rel="reviewLikeButton"
                       th:classappend="${reviewArticle.isLiked() == true ? 'liked' : ''}">
                     <input class="review-like review-toggle" type="button" th:value="${reviewArticle.isLiked() == true ? '추천취소' : '추천하기'}" rel="reviewToggle"
-                           th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}">
+                           th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}"
+                    th:data-aid="${reviewArticle.getIndex()}">
                 </span>
                 <input type="button" class="declaration" id="declaButton" value="신고하기"
                        th:if="${session.user == null || !session.user.getEmail().equals(reviewArticle.getUserEmail())}"

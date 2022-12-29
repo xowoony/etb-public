@@ -122,7 +122,7 @@
         ON `reviewArticle`.`index` = reviewArticleLike.article_index
         AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
         LEFT JOIN `etb_bbs`.review_article_likes AS `reviewLikeCount`
-        ON reviewArticleLike.`article_index` = `reviewLikeCount`.article_index
+        ON reviewArticle.`index` = `reviewLikeCount`.article_index
         WHERE `reviewArticle`.`beer_index` = #{beerIndex}
         <if test="criterion != null and criterion.equals('content')">
             AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
@@ -199,7 +199,7 @@
                            ON `reviewArticle`.`index` = reviewArticleLike.article_index
                                AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
                  LEFT JOIN `etb_bbs`.review_article_likes AS `reviewLikeCount`
-                           ON reviewArticleLike.`article_index` = `reviewLikeCount`.article_index
+                           ON reviewArticle.`index` = `reviewLikeCount`.article_index
         WHERE BINARY `reviewArticle`.`index` = #{index}
 
         LIMIT 1

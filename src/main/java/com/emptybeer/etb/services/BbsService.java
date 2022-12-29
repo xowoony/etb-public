@@ -94,7 +94,7 @@ public class BbsService {
     // 글 읽기 + 닉네임 불러오기
     public ReviewArticleVo reviewReadArticle(UserEntity signedUser, int index) {
         ReviewArticleVo reviewArticle = this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
-        reviewArticle.setIndex(this.bbsMapper.updateReview(reviewArticle));
+//        reviewArticle.setIndex(this.bbsMapper.updateReview(reviewArticle));
         return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
     }
 
