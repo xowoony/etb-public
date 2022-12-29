@@ -51,6 +51,6 @@ public interface IBbsMapper {
     // festival관련
     FestivalArticleEntity[] selectFestivalArticle();
 
-    ImageEntity selectImage();
+    ImageEntity selectImageByIndex(@Param(value="index") int index);
 
 }

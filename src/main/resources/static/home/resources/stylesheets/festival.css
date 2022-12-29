@@ -80,6 +80,19 @@ body > main > .home-section1 > .title-box2 {
     color: black;
 }
 
+body > main > .home-section1 > .title-box2 > .festival-container{
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+body > main > .home-section1 > .title-box2 > .festival-container > img{
+    height: 30rem;
+    width: 30rem;
+}
+
 /*body > main > .home-section1 > .title-box2 >div {*/
 /*    width: 40rem;*/
 /*    height: 35rem;*/

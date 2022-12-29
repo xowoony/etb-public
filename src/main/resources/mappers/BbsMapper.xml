@@ -207,13 +207,14 @@
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
     </select>
 
-    <select id="selectImage"
+    <select id="selectImageByIndex"
     resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
-        SELECT `image`.`index` AS `index`,
+        SELECT `image`.`index`     AS `index`,
                `image`.`file_name` AS `fileName`,
                `image`.`file_mime` AS `fileMime`,
-               `image`.`data` AS `data`
+               `image`.`data`      AS `data`
         FROM `etb_bbs`.`images` AS `image`
+        WHERE `image`.`index` = #{index}
         LIMIT 1
 
     </select>
