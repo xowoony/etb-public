@@ -6,21 +6,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>잔이비어 :: HOME</title>
+    <!-- 메뉴 슬라이드-->
+
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <!--  index.css 연결  -->
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
     <!--  index.js 연결  -->
     <script defer th:src="@{/home/resources/scripts/index.js}"></script>
-    <!--이상하면 지우기-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
 <body>
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
+<!--지우기-->
 
 <!--  main  -->
 <main id="smoothScroll">
@@ -37,33 +37,9 @@
     <!--  homeSection2  -->
     <section class="home-section2" id="homeSection2">
         <div class="title-box2" id="titleBox2">
-<!--            <div class="title">section2</div>-->
-            <!-- 이상하면 지우기-->
-            <section id="main">
-                <div class="content">
-                    <ul class="carousel">
-                        <li id="prev" class="control">&lsaquo;</li>
-                        <li class="carousel-viewport">
-                            <ul class="images">
-                                <li class="image previous storm">
-                                </li>
-                                <li class="image active colorwall">
-                                </li>
-                                <li class="image next city">
-                                </li>
-                            </ul>
-                        </li>
-                        <li id="next" class="control">&rsaquo;</li>
-                    </ul>
-                    <div class="marker">
-                        <ul class="tracker">
-                            <li class="token"></li>
-                            <li class="token active"></li>
-                            <li class="token"></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <div class="title">section2</div>
+            <!--지우기-->
+
         </div>
     </section>
     <!--  homeSection3  -->

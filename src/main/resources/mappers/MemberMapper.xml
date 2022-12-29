@@ -92,7 +92,7 @@
 
     </select>
 
-
+<!--회원탈퇴-->
     <select id="selectUserByEmail"
             resultType="com.emptybeer.etb.entities.member.UserEntity">
         SELECT `email`             AS `email`,
@@ -155,5 +155,13 @@
           AND BINARY `contact` = #{contact}
         LIMIT 1
     </select>
+
+    <!--  회원탈퇴  -->
+    <delete id="deleteUser">
+        DELETE
+        FROM `etb_member`.`users`
+        WHERE `email` = #{email}
+        LIMIT 1
+    </delete>
 
 </mapper>

@@ -5,14 +5,13 @@ import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.services.MemberService;
+import com.emptybeer.etb.utils.CryptoUtils;
+import org.apache.catalina.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -25,6 +24,7 @@ public class MemberController {
 
     // 의존성 주입
     private final MemberService memberService;
+
     @Autowired
     //요구되는 타입을 스프링부트가 알아서 객체화 하여 전달토록 한다. (컨트롤러-서비스 간) 의존성 주입
     public MemberController(MemberService memberService) {
@@ -46,7 +46,7 @@ public class MemberController {
     @ResponseBody
     public String postLogin(HttpSession session, UserEntity user) {
         Enum<?> result = this.memberService.login(user);
-        if(result == CommonResult.SUCCESS) {
+        if (result == CommonResult.SUCCESS) {
             JSONObject responseObject = new JSONObject();
             session.setAttribute("user", user); // 해당 요소에 user 이름의 user 값을 가지는 HTML 속성을 추가한다.
             System.out.println("이메일/비밀번호 맞음.");
@@ -163,7 +163,7 @@ public class MemberController {
         return responseObject.toString();
     }
 
-    
+
     // 비밀번호 재설정 이메일
     @RequestMapping(value = "recoverPasswordEmail",
             method = RequestMethod.GET,
@@ -211,6 +211,7 @@ public class MemberController {
         ModelAndView modelAndView = new ModelAndView("member/recoverEmail");
         return modelAndView;
     }
+
     @RequestMapping(value = "recoverEmail",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -225,6 +226,41 @@ public class MemberController {
         return responseObject.toString();
     }
 
+    // 회원탈퇴
+    @GetMapping(value = "delete",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getDelete() {
+        ModelAndView modelAndView = new ModelAndView("member/delete");
+        return modelAndView;
+    }
 
+    @RequestMapping(value = "user",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteUser(@SessionAttribute(value = "user", required = false) UserEntity user,
+                             @RequestParam(value = "email") String email, // 입력한 이메일
+                             @RequestParam(value = "password") String password,
+                             HttpSession session) { // 입력받은 패스워드
+        Enum<?> result;
+        System.out.println("check1 " + user.getEmail());
+        System.out.println("check1 " + user.getPassword());
+        System.out.println("check1 " + email);
+        System.out.println("check1 " + password);
+        if (user.getEmail().equals(email) && CryptoUtils.hashSha512(user.getPassword()).equals(CryptoUtils.hashSha512(password))) {
+            result = this.memberService.deleteUser(user);
+        } else {
+            result = CommonResult.FAILURE;
+        }
+        // 입력받은 이메일과 유저의 이메일이 같고, 입력받은 해싱된 패스워드와 해싱된 유저의 패스워드가 같을 경우
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        if (result == CommonResult.SUCCESS) {
+            responseObject.put("email", user.getEmail());
+            responseObject.put("password", user.getPassword());
 
+        }
+        session.setAttribute("user", null);
+        return responseObject.toString();
+    }
 }

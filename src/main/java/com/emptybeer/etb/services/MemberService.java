@@ -286,19 +286,16 @@ public class MemberService {
         if (findEmail == null) {
             return CommonResult.FAILURE;
         }
-//        user.setEmail(user.getEmail());
         user.setEmail(findEmail.getEmail());
         return CommonResult.SUCCESS;
     }
 
-    // 세션 유저 닉네임 정보 불러오기
-    @Transactional
-    public Enum<? extends IResult> userNickname(UserEntity user) {
-        UserEntity findNickname = this.memberMapper.selectUserNickname(user.getNickname());
-        if (findNickname == null) {
-            return CommonResult.FAILURE;
-        }
+
+    // 회원 탈퇴
+    public Enum<? extends IResult> deleteUser(UserEntity user) {
+        int existingUser = this.memberMapper.deleteUser(user);
         return CommonResult.SUCCESS;
     }
+
 
 }

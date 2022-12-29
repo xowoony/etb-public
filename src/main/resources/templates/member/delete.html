@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 회원탈퇴</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/delete.css}">
+    <script src="https://kit.fontawesome.com/08367f1c3f.js" crossorigin="anonymous"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script defer th:src="@{/member/resources/scripts/delete.js}"></script>
+</head>
+<body>
+<section>
+    <form id="form" th:method="delete">
+        <table>
+            <tbody>
+            <tr>
+                <td class="user-delete-title">회원탈퇴</td>
+                <td>
+                    <div>
+                        <span>이메일</span>
+                        <input id="email" name="email" class="email" type="email" placeholder="이메일을 입력하세요">
+                    </div>
+                    <div>
+                        <span>비밀번호</span>
+                        <input id="password" name="password" class="password" type="password" placeholder="비밀번호를 입력하세요">
+                    </div>
+                </td>
+                <td><button id="deleteUserButton">회원탈퇴하기</button></td>
+                <td>그동안 잔이비어를 이용해주셔서 감사합니다.</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</section>
+
+</body>
+</html>
