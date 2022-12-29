@@ -58,8 +58,6 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("home/festival");
 
         modelAndView.addObject("festivalArticles", this.bbsService.getFestivalArticle());
-
-
         return modelAndView;
     }
 
