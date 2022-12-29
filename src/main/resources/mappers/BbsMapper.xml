@@ -172,4 +172,52 @@
         FROM `etb_bbs`.review_articles
         WHERE `index` = #{index}
     </delete>
+
+
+
+    <!--  festival관련 DAO  -->
+
+    <select id="select">
+
+    </select>
+
+
+    <select id="selectFestivalArticle"
+    resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`            AS `index`,
+               `festivalArticle`.`board_id`         AS `boardId`,
+               `festivalArticle`.`user_email`       AS `userEmail`,
+               `festivalArticle`.`title`            AS `title`,
+               `festivalArticle`.`description`      AS `description`,
+               `festivalArticle`.`date_from`        AS `dateFrom`,
+               `festivalArticle`.`date_to`          AS `dateTo`,
+               `festivalArticle`.`time_from`        AS `timeFrom`,
+               `festivalArticle`.`time_to`          AS `timeTo`,
+               `festivalArticle`.`latitude`         AS `latitude`,
+               `festivalArticle`.`longitude`        AS `longitude`,
+               `festivalArticle`.`created_on`       AS `createdOn`,
+               `festivalArticle`.`modified_on`      AS `modifiedOn`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+    </select>
+
+    <select id="selectFestivalArticleImage"
+    resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`title_image`      AS `titleImage`,
+               `festivalArticle`.`title_image_type` AS `titleImageType`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+    </select>
+
+    <select id="selectImage"
+    resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
+        SELECT `image`.`index` AS `index`,
+               `image`.`file_name` AS `fileName`,
+               `image`.`file_mime` AS `fileMime`,
+               `image`.`data` AS `data`
+        FROM `etb_bbs`.`images` AS `image`
+        LIMIT 1
+
+    </select>
+
+
+
 </mapper>

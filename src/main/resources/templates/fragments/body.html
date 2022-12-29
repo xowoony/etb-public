@@ -3,60 +3,24 @@
 <!--공통 header-->
 <header th:fragment="header">
     <div class="spring">
-        <ul class="category">
-            <li class="etb-logo">
-                <a class="title-logo" th:href="@{/}">잔이비어</a>
-            </li>
-            <li>
-                <a class="home" th:href="@{/}">HOME</a>
-            </li>
-            <li>
-                <a class="product" th:href="@{/product}">PRODUCT</a>
-                <ul class="depth_1">
-                    <li class="product-board"><a th:href="@{/data/beer}">BEER</a></li>
-                    <li class="product-board"><a th:href="@{/bbs/review}">REVIEW</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="community" th:href="@{/community}">COMMUNITY</a>
-                <ul class="depth_1">
-                    <li class="community-board"><a href="#">자유게시판</a></li>
-                    <li class="community-board"><a href="#">모임게시판</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="festival" th:href="@{/festival}">FESTIVAL</a>
-            </li>
-            <!-- 로그인 했을 경우  -->
-            <li class="start" th:if="${session.user != null}">
+        <div class="category">
+            <a class="home" th:href="@{/}">HOME</a>
+            <a class="product" th:href="@{product}">PRODUCT</a>
+            <a class="community" th:href="@{community}">COMMUNITY</a>
+            <a class="festival" th:href="@{festival}">FESTIVAL</a>
+            <span>
                 <i class="fa-sharp fa-solid fa-user icon"></i>
-                <span>
-                    <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
-                </span>
-                <ul class="depth_1 my">
-                    <li class="user-board">
-                        <a href="#">마이페이지</a>
-                    </li>
-                    <li class="user-board">
-                        <a th:href="@{/member/logout}">로그아웃</a>
-                    </li>
-                </ul>
-            </li>
-            <!-- 로그인 안했을 경우  -->
-            <li class="start" th:if="${session.user == null}">
-                <i class="fa-sharp fa-solid fa-user icon"></i>
-                <span>
-                  <a class="login" href="http://localhost:8080/member/login">시작하기</a>
-                </span>
-            </li>
-        </ul>
+            </span>
+            <a class="login" href="http://localhost:8080/member/login">시작하기</a>
+<!--            <a class="login" th:href="@{member/login}">시작하기</a>-->
+        </div>
     </div>
 </header>
 <!--공통 footer-->
 <footer th:fragment="footer">
     <section class="footer-section1" id="footerSection1">
         <div class="fix-footer" id="fixFooter">
-            <i class="title">©2022 by Empty Beer</i>
+            <div class="title">©2022 by Empty Beer</div>
         </div>
     </section>
 </footer>

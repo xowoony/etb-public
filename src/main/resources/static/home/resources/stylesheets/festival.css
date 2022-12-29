@@ -1,48 +1,103 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+/*COMMUNITY 타이틀 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
+/*GO 버튼*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/*main*/
 body > main {
-    margin-top: 13rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*상단 타이틀 section*/
+body > main > .home-section1 {
+    width: 100%;
+    height: 100%;
+    /* margin-bottom: 3rem;*/
+}
+
+/*homeSection1*/
+body > main > .home-section1 > .title-box1 {
+    background-image: url("/resources/images/home-background.jpg");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47%;
+    /*position: fixed;*/
 
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-}
-
-body > #smoothScroll > .title {
-    position: relative;
-
-    font-family: "Apple Color Emoji";
-    font-size: 4rem;
-    font-weight: 600;
-    color: black;
-    text-align: center;
+    justify-content: flex-end;
 }
 
 
-/*그리드 지정*/
-body >#smoothScroll > .festival-imageContainer {
+/*PRODUCT 타이틀 글씨체*/
+body > main > .home-section1 > .title-box1 > .title {
+    font-size: 3rem;
+    font-family: 'Secular One', sans-serif;
+}
+
+/*다양한 맥주에 대 ~*/
+body > main > .home-section1 > .title-box1 > .title-content {
+    font-family: 'Gowun Batang', serif;
+    margin-bottom: 4.5rem;
+}
+
+
+/*section2 파트, product, community 파트 참조*/
+
+
+body > main > .home-section1 > .title-box2 {
     display: grid;
-    grid-template-columns: repeat(4, 0.22fr);
-    align-items: center;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    gap: 3rem;
-    margin-top: 4rem;
+    object-fit: fill;
+    color: black;
 }
 
+/*body > main > .home-section1 > .title-box2 >div {*/
+/*    width: 40rem;*/
+/*    height: 35rem;*/
+/*    margin-top: 4rem;*/
+/*    margin-bottom: 4rem;*/
+/*}*/
 
-body >#smoothScroll > .festival-imageContainer > div {
-    width: 20rem;
-    height: 20rem;
-}
 
-body >#smoothScroll > .festival-imageContainer > div > a >.image {
-    width: 100%;
-    height: 100%;
+/*body > main > .home-section1 > .title-box2 > .first-festival {*/
+/*    background-image: url("/bbs/resources/images/Seoul-BeerFestival.png");*/
+/*}*/
 
-}
+/*body > main > .home-section1 > .title-box2 > .second-festival{*/
 
-body >#smoothScroll > .festival-imageContainer > div > a >.image:hover {
-    transform:scale(1.1);
-    transition: transform .5s;
-}
+/*    background-image: url("/bbs/resources/images/Daegu-BeerFestival.jpg");*/
+/*}*/
+
+/*body > main > .home-section1 > .title-box2 > .third-festival{*/
+
+/*    background-image: url("/bbs/resources/images/Songdo-BeerFestival.jpg");*/
+/*}*/
