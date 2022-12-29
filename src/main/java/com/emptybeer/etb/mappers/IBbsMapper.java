@@ -46,4 +46,11 @@ public interface IBbsMapper {
 
     // 리뷰 삭제
     int deleteReviewByIndex(@Param(value = "index") int index);
+
+
+    // festival관련
+    FestivalArticleEntity[] selectFestivalArticle();
+
+    ImageEntity selectImage();
+
 }

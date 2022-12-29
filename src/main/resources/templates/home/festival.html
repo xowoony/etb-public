@@ -11,34 +11,32 @@
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/festival.css}">
     <script defer th:src="@{/home/resources/scripts/festival.js}"></script>
 </head>
-<body>
+<body id="smoothScroll">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main id="smoothScroll">
-<!--    margin top 10rem 지정-->
-    <div class="title">
-        <i>FESTIVAL</i>
-    </div>
-    <div class="festival-imageContainer">
-        <div>
-            <a th:href="@{bbs/festivalRead}"><img class="image" src="/bbs/resources/images/dog.jpg"></a>
+<main>
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">FESTIVAL</div>
+            <div class="title-content">다양한 맥주페스티벌에 대한 정보와
+                리뷰를 한 눈에 볼 수 있는 공간을 소개합니다.
+            </div>
         </div>
-        <div>
-            <a th:href="@{bbs/festivalRead}"><img class="image" src="/bbs/resources/images/cat.jpg"></a>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <div class="festival-container" th:each="festivalArticle : ${festivalArticles}">
+                <img class="festival-image" th:src="@{image}" alt="">
+                <div class="festival-title" th:text="${festivalArticle.getTitle()}"></div>
+            </div>
+
         </div>
-        <div>
-            <a th:href="@{bbs/festivalRead}">
-                <img class="image" src="/bbs/resources/images/chicken.jpg">
-            </a>
-        </div>
-        <div>
-            <a th:href="@{bbs/festivalRead}"><img class="image" src="/bbs/resources/images/cow.jpg"></a>
-        </div>
-    </div>
+    </section>
 </main>
 <!--  footer  -->
 <th:block th:replace="~{fragments/body :: footer}"></th:block>

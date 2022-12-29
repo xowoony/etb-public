@@ -34,17 +34,11 @@
                     <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
                 </span>
                 <ul class="depth_1 my">
-                    <!-- 마이페이지 -->
                     <li class="user-board">
                         <a href="#">마이페이지</a>
                     </li>
-                    <!-- 로그아웃  -->
                     <li class="user-board">
                         <a th:href="@{/member/logout}">로그아웃</a>
-                    </li>
-                    <!--  회원탈퇴  -->
-                    <li class="user-board">
-                        <a th:href="@{/member/delete}">탈퇴하기</a>
                     </li>
                 </ul>
             </li>
