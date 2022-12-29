@@ -1,8 +1,6 @@
 package com.emptybeer.etb.services;
 
-import com.emptybeer.etb.entities.bbs.BoardEntity;
-import com.emptybeer.etb.entities.bbs.ReviewArticleEntity;
-import com.emptybeer.etb.entities.bbs.ReviewArticleLikeEntity;
+import com.emptybeer.etb.entities.bbs.*;
 import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
@@ -209,4 +207,14 @@ public class BbsService {
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
     }
+
+
+    // festival 관련
+
+    public FestivalArticleEntity[] getFestivalArticle(){
+
+        return this.bbsMapper.selectFestivalArticle();
+    }
+
+    public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
 }
