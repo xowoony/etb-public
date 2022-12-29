@@ -278,14 +278,20 @@ public class BbsController {
 
 
     // 리뷰 신고하기 기능
-    @PatchMapping(value = "reviewDeclaration",
+    @PostMapping(value = "reviewDeclaration",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String patchReviewDeclaration(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                         ReviewArticleVo reviewArticle) {
-        Enum<?> result = this.bbsService.reviewDecla(reviewArticle, user);
+    public String postReviewDeclaration(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            ReviewArticleDeclarationEntity reviewArticleDeclaration,
+            @RequestParam(value = "aid", required = false) int aid) {
         JSONObject responseObject = new JSONObject();
+        reviewArticleDeclaration.setArticleIndex(aid);
+        Enum<?> result = this.bbsService.reviewDecla(reviewArticleDeclaration, user);
+        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleDeclaration.getArticleIndex());
+
         responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isDeclared", reviewArticle.isDeclared());
         return responseObject.toString();
     }
 }

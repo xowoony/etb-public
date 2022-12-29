@@ -51,8 +51,8 @@ public interface IBbsMapper {
     // 리뷰 수정
     int updateReview(ReviewArticleVo reviewArticle);
 
-    // 신고하기
-    int updateReviewDecla(ReviewArticleVo reviewArticle);
+    // 리뷰 신고하기
+    int insertReviewDecla(ReviewArticleDeclarationEntity reviewArticleDeclaration);
 
     // 리뷰 읽기
     ReviewArticleVo selectIndex(@Param(value = "index") int index);

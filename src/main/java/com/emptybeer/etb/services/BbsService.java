@@ -193,17 +193,12 @@ public class BbsService {
     }
 
     // 리뷰 신고
-    public Enum<? extends IResult> reviewDecla(ReviewArticleVo reviewArticle, UserEntity user) {
+    public Enum<? extends IResult> reviewDecla(ReviewArticleDeclarationEntity reviewArticleDeclaration, UserEntity user) {
         if (user == null) {
-            return ArticleModifyResult.NOT_SIGNED;
+            return CommonResult.FAILURE;
         }
-        ReviewArticleVo existingArticle = this.bbsMapper.selectLikeIndex(user.getEmail(), reviewArticle.getIndex());
-        if (existingArticle == null) {
-            return ArticleModifyResult.NO_SUCH_ARTICLE;
-        }
-
-        existingArticle.setDeclaration(reviewArticle.getDeclaration());
-        return this.bbsMapper.updateReviewDecla(existingArticle) > 0
+        reviewArticleDeclaration.setUserEmail(user.getEmail());
+        return this.bbsMapper.insertReviewDecla(reviewArticleDeclaration) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
     }

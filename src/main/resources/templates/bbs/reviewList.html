@@ -236,10 +236,10 @@
                            th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}"
                     th:data-aid="${reviewArticle.getIndex()}">
                 </span>
-                <input type="button" class="declaration" id="declaButton" value="신고하기"
+                <input type="button" class="declaration" rel="declaButton"
                        th:if="${session.user == null || !session.user.getEmail().equals(reviewArticle.getUserEmail())}"
-                       th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}">
-                <input type="hidden" name="declaration" th:value="${reviewArticle.getDeclaration()}">
+                       th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}" th:value="${reviewArticle.isDeclared() == true ? '신고완료' : '신고하기'}">
+                <input type="hidden" name="declaration" th:value="${reviewArticle.getDeclaCount()}">
             </div>
         </form>
         <div class="page-container"
