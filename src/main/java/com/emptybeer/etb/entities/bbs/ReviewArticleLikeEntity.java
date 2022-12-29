@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ReviewArticleLikeEntity {
     private String userEmail;
     private int articleIndex;
-    private Date createOn;
+    private Date createdOn;
 
     @Override
     public boolean equals(Object o) {
@@ -37,11 +37,11 @@ public class ReviewArticleLikeEntity {
         this.articleIndex = articleIndex;
     }
 
-    public Date getCreateOn() {
-        return createOn;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public void setCreateOn(Date createOn) {
-        this.createOn = createOn;
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 }

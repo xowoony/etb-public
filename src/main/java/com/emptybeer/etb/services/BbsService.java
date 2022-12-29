@@ -1,9 +1,8 @@
 package com.emptybeer.etb.services;
 
 import com.emptybeer.etb.entities.bbs.BoardEntity;
-import com.emptybeer.etb.entities.bbs.FestivalArticleEntity;
-import com.emptybeer.etb.entities.bbs.ImageEntity;
 import com.emptybeer.etb.entities.bbs.ReviewArticleEntity;
+import com.emptybeer.etb.entities.bbs.ReviewArticleLikeEntity;
 import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
@@ -15,6 +14,7 @@ import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
+import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,9 +84,9 @@ public class BbsService {
         return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
     }
 
-    public ReviewArticleVo[] getReviewArticles(BeerEntity beer, PagingModel paging, String criterion, String keyword) {
-        return this.bbsMapper.selectReviewArticleByBeerIndex(
-                beer.getIndex(), criterion, keyword,
+    public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank) {
+        return this.bbsMapper.selectReviewArticleByBeerIndex(signedUser == null ? null : signedUser.getEmail(),
+                beer.getIndex(), criterion, keyword, starRank,
                 paging.countPerPage,
                 (paging.requestPage - 1) * paging.countPerPage);
     }
@@ -95,6 +95,10 @@ public class BbsService {
     public ReviewArticleVo reviewReadArticle(UserEntity signedUser, int index) {
         ReviewArticleVo reviewArticle = this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
         reviewArticle.setIndex(this.bbsMapper.updateReview(reviewArticle));
+        return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
+    }
+
+    public ReviewArticleVo getReviewLike(UserEntity signedUser, int index) {
         return this.bbsMapper.selectLikeIndex(signedUser == null ? null : signedUser.getEmail(), index);
     }
 
@@ -168,13 +172,41 @@ public class BbsService {
                 : CommonResult.FAILURE;
     }
 
-    // festival 관련
-
-    public FestivalArticleEntity[] getFestivalArticle(){
-        return this.bbsMapper.selectFestivalArticle();
+    // 리뷰 좋아요(추천)
+    public Enum<? extends IResult> reviewLike(ReviewArticleLikeEntity reviewArticleLike, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        reviewArticleLike.setUserEmail(user.getEmail());
+        return this.bbsMapper.insertReviewLike(reviewArticleLike) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
     }
 
-    public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
+    // 리뷰 좋아요 취소
+    public Enum<? extends IResult> reviewUnlike(ReviewArticleLikeEntity reviewArticleLike, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        reviewArticleLike.setUserEmail(user.getEmail());
+        return this.bbsMapper.deleteReviewLike(reviewArticleLike) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
 
+    // 리뷰 신고
+    public Enum<? extends IResult> reviewDecla(ReviewArticleVo reviewArticle, UserEntity user) {
+        if (user == null) {
+            return ArticleModifyResult.NOT_SIGNED;
+        }
+        ReviewArticleVo existingArticle = this.bbsMapper.selectLikeIndex(user.getEmail(), reviewArticle.getIndex());
+        if (existingArticle == null) {
+            return ArticleModifyResult.NO_SUCH_ARTICLE;
+        }
 
+        existingArticle.setDeclaration(reviewArticle.getDeclaration());
+        return this.bbsMapper.updateReviewDecla(existingArticle) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
 }

@@ -626,18 +626,33 @@ body {
     margin-bottom: 0.1rem;
 }
 
-.review-list > .review-container > .foot > .review-like {
+.review-list > .review-container > .foot > .review-like-button > .review-like {
     width: 80px;
     height: 26px;
     margin-left: 10px;
     padding: 0;
     border: 1px solid #346aff;
     color: #346aff;
+    cursor: pointer;
     background-color: #fff;
     letter-spacing: -1px;
     outline: 0;
 }
 
+.review-list > .review-container > .foot > .review-like-button > .review-toggle:hover {
+    color: rgb(128, 139, 150);
+}
+
+.review-list > .review-container > .foot > .review-like-button > .review-toggle.prohibited{
+    cursor : not-allowed;
+}
+
+.review-list > .review-container > .foot > .review-like-button.liked > .review-toggle {
+    color: white;
+    background-color: #346aff;
+}
+
+/*신고하기 버튼*/
 .review-list > .review-container > .foot > .declaration {
     border: none;
     color: #346aff;
@@ -647,7 +662,28 @@ body {
     margin-left: auto;
 }
 
+.review-list > .review-container > .foot > .declaration.prohibited {
+    cursor: not-allowed;
+}
+
 .review-list > .page-container {
-    align-self: center;
     margin-top: 2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.review-list > .page-container > .page {
+    /*border-left: 0.0625rem solid rgb(76, 91, 105);*/
+    color: inherit;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+}
+
+.review-list > .page-container > .page.selected,
+.review-list > .page-container > .page:hover {
+    background-color: #555;
+    border-radius: 5rem;
+    color: white;
 }

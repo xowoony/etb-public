@@ -32,11 +32,14 @@ public interface IBbsMapper {
     // 맥주 점수 평균
     double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
 
-    ReviewArticleVo[] selectReviewArticleByBeerIndex(@Param(value = "beerIndex") int beerIndex,
-                                                     @Param(value = "criterion") String criterion,
-                                                     @Param(value = "keyword") String keyword,
-                                                     @Param(value = "limit") int limit,
-                                                     @Param(value = "offset") int offset);
+    ReviewArticleVo[] selectReviewArticleByBeerIndex(
+            @Param(value = "userEmail") String userEmail,
+            @Param(value = "beerIndex") int beerIndex,
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword,
+            @Param(value = "starRank") String starRank,
+            @Param(value = "limit") int limit,
+            @Param(value = "offset") int offset);
 
     int insertBeerLike(BeerLikeEntity beerLike);
 
@@ -48,16 +51,18 @@ public interface IBbsMapper {
     // 리뷰 수정
     int updateReview(ReviewArticleVo reviewArticle);
 
+    // 신고하기
+    int updateReviewDecla(ReviewArticleVo reviewArticle);
+
     // 리뷰 읽기
     ReviewArticleVo selectIndex(@Param(value = "index") int index);
 
     // 리뷰 삭제
     int deleteReviewByIndex(@Param(value = "index") int index);
 
+    // 리뷰 좋아요
+    int insertReviewLike(ReviewArticleLikeEntity reviewArticleLike);
 
-    // festival관련
-    FestivalArticleEntity[] selectFestivalArticle();
-
-    ImageEntity selectImageByIndex(@Param(value="index") int index);
-
+    // 리뷰 좋아요 취소
+    int deleteReviewLike(ReviewArticleLikeEntity reviewArticleLike);
 }

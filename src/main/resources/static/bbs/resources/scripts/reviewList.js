@@ -115,3 +115,96 @@ if (deleteButton !== null) {
         xhr.send(formData);
     });
 }
+
+
+// 리뷰 좋아요
+const reviewLikeButton = window.document.getElementById('reviewLikeButton');
+const reviewToggleElement = document.querySelector('[rel = "reviewToggle"]');
+
+if (!reviewToggleElement.classList.contains('prohibited')) {
+    reviewToggleElement.addEventListener('click', e => {
+        e.preventDefault();
+
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        const method = reviewLikeButton.classList.contains('liked') ? 'DELETE' : 'POST';
+        formData.append('aid', reviewListForm['aid'].value);
+        xhr.open(method, './reviewLike');
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    const responseObject = JSON.parse(xhr.responseText);
+                    switch (responseObject['result']) {
+                        case 'success' :
+                            // 값을 받아와서 innerText
+                            // alert('추천이 반영되었습니다.');
+                            // window.location.reload();
+                            if(responseObject.isLiked == true) {
+                                document.getElementById('reviewLikeButton').classList.add('liked');
+                                document.querySelector('.review-like-count').innerHTML = responseObject.likeCount;
+                            } else {
+                                document.getElementById('reviewLikeButton').classList.remove('liked');
+                                document.querySelector('.review-like-count').innerHTML = responseObject.likeCount;
+                            }
+                            break;
+                        default:
+                            alert('알 수 없는 이유로 추천결과가 반영되지 못했습니다.\n\n잠시 후 다시 시도해 주세요.');
+                    }
+                } else {
+                    alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+}
+
+
+// 리뷰 신고하기
+const declaButton = document.getElementById('declaButton');
+
+if (!declaButton.classList.contains('prohibited')) {
+    declaButton.addEventListener('click', () => {
+        if (!confirm('정말로 게시글을 신고하시겠습니까?')) {
+            return;
+        }
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        formData.append('index', reviewListForm['aid'].value);
+        formData.append('declaration', reviewListForm['declaration'].value);
+
+        xhr.open('PATCH', './reviewDeclaration');
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >=200 && xhr.status < 300) {
+                    const responseObject = JSON.parse(xhr.responseText);
+                    switch (responseObject['result']) {
+                        case 'no_such_article':
+                            alert('게시글을 수정할 수 없습니다. 게시글이 존재하지 않습니다.');
+                            break;
+                        case 'not_signed':
+                            alert('로그인해 주세요.');
+                            break;
+                        case 'success':
+                            alert('게시글을 신고하였습니다.')
+                            break;
+                        default:
+                            alert('알 수 없는 이유로 게시글을 신고하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+                    }
+                } else {
+                    alert('서버와 통신하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+}
+
+
+// 게시글 정렬
+// const sortGood = document.getElementById('sortGood');
+// const sortNew = document.getElementById('sortNew');
+// sortGood.addEventListener('click', e => {
+//     e.preventDefault();
+//
+// })

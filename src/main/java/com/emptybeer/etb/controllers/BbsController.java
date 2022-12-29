@@ -35,7 +35,7 @@ public class BbsController {
 
     //전체 리뷰리스트
     @GetMapping(value = "review",
-    produces = MediaType.TEXT_HTML_VALUE)
+            produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReview(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                                   @RequestParam(value = "criterion", required = false) String criterion,
                                   @RequestParam(value = "keyword", required = false) String keyword) {
@@ -118,7 +118,7 @@ public class BbsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                  BeerLikeEntity beerLike) {
+                               BeerLikeEntity beerLike) {
         JSONObject responseObject = new JSONObject();
         Enum<?> result = this.bbsService.beerLike(beerLike, user);
         BeerVo beer = this.bbsService.getBeerLike(beerLike.getBeerIndex(), user);
@@ -134,7 +134,7 @@ public class BbsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteBeerLike(@SessionAttribute(value = "user", required = false) UserEntity user,
-                               BeerLikeEntity beerLike) {
+                                 BeerLikeEntity beerLike) {
         JSONObject responseObject = new JSONObject();
         Enum<?> result = this.bbsService.beerUnlike(beerLike, user);
         BeerVo beer = this.bbsService.getBeerLike(beerLike.getBeerIndex(), user);
@@ -150,10 +150,11 @@ public class BbsController {
     @GetMapping(value = "reviewList",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReviewList(@SessionAttribute(value = "user", required = false) UserEntity user,
-            @RequestParam(value = "beerIndex") int beerIndex,
-            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-            @RequestParam(value = "criterion", required = false) String criterion,
-            @RequestParam(value = "keyword", required = false) String keyword) {
+                                      @RequestParam(value = "beerIndex") int beerIndex,
+                                      @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                      @RequestParam(value = "criterion", required = false) String criterion,
+                                      @RequestParam(value = "keyword", required = false) String keyword,
+                                      @RequestParam(value = "starRank", required = false) String starRank) {
         page = Math.max(1, page);
         // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
         ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
@@ -161,20 +162,16 @@ public class BbsController {
         BeerVo beer = this.bbsService.getBeerLike(beerIndex, user);
         modelAndView.addObject("beer", beer);
 
-        int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
+        int totalCount = this.bbsService.getReviewArticleCount(beer, criterion, keyword);
         modelAndView.addObject("totalCount", totalCount);
         double avgReview = this.bbsService.getReviewAvg(beer);
         modelAndView.addObject("avgReview", avgReview);
 
         // int totalCount = this.bbsService.getArticleCount(board);
         PagingModel paging = new PagingModel(totalCount, page);
-        // System.out.printf("이동 가능한 최소 페이지 : %d\n", paging.minPage);
-        // System.out.printf("이동 가능한 최대 페이지 : %d\n", paging.maxPage);
-        // System.out.printf("표시 시작 페이지 : %d\n", paging.startPage);
-        // System.out.printf("표시 끝 페이지 : %d\n", paging.endPage);
         modelAndView.addObject("paging", paging);
 
-        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beer, paging, criterion, keyword);
+        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(user, beer, paging, criterion, keyword, starRank);
         modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }
@@ -185,7 +182,7 @@ public class BbsController {
             produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
     public ModelAndView getReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                @RequestParam(value = "aid") int aid) {
+                                      @RequestParam(value = "aid") int aid) {
         ModelAndView modelAndView = new ModelAndView("bbs/reviewRead");
         ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, aid);
 
@@ -233,7 +230,7 @@ public class BbsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
-                             @RequestParam(value = "aid") int aid) {
+                                   @RequestParam(value = "aid") int aid) {
         ReviewArticleVo reviewArticle = new ReviewArticleVo();
         reviewArticle.setIndex(aid);
         Enum<?> result = this.bbsService.deleteReview(reviewArticle, user);
@@ -242,4 +239,53 @@ public class BbsController {
         return responseObject.toString();
     }
 
+    // 리뷰 좋아요(추천)
+    @PostMapping(value = "reviewLike",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postReviewLike(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            ReviewArticleLikeEntity reviewArticleLike,
+            @RequestParam(value = "aid", required = false) int aid) {
+        JSONObject responseObject = new JSONObject();
+        reviewArticleLike.setArticleIndex(aid);
+        Enum<?> result = this.bbsService.reviewLike(reviewArticleLike, user);
+        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleLike.getArticleIndex());
+
+        responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isLiked", reviewArticle.isLiked());
+        responseObject.put("likeCount", reviewArticle.getLikeCount());
+        return responseObject.toString();
+    }
+
+    // 리뷰 좋아요 취소
+    @DeleteMapping(value = "reviewLike",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteReviewLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                   ReviewArticleLikeEntity reviewArticleLike,
+                                   @RequestParam(value = "aid", required = false) int aid) {
+        JSONObject responseObject = new JSONObject();
+        reviewArticleLike.setArticleIndex(aid);
+        Enum<?> result = this.bbsService.reviewUnlike(reviewArticleLike, user);
+        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleLike.getArticleIndex());
+
+        responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isLiked", reviewArticle.isLiked());
+        responseObject.put("likeCount", reviewArticle.getLikeCount());
+        return responseObject.toString();
+    }
+
+
+    // 리뷰 신고하기 기능
+    @PatchMapping(value = "reviewDeclaration",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchReviewDeclaration(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                         ReviewArticleVo reviewArticle) {
+        Enum<?> result = this.bbsService.reviewDecla(reviewArticle, user);
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
 }
