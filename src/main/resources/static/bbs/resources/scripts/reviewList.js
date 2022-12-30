@@ -155,9 +155,11 @@ for (let reviewListForm of reviewListForms) {
                                 if(responseObject['isLiked'] === true) {
                                     reviewToggleElement.parentElement.classList.add('liked');
                                     reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
+                                    reviewToggleElement.value = "추천취소"
                                 } else {
                                     reviewToggleElement.parentElement.classList.remove('liked');
                                     reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
+                                    reviewToggleElement.value = "추천하기"
                                 }
                                 break;
                             default:

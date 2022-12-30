@@ -100,7 +100,8 @@
     </select>
     <select id="selectReviewArticleByBeerIndex"
             resultType="com.emptybeer.etb.vos.ReviewArticleVo">
-        SELECT `reviewArticle`.`index` AS `index`,
+        <!-- 리뷰리스트 조회 -->
+        SELECT * FROM (SELECT `reviewArticle`.`index` AS `index`,
         `reviewArticle`.`user_email` AS `userEmail`,
         `reviewArticle`.`board_id` AS `boardId`,
         `reviewArticle`.`beer_index` AS `beerIndex`,
@@ -153,7 +154,8 @@
             AND `reviewArticle`.score = 1
         </if>
         GROUP BY `reviewArticle`.`index`
-        ORDER BY `reviewArticle`.`index` DESC
+        ORDER BY `reviewArticle`.`index` DESC) AS reviewList
+                 WHERE reviewList.declaCount <![CDATA[ < ]]> 6
         LIMIT #{limit} OFFSET #{offset}
     </select>
     <insert id="insertBeerLike"
@@ -231,7 +233,7 @@
         WHERE `index` = #{index}
         LIMIT 1
     </update>
-    <!--   리뷰 신고 수정중-->
+    <!--   리뷰 신고 수정기-->
     <insert id="insertReviewDecla"
             parameterType="com.emptybeer.etb.entities.bbs.ReviewArticleDeclarationEntity">
         INSERT INTO `etb_bbs`.`review_article_declaration` (`user_email`, `article_index`, `created_on`)
