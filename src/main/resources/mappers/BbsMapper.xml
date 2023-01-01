@@ -77,11 +77,13 @@
     </select>
     <select id="selectReviewArticleCountByBeerIndex"
             resultType="int">
-        SELECT COUNT(0)
+        SELECT COUNT (*) FROM(SELECT COUNT(reviewArticle.`index`)
         FROM etb_bbs.review_articles AS `reviewArticle`
         <if test="criterion != null and criterion.equals('nickname')">
             LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
         </if>
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaCount` ON `reviewArticle`.`index` =
+        `reviewDeclaCount`.article_index
         WHERE beer_index = #{beerIndex}
         <if test="criterion != null and criterion.equals('content')">
             AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
@@ -90,6 +92,7 @@
         <if test="criterion != null and criterion.equals('nickname')">
             AND BINARY `user`.nickname = #{keyword}
         </if>
+        GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
     </select>
     <select id="selectReviewAvgByBeerIndex"
             resultType="double">
@@ -155,7 +158,7 @@
         </if>
         GROUP BY `reviewArticle`.`index`
         ORDER BY `reviewArticle`.`index` DESC) AS reviewList
-                 WHERE reviewList.declaCount <![CDATA[ < ]]> 6
+                 WHERE reviewList.declaCount <![CDATA[ < ]]> 5
         LIMIT #{limit} OFFSET #{offset}
     </select>
     <insert id="insertBeerLike"

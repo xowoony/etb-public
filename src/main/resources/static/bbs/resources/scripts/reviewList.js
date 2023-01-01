@@ -6,7 +6,7 @@
 const declarations = document.querySelectorAll('.declaration');
 for(let declation of declarations) {
     if (declation.value === '신고완료') {
-        declation.style.color = "red";
+        declation.style.color = "grey";
     }
 }
 
@@ -197,7 +197,7 @@ for (let reviewListForm of reviewListForms) {
                                     // 값을 받아와서 innerText
                                     if(responseObject['isDeclared'] === true) {
                                         declaButton.value = '신고완료'
-                                        declaButton.style.color = "red"
+                                        declaButton.style.color = "grey"
                                     }
                                     alert('신고가 완료되었습니다.');
                                     break;
