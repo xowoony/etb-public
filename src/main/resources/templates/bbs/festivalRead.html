@@ -10,7 +10,8 @@
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalRead.css}">
     <script defer th:src="@{/bbs/resources/scripts/festivalRead.js}"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8a4e7818536b52ee031c365250072a9"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8a4e7818536b52ee031c365250072a9"></script>
 </head>
 <body>
 <!--  header  -->
@@ -25,34 +26,44 @@
     <!--  페스티벌 관련 이미지 컨테이너  -->
     <div class="festival-imageContainer">
         <div class="main-imageContainer">
-            <img src="/bbs/resources/images/dog.jpg">
+            <img th:src="@{/image (index=${festivalArticles.getIndex()})}">
         </div>
-        <div class="side-imageContainer">
-            <img src="/bbs/resources/images/cat.jpg">
-            <img src="/bbs/resources/images/chicken.jpg">
-            <img src="/bbs/resources/images/cow.jpg">
-        </div>
+        <!--        <div class="side-imageContainer">-->
+        <!--            <img src="/bbs/resources/images/cat.jpg">-->
+        <!--            <img src="/bbs/resources/images/chicken.jpg">-->
+        <!--            <img src="/bbs/resources/images/cow.jpg">-->
+        <!--        </div>-->
     </div>
 
     <!--  페스티벌 관련 내용 컨테이너  -->
     <div class="festival-infoContainer">
-        <div class="title">대구 치맥 페스티벌</div>
+        <div class="title" th:text="${festivalArticles.getTitle()}"></div>
         <table id="content">
             <thead>
             <tr>
                 <td>Period</td>
-                <td>2022.12.01 ~ 2022.12.10</td>
+                <td th:text="${#dates.format(festivalArticles.getDateFrom(), 'yyyy-MM-dd')}"></td>
+                <td>~</td>
+                <td th:text="${#dates.format(festivalArticles.getDateTo(), 'yyyy-MM-dd')}"></td>
+            </tr>
+
+            <tr>
+                <td>Time</td>
+                <td th:text="${#dates.format(festivalArticles.getTimeFrom(), 'HH:mm')}"></td>
+                <td>~</td>
+                <td th:text="${#dates.format(festivalArticles.getTimeTo(), 'HH:mm')}"></td>
+            </tr>
+
+            <tr>
+                <td>Introduction</td>
+                <td th:text="${festivalArticles.getDescription()}" colspan="5"></td>
             </tr>
 
             <tr>
                 <td>Location</td>
-                <td>대구 달서구 공원순환로 36 두류공원</td>
+                <td th:text="${festivalArticles.getAddress()}" colspan="5"></td>
             </tr>
 
-            <tr>
-                <td>Contact</td>
-                <td>000-1111-2222</td>
-            </tr>
             <tr>
                 <td>Map</td>
             </tr>
@@ -63,10 +74,24 @@
             <div id="map"></div>
         </div>
 
-
     </div>
 
 
+    <!-- 페스티벌 댓글 컨테이너  -->
+    <div class="review-container">
+        <span>댓글</span>
+        <form id="festivalReviewForm" th:if="${session.user != null}">
+            <input class="festivalRead-input" maxlength="200" name="content" type="text" placeholder="댓글을 입력하세요(최대200자)">
+            <br>
+            <!--      버튼이 아닌 hidden으로 된 input은 인덱스 값을 가져오기 위한 input으로 이를 js로 보내 data를 처리해야한다.     -->
+            <input name="aid" type="hidden" th:value="${festivalArticles.getIndex()}">
+            <input class="festivalRead-button" type="submit" value="입력">
+        </form>
+
+        <div>
+
+        </div>
+    </div>
 
 </main>
 <!--  footer  -->

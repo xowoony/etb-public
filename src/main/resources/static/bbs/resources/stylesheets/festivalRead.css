@@ -13,8 +13,8 @@ body > main {
 body > main > .festival-imageContainer {
     display: flex;
     width: 75%;
-    height: 55%;
-    margin-left: 11rem;
+    height: 75%;
+    margin-left: 23rem;
 }
 
 
@@ -23,7 +23,7 @@ body > main > .festival-imageContainer > .main-imageContainer {
     display: block;
     flex-direction: column;
     justify-content: flex-start;
-    width: 60%;
+    width: 65%;
 }
 
 
@@ -88,8 +88,13 @@ body > main > .festival-infoContainer > #content > thead > tr > td:first-child{
 }
 
 
-body > main > .festival-infoContainer > #content > thead > tr > td+td{
-    padding-left: 15rem;
+body > main > .festival-infoContainer > #content > thead > tr > td:nth-child(2){
+    padding-left: 4rem;
+    text-align: center;
+}
+
+body > main > .festival-infoContainer > #content > thead > tr > td:nth-child(4){
+    text-align: center;
 }
 
 
@@ -98,7 +103,7 @@ body > main > .festival-infoContainer > .map-container {
     width: 75%;
     height: 60%;
     margin-left: 11rem;
-    margin-bottom: 15rem;
+    margin-bottom: 10rem;
 }
 
 body > main > .festival-infoContainer > .map-container > #map{
@@ -107,3 +112,42 @@ body > main > .festival-infoContainer > .map-container > #map{
     height: 500px;
     z-index: 0;
 }
+
+
+
+body > main > .review-container{
+    color: black;
+    font-size: 2rem;
+    width: 75%;
+    margin-left: 11rem;
+    margin-bottom: 10rem;
+}
+
+
+
+
+
+/*댓글*/
+
+#festivalReviewForm > .festivalRead-input{
+    width: 800px;
+    height: 50px;
+}
+
+#festivalReviewForm > .festivalRead-button{
+    border-radius: 20%;
+    border-color: burlywood;
+    background-color: burlywood;
+    width: 3rem;
+    height: 2rem;
+}
+
+#festivalReviewForm > .festivalRead-button:hover{
+    border-radius: 20%;
+    border-color: greenyellow;
+    background-color: greenyellow;
+    width: 3rem;
+    height: 2rem;
+    cursor: pointer;
+}
+

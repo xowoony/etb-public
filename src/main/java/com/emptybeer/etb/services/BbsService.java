@@ -217,4 +217,18 @@ public class BbsService {
     }
 
     public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
+
+    public FestivalArticleEntity getFestivalArticleByIndex(int index){
+        return this.bbsMapper.selectFestivalArticleByIndex(index);
+    }
+
+    public Enum<? extends  IResult> writeFestivalComment(FestivalCommentEntity festivalComment){
+        FestivalArticleEntity article = this.bbsMapper.selectFestivalArticleByIndex(festivalComment.getArticleIndex());
+
+        if(article==null){
+            return CommonResult.FAILURE;
+        }
+
+        return this.bbsMapper.insertFestivalComment(festivalComment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
 }
