@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emptybeer.etb.mappers.IDataMapper">
+<!--    <select id="selectBeerByBeerIndex"-->
+<!--            resultType="com.emptybeer.etb.vos.BeerVo">-->
+<!--        SELECT `beer`.`index`          AS `index`,-->
+<!--               `beer`.`name`           AS `name`,-->
+<!--               `beer`.image            AS `image`,-->
+<!--               `beer`.image_type       AS `imageType`,-->
+<!--               `beer`.`category_index` AS `categoryIndex`,-->
+<!--               `beerCategory`.`text`   AS `categoryText`,-->
+<!--               `beer`.created_on       AS `createdOn`,-->
+<!--               `beer`.modified_on      AS `modifiedOn`-->
+<!--        FROM `etb_data`.`beers` AS `beer`-->
+<!--                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`-->
+<!--                           ON `beer`.`category_index` = `beerCategory`.`index`-->
+<!--        WHERE `beer`.`index` = #{beerIndex}-->
+<!--    </select>-->
+
+<!--    <select id="selectBeerImageByIndex"-->
+<!--            resultType="com.emptybeer.etb.entities.data.BeerEntity">-->
+<!--        SELECT `beer`.`index`     AS `index`,-->
+<!--               `beer`.`name` AS `name`,-->
+<!--               `beer`.`image_type` AS `imageType`,-->
+<!--               `beer`.`image`      AS `image`-->
+<!--        FROM `etb_data`.`beers` AS `beer`-->
+<!--        WHERE `beer`.`index` = #{index}-->
+<!--        LIMIT 1-->
+
+<!--    </select>-->
+
+
+</mapper>

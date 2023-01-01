@@ -14,6 +14,7 @@
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
     <!--  index.js 연결  -->
     <script defer th:src="@{/home/resources/scripts/index.js}"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 <!--  header  -->
@@ -37,11 +38,51 @@
     <!--  homeSection2  -->
     <section class="home-section2" id="homeSection2">
         <div class="title-box2" id="titleBox2">
-            <div class="title">section2</div>
-            <!--지우기-->
+            <table>
+                <tbody>
+                <tr>
+                    <td class="title">Best Beer</td>
+                </tr>
+                <tr>
+                    <td class="title-content">잔이비어 사용자에게 인기있는 맥주들을 소개합니다.</td>
+                </tr>
+                <tr class="image-slide">
+                    <td>
+                        <!-- =이미지 슬라이드-->
+                        <div class="slide_wrap">
+                            <div class="slide_show">
+                                <div class="slide_img">
+                                    <div class="slide"><img src="/resources/images/J에게%20라거.jpg" alt="이미지2"></div>
+                                    <div class="slide"><img src="/resources/images/칭따오.jpg" alt="이미지3"></div>
+                                    <div class="slide"><img src="/resources/images/진라거.jpg" alt="이미지4"></div>
+                                    <div class="slide"><img src="/resources/images/에일의%20정석.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/칼스버그.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/1866%20블론드%20500ml.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/말표%20흑맥주.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/코젤%20라거.jpg"></div>
+                                </div>
+                            </div>
+                            <div class="slide_btn">
+                                <a href="#" class="prev"><i class="fas fa-angle-left"></i></a>
+                                <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- NEXT 버튼-->
 
+                    </td>
+                </tr>
+                <tr class="next">
+                    <td>
+                        <div class="home-button">
+                            <a class="commonButton" href="#homeSection3">NEXT</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         </div>
     </section>
+
     <!--  homeSection3  -->
     <section class="home-section3" id="homeSection3">
         <div class="title-box3" id="titleBox3">

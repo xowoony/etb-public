@@ -1,6 +1,9 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 
+/*best beer 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
 
 /*main*/
 body > main {
@@ -65,14 +68,67 @@ body > main > .home-section1 > .title-box1 > .title2 {
 
 
 /*homeSection2*/
+body > main > .home-section2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 body > main > .home-section2 > .title-box2 {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    padding-top: 10rem;
 }
+
+/*table*/
+body > main > .home-section2 > .title-box2 > table {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*tbody*/
+body > main > .home-section2 > .title-box2 > table > tbody {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*이미지 슬라이드*/
+body > main > .home-section2 > .title-box2 > table > tbody > .image-slide {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*best Beer 글씨체*/
+body > main > .home-section2 > .title-box2 > table > tbody > tr > .title {
+    font-size: 3rem;
+    font-family: 'PT Serif', serif;
+    margin-bottom: 1rem;
+}
+
+body > main > .home-section2 > .title-box2 > table > tbody > tr > .title-content {
+    font-family: 'Gowun Batang', serif;
+}
+
+
+body > main > .home-section2 > .title-box2 > table > tbody > .next {
+    margin-top: 3rem;
+}
+
+/*두번째 next 버튼*/
+body > main > .home-section2 > .title-box2 > table > tbody > .next > td > .home-button > .commonButton {
+    text-decoration: none;
+    padding: 1rem 3rem;
+}
+
 
 /*homeSection3 */
 body > main > .home-section3 > .title-box3 {
@@ -84,4 +140,77 @@ body > main > .home-section3 > .title-box3 {
     padding-top: 10rem;
 }
 
+/*이미지 슬라이드*/
+/*@import url{link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"}*/
 
+/**{margin: 0; padding: 0;}*/
+/*a{text-decoration: none;}*/
+/*li{list-style: none;}*/
+img {
+    width: 100%;
+}
+
+body {
+    background: #333;
+}
+
+h2 {
+    color: #2edf19;
+    font-family: 'Lato';
+    font-weight: 300;
+    padding: 20px;
+}
+
+.slide_wrap {
+    width: 100%;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.slide_show {
+    width: 860px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+}
+
+.slide_show .slide_img {
+    width: 5000px;
+    overflow: hidden;
+}
+
+.slide_show .slide_img > div {
+    float: left;
+    width: 280px;
+    padding: 5px;
+}
+
+.slide_btn a {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2c160a7d;
+    width: 60px;
+    height: 60px;
+    line-height: 58px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2.5rem;
+    transition: all 0.3s;
+    padding: 0.7rem;
+}
+
+
+.slide_btn a.prev {
+    left: 10px
+}
+
+.slide_btn a.next {
+    right: 10px;
+}
