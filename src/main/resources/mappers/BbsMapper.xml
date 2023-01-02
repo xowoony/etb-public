@@ -254,47 +254,83 @@
 
     <!--  festival관련 DAO  -->
 
-    <select id="select">
-
+    <select id="selectFestivalArticleByIndex"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`       AS `index`,
+               `festivalArticle`.`board_id`    AS `boardId`,
+               `festivalArticle`.`user_email`  AS `userEmail`,
+               `festivalArticle`.`title`       AS `title`,
+               `festivalArticle`.`address`     AS `address`,
+               `festivalArticle`.`description` AS `description`,
+               `festivalArticle`.`date_from`   AS `dateFrom`,
+               `festivalArticle`.`date_to`     AS `dateTo`,
+               `festivalArticle`.`time_from`   AS `timeFrom`,
+               `festivalArticle`.`time_to`     AS `timeTo`,
+               `festivalArticle`.`latitude`    AS `latitude`,
+               `festivalArticle`.`longitude`   AS `longitude`,
+               `festivalArticle`.`created_on`  AS `createdOn`,
+               `festivalArticle`.`modified_on` AS `modifiedOn`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        WHERE `festivalArticle`.`index` = #{index}
     </select>
 
 
     <select id="selectFestivalArticle"
-    resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
-        SELECT `festivalArticle`.`index`            AS `index`,
-               `festivalArticle`.`board_id`         AS `boardId`,
-               `festivalArticle`.`user_email`       AS `userEmail`,
-               `festivalArticle`.`title`            AS `title`,
-               `festivalArticle`.`description`      AS `description`,
-               `festivalArticle`.`date_from`        AS `dateFrom`,
-               `festivalArticle`.`date_to`          AS `dateTo`,
-               `festivalArticle`.`time_from`        AS `timeFrom`,
-               `festivalArticle`.`time_to`          AS `timeTo`,
-               `festivalArticle`.`latitude`         AS `latitude`,
-               `festivalArticle`.`longitude`        AS `longitude`,
-               `festivalArticle`.`created_on`       AS `createdOn`,
-               `festivalArticle`.`modified_on`      AS `modifiedOn`
+            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`       AS `index`,
+               `festivalArticle`.`board_id`    AS `boardId`,
+               `festivalArticle`.`user_email`  AS `userEmail`,
+               `festivalArticle`.`title`       AS `title`,
+               `festivalArticle`.`description` AS `description`,
+               `festivalArticle`.`date_from`   AS `dateFrom`,
+               `festivalArticle`.`date_to`     AS `dateTo`,
+               `festivalArticle`.`time_from`   AS `timeFrom`,
+               `festivalArticle`.`time_to`     AS `timeTo`,
+               `festivalArticle`.`latitude`    AS `latitude`,
+               `festivalArticle`.`longitude`   AS `longitude`,
+               `festivalArticle`.`created_on`  AS `createdOn`,
+               `festivalArticle`.`modified_on` AS `modifiedOn`
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
     </select>
 
+
+
+    <select id="selectFestivalCommentByArticleIndex"
+            resultType="com.emptybeer.etb.vos.FestivalCommentVo">
+        SELECT `festivalComment`.`index`      AS `index`,
+               `festivalComment`.`content`    AS `content`,
+               `festivalComment`.`written_on` AS `writtenOn`,
+               `user`.`nickname` AS `nickname`
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `festivalComment`.`user_email`
+        WHERE `festivalComment`.`article_index` = #{index}
+
+    </select>
+
+
     <select id="selectFestivalArticleImage"
-    resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
         SELECT `festivalArticle`.`title_image`      AS `titleImage`,
                `festivalArticle`.`title_image_type` AS `titleImageType`
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
     </select>
 
     <select id="selectImageByIndex"
-    resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
+            resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
         SELECT `image`.`index`     AS `index`,
                `image`.`file_name` AS `fileName`,
                `image`.`file_mime` AS `fileMime`,
                `image`.`data`      AS `data`
         FROM `etb_bbs`.`images` AS `image`
-        WHERE `image`.`index` = #{index}
-        LIMIT 1
+        WHERE `image`.`index` = #{index} LIMIT 1
 
     </select>
+
+    <insert id="insertFestivalComment"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        INSERT INTO `etb_bbs`.`festival_comments` (`user_email`,`article_index`, `content`, `written_on`)
+        VALUES (#{userEmail}, #{articleIndex}, #{content}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)))
+    </insert>
 
 
 

@@ -11,6 +11,7 @@ import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
+import com.emptybeer.etb.vos.FestivalCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
@@ -82,9 +83,9 @@ public class BbsService {
         return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
     }
 
-    public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank) {
+    public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank, String sort) {
         return this.bbsMapper.selectReviewArticleByBeerIndex(signedUser == null ? null : signedUser.getEmail(),
-                beer.getIndex(), criterion, keyword, starRank,
+                beer.getIndex(), criterion, keyword, starRank, sort,
                 paging.countPerPage,
                 (paging.requestPage - 1) * paging.countPerPage);
     }
@@ -193,17 +194,12 @@ public class BbsService {
     }
 
     // 리뷰 신고
-    public Enum<? extends IResult> reviewDecla(ReviewArticleVo reviewArticle, UserEntity user) {
+    public Enum<? extends IResult> reviewDecla(ReviewArticleDeclarationEntity reviewArticleDeclaration, UserEntity user) {
         if (user == null) {
-            return ArticleModifyResult.NOT_SIGNED;
+            return CommonResult.FAILURE;
         }
-        ReviewArticleVo existingArticle = this.bbsMapper.selectLikeIndex(user.getEmail(), reviewArticle.getIndex());
-        if (existingArticle == null) {
-            return ArticleModifyResult.NO_SUCH_ARTICLE;
-        }
-
-        existingArticle.setDeclaration(reviewArticle.getDeclaration());
-        return this.bbsMapper.updateReviewDecla(existingArticle) > 0
+        reviewArticleDeclaration.setUserEmail(user.getEmail());
+        return this.bbsMapper.insertReviewDecla(reviewArticleDeclaration) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
     }
@@ -217,4 +213,22 @@ public class BbsService {
     }
 
     public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
+
+    public FestivalArticleEntity getFestivalArticleByIndex(int index){
+        return this.bbsMapper.selectFestivalArticleByIndex(index);
+    }
+
+    public FestivalCommentVo[] getFestivalCommentByArticleIndex(int index){
+        return this.bbsMapper.selectFestivalCommentByArticleIndex(index);
+    }
+
+    public Enum<? extends  IResult> writeFestivalComment(FestivalCommentEntity festivalComment){
+        FestivalArticleEntity article = this.bbsMapper.selectFestivalArticleByIndex(festivalComment.getArticleIndex());
+
+        if(article==null){
+            return CommonResult.FAILURE;
+        }
+
+        return this.bbsMapper.insertFestivalComment(festivalComment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
 }
