@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>잔이비어 :: Review</title>
+    <script th:if="${beer.getName() == null}">
+        alert('존재하지 않는 맥주 정보 입니다.');
+        window.history.back();
+    </script>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewList.css}">
     <script defer th:src="@{/bbs/resources/scripts/reviewList.js}"></script>
 </head>
-<body>
+<body th:if="${beer.getName() != null}">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
@@ -163,7 +167,7 @@
                 </option>
             </select>
         </div>
-        <div class="review-container blank" th:if="${reviewArticles} == null">
+        <div class="review-container blank" th:if="${avgReview} == 0">
             <div>
                 등록된 리뷰가 없습니다.
             </div>

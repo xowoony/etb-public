@@ -30,7 +30,7 @@ public interface IBbsMapper {
                                             @Param(value = "keyword") String keyword);
 
     // 맥주 점수 평균
-    double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
+    Double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
 
     ReviewArticleVo[] selectReviewArticleByBeerIndex(
             @Param(value = "userEmail") String userEmail,

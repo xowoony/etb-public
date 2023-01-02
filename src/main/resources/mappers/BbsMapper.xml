@@ -95,7 +95,7 @@
         GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
     </select>
     <select id="selectReviewAvgByBeerIndex"
-            resultType="double">
+            resultType="Double">
         SELECT ROUND(AVG(score), 1)
         FROM etb_bbs.review_articles AS `reviewArticle`
         WHERE beer_index = #{beerIndex}

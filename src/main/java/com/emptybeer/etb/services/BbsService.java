@@ -79,7 +79,7 @@ public class BbsService {
     }
 
     public double getReviewAvg(BeerVo beer) {
-        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
+        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex()) == null ? 0 : this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
     }
 
     public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank, String sort) {
