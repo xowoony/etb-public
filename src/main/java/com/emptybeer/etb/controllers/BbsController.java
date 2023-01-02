@@ -59,7 +59,7 @@ public class BbsController {
     @GetMapping(value = "reviewWrite",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                       @RequestParam(value = "beerIndex") int beerIndex) {
+                                       @RequestParam(value = "beerIndex") int beerIndex)  {
         ModelAndView modelAndView;
 
         if (user == null) { // 로그인이 안 되어 있을 때

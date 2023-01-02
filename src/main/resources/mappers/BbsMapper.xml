@@ -118,21 +118,22 @@
         `user`.`nickname` AS `usernickname`,
         (#{userEmail} IS NOT NULL) AS `isSigned`,
         COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
-        COUNT(`reviewLikeCount`.`article_index`) AS `likeCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_likes`
+        WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+        `reviewArticle`.`index`)                                                          AS `likeCount`,
         COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
-        COUNT(`reviewDeclaCount`.`article_index`) AS `declaCount`
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_declaration`
+        WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`
         FROM etb_bbs.review_articles AS `reviewArticle`
         LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
         LEFT JOIN `etb_data`.`beers` AS `beer` ON `beer`.`index` = `reviewArticle`.beer_index
         LEFT JOIN `etb_bbs`.review_article_likes AS `reviewArticleLike`
         ON `reviewArticle`.`index` = reviewArticleLike.article_index
         AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
-        LEFT JOIN `etb_bbs`.review_article_likes AS `reviewLikeCount`
-        ON reviewArticle.`index` = `reviewLikeCount`.article_index
         LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaration` ON `reviewArticle`.`index` =
         `reviewDeclaration`.`article_index` AND `reviewDeclaration`.user_email = IFNULL(#{userEmail}, '')
-        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaCount` ON `reviewArticle`.`index` =
-        `reviewDeclaCount`.article_index
         WHERE `reviewArticle`.`beer_index` = #{beerIndex}
         <if test="criterion != null and criterion.equals('content')">
             AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
@@ -158,7 +159,7 @@
         </if>
         GROUP BY `reviewArticle`.`index`
         ORDER BY `reviewArticle`.`index` DESC) AS reviewList
-                 WHERE reviewList.declaCount <![CDATA[ < ]]> 5
+        WHERE reviewList.declaCount <![CDATA[ < ]]> 5
         LIMIT #{limit} OFFSET #{offset}
     </select>
     <insert id="insertBeerLike"
@@ -202,22 +203,23 @@
                `user`.`nickname`                            AS `userNickname`,
                (#{userEmail} IS NOT NULL)                   AS `isSigned`,
                COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
-               COUNT(`reviewLikeCount`.`article_index`)     AS `likeCount`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`review_article_likes`
+                WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+                      `reviewArticle`.`index`)                                                          AS `likeCount`,
                COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
-               COUNT(`reviewDeclaCount`.`article_index`)    AS `declaCount`
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`review_article_declaration`
+                WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`
         FROM `etb_bbs`.`review_articles` AS `reviewArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
                  LEFT JOIN `etb_data`.`beers` AS `beer` ON `reviewArticle`.`beer_index` = `beer`.`index`
                  LEFT JOIN `etb_bbs`.review_article_likes AS `reviewArticleLike`
                            ON `reviewArticle`.`index` = reviewArticleLike.article_index
                                AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
-                 LEFT JOIN `etb_bbs`.review_article_likes AS `reviewLikeCount`
-                           ON reviewArticle.`index` = `reviewLikeCount`.article_index
                  LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaration`
                            ON `reviewArticle`.`index` = `reviewDeclaration`.`article_index` AND
                               `reviewDeclaration`.user_email = IFNULL(#{userEmail}, '')
-                 LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaCount`
-                           ON `reviewArticle`.`index` = `reviewDeclaCount`.article_index
         WHERE BINARY `reviewArticle`.`index` = #{index}
 
         LIMIT 1
