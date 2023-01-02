@@ -1,11 +1,7 @@
 package com.emptybeer.etb.services;
 
-import com.emptybeer.etb.entities.data.BeerEntity;
-import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.mappers.IDataMapper;
-import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
-import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +16,21 @@ public class DataService {
     }
 
     // 맥주 이미지, 이름 가져오기
-//    public BeerEntity getBeer(int index) {
-//        return this.dataMapper.selectBeerImageByIndex(index);
+//    public BeerVo getBeer(int beerIndex) {
+//        return this.dataMapper.selectBeerByIndex(beerIndex);
 //    }
 
+    public BeerVo[] getBeer() {
+        return this.dataMapper.selectBeer();
+    }
 
+
+    public BeerVo getBeerImage(int beerIndex) {
+        return this.dataMapper.selectBeerByIndex(beerIndex);
+    }
 
 }
+
+
+
+

@@ -8,42 +8,54 @@
                `text` AS `text`
         FROM `etb_bbs`.`boards`
         WHERE BINARY `id` = #{id}
-            LIMIT 1
+        LIMIT 1
     </select>
     <select id="selectBeerByIndex" resultType="com.emptybeer.etb.vos.BeerVo">
-        SELECT `beer`.`index`       AS `index`,
-               `beer`.`name`        AS `name`,
-               `beer`.image         AS `image`,
-               `beer`.image_type    AS `imageType`,
-               `beer`.mfr           AS `mfr`,
-               `beer`.calorie       AS `calorie`,
-               `beer`.volume        AS `volume`,
-               `beer`.degree        AS `degree`,
-               `beer`.`description` AS `description`, LEFT (`description`, 68) AS `descriptionShort`, `beer`.`category_index` AS `categoryIndex`, `beerCategory`.`text` AS `categoryText`, `beer`.created_on AS `createdOn`, `beer`.modified_on AS `modifiedOn`
+        SELECT `beer`.`index`          AS `index`,
+               `beer`.`name`           AS `name`,
+               `beer`.image            AS `image`,
+               `beer`.image_type       AS `imageType`,
+               `beer`.mfr              AS `mfr`,
+               `beer`.calorie          AS `calorie`,
+               `beer`.volume           AS `volume`,
+               `beer`.degree           AS `degree`,
+               `beer`.`description`    AS `description`,
+               LEFT(`description`, 68) AS `descriptionShort`,
+               `beer`.`category_index` AS `categoryIndex`,
+               `beerCategory`.`text`   AS `categoryText`,
+               `beer`.created_on       AS `createdOn`,
+               `beer`.modified_on      AS `modifiedOn`
         FROM etb_data.beers AS `beer`
-            LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
-        ON `beer`.`category_index` = `beerCategory`.`index`
+                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+                           ON `beer`.`category_index` = `beerCategory`.`index`
         WHERE `beer`.`index` = #{beerIndex}
     </select>
     <select id="selectBeerLikeByIndex" resultType="com.emptybeer.etb.vos.BeerVo">
-        SELECT `beer`.`index`       AS `index`,
-               `beer`.`name`        AS `name`,
-               `beer`.image         AS `image`,
-               `beer`.image_type    AS `imageType`,
-               `beer`.mfr           AS `mfr`,
-               `beer`.calorie       AS `calorie`,
-               `beer`.volume        AS `volume`,
-               `beer`.degree        AS `degree`,
-               `beer`.`description` AS `description`, LEFT (`description`, 68) AS `descriptionShort`, `beer`.`category_index` AS `categoryIndex`, `beerCategory`.`text` AS `categoryText`, `beer`.created_on AS `createdOn`, `beer`.modified_on AS `modifiedOn`, (
-               #{userEmail} IS NOT NULL) AS `isSigned`, COUNT (`beerLike`.`beer_index`) > 0 AS `isLiked`, COUNT (`beerLikeCount`.`beer_index`) AS `likeCount`
+        SELECT `beer`.`index`                      AS `index`,
+               `beer`.`name`                       AS `name`,
+               `beer`.image                        AS `image`,
+               `beer`.image_type                   AS `imageType`,
+               `beer`.mfr                          AS `mfr`,
+               `beer`.calorie                      AS `calorie`,
+               `beer`.volume                       AS `volume`,
+               `beer`.degree                       AS `degree`,
+               `beer`.`description`                AS `description`,
+               LEFT(`description`, 68)             AS `descriptionShort`,
+               `beer`.`category_index`             AS `categoryIndex`,
+               `beerCategory`.`text`               AS `categoryText`,
+               `beer`.created_on                   AS `createdOn`,
+               `beer`.modified_on                  AS `modifiedOn`,
+               (#{userEmail} IS NOT NULL)          AS `isSigned`,
+               COUNT(`beerLike`.`beer_index`) > 0  AS `isLiked`,
+               COUNT(`beerLikeCount`.`beer_index`) AS `likeCount`
         FROM etb_data.beers AS `beer`
-            LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
-        ON `beer`.`category_index` = `beerCategory`.`index`
-            LEFT JOIN `etb_data`.`beer_likes` AS `beerLike`
-            ON `beer`.`index` = `beerLike`.`beer_index`
-            AND `beerLike`.user_email = IFNULL(#{userEmail}, '')
-            LEFT JOIN `etb_data`.`beer_likes` AS `beerLikeCount`
-            ON `beer`.`index` = `beerLikeCount`.`beer_index`
+                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+                           ON `beer`.`category_index` = `beerCategory`.`index`
+                 LEFT JOIN `etb_data`.`beer_likes` AS `beerLike`
+                           ON `beer`.`index` = `beerLike`.`beer_index`
+                               AND `beerLike`.user_email = IFNULL(#{userEmail}, '')
+                 LEFT JOIN `etb_data`.`beer_likes` AS `beerLikeCount`
+                           ON `beer`.`index` = `beerLikeCount`.`beer_index`
         WHERE `beer`.`index` = #{beerIndex}
     </select>
     <insert id="insertReviewArticle"
@@ -148,7 +160,8 @@
         DELETE
         FROM etb_data.beer_likes
         WHERE user_email = #{userEmail}
-          AND `beer_index` = #{beerIndex} LIMIT 1
+          AND `beer_index` = #{beerIndex}
+        LIMIT 1
     </delete>
     <insert id="insertReviewLike"
             parameterType="com.emptybeer.etb.entities.bbs.ReviewArticleLikeEntity">
@@ -160,7 +173,8 @@
         DELETE
         FROM etb_bbs.review_article_likes
         WHERE user_email = #{userEmail}
-          AND `article_index` = #{articleIndex} LIMIT 1
+          AND `article_index` = #{articleIndex}
+        LIMIT 1
     </delete>
     <select id="selectLikeIndex" resultType="com.emptybeer.etb.vos.ReviewArticleVo">
         SELECT `reviewArticle`.`index`                      AS `index`,
@@ -188,7 +202,7 @@
                            ON reviewArticle.`index` = `reviewLikeCount`.article_index
         WHERE BINARY `reviewArticle`.`index` = #{index}
 
-            LIMIT 1
+        LIMIT 1
     </select>
     <update id="updateReview" parameterType="com.emptybeer.etb.vos.ReviewArticleVo">
         update `etb_bbs`.`review_articles`
@@ -201,12 +215,14 @@
             `declaration`  = #{declaration},
             `written_on`   = #{writtenOn},
             `modified_on`  = #{modifiedOn}
-        WHERE `index` = #{index} LIMIT 1
+        WHERE `index` = #{index}
+        LIMIT 1
     </update>
     <update id="updateReviewDecla" parameterType="com.emptybeer.etb.vos.ReviewArticleVo">
         update `etb_bbs`.`review_articles`
-        SET `declaration` = #{declaration} + 1
-        WHERE `index` = #{index} LIMIT 1
+        SET `declaration`  = #{declaration} + 1
+        WHERE `index` = #{index}
+        LIMIT 1
     </update>
     <select id="selectIndex" resultType="com.emptybeer.etb.vos.ReviewArticleVo">
         SELECT `reviewArticle`.`index`        AS `index`,
@@ -225,7 +241,7 @@
                  LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
                  LEFT JOIN `etb_data`.beers AS `beer` ON `reviewArticle`.`beer_index` = `beer`.`index`
         WHERE BINARY `reviewArticle`.`index` = #{index}
-            LIMIT 1
+        LIMIT 1
     </select>
     <delete id="deleteReviewByIndex"
             parameterType="com.emptybeer.etb.vos.ReviewArticleVo">
@@ -235,87 +251,50 @@
     </delete>
 
 
+
     <!--  festival관련 DAO  -->
 
-    <select id="selectFestivalArticleByIndex"
-            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
-        SELECT `festivalArticle`.`index`       AS `index`,
-               `festivalArticle`.`board_id`    AS `boardId`,
-               `festivalArticle`.`user_email`  AS `userEmail`,
-               `festivalArticle`.`title`       AS `title`,
-               `festivalArticle`.`address`     AS `address`,
-               `festivalArticle`.`description` AS `description`,
-               `festivalArticle`.`date_from`   AS `dateFrom`,
-               `festivalArticle`.`date_to`     AS `dateTo`,
-               `festivalArticle`.`time_from`   AS `timeFrom`,
-               `festivalArticle`.`time_to`     AS `timeTo`,
-               `festivalArticle`.`latitude`    AS `latitude`,
-               `festivalArticle`.`longitude`   AS `longitude`,
-               `festivalArticle`.`created_on`  AS `createdOn`,
-               `festivalArticle`.`modified_on` AS `modifiedOn`
-        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
-        WHERE `festivalArticle`.`index` = #{index}
+    <select id="select">
+
     </select>
 
 
     <select id="selectFestivalArticle"
-            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
-        SELECT `festivalArticle`.`index`       AS `index`,
-               `festivalArticle`.`board_id`    AS `boardId`,
-               `festivalArticle`.`user_email`  AS `userEmail`,
-               `festivalArticle`.`title`       AS `title`,
-               `festivalArticle`.`description` AS `description`,
-               `festivalArticle`.`date_from`   AS `dateFrom`,
-               `festivalArticle`.`date_to`     AS `dateTo`,
-               `festivalArticle`.`time_from`   AS `timeFrom`,
-               `festivalArticle`.`time_to`     AS `timeTo`,
-               `festivalArticle`.`latitude`    AS `latitude`,
-               `festivalArticle`.`longitude`   AS `longitude`,
-               `festivalArticle`.`created_on`  AS `createdOn`,
-               `festivalArticle`.`modified_on` AS `modifiedOn`
+    resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`            AS `index`,
+               `festivalArticle`.`board_id`         AS `boardId`,
+               `festivalArticle`.`user_email`       AS `userEmail`,
+               `festivalArticle`.`title`            AS `title`,
+               `festivalArticle`.`description`      AS `description`,
+               `festivalArticle`.`date_from`        AS `dateFrom`,
+               `festivalArticle`.`date_to`          AS `dateTo`,
+               `festivalArticle`.`time_from`        AS `timeFrom`,
+               `festivalArticle`.`time_to`          AS `timeTo`,
+               `festivalArticle`.`latitude`         AS `latitude`,
+               `festivalArticle`.`longitude`        AS `longitude`,
+               `festivalArticle`.`created_on`       AS `createdOn`,
+               `festivalArticle`.`modified_on`      AS `modifiedOn`
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
     </select>
 
-
-
-    <select id="selectFestivalCommentByArticleIndex"
-    resultType="com.emptybeer.etb.vos.FestivalCommentVo">
-        SELECT `festivalComment`.`index`      AS `index`,
-               `festivalComment`.`content`    AS `content`,
-               `festivalComment`.`written_on` AS `writtenOn`,
-               `user`.`nickname` AS `nickname`
-        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
-        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `festivalComment`.`user_email`
-        WHERE `festivalComment`.`article_index` = #{index}
-
-    </select>
-
-
-
-
     <select id="selectFestivalArticleImage"
-            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+    resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
         SELECT `festivalArticle`.`title_image`      AS `titleImage`,
                `festivalArticle`.`title_image_type` AS `titleImageType`
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
     </select>
 
     <select id="selectImageByIndex"
-            resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
+    resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
         SELECT `image`.`index`     AS `index`,
                `image`.`file_name` AS `fileName`,
                `image`.`file_mime` AS `fileMime`,
                `image`.`data`      AS `data`
         FROM `etb_bbs`.`images` AS `image`
-        WHERE `image`.`index` = #{index} LIMIT 1
+        WHERE `image`.`index` = #{index}
+        LIMIT 1
 
     </select>
-
-    <insert id="insertFestivalComment"
-            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
-        INSERT INTO `etb_bbs`.`festival_comments` (`user_email`,`article_index`, `content`, `written_on`)
-        VALUES (#{userEmail}, #{articleIndex}, #{content}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)))
-    </insert>
 
 
 

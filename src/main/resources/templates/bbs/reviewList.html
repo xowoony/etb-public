@@ -95,9 +95,9 @@
         </span>
         <div class="form-container">
             <div class="sort" name="sort">
-                <span class="sort1" name="sortGood" value="sortGood">추천순</span>
+                <span class="sort1" name="sortGood" id="sortGood" value="sortGood">추천순</span>
                 <div class="sort-bar">|</div>
-                <span class="sort2" name="sortNew" value="sortNew">최신순</span>
+                <span class="sort2" name="sortNew" value="sortNew" id="sortNew">최신순</span>
             </div>
             <form class="search-form" id="searchForm" method="get">
                 <label class="label">
@@ -236,10 +236,10 @@
                            th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}"
                     th:data-aid="${reviewArticle.getIndex()}">
                 </span>
-                <input type="button" class="declaration" id="declaButton" value="신고하기"
+                <input type="button" class="declaration" rel="declaButton"
                        th:if="${session.user == null || !session.user.getEmail().equals(reviewArticle.getUserEmail())}"
-                       th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}">
-                <input type="hidden" name="declaration" th:value="${reviewArticle.getDeclaration()}">
+                       th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}" th:value="${reviewArticle.isDeclared() == true ? '신고완료' : '신고하기'}">
+                <input type="hidden" name="declaration" th:value="${reviewArticle.getDeclaCount()}">
             </div>
         </form>
         <div class="page-container"

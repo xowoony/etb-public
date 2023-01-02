@@ -8,9 +8,29 @@ public class ReviewArticleVo extends ReviewArticleEntity {
     private  boolean isSigned; // 로그인 여부
     private boolean isLiked;    // 좋아요
     private int likeCount;  // 좋아요 개수
-    private String beerName;
-    private int totalCount;
-    private double scoreAvg;
+    private String beerName; // 맥주이름
+    private int totalCount;  // 후기 갯수
+    private double scoreAvg;  // 후기 평점
+    private boolean isDeclared; // 신고
+    private int declaCount; // 신고 개수
+
+    public boolean isDeclared() {
+        return isDeclared;
+    }
+
+    public ReviewArticleVo setDeclared(boolean declared) {
+        isDeclared = declared;
+        return this;
+    }
+
+    public int getDeclaCount() {
+        return declaCount;
+    }
+
+    public ReviewArticleVo setDeclaCount(int declaCount) {
+        this.declaCount = declaCount;
+        return this;
+    }
 
     public boolean isSigned() {
         return isSigned;

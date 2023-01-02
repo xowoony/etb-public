@@ -11,7 +11,6 @@ import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
-import com.emptybeer.etb.vos.FestivalCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
@@ -218,22 +217,4 @@ public class BbsService {
     }
 
     public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
-
-    public FestivalArticleEntity getFestivalArticleByIndex(int index){
-        return this.bbsMapper.selectFestivalArticleByIndex(index);
-    }
-
-    public FestivalCommentVo[] getFestivalCommentByArticleIndex(int index){
-        return this.bbsMapper.selectFestivalCommentByArticleIndex(index);
-    }
-
-    public Enum<? extends  IResult> writeFestivalComment(FestivalCommentEntity festivalComment){
-        FestivalArticleEntity article = this.bbsMapper.selectFestivalArticleByIndex(festivalComment.getArticleIndex());
-
-        if(article==null){
-            return CommonResult.FAILURE;
-        }
-
-        return this.bbsMapper.insertFestivalComment(festivalComment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
-    }
 }

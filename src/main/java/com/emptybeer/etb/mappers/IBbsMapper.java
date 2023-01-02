@@ -39,6 +39,7 @@ public interface IBbsMapper {
             @Param(value = "criterion") String criterion,
             @Param(value = "keyword") String keyword,
             @Param(value = "starRank") String starRank,
+            @Param(value = "sort") String sort,
             @Param(value = "limit") int limit,
             @Param(value = "offset") int offset);
 
@@ -52,8 +53,8 @@ public interface IBbsMapper {
     // 리뷰 수정
     int updateReview(ReviewArticleVo reviewArticle);
 
-    // 신고하기
-    int updateReviewDecla(ReviewArticleVo reviewArticle);
+    // 리뷰 신고하기
+    int insertReviewDecla(ReviewArticleDeclarationEntity reviewArticleDeclaration);
 
     // 리뷰 읽기
     ReviewArticleVo selectIndex(@Param(value = "index") int index);

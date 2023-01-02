@@ -59,7 +59,7 @@ public class BbsController {
     @GetMapping(value = "reviewWrite",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                       @RequestParam(value = "beerIndex") int beerIndex) {
+                                       @RequestParam(value = "beerIndex") int beerIndex)  {
         ModelAndView modelAndView;
 
         if (user == null) { // 로그인이 안 되어 있을 때
@@ -154,7 +154,8 @@ public class BbsController {
                                       @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                                       @RequestParam(value = "criterion", required = false) String criterion,
                                       @RequestParam(value = "keyword", required = false) String keyword,
-                                      @RequestParam(value = "starRank", required = false) String starRank) {
+                                      @RequestParam(value = "starRank", required = false) String starRank,
+                                      @RequestParam(value = "sort", required = false) String sort) {
         page = Math.max(1, page);
         // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
         ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
@@ -171,7 +172,7 @@ public class BbsController {
         PagingModel paging = new PagingModel(totalCount, page);
         modelAndView.addObject("paging", paging);
 
-        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(user, beer, paging, criterion, keyword, starRank);
+        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(user, beer, paging, criterion, keyword, starRank, sort);
         modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }
@@ -278,14 +279,20 @@ public class BbsController {
 
 
     // 리뷰 신고하기 기능
-    @PatchMapping(value = "reviewDeclaration",
+    @PostMapping(value = "reviewDeclaration",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String patchReviewDeclaration(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                         ReviewArticleVo reviewArticle) {
-        Enum<?> result = this.bbsService.reviewDecla(reviewArticle, user);
+    public String postReviewDeclaration(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            ReviewArticleDeclarationEntity reviewArticleDeclaration,
+            @RequestParam(value = "aid", required = false) int aid) {
         JSONObject responseObject = new JSONObject();
+        reviewArticleDeclaration.setArticleIndex(aid);
+        Enum<?> result = this.bbsService.reviewDecla(reviewArticleDeclaration, user);
+        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleDeclaration.getArticleIndex());
+
         responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isDeclared", reviewArticle.isDeclared());
         return responseObject.toString();
     }
 
