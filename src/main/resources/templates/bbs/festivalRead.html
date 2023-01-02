@@ -23,6 +23,13 @@
 <main id="smoothScroll">
     <!--    margin top 10rem 지정-->
 
+    <!--  데이터관련 컨테이너(hidden이므로 보이지 않음)  -->
+    <form id="festivalDataForm">
+        <input type="hidden" name="longitude" th:value="${festivalArticles.getLongitude()}">
+        <input type="hidden" name="latitude" th:value="${festivalArticles.getLatitude()}">
+        <input type="hidden" name="festivalTitle" th:text="${festivalArticles.getTitle()}">
+    </form>
+
     <!--  페스티벌 관련 이미지 컨테이너  -->
     <div class="festival-imageContainer">
         <div class="main-imageContainer">
@@ -86,10 +93,16 @@
             <!--      버튼이 아닌 hidden으로 된 input은 인덱스 값을 가져오기 위한 input으로 이를 js로 보내 data를 처리해야한다.     -->
             <input name="aid" type="hidden" th:value="${festivalArticles.getIndex()}">
             <input class="festivalRead-button" type="submit" value="입력">
+
         </form>
 
-        <div>
-
+        <!--    댓글리스트, 로그인이 되지 않아도 볼 수 있다.    -->
+        <div class="review-list" th:each="festivalComment : ${festivalComments}">
+            <table id="table">
+                <td th:text="${festivalComment.getNickname()}"></td>
+                <td th:text="${festivalComment.getContent()}"></td>
+                <td th:text="${#dates.format(festivalComment.getWrittenOn(), 'YYYY-MM-DD')}"></td>
+            </table>
         </div>
     </div>
 

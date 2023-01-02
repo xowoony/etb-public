@@ -86,6 +86,7 @@ body > main > .home-section1 > .title-box2 > .festival-container{
     text-align: center;
     font-size: 20px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 body > main > .home-section1 > .title-box2 > .festival-container > img{

@@ -5,6 +5,7 @@ import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.vos.BeerVo;
+import com.emptybeer.etb.vos.FestivalCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -71,8 +72,9 @@ public interface IBbsMapper {
 
     FestivalArticleEntity selectFestivalArticleByIndex(@Param(value="index")int index);
 
-    ImageEntity selectImageByIndex(@Param(value="index") int index);
+    FestivalCommentVo[] selectFestivalCommentByArticleIndex(@Param(value="index")int index);
 
+    ImageEntity selectImageByIndex(@Param(value="index") int index);
 
     int insertFestivalComment(FestivalCommentEntity festivalComment);
 }

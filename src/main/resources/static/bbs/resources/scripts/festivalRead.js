@@ -1,19 +1,24 @@
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 const festivalReviewForm = document.getElementById('festivalReviewForm'); //축제와 관련된 리뷰영역
+const festivalDataForm = document.getElementById('festivalDataForm');
 
                                 // 지도관련
 
+let longi = festivalDataForm['longitude'].value;
+let lati = festivalDataForm['latitude'].value;
+let festivalTitle = festivalDataForm['festivalTitle'].value;
 
 
-var options = { //지도를 생성할 때 필요한 기본 옵션
-    center: new kakao.maps.LatLng(35.85086, 128.558785), //지도의 중심좌표.
-    level: 3 //지도의 레벨(확대, 축소 정도)
-};
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(lati, longi), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
 
-var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-
-var markerPosition  = new kakao.maps.LatLng(35.85086, 128.558785);
+// 마커가 표시될 위치입니다
+var markerPosition  = new kakao.maps.LatLng(lati, longi);
 
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
@@ -25,30 +30,17 @@ marker.setMap(map);
 
 
 
-// var iwContent = '<div style="padding:5px; color: black">대구 치맥 페스티벌 </div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-//     iwPosition = new kakao.maps.LatLng(35.85086, 128.558785); //인포윈도우 표시 위치입니다
-
-var iwContent = '<div style="padding:5px; color: black" th:text="${}">대구 치맥 페스티벌 </div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwPosition = new kakao.maps.LatLng(35.85086, 128.558785); //인포윈도우 표시 위치입니다
-
-// 인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({
-    position : iwPosition,
-    content : iwContent
-});
-
-// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-infowindow.open(map, marker);
-
-
-
-
                         //  댓글 관련
 
 
 // 댓글 작성 Form
 if(festivalReviewForm != null){
     festivalReviewForm.onsubmit = e =>{
+
+        // 입력시 화면이 전환되지 않게 한다.
+        // 입력시 지정하지 않아 계속 400 오류가 발생하였는데 이는 해당 값(index, title 등등)이 계속 새로고침되어 사라져서 발생하였다.
+        // post 같은 입력형태를 할 시 반드시 preventDefault를 지정하여 이를 방지해야한다.
+        e.preventDefault();
 
         if(festivalReviewForm['content'].value === '')
         {
@@ -60,6 +52,7 @@ if(festivalReviewForm != null){
         const xhr = new XMLHttpRequest();
         const formData = new FormData();
 
+        // formData.append('index', festivalReviewForm['index'].value);
         formData.append('articleIndex', festivalReviewForm['aid'].value);
         formData.append('content', festivalReviewForm['content'].value);
 
@@ -87,4 +80,3 @@ if(festivalReviewForm != null){
 
 
 
-                    //

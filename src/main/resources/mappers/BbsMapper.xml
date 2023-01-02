@@ -276,6 +276,23 @@
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
     </select>
 
+
+
+    <select id="selectFestivalCommentByArticleIndex"
+    resultType="com.emptybeer.etb.vos.FestivalCommentVo">
+        SELECT `festivalComment`.`index`      AS `index`,
+               `festivalComment`.`content`    AS `content`,
+               `festivalComment`.`written_on` AS `writtenOn`,
+               `user`.`nickname` AS `nickname`
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `festivalComment`.`user_email`
+        WHERE `festivalComment`.`article_index` = #{index}
+
+    </select>
+
+
+
+
     <select id="selectFestivalArticleImage"
             resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
         SELECT `festivalArticle`.`title_image`      AS `titleImage`,

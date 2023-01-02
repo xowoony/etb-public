@@ -290,45 +290,40 @@ public class BbsController {
     }
 
 
-
     // festival 관련
-    @GetMapping(value="festivalRead")
-    public ModelAndView getFestivalRead(@RequestParam(value="index")int index)
-    {
+    @GetMapping(value = "festivalRead")
+    public ModelAndView getFestivalRead(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                        @RequestParam(value = "index") Integer index) {
         ModelAndView modelAndView = new ModelAndView("bbs/festivalRead");
 
         modelAndView.addObject("festivalArticles", this.bbsService.getFestivalArticleByIndex(index));
+        modelAndView.addObject("festivalComments", this.bbsService.getFestivalCommentByArticleIndex(index));
 
         return modelAndView;
     }
 
 
-
     // festival리뷰 관련
 
-    @PostMapping(value="festivalRead")
+    @PostMapping(value = "festivalRead")
     @ResponseBody
-    public String postFestivalRead(@SessionAttribute(value="user", required = false) UserEntity user,
-                                   @RequestParam(value="articleIndex") int aid,
-                                   @RequestParam(value="content") String content,
-                                   FestivalCommentEntity festivalComment){
+    public String postFestivalRead(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                   @RequestParam(value = "articleIndex", required = false) int aid,
+                                   @RequestParam(value = "content", required = false) String content,
+                                   FestivalCommentEntity festivalComment) {
 
 
         JSONObject responseObject = new JSONObject();
-        if(user==null){
+        if (user == null) {
             responseObject.put("result", CommonResult.FAILURE.name().toLowerCase());
-        }else{
+        } else {
             festivalComment.setUserEmail(user.getEmail());
             festivalComment.setArticleIndex(aid);
             festivalComment.setContent(content);
             Enum<?> result = this.bbsService.writeFestivalComment(festivalComment);
             responseObject.put("result", result.name().toLowerCase());
 
-            if(result==CommonResult.SUCCESS){
-                responseObject.put("url", "http://localhost:8080/bbs/festivalRead?index="+aid);
-            }
         }
-
 
 
         return responseObject.toString();
