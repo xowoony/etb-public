@@ -14,6 +14,7 @@
     <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
     <!--  index.js 연결  -->
     <script defer th:src="@{/home/resources/scripts/index.js}"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 <!--  header  -->
@@ -37,15 +38,106 @@
     <!--  homeSection2  -->
     <section class="home-section2" id="homeSection2">
         <div class="title-box2" id="titleBox2">
-            <div class="title">section2</div>
-            <!--지우기-->
+            <table>
+                <tbody>
+                <tr>
+                    <td class="title">Best Beer</td>
+                </tr>
+                <tr>
+                    <td class="title-content">잔이비어 사용자에게 인기있는 맥주들을 소개합니다.</td>
+                </tr>
+                <tr class="image-slide">
+                    <td>
+                        <!-- =이미지 슬라이드-->
+                        <div class="slide_wrap">
+                            <div class="slide_show">
+                                <div class="slide_img">
+                                    <div class="slide"><img src="/resources/images/J에게%20라거.jpg" alt="이미지2"></div>
+                                    <div class="slide"><img src="/resources/images/칭따오.jpg" alt="이미지3"></div>
+                                    <div class="slide"><img src="/resources/images/진라거.jpg" alt="이미지4"></div>
+                                    <div class="slide"><img src="/resources/images/에일의%20정석.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/칼스버그.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/1866%20블론드%20500ml.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/말표%20흑맥주.jpg"></div>
+                                    <div class="slide"><img src="/resources/images/코젤%20라거.jpg"></div>
+                                </div>
+                            </div>
+                            <!--   좌우 슬라이드 버튼  -->
+                            <div class="slide_btn">
+                                <a href="#" class="prev"><i class="fas fa-angle-left"></i></a>
+                                <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+                            </div>
+                        </div>
 
+                    </td>
+                </tr>
+                <!-- 다음섹션 이동 NEXT 버튼-->
+                <tr class="next">
+                    <td>
+                        <div class="home-button">
+                            <a class="commonButton" href="#homeSection3">NEXT</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         </div>
     </section>
     <!--  homeSection3  -->
     <section class="home-section3" id="homeSection3">
         <div class="title-box3" id="titleBox3">
-            <div class="title">section3</div>
+            <div class="footer1">
+                <div class="sky">
+                    “천지미록”
+                </div>
+                <div>
+                    天之美祿
+                </div>
+                <div class="bless">
+                    술이라는 것은 하늘이 내려준 경사스러운 복이다.
+                </div>
+            </div>
+            <div class="footer2">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">
+                                <div class="contact-us">Contact Us</div>
+                                <div>
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <span class="email-contact">etb@emptybeer.com</span>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span class="phone-contact">010-1234-5678</span>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span class="phone-contact">서울특별시 서초구 테헤란로 131 13층 잔이비어</span>
+                                </div>
+
+                            </td>
+                            <td class="wide-spring"></td>
+                            <td class="spring"></td>
+                        </tr>
+                        <tr>
+                            <td class="spring"></td>
+                            <td class="footer-logo">잔이비어</td>
+
+                        </tr>
+                        <tr>
+                            <td class="spring empty">©2023 by Empty Beer</td>
+                            <td></td>
+                            <td>
+                                <div class="home-button top">
+                                    <a class="commonButton" href="#homeSection1">↑ Back to top</a>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 </main>
