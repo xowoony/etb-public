@@ -222,9 +222,6 @@ for (let reviewListForm of reviewListForms) {
 }
 
 
-
-
-
 // 게시글 정렬
 const sortGood = window.document.getElementById('sortGood');
 const url = new URL(window.location.href);
