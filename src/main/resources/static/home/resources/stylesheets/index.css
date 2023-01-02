@@ -4,7 +4,11 @@
 /*best beer 폰트*/
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
 
+/*잔이비어 로고 폰트*/
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
+/*연락처 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
 
 /*main*/
@@ -248,5 +252,72 @@ body > main > .home-section3 > .title-box3 > .footer2 {
     flex-direction: column;
     justify-content: center;
     color: rgb(0, 0, 0);
+}
 
+body > main > .home-section3 > .title-box3 > .footer2 > table {
+    margin-bottom: 5rem;
+}
+
+/*body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td{*/
+/*    width: 20rem;*/
+/*}*/
+
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .empty{
+    font-family: 'Quicksand', sans-serif;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .spring {
+    height: 6rem;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .wide-spring {
+    width: 35rem;
+}
+
+/*contact us*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .contact-us {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    margin-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid rgb(0, 0, 0);
+    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/*이메일 contact 정보*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > div > .email-contact{
+    font-family: 'Quicksand', sans-serif;
+}
+
+/*연락처 contact 정보*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > div > .phone-contact{
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/*footer 로고*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .footer-logo {
+    font-size: 2rem;
+    font-family: 'Gowun Batang', serif;
+
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*top 버튼*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .top > .commonButton {
+    border: none;
+    text-decoration: none;
+    color: rgb(0,0,0);
+    font-family: 'Quicksand', sans-serif;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .top > .commonButton:hover{
+    background-color: rgba(0, 0, 0, 0);
 }
