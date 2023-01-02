@@ -121,7 +121,7 @@
         (SELECT COUNT(0)
         FROM `etb_bbs`.`review_article_likes`
         WHERE `etb_bbs`.`review_article_likes`.`article_index` =
-        `reviewArticle`.`index`)                                                          AS `likeCount`,
+        `reviewArticle`.`index`) AS `likeCount`,
         COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
         (SELECT COUNT(0)
         FROM `etb_bbs`.`review_article_declaration`
@@ -158,7 +158,10 @@
             AND `reviewArticle`.score = 1
         </if>
         GROUP BY `reviewArticle`.`index`
-        ORDER BY `reviewArticle`.`index` DESC) AS reviewList
+        ORDER BY CASE
+        WHEN #{sort} = 'good' THEN likeCount
+        WHEN #{sort} = 'new' THEN `reviewArticle`.`index`
+            ELSE `reviewArticle`.`index` END DESC) AS reviewList
         WHERE reviewList.declaCount <![CDATA[ < ]]> 5
         LIMIT #{limit} OFFSET #{offset}
     </select>
@@ -189,25 +192,25 @@
         LIMIT 1
     </delete>
     <select id="selectLikeIndex" resultType="com.emptybeer.etb.vos.ReviewArticleVo">
-        SELECT `reviewArticle`.`index`                      AS `index`,
-               `reviewArticle`.`user_email`                 AS `userEmail`,
-               `reviewArticle`.`board_id`                   AS `boardId`,
-               `reviewArticle`.beer_index                   AS `beerIndex`,
-               `beer`.`name`                                AS `beerName`,
-               `reviewArticle`.`score`                      AS `score`,
-               `reviewArticle`.`content_good`               AS `contentGood`,
-               `reviewArticle`.`content_bad`                AS `contentBad`,
-               `reviewArticle`.`declaration`                AS `declaration`,
-               `reviewArticle`.`written_on`                 AS `writtenOn`,
-               `reviewArticle`.`modified_on`                AS `modifiedOn`,
-               `user`.`nickname`                            AS `userNickname`,
-               (#{userEmail} IS NOT NULL)                   AS `isSigned`,
-               COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
+        SELECT `reviewArticle`.`index`                                                                  AS `index`,
+               `reviewArticle`.`user_email`                                                             AS `userEmail`,
+               `reviewArticle`.`board_id`                                                               AS `boardId`,
+               `reviewArticle`.beer_index                                                               AS `beerIndex`,
+               `beer`.`name`                                                                            AS `beerName`,
+               `reviewArticle`.`score`                                                                  AS `score`,
+               `reviewArticle`.`content_good`                                                           AS `contentGood`,
+               `reviewArticle`.`content_bad`                                                            AS `contentBad`,
+               `reviewArticle`.`declaration`                                                            AS `declaration`,
+               `reviewArticle`.`written_on`                                                             AS `writtenOn`,
+               `reviewArticle`.`modified_on`                                                            AS `modifiedOn`,
+               `user`.`nickname`                                                                        AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                                                               AS `isSigned`,
+               COUNT(`reviewArticleLike`.article_index) > 0                                             AS `isLiked`,
                (SELECT COUNT(0)
                 FROM `etb_bbs`.`review_article_likes`
                 WHERE `etb_bbs`.`review_article_likes`.`article_index` =
                       `reviewArticle`.`index`)                                                          AS `likeCount`,
-               COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
+               COUNT(`reviewDeclaration`.article_index) > 0                                             AS `isDeclared`,
                (SELECT COUNT(0)
                 FROM `etb_bbs`.`review_article_declaration`
                 WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`

@@ -82,9 +82,9 @@ public class BbsService {
         return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
     }
 
-    public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank) {
+    public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank, String sort) {
         return this.bbsMapper.selectReviewArticleByBeerIndex(signedUser == null ? null : signedUser.getEmail(),
-                beer.getIndex(), criterion, keyword, starRank,
+                beer.getIndex(), criterion, keyword, starRank, sort,
                 paging.countPerPage,
                 (paging.requestPage - 1) * paging.countPerPage);
     }

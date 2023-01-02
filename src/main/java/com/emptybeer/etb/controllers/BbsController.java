@@ -154,7 +154,8 @@ public class BbsController {
                                       @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                                       @RequestParam(value = "criterion", required = false) String criterion,
                                       @RequestParam(value = "keyword", required = false) String keyword,
-                                      @RequestParam(value = "starRank", required = false) String starRank) {
+                                      @RequestParam(value = "starRank", required = false) String starRank,
+                                      @RequestParam(value = "sort", required = false) String sort) {
         page = Math.max(1, page);
         // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
         ModelAndView modelAndView = new ModelAndView("bbs/reviewList");
@@ -171,7 +172,7 @@ public class BbsController {
         PagingModel paging = new PagingModel(totalCount, page);
         modelAndView.addObject("paging", paging);
 
-        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(user, beer, paging, criterion, keyword, starRank);
+        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(user, beer, paging, criterion, keyword, starRank, sort);
         modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }

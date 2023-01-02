@@ -38,6 +38,7 @@ public interface IBbsMapper {
             @Param(value = "criterion") String criterion,
             @Param(value = "keyword") String keyword,
             @Param(value = "starRank") String starRank,
+            @Param(value = "sort") String sort,
             @Param(value = "limit") int limit,
             @Param(value = "offset") int offset);
 

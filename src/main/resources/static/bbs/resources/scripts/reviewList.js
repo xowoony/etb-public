@@ -226,9 +226,18 @@ for (let reviewListForm of reviewListForms) {
 
 
 // 게시글 정렬
-// const sortGood = document.getElementById('sortGood');
-// const sortNew = document.getElementById('sortNew');
-// sortGood.addEventListener('click', e => {
-//     e.preventDefault();
-//
-// })
+const sortGood = window.document.getElementById('sortGood');
+const url = new URL(window.location.href);
+const searchParams = url.searchParams  // 이건 reviewList?beerIndex= 뒤에 있는 숫자를 의미한다.
+// 추천순
+const beerIndex = searchParams.get('beerIndex');
+sortGood.addEventListener('click', () => {
+    window.location.href = `./reviewList?beerIndex=${beerIndex}&sort=good`;
+    sortGood.scrollIntoView();
+});
+// 최신순
+const sortNew = window.document.getElementById('sortNew');
+sortNew.addEventListener('click', () => {
+    window.location.href = `./reviewList?beerIndex=${beerIndex}&sort=new`;
+    sortNew.scrollIntoView();
+})
