@@ -25,10 +25,20 @@ public interface IBbsMapper {
     int selectReviewByBeerIndex(@Param(value = "userEmail") String userEmail,
                                 @Param(value = "beerIndex") int beerIndex);
 
+    // (전체리뷰)
+    int selectAllReviewArticleCountByBeerIndex(
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword,
+            @Param(value = "starRank") String starRank);
+
     int selectReviewArticleCountByBeerIndex(@Param(value = "beerIndex") int beerIndex,
                                             @Param(value = "criterion") String criterion,
                                             @Param(value = "keyword") String keyword,
                                             @Param(value = "starRank") String starRank);
+
+
+    // (전체 맥주) 평점 별 개수
+    BeerVo selectAllReviewCountByBeerIndex();
 
     // 맥주 평점 별 개수
     BeerVo selectReviewCountByBeerIndex(@Param(value = "beerIndex") int beerIndex);
@@ -36,6 +46,17 @@ public interface IBbsMapper {
     // 맥주 점수 평균
     Double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
 
+    // (전체맥주) 리스트
+    ReviewArticleVo[] selectAllReviewArticleByBeerIndex(
+            @Param(value = "userEmail") String userEmail,
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword,
+            @Param(value = "starRank") String starRank,
+            @Param(value = "sort") String sort,
+            @Param(value = "limit") int limit,
+            @Param(value = "offset") int offset);
+
+    // 맥주별 리스트
     ReviewArticleVo[] selectReviewArticleByBeerIndex(
             @Param(value = "userEmail") String userEmail,
             @Param(value = "beerIndex") int beerIndex,
@@ -74,5 +95,5 @@ public interface IBbsMapper {
     // festival관련
     FestivalArticleEntity[] selectFestivalArticle();
 
-    ImageEntity selectImageByIndex(@Param(value="index") int index);
+    ImageEntity selectImageByIndex(@Param(value = "index") int index);
 }

@@ -36,21 +36,26 @@ public class BbsController {
     //전체 리뷰리스트
     @GetMapping(value = "review",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getReview(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                                  @RequestParam(value = "criterion", required = false) String criterion,
-                                  @RequestParam(value = "keyword", required = false) String keyword) {
+    public ModelAndView getReview(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "criterion", required = false) String criterion,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "starRank", required = false) String starRank,
+            @RequestParam(value = "sort", required = false) String sort) {
         page = Math.max(1, page);
-        // 또는 if문 사용 가능. page는 1보다 작을 수 없다. 1이랑 page 중에 더 큰 값을 내놔라.
+
         ModelAndView modelAndView = new ModelAndView("bbs/review");
 
-//        int totalCount = this.bbsService.getReviewArticleCount(beer,criterion, keyword);
-//        modelAndView.addObject("reviewCount", totalCount);
-//
-//        PagingModel paging = new PagingModel(totalCount, page);
-//        modelAndView.addObject("paging", paging);
-//
-//        ReviewArticleVo[] reviewArticles = this.bbsService.getReviewArticles(beer, paging, criterion, keyword);
-//        modelAndView.addObject("reviewArticles", reviewArticles);
+        int totalCount = this.bbsService.getALLReviewArticleCount(criterion, keyword, starRank);
+        BeerVo allReviewCount = this.bbsService.getAllReviewCount();
+        modelAndView.addObject("allReviewCount", allReviewCount);
+
+        PagingModel paging = new PagingModel(totalCount, page);
+        modelAndView.addObject("paging", paging);
+
+        ReviewArticleVo[] reviewArticles = this.bbsService.getAllReviewArticles(user, paging, criterion, keyword, starRank, sort);
+        modelAndView.addObject("reviewArticles", reviewArticles);
         return modelAndView;
     }
 
@@ -59,7 +64,7 @@ public class BbsController {
     @GetMapping(value = "reviewWrite",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getReviewWrite(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                       @RequestParam(value = "beerIndex") int beerIndex)  {
+                                       @RequestParam(value = "beerIndex") int beerIndex) {
         ModelAndView modelAndView;
 
         if (user == null) { // 로그인이 안 되어 있을 때
