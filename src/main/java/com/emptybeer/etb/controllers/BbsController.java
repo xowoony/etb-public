@@ -163,10 +163,12 @@ public class BbsController {
         BeerVo beer = this.bbsService.getBeerLike(beerIndex, user);
         modelAndView.addObject("beer", beer);
 
-        int totalCount = this.bbsService.getReviewArticleCount(beer, criterion, keyword);
+        int totalCount = this.bbsService.getReviewArticleCount(beer, criterion, keyword, starRank);
         modelAndView.addObject("totalCount", totalCount);
         double avgReview = this.bbsService.getReviewAvg(beer);
         modelAndView.addObject("avgReview", avgReview);
+        BeerVo reviewCount = this.bbsService.getReviewCount(beer);
+        modelAndView.addObject("reviewCount", reviewCount);
 
         // int totalCount = this.bbsService.getArticleCount(board);
         PagingModel paging = new PagingModel(totalCount, page);

@@ -92,6 +92,21 @@
         <if test="criterion != null and criterion.equals('nickname')">
             AND BINARY `user`.nickname = #{keyword}
         </if>
+        <if test="starRank != null and starRank.equals('star5')">
+            AND `reviewArticle`.score = 5
+        </if>
+        <if test="starRank != null and starRank.equals('star4')">
+            AND `reviewArticle`.score = 4
+        </if>
+        <if test="starRank != null and starRank.equals('star3')">
+            AND `reviewArticle`.score = 3
+        </if>
+        <if test="starRank != null and starRank.equals('star2')">
+            AND `reviewArticle`.score = 2
+        </if>
+        <if test="starRank != null and starRank.equals('star1')">
+            AND `reviewArticle`.score = 1
+        </if>
         GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
     </select>
     <select id="selectReviewAvgByBeerIndex"
@@ -100,6 +115,17 @@
         FROM etb_bbs.review_articles AS `reviewArticle`
         WHERE beer_index = #{beerIndex}
         GROUP BY beer_index
+    </select>
+    <select id="selectReviewCountByBeerIndex"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT COUNT(*) AS 'all',
+               COUNT(IF(score = 5, score, NULL)) AS 'star5',
+               COUNT(IF(score = 4, score, NULL)) AS 'star4',
+               COUNT(IF(score = 3, score, NULL)) AS 'star3',
+               COUNT(IF(score = 2, score, NULL)) AS 'star2',
+               COUNT(IF(score = 1, score, NULL)) AS 'star1'
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        WHERE beer_index = #{beerIndex}
     </select>
     <select id="selectReviewArticleByBeerIndex"
             resultType="com.emptybeer.etb.vos.ReviewArticleVo">
@@ -161,7 +187,7 @@
         ORDER BY CASE
         WHEN #{sort} = 'good' THEN likeCount
         WHEN #{sort} = 'new' THEN `reviewArticle`.`index`
-            ELSE `reviewArticle`.`index` END DESC) AS reviewList
+        ELSE `reviewArticle`.`index` END DESC) AS reviewList
         WHERE reviewList.declaCount <![CDATA[ < ]]> 5
         LIMIT #{limit} OFFSET #{offset}
     </select>

@@ -74,8 +74,13 @@ public class BbsService {
                 : CommonResult.FAILURE;
     }
 
-    public int getReviewArticleCount(BeerEntity beer, String criterion, String keyword) {
-        return this.bbsMapper.selectReviewArticleCountByBeerIndex(beer.getIndex(), criterion, keyword);
+    public int getReviewArticleCount(BeerEntity beer, String criterion, String keyword, String starRank) {
+        return this.bbsMapper.selectReviewArticleCountByBeerIndex(beer.getIndex(), criterion, keyword, starRank);
+    }
+
+    // 맥주당 리뷰 항목별 보기(별점 별 후기 개수)
+    public BeerVo getReviewCount(BeerVo beer) {
+        return this.bbsMapper.selectReviewCountByBeerIndex(beer.getIndex());
     }
 
     public double getReviewAvg(BeerVo beer) {

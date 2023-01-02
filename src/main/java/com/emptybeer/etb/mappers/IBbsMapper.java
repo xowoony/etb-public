@@ -27,7 +27,11 @@ public interface IBbsMapper {
 
     int selectReviewArticleCountByBeerIndex(@Param(value = "beerIndex") int beerIndex,
                                             @Param(value = "criterion") String criterion,
-                                            @Param(value = "keyword") String keyword);
+                                            @Param(value = "keyword") String keyword,
+                                            @Param(value = "starRank") String starRank);
+
+    // 맥주 평점 별 개수
+    BeerVo selectReviewCountByBeerIndex(@Param(value = "beerIndex") int beerIndex);
 
     // 맥주 점수 평균
     Double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
