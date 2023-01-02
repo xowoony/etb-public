@@ -41,14 +41,16 @@
         <!--  Section2  -->
         <div class="title-box2" id="titleBox2">
             <ul class="item-container">
-                <li class="item">
-                    <a class="link" href="#">
+                <!-- 맥주 1개당  box -->
+                <li class="item" th:each="beer : ${beers}">
+                    <a class="link" th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
                         <table>
                             <tbody>
-                            <tr>
-                                <td><img alt="" class="image" src="/resources/images/1866%20블론드%20500ml.jpg"></td>
-                                <td>1866 블론드</td>
-                            </tr>
+                                <tr>
+                                    <td><img alt="" class="image"
+                                             th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"></td>
+                                    <td th:text="${beer.getName()}">1866 블론드</td>
+                                </tr>
                             </tbody>
                         </table>
                     </a>

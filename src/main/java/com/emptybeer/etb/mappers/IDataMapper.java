@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface IDataMapper {
-//    BeerEntity selectBeerImageByIndex(@Param(value = "index") int index);
-//
+    BeerVo selectBeerByIndex(@Param(value = "beerIndex") int beerIndex);
+
+    BeerVo[] selectBeer();
 }

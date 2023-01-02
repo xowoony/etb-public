@@ -216,5 +216,7 @@ public class BbsService {
         return this.bbsMapper.selectFestivalArticle();
     }
 
-    public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
+    public ImageEntity getImage(int index) {
+        return this.bbsMapper.selectImageByIndex(index);
+    }
 }
