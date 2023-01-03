@@ -7,6 +7,7 @@ import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.services.BasicBbsService;
+import com.emptybeer.etb.vos.BasicArticleVo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -86,8 +87,7 @@ public class BasicBbsController {
 
 
     // 이미지
-    @RequestMapping(value = "image",
-            method = RequestMethod.POST,
+    @PostMapping(value = "image",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postImage(@RequestParam(value = "upload") MultipartFile file) throws IOException {
@@ -106,8 +106,7 @@ public class BasicBbsController {
     }
 
     // 다운로드용 맵핑
-    @RequestMapping(value = "image",
-            method = RequestMethod.GET)
+    @GetMapping(value = "image")
     public ResponseEntity<byte[]> getImage(@RequestParam(value = "id") int id) {
         ImageEntity image = this.basicBbsService.getImage(id);
         if (image == null) {
@@ -118,5 +117,25 @@ public class BasicBbsController {
         // 이미지인지 어쩌구인지 판거
         return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
     }
+
+
+    // 글 읽기
+    @GetMapping(value = "read",
+            produces = MediaType.TEXT_HTML_VALUE)
+    @ResponseBody
+    public ModelAndView getRead(@RequestParam(value = "aid") int aid) {
+        ModelAndView modelAndView = new ModelAndView("basicBbs/read");
+        BasicArticleVo basicArticle = this.basicBbsService.readArticle(aid);
+
+        modelAndView.addObject("basicArticle", basicArticle);
+
+        // 게시판 이름 맞추는거
+        if (basicArticle != null) {  // 글이 있으면
+            BoardEntity board = this.basicBbsService.getBoard(basicArticle.getBoardId());
+            modelAndView.addObject("board", board);
+        }
+        return modelAndView;
+    }
+
 
 }

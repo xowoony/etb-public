@@ -43,4 +43,33 @@
         LIMIT 1
     </select>
 
+    <select id="selectIndex" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`       AS `index`,
+               `basicArticle`.`user_email`  AS `userEmail`,
+               `basicArticle`.`board_id`    AS `boardId`,
+               `basicArticle`.`title`       AS `title`,
+               `basicArticle`.`content`     AS `content`,
+               `basicArticle`.`view`        AS `view`,
+               `basicArticle`.`written_on`  AS `writtenOn`,
+               `basicArticle`.`modified_on` AS `modifiedOn`,
+               `user`.`nickname`       AS `userNickname`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <update id="updateArticle" parameterType="com.emptybeer.etb.vos.BasicArticleVo">
+        update `etb_bbs`.`basic_articles`
+        SET `user_email`  = #{userEmail},
+            `board_id`    = #{boardId},
+            `title`       = #{title},
+            `content`     = #{content},
+            `view`        = #{view} + 1,
+            `written_on`  = #{writtenOn},
+            `modified_on` = #{modifiedOn}
+        WHERE `index` = #{index}
+        LIMIT 1
+    </update>
+
 </mapper>

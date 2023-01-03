@@ -7,6 +7,7 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBasicBbsMapper;
+import com.emptybeer.etb.vos.BasicArticleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,13 @@ public class BasicBbsService {
     // 이미지 넣는 기
     public ImageEntity getImage(int index) {
         return this.basicBbsMapper.selectImageByIndex(index);
+    }
+
+    // 글 읽기 + 닉네임 불러오기
+    public BasicArticleVo readArticle(int index) {
+        BasicArticleVo basicArticle = this.basicBbsMapper.selectIndex(index);
+        basicArticle.setIndex(this.basicBbsMapper.updateArticle(basicArticle));
+        return this.basicBbsMapper.selectIndex(index);
     }
 
 }
