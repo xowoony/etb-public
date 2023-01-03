@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emptybeer.etb.mappers.IBasicBbsMapper">
+    <select id="selectBoardById" resultType="com.emptybeer.etb.entities.bbs.BoardEntity">
+        SELECT `id`   AS `id`,
+               `text` AS `text`
+        FROM `etb_bbs`.`boards`
+        WHERE BINARY `id` = #{id}
+        LIMIT 1
+    </select>
+    <insert id="insertArticle"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleEntity">
+        INSERT INTO `etb_bbs`.`basic_articles` (`user_email`, `board_id`, `title`, `content`, `view`, `written_on`,
+                                                `modified_on`)
+        VALUES (#{userEmail}, #{boardId}, #{title}, #{content}, #{view}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)),
+                IFNULL(#{modifiedOn}, DEFAULT(`modified_on`)))
+    </insert>
+
+</mapper>
