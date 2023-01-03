@@ -37,7 +37,7 @@ public class BbsService {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
     }
 
-    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser){
+    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser) {
         return this.bbsMapper.selectBeerLikeByIndex(signedUser == null ? null : signedUser.getEmail(), beerIndex);
     }
 
@@ -79,7 +79,7 @@ public class BbsService {
     }
 
     public double getReviewAvg(BeerVo beer) {
-        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
+        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex()) == null ? 0 : this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
     }
 
     public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank, String sort) {
@@ -206,7 +206,7 @@ public class BbsService {
 
     // festival 관련
 
-    public FestivalArticleEntity[] getFestivalArticle(){
+    public FestivalArticleEntity[] getFestivalArticle() {
 
         return this.bbsMapper.selectFestivalArticle();
     }

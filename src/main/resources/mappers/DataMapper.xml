@@ -35,5 +35,29 @@
     </select>
 
 
+    <!--    페이징  -->
+    <select id="selectBeerCountByBeerIndex"
+            resultType="int">
+        SELECT COUNT(0)
+        FROM `etb_data`.`beers` AS `beer`
+        WHERE `beer`.`index` = #{beerIndex}
+
+        <if test="criterion != null and criterion.equals('nickname')">
+            LEFT JOIN `study_member`.`users` AS `user` ON `articles`.`user_email` = `user`.`email`
+        </if>
+        WHERE `board_id` = #{boardId}
+        <if test="criterion != null and criterion.equals('title')">
+            AND REPLACE(`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="criterion != null and criterion.equals('all')">
+            AND (REPLACE(`title`,' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(`content`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.`nickname` = #{keyword}
+        </if>
+    </select>
+
+
 
 </mapper>
