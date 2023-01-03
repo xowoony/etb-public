@@ -37,7 +37,7 @@ public class BbsService {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
     }
 
-    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser){
+    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser) {
         return this.bbsMapper.selectBeerLikeByIndex(signedUser == null ? null : signedUser.getEmail(), beerIndex);
     }
 
@@ -233,7 +233,7 @@ public class BbsService {
 
     // festival 관련
 
-    public FestivalArticleEntity[] getFestivalArticle(){
+    public FestivalArticleEntity[] getFestivalArticle() {
 
         return this.bbsMapper.selectFestivalArticle();
     }
