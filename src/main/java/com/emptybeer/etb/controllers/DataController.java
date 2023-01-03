@@ -1,6 +1,7 @@
 package com.emptybeer.etb.controllers;
 
 import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BbsService;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.vos.BeerVo;
@@ -29,9 +30,18 @@ public class DataController {
     @GetMapping(value = "beer",
             produces = MediaType.TEXT_HTML_VALUE)
 //    public ModelAndView getBeer(@RequestParam(value = "beerIndex", required = false) int beerIndex) {
-    public ModelAndView getBeer() {
+    public ModelAndView getBeer(
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "criterion", required = false) String criterion,
+            @RequestParam(value = "keyword", required = false) String keyword) {
+        page = Math.max(1, page);
         ModelAndView modelAndView = new ModelAndView("data/beer");
-        BeerVo[] beers = this.dataService.getBeer();
+
+        int totalCount = this.dataService.getBeerCount(criterion,keyword);
+        PagingModel paging = new PagingModel(totalCount,page);
+        modelAndView.addObject("paging",paging);
+
+        BeerVo[] beers = this.dataService.getBeer(paging, criterion, keyword);
         modelAndView.addObject("beers", beers);
         return modelAndView;
     }

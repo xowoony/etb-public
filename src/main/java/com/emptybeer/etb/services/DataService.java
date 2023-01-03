@@ -1,6 +1,7 @@
 package com.emptybeer.etb.services;
 
 import com.emptybeer.etb.mappers.IDataMapper;
+import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +16,21 @@ public class DataService {
         this.dataMapper = dataMapper;
     }
 
-    // 맥주 이미지, 이름 가져오기
-//    public BeerVo getBeer(int beerIndex) {
-//        return this.dataMapper.selectBeerByIndex(beerIndex);
-//    }
-
-    public BeerVo[] getBeer() {
-        return this.dataMapper.selectBeer();
+    // 맥주 이미지, 이름 배열로 가져오기
+    public BeerVo[] getBeer(PagingModel paging, String criterion, String keyword) {
+        return this.dataMapper.selectBeer(criterion, keyword, paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
     }
 
 
+    // 맥주 이미지 가져오기
     public BeerVo getBeerImage(int beerIndex) {
         return this.dataMapper.selectBeerByIndex(beerIndex);
+    }
+
+    // 페이징(맥주 total count)
+    public int getBeerCount(String criterion, String keyword) {
+        return this.dataMapper.selectBeerCountByBeerIndex(criterion, keyword);
     }
 
 }

@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.emptybeer.etb.mappers.IDataMapper">
+    <!-- 맥주 이미지 가져오기 BeerIndex 기준으로 1개-->
     <select id="selectBeerByIndex"
             resultType="com.emptybeer.etb.vos.BeerVo">
         SELECT `beer`.`index`          AS `index`,
@@ -19,6 +20,7 @@
         WHERE `beer`.`index` = #{beerIndex}
     </select>
 
+    <!--  맥주 정보 배열로 가져오기  -->
     <select id="selectBeer"
             resultType="com.emptybeer.etb.vos.BeerVo">
         SELECT `beer`.`index`          AS `index`,
@@ -31,32 +33,27 @@
                `beer`.modified_on      AS `modifiedOn`
         FROM `etb_data`.`beers` AS `beer`
                  LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
-                           ON `beer`.`category_index` = `beerCategory`.`index`
+                           ON `beer`.`category_index` = `beerCategory`  .`index`
+        WHERE `beer`.`index`
+        <if test="criterion != null and criterion.equals('name')">
+            AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        LIMIT 9 OFFSET #{offset}
+
     </select>
 
-
-    <!--    페이징  -->
+    <!-- 페이징 -->
     <select id="selectBeerCountByBeerIndex"
             resultType="int">
         SELECT COUNT(0)
         FROM `etb_data`.`beers` AS `beer`
-        WHERE `beer`.`index` = #{beerIndex}
+        WHERE `beer`.`index`
+        <if test="criterion != null and criterion.equals('name')">
+            AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
 
-        <if test="criterion != null and criterion.equals('nickname')">
-            LEFT JOIN `study_member`.`users` AS `user` ON `articles`.`user_email` = `user`.`email`
-        </if>
-        WHERE `board_id` = #{boardId}
-        <if test="criterion != null and criterion.equals('title')">
-            AND REPLACE(`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
-        </if>
-        <if test="criterion != null and criterion.equals('all')">
-            AND (REPLACE(`title`,' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
-            OR REPLACE(`content`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
-        </if>
-        <if test="criterion != null and criterion.equals('nickname')">
-            AND BINARY `user`.`nickname` = #{keyword}
-        </if>
     </select>
+
 
 
 
