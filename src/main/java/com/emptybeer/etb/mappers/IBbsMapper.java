@@ -5,7 +5,6 @@ import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.data.BeerLikeEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.vos.BeerVo;
-import com.emptybeer.etb.vos.FestivalCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,13 +25,38 @@ public interface IBbsMapper {
     int selectReviewByBeerIndex(@Param(value = "userEmail") String userEmail,
                                 @Param(value = "beerIndex") int beerIndex);
 
+    // (전체리뷰)
+    int selectAllReviewArticleCountByBeerIndex(
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword,
+            @Param(value = "starRank") String starRank);
+
     int selectReviewArticleCountByBeerIndex(@Param(value = "beerIndex") int beerIndex,
                                             @Param(value = "criterion") String criterion,
-                                            @Param(value = "keyword") String keyword);
+                                            @Param(value = "keyword") String keyword,
+                                            @Param(value = "starRank") String starRank);
+
+
+    // (전체 맥주) 평점 별 개수
+    BeerVo selectAllReviewCountByBeerIndex();
+
+    // 맥주 평점 별 개수
+    BeerVo selectReviewCountByBeerIndex(@Param(value = "beerIndex") int beerIndex);
 
     // 맥주 점수 평균
-    double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
+    Double selectReviewAvgByBeerIndex(@Param(value = "beerIndex") int beerIndex);
 
+    // (전체맥주) 리스트
+    ReviewArticleVo[] selectAllReviewArticleByBeerIndex(
+            @Param(value = "userEmail") String userEmail,
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword,
+            @Param(value = "starRank") String starRank,
+            @Param(value = "sort") String sort,
+            @Param(value = "limit") int limit,
+            @Param(value = "offset") int offset);
+
+    // 맥주별 리스트
     ReviewArticleVo[] selectReviewArticleByBeerIndex(
             @Param(value = "userEmail") String userEmail,
             @Param(value = "beerIndex") int beerIndex,
@@ -67,5 +91,6 @@ public interface IBbsMapper {
 
     // 리뷰 좋아요 취소
     int deleteReviewLike(ReviewArticleLikeEntity reviewArticleLike);
+
 
 }

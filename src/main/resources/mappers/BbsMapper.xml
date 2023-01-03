@@ -75,13 +75,49 @@
         WHERE user_email = #{userEmail}
           AND beer_index = #{beerIndex}
     </select>
-    <select id="selectReviewArticleCountByBeerIndex"
+    <select id="selectAllReviewArticleCountByBeerIndex"
             resultType="int">
-        SELECT COUNT(0)
+        SELECT COUNT (*) FROM(SELECT COUNT(reviewArticle.`index`)
         FROM etb_bbs.review_articles AS `reviewArticle`
         <if test="criterion != null and criterion.equals('nickname')">
             LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
         </if>
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaCount` ON `reviewArticle`.`index` =
+        `reviewDeclaCount`.article_index
+        WHERE reviewArticle.`index`
+        <if test="criterion != null and criterion.equals('content')">
+            AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(reviewArticle.`content_bad`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.nickname = #{keyword}
+        </if>
+        <if test="starRank != null and starRank.equals('star5')">
+            AND `reviewArticle`.score = 5
+        </if>
+        <if test="starRank != null and starRank.equals('star4')">
+            AND `reviewArticle`.score = 4
+        </if>
+        <if test="starRank != null and starRank.equals('star3')">
+            AND `reviewArticle`.score = 3
+        </if>
+        <if test="starRank != null and starRank.equals('star2')">
+            AND `reviewArticle`.score = 2
+        </if>
+        <if test="starRank != null and starRank.equals('star1')">
+            AND `reviewArticle`.score = 1
+        </if>
+        GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
+    </select>
+    <select id="selectReviewArticleCountByBeerIndex"
+            resultType="int">
+        SELECT COUNT (*) FROM(SELECT COUNT(reviewArticle.`index`)
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        <if test="criterion != null and criterion.equals('nickname')">
+            LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
+        </if>
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaCount` ON `reviewArticle`.`index` =
+        `reviewDeclaCount`.article_index
         WHERE beer_index = #{beerIndex}
         <if test="criterion != null and criterion.equals('content')">
             AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
@@ -90,17 +126,55 @@
         <if test="criterion != null and criterion.equals('nickname')">
             AND BINARY `user`.nickname = #{keyword}
         </if>
+        <if test="starRank != null and starRank.equals('star5')">
+            AND `reviewArticle`.score = 5
+        </if>
+        <if test="starRank != null and starRank.equals('star4')">
+            AND `reviewArticle`.score = 4
+        </if>
+        <if test="starRank != null and starRank.equals('star3')">
+            AND `reviewArticle`.score = 3
+        </if>
+        <if test="starRank != null and starRank.equals('star2')">
+            AND `reviewArticle`.score = 2
+        </if>
+        <if test="starRank != null and starRank.equals('star1')">
+            AND `reviewArticle`.score = 1
+        </if>
+        GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
     </select>
     <select id="selectReviewAvgByBeerIndex"
-            resultType="double">
+            resultType="Double">
         SELECT ROUND(AVG(score), 1)
         FROM etb_bbs.review_articles AS `reviewArticle`
         WHERE beer_index = #{beerIndex}
         GROUP BY beer_index
     </select>
-    <select id="selectReviewArticleByBeerIndex"
+    <select id="selectAllReviewCountByBeerIndex"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT COUNT(*)                          AS 'all',
+               COUNT(IF(score = 5, score, NULL)) AS 'star5',
+               COUNT(IF(score = 4, score, NULL)) AS 'star4',
+               COUNT(IF(score = 3, score, NULL)) AS 'star3',
+               COUNT(IF(score = 2, score, NULL)) AS 'star2',
+               COUNT(IF(score = 1, score, NULL)) AS 'star1'
+        FROM etb_bbs.review_articles AS `reviewArticle`
+    </select>
+    <select id="selectReviewCountByBeerIndex"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT COUNT(*)                          AS 'all',
+               COUNT(IF(score = 5, score, NULL)) AS 'star5',
+               COUNT(IF(score = 4, score, NULL)) AS 'star4',
+               COUNT(IF(score = 3, score, NULL)) AS 'star3',
+               COUNT(IF(score = 2, score, NULL)) AS 'star2',
+               COUNT(IF(score = 1, score, NULL)) AS 'star1'
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        WHERE beer_index = #{beerIndex}
+    </select>
+    <select id="selectAllReviewArticleByBeerIndex"
             resultType="com.emptybeer.etb.vos.ReviewArticleVo">
-        SELECT `reviewArticle`.`index` AS `index`,
+        <!-- 전체 리뷰리스트 조회 -->
+        SELECT * FROM (SELECT `reviewArticle`.`index` AS `index`,
         `reviewArticle`.`user_email` AS `userEmail`,
         `reviewArticle`.`board_id` AS `boardId`,
         `reviewArticle`.`beer_index` AS `beerIndex`,
@@ -114,15 +188,86 @@
         `user`.`nickname` AS `usernickname`,
         (#{userEmail} IS NOT NULL) AS `isSigned`,
         COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
-        COUNT(`reviewLikeCount`.`article_index`) AS `likeCount`
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_likes`
+        WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+        `reviewArticle`.`index`) AS `likeCount`,
+        COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_declaration`
+        WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`
         FROM etb_bbs.review_articles AS `reviewArticle`
         LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
         LEFT JOIN `etb_data`.`beers` AS `beer` ON `beer`.`index` = `reviewArticle`.beer_index
         LEFT JOIN `etb_bbs`.review_article_likes AS `reviewArticleLike`
         ON `reviewArticle`.`index` = reviewArticleLike.article_index
         AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
-        LEFT JOIN `etb_bbs`.review_article_likes AS `reviewLikeCount`
-        ON reviewArticle.`index` = `reviewLikeCount`.article_index
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaration` ON `reviewArticle`.`index` =
+        `reviewDeclaration`.`article_index` AND `reviewDeclaration`.user_email = IFNULL(#{userEmail}, '')
+        WHERE reviewArticle.`index`
+        <if test="criterion != null and criterion.equals('content')">
+            AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(reviewArticle.`content_bad`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.`nickname` = #{keyword}
+        </if>
+        <if test="starRank != null and starRank.equals('star5')">
+            AND `reviewArticle`.score = 5
+        </if>
+        <if test="starRank != null and starRank.equals('star4')">
+            AND `reviewArticle`.score = 4
+        </if>
+        <if test="starRank != null and starRank.equals('star3')">
+            AND `reviewArticle`.score = 3
+        </if>
+        <if test="starRank != null and starRank.equals('star2')">
+            AND `reviewArticle`.score = 2
+        </if>
+        <if test="starRank != null and starRank.equals('star1')">
+            AND `reviewArticle`.score = 1
+        </if>
+        GROUP BY `reviewArticle`.`index`
+        ORDER BY CASE
+        WHEN #{sort} = 'good' THEN likeCount
+        WHEN #{sort} = 'new' THEN `reviewArticle`.`index`
+        ELSE `reviewArticle`.`index` END DESC) AS reviewList
+        WHERE reviewList.declaCount <![CDATA[ < ]]> 5
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+    <select id="selectReviewArticleByBeerIndex"
+            resultType="com.emptybeer.etb.vos.ReviewArticleVo">
+        <!-- 리뷰리스트 조회 -->
+        SELECT * FROM (SELECT `reviewArticle`.`index` AS `index`,
+        `reviewArticle`.`user_email` AS `userEmail`,
+        `reviewArticle`.`board_id` AS `boardId`,
+        `reviewArticle`.`beer_index` AS `beerIndex`,
+        `beer`.`name` AS `beerName`,
+        `reviewArticle`.`score` AS `score`,
+        `reviewArticle`.`content_good` AS `contentGood`,
+        `reviewArticle`.`content_bad` AS `contentBad`,
+        `reviewArticle`.`declaration` AS `declaration`,
+        `reviewArticle`.`written_on` AS `writtenOn`,
+        `reviewArticle`.`modified_on` AS `modifiedOn`,
+        `user`.`nickname` AS `usernickname`,
+        (#{userEmail} IS NOT NULL) AS `isSigned`,
+        COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_likes`
+        WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+        `reviewArticle`.`index`) AS `likeCount`,
+        COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_declaration`
+        WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
+        LEFT JOIN `etb_data`.`beers` AS `beer` ON `beer`.`index` = `reviewArticle`.beer_index
+        LEFT JOIN `etb_bbs`.review_article_likes AS `reviewArticleLike`
+        ON `reviewArticle`.`index` = reviewArticleLike.article_index
+        AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaration` ON `reviewArticle`.`index` =
+        `reviewDeclaration`.`article_index` AND `reviewDeclaration`.user_email = IFNULL(#{userEmail}, '')
         WHERE `reviewArticle`.`beer_index` = #{beerIndex}
         <if test="criterion != null and criterion.equals('content')">
             AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
@@ -147,7 +292,11 @@
             AND `reviewArticle`.score = 1
         </if>
         GROUP BY `reviewArticle`.`index`
-        ORDER BY `reviewArticle`.`index` DESC
+        ORDER BY CASE
+        WHEN #{sort} = 'good' THEN likeCount
+        WHEN #{sort} = 'new' THEN `reviewArticle`.`index`
+        ELSE `reviewArticle`.`index` END DESC) AS reviewList
+        WHERE reviewList.declaCount <![CDATA[ < ]]> 5
         LIMIT #{limit} OFFSET #{offset}
     </select>
     <insert id="insertBeerLike"
@@ -177,29 +326,37 @@
         LIMIT 1
     </delete>
     <select id="selectLikeIndex" resultType="com.emptybeer.etb.vos.ReviewArticleVo">
-        SELECT `reviewArticle`.`index`                      AS `index`,
-               `reviewArticle`.`user_email`                 AS `userEmail`,
-               `reviewArticle`.`board_id`                   AS `boardId`,
-               `reviewArticle`.beer_index                   AS `beerIndex`,
-               `beer`.`name`                                AS `beerName`,
-               `reviewArticle`.`score`                      AS `score`,
-               `reviewArticle`.`content_good`               AS `contentGood`,
-               `reviewArticle`.`content_bad`                AS `contentBad`,
-               `reviewArticle`.`declaration`                AS `declaration`,
-               `reviewArticle`.`written_on`                 AS `writtenOn`,
-               `reviewArticle`.`modified_on`                AS `modifiedOn`,
-               `user`.`nickname`                            AS `userNickname`,
-               (#{userEmail} IS NOT NULL)                   AS `isSigned`,
-               COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
-               COUNT(`reviewLikeCount`.`article_index`)     AS `likeCount`
+        SELECT `reviewArticle`.`index`                                                                  AS `index`,
+               `reviewArticle`.`user_email`                                                             AS `userEmail`,
+               `reviewArticle`.`board_id`                                                               AS `boardId`,
+               `reviewArticle`.beer_index                                                               AS `beerIndex`,
+               `beer`.`name`                                                                            AS `beerName`,
+               `reviewArticle`.`score`                                                                  AS `score`,
+               `reviewArticle`.`content_good`                                                           AS `contentGood`,
+               `reviewArticle`.`content_bad`                                                            AS `contentBad`,
+               `reviewArticle`.`declaration`                                                            AS `declaration`,
+               `reviewArticle`.`written_on`                                                             AS `writtenOn`,
+               `reviewArticle`.`modified_on`                                                            AS `modifiedOn`,
+               `user`.`nickname`                                                                        AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                                                               AS `isSigned`,
+               COUNT(`reviewArticleLike`.article_index) > 0                                             AS `isLiked`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`review_article_likes`
+                WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+                      `reviewArticle`.`index`)                                                          AS `likeCount`,
+               COUNT(`reviewDeclaration`.article_index) > 0                                             AS `isDeclared`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`review_article_declaration`
+                WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`
         FROM `etb_bbs`.`review_articles` AS `reviewArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
                  LEFT JOIN `etb_data`.`beers` AS `beer` ON `reviewArticle`.`beer_index` = `beer`.`index`
                  LEFT JOIN `etb_bbs`.review_article_likes AS `reviewArticleLike`
                            ON `reviewArticle`.`index` = reviewArticleLike.article_index
                                AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
-                 LEFT JOIN `etb_bbs`.review_article_likes AS `reviewLikeCount`
-                           ON reviewArticle.`index` = `reviewLikeCount`.article_index
+                 LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaration`
+                           ON `reviewArticle`.`index` = `reviewDeclaration`.`article_index` AND
+                              `reviewDeclaration`.user_email = IFNULL(#{userEmail}, '')
         WHERE BINARY `reviewArticle`.`index` = #{index}
 
         LIMIT 1
@@ -218,12 +375,12 @@
         WHERE `index` = #{index}
         LIMIT 1
     </update>
-    <update id="updateReviewDecla" parameterType="com.emptybeer.etb.vos.ReviewArticleVo">
-        update `etb_bbs`.`review_articles`
-        SET `declaration`  = #{declaration} + 1
-        WHERE `index` = #{index}
-        LIMIT 1
-    </update>
+    <!--   리뷰 신고 수정기-->
+    <insert id="insertReviewDecla"
+            parameterType="com.emptybeer.etb.entities.bbs.ReviewArticleDeclarationEntity">
+        INSERT INTO `etb_bbs`.`review_article_declaration` (`user_email`, `article_index`, `created_on`)
+        VALUES (#{userEmail}, #{articleIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
     <select id="selectIndex" resultType="com.emptybeer.etb.vos.ReviewArticleVo">
         SELECT `reviewArticle`.`index`        AS `index`,
                `reviewArticle`.`user_email`   AS `userEmail`,
@@ -249,6 +406,7 @@
         FROM `etb_bbs`.review_articles
         WHERE `index` = #{index}
     </delete>
+
 
 
 

@@ -2,13 +2,17 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>잔이비어 :: Review</title>
+    <title>잔이비어 :: 맥주별 Review</title>
+    <script th:if="${beer.getName() == null}">
+        alert('존재하지 않는 맥주 정보 입니다.');
+        window.history.back();
+    </script>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewList.css}">
     <script defer th:src="@{/bbs/resources/scripts/reviewList.js}"></script>
 </head>
-<body>
+<body th:if="${beer.getName() != null}">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
@@ -124,46 +128,46 @@
             <select name="starRank" id="starRank" th:with="starRank = ${#request.getParameter('starRank')}">
                 <option value="all" th:selected="${starRank == null || starRank.equals('all')}">
                     <div>모든 별점 보기</div>
-                    <div th:text="${totalCount}">6,608</div>
+                    <div th:text="${reviewCount.getAll()}">6,608</div>
                 </option>
                 <option value="star5" th:selected="${starRank != null && starRank.equals('star5')}">
                     <div>최고</div>
                     <span class="star-container">
                         ★★★★★
                     </span>
-                    <div>6,192</div>
+                    <div th:text="${reviewCount.getStar5()}">6,192</div>
                 </option>
                 <option value="star4" th:selected="${starRank != null && starRank.equals('star4')}">
                     <div>좋음</div>
                     <span class="star-container">
                         ★★★★
                     </span>
-                    <div>297</div>
+                    <div th:text="${reviewCount.getStar4()}">297</div>
                 </option>
                 <option value="star3" th:selected="${starRank != null && starRank.equals('star3')}">
                     <div>보통</div>
                     <span class="star-container">
                         ★★★
                     </span>
-                    <div>67</div>
+                    <div th:text="${reviewCount.getStar3()}">67</div>
                 </option>
                 <option value="star2" th:selected="${starRank != null && starRank.equals('star2')}">
                     <div>별로</div>
                     <span class="star-container">
                         ★★
                     </span>
-                    <div>12</div>
+                    <div th:text="${reviewCount.getStar2()}">12</div>
                 </option>
                 <option value="star1" th:selected="${starRank != null && starRank.equals('star1')}">
                     <div>나쁨</div>
                     <span class="star-container">
                         ★
                     </span>
-                    <div>40</div>
+                    <div th:text="${reviewCount.getStar1()}">40</div>
                 </option>
             </select>
         </div>
-        <div class="review-container blank" th:if="${reviewArticles} == null">
+        <div class="review-container blank" th:if="${avgReview} == 0">
             <div>
                 등록된 리뷰가 없습니다.
             </div>

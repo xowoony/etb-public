@@ -38,7 +38,7 @@ public class BbsService {
         return this.bbsMapper.selectBeerByIndex(beerIndex);
     }
 
-    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser){
+    public BeerVo getBeerLike(int beerIndex, UserEntity signedUser) {
         return this.bbsMapper.selectBeerLikeByIndex(signedUser == null ? null : signedUser.getEmail(), beerIndex);
     }
 
@@ -75,14 +75,41 @@ public class BbsService {
                 : CommonResult.FAILURE;
     }
 
-    public int getReviewArticleCount(BeerEntity beer, String criterion, String keyword) {
-        return this.bbsMapper.selectReviewArticleCountByBeerIndex(beer.getIndex(), criterion, keyword);
+
+    // 전체 리뷰 카운트
+    public int getALLReviewArticleCount(String criterion, String keyword, String starRank) {
+        return this.bbsMapper.selectAllReviewArticleCountByBeerIndex(criterion, keyword, starRank);
+    }
+
+    // 맥주별 리뷰 카운트
+    public int getReviewArticleCount(BeerEntity beer, String criterion, String keyword, String starRank) {
+        return this.bbsMapper.selectReviewArticleCountByBeerIndex(beer.getIndex(), criterion, keyword, starRank);
+    }
+
+    //(전체맥주) 리뷰 별점별 후기 개수
+    public BeerVo getAllReviewCount() {
+        return this.bbsMapper.selectAllReviewCountByBeerIndex();
+    }
+
+    // 맥주당 리뷰 항목별 보기(별점 별 후기 개수)
+    public BeerVo getReviewCount(BeerVo beer) {
+        return this.bbsMapper.selectReviewCountByBeerIndex(beer.getIndex());
     }
 
     public double getReviewAvg(BeerVo beer) {
-        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
+        return this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex()) == null ? 0 : this.bbsMapper.selectReviewAvgByBeerIndex(beer.getIndex());
     }
 
+
+    //(전체 맥주) 리뷰 배열
+    public ReviewArticleVo[] getAllReviewArticles(UserEntity signedUser, PagingModel paging, String criterion, String keyword, String starRank, String sort) {
+        return this.bbsMapper.selectAllReviewArticleByBeerIndex(signedUser == null ? null : signedUser.getEmail(),
+                criterion, keyword, starRank, sort,
+                paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
+    }
+
+    // 맥주별 리뷰 배열
     public ReviewArticleVo[] getReviewArticles(UserEntity signedUser, BeerEntity beer, PagingModel paging, String criterion, String keyword, String starRank, String sort) {
         return this.bbsMapper.selectReviewArticleByBeerIndex(signedUser == null ? null : signedUser.getEmail(),
                 beer.getIndex(), criterion, keyword, starRank, sort,
