@@ -302,4 +302,6 @@ public class BbsController {
         responseObject.put("isDeclared", reviewArticle.isDeclared());
         return responseObject.toString();
     }
+
+
 }

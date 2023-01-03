@@ -1,3 +1,4 @@
-const festival = document.querySelectorAll('.title-box2' );
+const festival = document.getElementById('titleBox2');
+const festivalData = document.getElementById('data');
 
 

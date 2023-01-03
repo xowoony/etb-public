@@ -11,6 +11,7 @@ import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
+import com.emptybeer.etb.vos.FestivalCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
@@ -229,7 +230,6 @@ public class BbsService {
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
     }
-
 
 
 }
