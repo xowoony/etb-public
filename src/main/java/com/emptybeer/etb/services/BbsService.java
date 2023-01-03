@@ -231,14 +231,4 @@ public class BbsService {
     }
 
 
-    // festival 관련
-
-    public FestivalArticleEntity[] getFestivalArticle() {
-
-        return this.bbsMapper.selectFestivalArticle();
-    }
-
-    public ImageEntity getImage(int index) {
-        return this.bbsMapper.selectImageByIndex(index);
-    }
 }
