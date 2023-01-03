@@ -2,6 +2,7 @@ package com.emptybeer.etb.services;
 
 import com.emptybeer.etb.entities.bbs.BasicArticleEntity;
 import com.emptybeer.etb.entities.bbs.BoardEntity;
+import com.emptybeer.etb.entities.bbs.ImageEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
@@ -32,6 +33,18 @@ public class BasicBbsService {
         return this.basicBbsMapper.insertArticle(basicArticle) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
+    }
+
+    // 이미지
+    public Enum<? extends IResult> addImage(ImageEntity image) {
+        return this.basicBbsMapper.insertImage(image) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
+    // 이미지 넣는 기
+    public ImageEntity getImage(int index) {
+        return this.basicBbsMapper.selectImageByIndex(index);
     }
 
 }

@@ -2,16 +2,23 @@ package com.emptybeer.etb.controllers;
 
 import com.emptybeer.etb.entities.bbs.BasicArticleEntity;
 import com.emptybeer.etb.entities.bbs.BoardEntity;
+import com.emptybeer.etb.entities.bbs.ImageEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.services.BasicBbsService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
 
 @Controller(value = "com.emptybeer.etb.controllers.BasicBbsController")
 @RequestMapping(value = "/basicBbs")
@@ -78,6 +85,38 @@ public class BasicBbsController {
     }
 
 
+    // 이미지
+    @RequestMapping(value = "image",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postImage(@RequestParam(value = "upload") MultipartFile file) throws IOException {
+        ImageEntity image = new ImageEntity();
+        image.setFileName(file.getOriginalFilename());
+        image.setFileMime(file.getContentType());
+        image.setData(file.getBytes());
 
+        Enum<?> result = this.basicBbsService.addImage(image);
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        if (result == CommonResult.SUCCESS) {
+            responseObject.put("url", "http://localhost:8080/basicBbs/image?id=" + image.getIndex());
+        }
+        return responseObject.toString();
+    }
+
+    // 다운로드용 맵핑
+    @RequestMapping(value = "image",
+            method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getImage(@RequestParam(value = "id") int id) {
+        ImageEntity image = this.basicBbsService.getImage(id);
+        if (image == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", image.getFileMime());
+        // 이미지인지 어쩌구인지 판거
+        return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
+    }
 
 }

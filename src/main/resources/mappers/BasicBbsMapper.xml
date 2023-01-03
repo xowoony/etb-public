@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.emptybeer.etb.mappers.IBasicBbsMapper">
+
     <select id="selectBoardById" resultType="com.emptybeer.etb.entities.bbs.BoardEntity">
         SELECT `id`   AS `id`,
                `text` AS `text`
@@ -10,6 +11,7 @@
         WHERE BINARY `id` = #{id}
         LIMIT 1
     </select>
+
     <insert id="insertArticle"
             useGeneratedKeys="true"
             keyColumn="index"
@@ -20,5 +22,25 @@
         VALUES (#{userEmail}, #{boardId}, #{title}, #{content}, #{view}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)),
                 IFNULL(#{modifiedOn}, DEFAULT(`modified_on`)))
     </insert>
+
+    <insert id="insertImage"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.bbs.ImageEntity">
+        INSERT INTO `etb_bbs`.images (file_name, file_mime, data)
+        VALUES (#{fileName}, #{fileMime}, #{data})
+    </insert>
+
+    <select id="selectImageByIndex"
+            resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
+        SELECT `index`   AS `index`,
+               file_name AS `fileName`,
+               file_mime AS `fileMime`,
+               data      AS `data`
+        FROM `etb_bbs`.images
+        WHERE `index` = #{index}
+        LIMIT 1
+    </select>
 
 </mapper>
