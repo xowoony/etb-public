@@ -68,14 +68,4 @@ public interface IBbsMapper {
     // 리뷰 좋아요 취소
     int deleteReviewLike(ReviewArticleLikeEntity reviewArticleLike);
 
-    // festival관련
-    FestivalArticleEntity[] selectFestivalArticle();
-
-    FestivalArticleEntity selectFestivalArticleByIndex(@Param(value="index")int index);
-
-    FestivalCommentVo[] selectFestivalCommentByArticleIndex(@Param(value="index")int index);
-
-    ImageEntity selectImageByIndex(@Param(value="index") int index);
-
-    int insertFestivalComment(FestivalCommentEntity festivalComment);
 }

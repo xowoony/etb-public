@@ -205,30 +205,4 @@ public class BbsService {
     }
 
 
-    // festival 관련
-
-    public FestivalArticleEntity[] getFestivalArticle(){
-
-        return this.bbsMapper.selectFestivalArticle();
-    }
-
-    public ImageEntity getImage(int index) {return this.bbsMapper.selectImageByIndex(index);}
-
-    public FestivalArticleEntity getFestivalArticleByIndex(int index){
-        return this.bbsMapper.selectFestivalArticleByIndex(index);
-    }
-
-    public FestivalCommentVo[] getFestivalCommentByArticleIndex(int index){
-        return this.bbsMapper.selectFestivalCommentByArticleIndex(index);
-    }
-
-    public Enum<? extends  IResult> writeFestivalComment(FestivalCommentEntity festivalComment){
-        FestivalArticleEntity article = this.bbsMapper.selectFestivalArticleByIndex(festivalComment.getArticleIndex());
-
-        if(article==null){
-            return CommonResult.FAILURE;
-        }
-
-        return this.bbsMapper.insertFestivalComment(festivalComment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
-    }
 }

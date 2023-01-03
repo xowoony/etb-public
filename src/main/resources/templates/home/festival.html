@@ -44,7 +44,7 @@
 <!--                    </form>-->
 <!--                </div>-->
 
-            <a class="festival-container" th:href="@{/bbs/festivalRead (index=${festivalArticle.getIndex()})}" th:each="festivalArticle : ${festivalArticles}">
+            <a class="festival-container" th:href="@{/festival/festivalRead (index=${festivalArticle.getIndex()})}" th:each="festivalArticle : ${festivalArticles}">
                 <img class="festival-image" th:src="@{/image (index=${festivalArticle.getIndex()})}" alt="">
                 <div class="festival-title" th:text="${festivalArticle.getTitle()}"></div>
                 <form id="data">
