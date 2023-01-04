@@ -48,7 +48,7 @@
             <tr>
                 <td colspan="6">
                     <div class="button-container">
-                        <a class="--object-button">목록</a>
+                        <a class="--object-button" th:href="@{./list (bid=${basicArticle.getBoardId()})}">목록</a>
                         <a class="--object-button toggle" href="#">추천</a>
                         <span class="spring"></span>
                         <a class="--object-button modify" th:href="@{./modify (aid=${basicArticle.getIndex()})}" th:if="${session.user != null && session.user.getEmail().equals(basicArticle.getUserEmail())}">수정</a>

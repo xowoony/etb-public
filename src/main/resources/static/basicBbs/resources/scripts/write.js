@@ -59,8 +59,7 @@ form.onsubmit = e => {
                         break;
                     case 'success':
                         const aid = responseObject['aid'];
-                        // window.location.href = `read?aid=${aid}`;
-                        alert('작성 성공~!')
+                        window.location.href = `read?aid=${aid}`;
                         break;
                     default:
                         Warning.show('알 수 없는 이유로 게시글을 작성하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
