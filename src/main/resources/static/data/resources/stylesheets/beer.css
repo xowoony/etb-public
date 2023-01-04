@@ -94,6 +94,7 @@ body > main > .beer-section > .title-box1 > .title-content {
 
 /*맥주 선택 select 태그*/
 #beerCategory {
+    color: rgb(106 106 106);
     width: 14rem;
     border-top: 10px solid transparent;
     border-left: 15px solid transparent;
@@ -139,7 +140,7 @@ body > main > .beer-section > .title-box2 > .item-container {
 
 /*맥주 그리드의 border */
 body > main > .beer-section > .title-box2 > .item-container > .item {
-    border: 0.0625rem solid rgb(0, 0, 0);
+    border: 0.0625rem solid rgb(214 212 212);;
     margin-bottom: 3.5rem;
 }
 
@@ -202,7 +203,7 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link > ta
     color: rgb(0 0 0);
     padding: 0.5rem 0.95rem;
     text-decoration: none;
-    background-color: rgb(0,0,0,10%);
+    background-color: rgb(0, 0, 0, 10%);
 }
 
 .page-container > .page.selected,
@@ -221,8 +222,10 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link > ta
 }
 
 /*검색어 입력창*/
-
 .label > .--object-input {
+    background-color: rgb(188 184 184 / 38%);
+    color: rgb(255, 255, 255);
+    border: 0.0625rem solid #acacac;
     width: 24rem;
     height: 2.3rem;
     padding-left: 1rem;
@@ -230,7 +233,6 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link > ta
 }
 
 /*찾기 버튼*/
-
 main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label > .search-button {
     border: 0.0625rem;
     padding: 0.67rem 1.3rem;
@@ -240,4 +242,14 @@ main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label
     margin-left: 0.5rem;
     cursor: pointer;
     margin-right: 4rem;
+}
+
+/*찾기 버튼 hover시 */
+main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label > .search-button:hover{
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+
+input::placeholder {
+    color: rgb(222, 222, 222);
 }
