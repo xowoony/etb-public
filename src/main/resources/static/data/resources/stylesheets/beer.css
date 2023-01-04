@@ -78,6 +78,7 @@ body > main > .beer-section > .title-box1 > .beer-select-border > form > .border
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-left: 10px solid transparent;
+    width: 15rem;
     /*box-sizing: border-box;*/
     /*border-collapse: collapse;*/
     /*border-top: 15px solid transparent;*/
@@ -92,11 +93,15 @@ body > main > .beer-section > .title-box1 > .title-content {
 }
 
 /*맥주 선택 select 태그*/
-select {
-    width: 30rem;
-    /*padding: 0.8em 1em;*/
+#beerCategory {
+    color: rgb(106 106 106);
+    width: 14rem;
+    border-top: 10px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 10px solid transparent;
     font-family: inherit;
-    border-right: 16px solid transparent
+    border-right: 16px solid transparent;
+
 }
 
 /*찾기 버튼*/
@@ -135,7 +140,7 @@ body > main > .beer-section > .title-box2 > .item-container {
 
 /*맥주 그리드의 border */
 body > main > .beer-section > .title-box2 > .item-container > .item {
-    border: 0.0625rem solid rgb(0, 0, 0);
+    border: 0.0625rem solid rgb(214 212 212);;
     margin-bottom: 3.5rem;
 }
 
@@ -143,7 +148,7 @@ body > main > .beer-section > .title-box2 > .item-container > .item {
 body > main > .beer-section > .title-box2 > .item-container > .item > .link {
     width: 100%;
     text-decoration: none;
-    color: rgb(0,0,0);
+    color: rgb(0, 0, 0);
 }
 
 /*table 크기 조절*/
@@ -179,4 +184,72 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link > ta
 /*그리드 안 이미지 크기 조절*/
 body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody > tr > td > img {
     width: 100%;
+}
+
+
+/*페이징*/
+
+.page-container {
+    margin-top: 2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.page-container > .page {
+    /* border-bottom: 0.0625rem solid rgb(0,0,0); */
+    /* border-left: 0.0625rem solid rgb(125 148 169); */
+    color: rgb(0 0 0);
+    padding: 0.5rem 0.95rem;
+    text-decoration: none;
+    background-color: rgb(0, 0, 0, 10%);
+}
+
+.page-container > .page.selected,
+.page-container > .page:hover {
+    background-color: #555;
+    color: white;
+}
+
+.title-box2 > table {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-bottom: 10rem;
+}
+
+/*검색어 입력창*/
+.label > .--object-input {
+    background-color: rgb(188 184 184 / 38%);
+    color: rgb(255, 255, 255);
+    border: 0.0625rem solid #acacac;
+    width: 24rem;
+    height: 2.3rem;
+    padding-left: 1rem;
+    margin-left: 22rem;
+}
+
+/*찾기 버튼*/
+main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label > .search-button {
+    border: 0.0625rem;
+    padding: 0.67rem 1.3rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: white;
+    text-decoration: none;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    margin-right: 4rem;
+}
+
+/*찾기 버튼 hover시 */
+main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label > .search-button:hover{
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+
+input::placeholder {
+    color: rgb(222, 222, 222);
 }

@@ -27,14 +27,33 @@
             <div class="title-content">다양한 맥주를 소개합니다.
             </div>
             <div class="beer-select-border">
-                <form>
-                    <select class="border">
-                        <option value="" selected disabled>맥주 종류를 선택해 주세요
+                <form class="search-form" id="searchForm" method="get">
+                    <!--  맥주 검색   -->
+                    <label class="label">
+                        <span hidden>검색어</span>
+                        <input type="text" class="--object-input" maxlength="25" name="keyword"
+                               placeholder="검색할 맥주를 입력해 주세요."
+                               th:value="${#request.getParameter('keyword')}">
+                        <input type="submit" class="search-button" value="찾기">
+                    </label>
+                    <!--맥주 종류 선택-->
+                    <select name="beerCategory" id="beerCategory" th:with="beerCategory = ${#request.getParameter('beerCategory')}">
+                        <option value="" selected disabled>맥주 카테고리별 보기
                         </option>
-                        <option class="nat" value="">국내맥주</option>
-                        <option class="for" value="">해외맥주</option>
+                        <option class="domestic" value="domestic" th:selected="${beerCategory != null && beerCategory.equals('domestic')}">국내맥주</option>
+                        <option class="foreign" value="foreign" th:selected="${beerCategory != null && beerCategory.equals('foreign')}">해외맥주</option>
                     </select>
-                    <input class="find-beer" type="submit" value="찾기">
+
+                    <label class="label">
+                        <span hidden>검색 기준</span>
+                        <select hidden name="criterion" class="--object-input"
+                                th:with="criterion = ${#request.getParameter('criterion')}">
+                            <!-- th:with는 변수 선언임 -->
+                            <option value="name" th:selected="${criterion == null || criterion.equals('name')}">맥주
+                            </option>
+                        </select>
+                    </label>
+
                 </form>
             </div>
         </div>
@@ -46,11 +65,11 @@
                     <a class="link" th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
                         <table>
                             <tbody>
-                                <tr>
-                                    <td><img alt="" class="image"
-                                             th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"></td>
-                                    <td th:text="${beer.getName()}">1866 블론드</td>
-                                </tr>
+                            <tr>
+                                <td><img alt="" class="image"
+                                         th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"></td>
+                                <td th:text="${beer.getName()}">1866 블론드</td>
+                            </tr>
                             </tbody>
                         </table>
                     </a>
@@ -59,47 +78,47 @@
             <!--     페이징       -->
             <table>
                 <tbody>
-                    <tr>
-                        <td colspan="6">
-                            <div class="page-container"
-                                 th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
-                                <!-- 페이징-->
-                                <!--  <<  -->
-                                <a class="page"
-                                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
-                                   th:if="${paging.requestPage > 1}">
-                                    <i class="fa-solid fa-angles-left"></i>
-                                </a>
-                                <!--  <  -->
-                                <a class="page"
-                                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage -1).build().toUriString()}}"
-                                   th:if="${paging.requestPage > 1}">
-                                    <i class="fa-solid fa-angle-left"></i>
-                                </a>
+                <tr>
+                    <td colspan="6">
+                        <div class="page-container"
+                             th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                            <!-- 페이징-->
+                            <!--  <<  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+                               th:if="${paging.requestPage > 1}">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </a>
+                            <!--  <  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage -1).build().toUriString()}}"
+                               th:if="${paging.requestPage > 1}">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </a>
 
-                                <!-- 얘가 기준 - 요청한 페이지 -->
-                                <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
-                                   th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
-                                   th:text="${page}"
-                                   th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
-                                <!-- 얘가 기준 - 요청한 페이지-->
+                            <!-- 얘가 기준 - 요청한 페이지 -->
+                            <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                               th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+                               th:text="${page}"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+                            <!-- 얘가 기준 - 요청한 페이지-->
 
-                                <!--  >  -->
-                                <a class="page"
-                                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
-                                   th:if="${paging.requestPage < paging.maxPage}">
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </a>
+                            <!--  >  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+                               th:if="${paging.requestPage < paging.maxPage}">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </a>
 
-                                <!--  >>  -->
-                                <a class="page"
-                                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
-                                   th:if="${paging.requestPage < paging.maxPage}">
-                                    <i class="fa-solid fa-angles-right"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                            <!--  >>  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+                               th:if="${paging.requestPage < paging.maxPage}">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
