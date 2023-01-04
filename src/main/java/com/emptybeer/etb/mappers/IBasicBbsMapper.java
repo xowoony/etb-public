@@ -46,4 +46,16 @@ public interface IBasicBbsMapper {
 
     // 게시글 삭제
     int deleteArticleByIndex(@Param(value = "index") int index);
+
+    // 게시글 리스트 count
+    int selectArticleCountByBoardId(@Param(value = "boardId") String boardId,
+                                    @Param(value = "criterion") String criterion,
+                                    @Param(value = "keyword") String keyword);
+
+    // 게시글 리스트
+    BasicArticleVo[] selectArticlesByBoardId(@Param(value = "boardId") String boardId,
+                                            @Param(value = "criterion") String criterion,
+                                            @Param(value = "keyword") String keyword,
+                                            @Param(value = "limit") int limit,
+                                            @Param(value = "offset") int offset);
 }

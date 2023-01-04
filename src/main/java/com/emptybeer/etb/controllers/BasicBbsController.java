@@ -7,6 +7,7 @@ import com.emptybeer.etb.entities.bbs.ImageEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
+import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BasicBbsService;
 import com.emptybeer.etb.vos.BasicArticleVo;
 import com.emptybeer.etb.vos.BasicCommentVo;
@@ -237,6 +238,44 @@ public class BasicBbsController {
         modelAndView.addObject("result", result.name());
         if (result == CommonResult.SUCCESS) {
             modelAndView.addObject("board", this.basicBbsService.getBoard(basicArticle.getBoardId()));
+        }
+        return modelAndView;
+    }
+
+    @PatchMapping(value = "modify",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchModify(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleVo basicArticle,
+                              @RequestParam(value = "aid") int aid) {
+        basicArticle.setIndex(aid);
+        Enum<?> result = this.basicBbsService.modifyArticle(basicArticle, user);
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        if (result == CommonResult.SUCCESS) {
+            responseObject.put("aid", aid);
+        }
+        return responseObject.toString();
+    }
+
+    // 게시글 리스트
+    @GetMapping(value = "list",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getList(@RequestParam(value = "bid") String bid,
+                                @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                @RequestParam(value = "criterion", required = false) String criterion,
+                                @RequestParam(value = "keyword", required = false) String keyword) {
+        page = Math.max(1, page);
+        ModelAndView modelAndView = new ModelAndView("basicBbs/list");
+        BoardEntity board = this.basicBbsService.getBoard(bid);
+        modelAndView.addObject("board", board);
+        if (board != null) {
+            int totalCount = this.basicBbsService.getArticleCount(board, criterion, keyword);
+
+            PagingModel paging = new PagingModel(totalCount, page);
+            modelAndView.addObject("paging", paging);
+
+            BasicArticleVo[] basicArticles = this.basicBbsService.getArticles(board, paging, criterion, keyword);
+            modelAndView.addObject("basicArticles", basicArticles);
         }
         return modelAndView;
     }

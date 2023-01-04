@@ -11,10 +11,13 @@ import com.emptybeer.etb.enums.bbs.ArticleModifyResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBasicBbsMapper;
+import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BasicArticleVo;
 import com.emptybeer.etb.vos.BasicCommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service(value = "com.emptybeer.etb.services.BasicBbsService")
 public class BasicBbsService {
@@ -164,6 +167,40 @@ public class BasicBbsService {
         basicArticle.setWrittenOn(existingArticle.getWrittenOn());
         basicArticle.setModifiedOn(existingArticle.getModifiedOn());
         return CommonResult.SUCCESS;
+    }
+
+    public Enum<? extends IResult> modifyArticle(BasicArticleVo basicArticle, UserEntity user) {
+        if (user == null) {
+            return ArticleModifyResult.NOT_SIGNED;
+        }
+        BasicArticleVo existingArticle = this.basicBbsMapper.selectIndex(basicArticle.getIndex());
+        if (existingArticle == null) {
+            return ArticleModifyResult.NO_SUCH_ARTICLE;
+        }
+        if (!existingArticle.getUserEmail().equals(user.getEmail())) {
+            return ArticleModifyResult.NOT_ALLOWED;
+        }
+
+        existingArticle.setTitle(basicArticle.getTitle());
+        existingArticle.setContent(basicArticle.getContent());
+        existingArticle.setModifiedOn(new Date());
+        return this.basicBbsMapper.updateArticle(existingArticle) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
+
+    // 게시글 리스트 카운트
+    public int getArticleCount(BoardEntity board, String criterion, String keyword) {
+        return this.basicBbsMapper.selectArticleCountByBoardId(board.getId(), criterion, keyword);
+    }
+
+    // 게시글 리스트
+    public BasicArticleVo[] getArticles(BoardEntity board, PagingModel paging, String criterion, String keyword) {
+        return this.basicBbsMapper.selectArticlesByBoardId(
+                board.getId(), criterion, keyword,
+                paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
     }
 
 }
