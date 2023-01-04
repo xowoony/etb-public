@@ -29,19 +29,18 @@ public class DataController {
 
     @GetMapping(value = "beer",
             produces = MediaType.TEXT_HTML_VALUE)
-//    public ModelAndView getBeer(@RequestParam(value = "beerIndex", required = false) int beerIndex) {
     public ModelAndView getBeer(
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(value = "criterion", required = false) String criterion,
-            @RequestParam(value = "keyword", required = false) String keyword) {
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "beerCategory", required = false) String beerCategory) {
+
         page = Math.max(1, page);
         ModelAndView modelAndView = new ModelAndView("data/beer");
-
-        int totalCount = this.dataService.getBeerCount(criterion,keyword);
-        PagingModel paging = new PagingModel(totalCount,page);
-        modelAndView.addObject("paging",paging);
-
-        BeerVo[] beers = this.dataService.getBeer(paging, criterion, keyword);
+        int totalCount = this.dataService.getBeerCount(criterion, keyword);
+        PagingModel paging = new PagingModel(totalCount, page);
+        modelAndView.addObject("paging", paging);
+        BeerVo[] beers = this.dataService.getBeer(paging, criterion, keyword, beerCategory);
         modelAndView.addObject("beers", beers);
         return modelAndView;
     }

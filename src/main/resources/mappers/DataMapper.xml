@@ -20,23 +20,29 @@
         WHERE `beer`.`index` = #{beerIndex}
     </select>
 
-    <!--  맥주 정보 배열로 가져오기  -->
+    <!--  맥주 정보 배열로 가져오기 + 맥주 카테고리별 보기  -->
     <select id="selectBeer"
             resultType="com.emptybeer.etb.vos.BeerVo">
-        SELECT `beer`.`index`          AS `index`,
-               `beer`.`name`           AS `name`,
-               `beer`.image            AS `image`,
-               `beer`.image_type       AS `imageType`,
-               `beer`.`category_index` AS `categoryIndex`,
-               `beerCategory`.`text`   AS `categoryText`,
-               `beer`.created_on       AS `createdOn`,
-               `beer`.modified_on      AS `modifiedOn`
+        SELECT `beer`.`index` AS `index`,
+        `beer`.`name` AS `name`,
+        `beer`.image AS `image`,
+        `beer`.image_type AS `imageType`,
+        `beer`.`category_index` AS `categoryIndex`,
+        `beerCategory`.`text` AS `categoryText`,
+        `beer`.created_on AS `createdOn`,
+        `beer`.modified_on AS `modifiedOn`
         FROM `etb_data`.`beers` AS `beer`
-                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
-                           ON `beer`.`category_index` = `beerCategory`  .`index`
+        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+        ON `beer`.`category_index` = `beerCategory` .`index`
         WHERE `beer`.`index`
         <if test="criterion != null and criterion.equals('name')">
             AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('domestic')">
+            AND `beer`.`category_index` = 1
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('foreign')">
+            AND `beer`.`category_index` = 2
         </if>
         LIMIT 9 OFFSET #{offset}
 
@@ -54,7 +60,29 @@
 
     </select>
 
-
+    <!--  맥주 카테고리별 보기  -->
+<!--    <select id="selectBeerCategory"-->
+<!--            resultType="com.emptybeer.etb.vos.BeerVo">-->
+<!--        SELECT-->
+<!--        `beer`.`index` AS `index`,-->
+<!--        `beer`.`name` AS `name`,-->
+<!--        `beer`.image AS `image`,-->
+<!--        `beer`.image_type AS `imageType`,-->
+<!--        `beer`.`category_index` AS `categoryIndex`,-->
+<!--        `beerCategory`.`text` AS `categoryText`,-->
+<!--        `beer`.created_on AS `createdOn`,-->
+<!--        `beer`.modified_on AS `modifiedOn`-->
+<!--        FROM `etb_data`.`beers` AS `beer`-->
+<!--        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`-->
+<!--        ON `beer`.`category_index` = `beerCategory` .`index`-->
+<!--        WHERE `beer`.`index`-->
+<!--        <if test="beerCategory != null and beerCategory.equals('domestic')">-->
+<!--            AND `beer`.`category_index` = 1-->
+<!--        </if>-->
+<!--        <if test="beerCategory != null and beerCategory.equals('foreign')">-->
+<!--            AND `beer`.`category_index` = 2-->
+<!--        </if>-->
+<!--    </select>-->
 
 
 </mapper>

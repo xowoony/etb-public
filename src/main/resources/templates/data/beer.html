@@ -37,18 +37,18 @@
                         <input type="submit" class="search-button" value="찾기">
                     </label>
                     <!--맥주 종류 선택-->
-                    <select class="border">
+                    <select name="beerCategory" id="beerCategory" th:with="beerCategory = ${#request.getParameter('beerCategory')}">
                         <option value="" selected disabled>맥주 카테고리별 보기
                         </option>
-                        <option class="nat" value="국내맥주">국내맥주</option>
-                        <option class="for" value="해외맥주">해외맥주</option>
+                        <option class="domestic" value="domestic" th:selected="${beerCategory != null && beerCategory.equals('domestic')}">국내맥주</option>
+                        <option class="foreign" value="foreign" th:selected="${beerCategory != null && beerCategory.equals('foreign')}">해외맥주</option>
                     </select>
 
                     <label class="label">
                         <span hidden>검색 기준</span>
                         <select hidden name="criterion" class="--object-input"
                                 th:with="criterion = ${#request.getParameter('criterion')}">
-                            <!--                    th:with는 변수 선언임-->
+                            <!-- th:with는 변수 선언임 -->
                             <option value="name" th:selected="${criterion == null || criterion.equals('name')}">맥주
                             </option>
                         </select>
@@ -75,7 +75,6 @@
                     </a>
                 </li>
             </ul>
-
             <!--     페이징       -->
             <table>
                 <tbody>

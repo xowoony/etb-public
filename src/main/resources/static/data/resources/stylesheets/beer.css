@@ -93,11 +93,14 @@ body > main > .beer-section > .title-box1 > .title-content {
 }
 
 /*맥주 선택 select 태그*/
-select {
-    width: 30rem;
-    /*padding: 0.8em 1em;*/
+#beerCategory {
+    width: 14rem;
+    border-top: 10px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 10px solid transparent;
     font-family: inherit;
-    border-right: 16px solid transparent
+    border-right: 16px solid transparent;
+
 }
 
 /*찾기 버튼*/
