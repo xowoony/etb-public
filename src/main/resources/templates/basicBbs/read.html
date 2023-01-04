@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>잔이비어 :: 글 읽</title>
+    <title>잔이비어 :: 글 읽기</title>
     <script th:if="${basicArticle==null}">
         alert('존재하지 않는 게시글 입니다.');
         window.history.back();
@@ -64,6 +64,7 @@
                             <input class="--object-input" maxlength="100" name="content" placeholder="댓글을 입력해주세요." type="text">
                         </label>
                         <input name="aid" type="hidden" th:value="${basicArticle.getIndex()}">
+                        <input name="bid" type="hidden" th:value="${basicArticle.getBoardId()}">
                         <input class="--object-button" type="submit" value="작성">
                     </form>
                     <div class="comment-container" id="commentContainer">
@@ -73,7 +74,6 @@
                                 <span class="dt">2022-01-01 00:00:00</span>
                                 <span class="spring"></span>
                                 <span class="action-container">
-                                    <a class="action reply" href="#">답글 달기</a>
                                     <a class="action modify" href="#">수정</a>
                                     <a class="action delete" href="#">삭제</a>
                                     <a class="action cancel" href="#">취소</a>
@@ -82,12 +82,6 @@
                             <div class="body">
                                 <div class="content">
                                     <span class="text">댓글 내용임!</span>
-                                    <div class="like">
-                                        <a href="#" class="toggle">
-                                            <i class="fa-solid fa-heart"></i>
-                                        </a>
-                                        <span class="count">9,999</span>
-                                    </div>
                                 </div>
                                 <form class="modify-form">
                                     <label class="label">

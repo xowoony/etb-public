@@ -52,7 +52,7 @@
                `basicArticle`.`view`        AS `view`,
                `basicArticle`.`written_on`  AS `writtenOn`,
                `basicArticle`.`modified_on` AS `modifiedOn`,
-               `user`.`nickname`       AS `userNickname`
+               `user`.`nickname`            AS `userNickname`
         FROM `etb_bbs`.`basic_articles` AS `basicArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
         WHERE BINARY `index` = #{index}
@@ -71,5 +71,67 @@
         WHERE `index` = #{index}
         LIMIT 1
     </update>
+
+    <insert id="insertComment"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicCommentEntity">
+        INSERT INTO `etb_bbs`.`basic_comments` (`user_email`, `board_id`, `article_index`, `content`, `written_on`)
+        VALUES (#{userEmail}, #{boardId}, #{articleIndex}, #{content}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)))
+    </insert>
+
+    <select id="selectCommentsByArticleIndex"
+            resultType="com.emptybeer.etb.vos.BasicCommentVo">
+        SELECT `comment`.`index`                                   AS `index`,
+               `comment`.`user_email`                              AS `userEmail`,
+               `comment`.`board_id`                                AS `boardId`,
+               `comment`.`article_index`                           AS `articleIndex`,
+               `comment`.`content`                                 AS `content`,
+               `comment`.`written_on`                              AS `writtenOn`,
+               `user`.`nickname`                                   AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                          AS `isSigned`,
+               (IFNULL(#{userEmail}, '') = `comment`.`user_email`) AS `isMine`
+        FROM `etb_bbs`.`basic_comments` AS `comment`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `comment`.`user_email`
+        WHERE `article_index` = #{articleIndex}
+        GROUP BY `comment`.`index`
+        ORDER BY `comment`.`index`
+    </select>
+
+    <select id="selectCommentByIndex" resultType="com.emptybeer.etb.vos.BasicCommentVo">
+        SELECT `index`         AS `index`,
+               `user_email`    AS `userEmail`,
+               `board_id`      AS `boardId`,
+               `article_index` AS `articleIndex`,
+               `content`       AS `content`,
+               `written_on`    AS `writtenOn`
+        FROM `etb_bbs`.`basic_comments`
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <delete id="deleteCommentByIndex">
+        DELETE
+        FROM `etb_bbs`.`basic_comments`
+        WHERE `index` = #{index}
+        LIMIT 1
+    </delete>
+
+    <update id="modifyCommentByIndex" parameterType="com.emptybeer.etb.vos.BasicCommentVo">
+        update `etb_bbs`.`basic_comments`
+        SET `index`         = #{index},
+            `user_email`    = #{userEmail},
+            `article_index`= #{articleIndex},
+            `content`       = #{content},
+            `written_on`    = #{writtenOn}
+        WHERE BINARY `index` = #{index}
+    </update>
+
+    <delete id="deleteArticleByIndex">
+        DELETE
+        FROM `etb_bbs`.basic_articles
+        WHERE `index` = #{index}
+    </delete>
 
 </mapper>
