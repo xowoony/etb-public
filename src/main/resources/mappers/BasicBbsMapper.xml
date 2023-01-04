@@ -44,17 +44,41 @@
     </select>
 
     <select id="selectIndex" resultType="com.emptybeer.etb.vos.BasicArticleVo">
-        SELECT `basicArticle`.`index`       AS `index`,
-               `basicArticle`.`user_email`  AS `userEmail`,
-               `basicArticle`.`board_id`    AS `boardId`,
-               `basicArticle`.`title`       AS `title`,
-               `basicArticle`.`content`     AS `content`,
-               `basicArticle`.`view`        AS `view`,
-               `basicArticle`.`written_on`  AS `writtenOn`,
-               `basicArticle`.`modified_on` AS `modifiedOn`,
-               `user`.`nickname`            AS `userNickname`
+        SELECT `basicArticle`.`index`                        AS `index`,
+               `basicArticle`.`user_email`                   AS `userEmail`,
+               `basicArticle`.`board_id`                     AS `boardId`,
+               `basicArticle`.`title`                        AS `title`,
+               `basicArticle`.`content`                      AS `content`,
+               `basicArticle`.`view`                         AS `view`,
+               `basicArticle`.`written_on`                   AS `writtenOn`,
+               `basicArticle`.`modified_on`                  AS `modifiedOn`,
+               `user`.`nickname`                             AS `userNickname`
         FROM `etb_bbs`.`basic_articles` AS `basicArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <select id="selectIndexUser" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`                        AS `index`,
+               `basicArticle`.`user_email`                   AS `userEmail`,
+               `basicArticle`.`board_id`                     AS `boardId`,
+               `basicArticle`.`title`                        AS `title`,
+               `basicArticle`.`content`                      AS `content`,
+               `basicArticle`.`view`                         AS `view`,
+               `basicArticle`.`written_on`                   AS `writtenOn`,
+               `basicArticle`.`modified_on`                  AS `modifiedOn`,
+               `user`.`nickname`                             AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                    AS `isSigned`,
+               COUNT(`basicArticleLike`.`article_index`) > 0 AS `isLiked`,
+               COUNT(`basicLikeCount`.`article_index`)       AS `likeCount`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+                 LEFT JOIN `etb_bbs`.`basic_article_likes` AS `basicArticleLike`
+                           ON `basicArticle`.`index` = `basicArticleLike`.`article_index`
+                               AND `basicArticleLike`.user_email = IFNULL(#{userEmail}, '')
+                 LEFT JOIN `etb_bbs`.`basic_article_likes` AS `basicLikeCount`
+                           ON `basicArticle`.`index` = `basicLikeCount`.`article_index`
         WHERE BINARY `index` = #{index}
         LIMIT 1
     </select>
@@ -120,11 +144,11 @@
 
     <update id="modifyCommentByIndex" parameterType="com.emptybeer.etb.vos.BasicCommentVo">
         update `etb_bbs`.`basic_comments`
-        SET `index`         = #{index},
-            `user_email`    = #{userEmail},
+        SET `index`        = #{index},
+            `user_email`   = #{userEmail},
             `article_index`= #{articleIndex},
-            `content`       = #{content},
-            `written_on`    = #{writtenOn}
+            `content`      = #{content},
+            `written_on`   = #{writtenOn}
         WHERE BINARY `index` = #{index}
     </update>
 
@@ -184,5 +208,20 @@
         ORDER BY `basicArticle`.`index` DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
+
+    <insert id="insertBasicArticleLike"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleLikeEntity">
+        INSERT INTO `etb_bbs`.`basic_article_likes` (`user_email`, `board_id`, article_index, `created_on`)
+        VALUES (#{userEmail}, #{boardId}, #{articleIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+
+    <delete id="deleteBasicLike"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleLikeEntity">
+        DELETE
+        FROM `etb_bbs`.`basic_article_likes`
+        WHERE `user_email` = #{userEmail}
+          AND `article_index` = #{articleIndex}
+        LIMIT 1
+    </delete>
 
 </mapper>

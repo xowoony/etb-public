@@ -1,9 +1,6 @@
 package com.emptybeer.etb.controllers;
 
-import com.emptybeer.etb.entities.bbs.BasicArticleEntity;
-import com.emptybeer.etb.entities.bbs.BasicCommentEntity;
-import com.emptybeer.etb.entities.bbs.BoardEntity;
-import com.emptybeer.etb.entities.bbs.ImageEntity;
+import com.emptybeer.etb.entities.bbs.*;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
@@ -128,9 +125,10 @@ public class BasicBbsController {
     @GetMapping(value = "read",
             produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
-    public ModelAndView getRead(@RequestParam(value = "aid") int aid) {
+    public ModelAndView getRead(@RequestParam(value = "aid") int aid,
+                                @SessionAttribute(value = "user", required = false) UserEntity user) {
         ModelAndView modelAndView = new ModelAndView("basicBbs/read");
-        BasicArticleVo basicArticle = this.basicBbsService.readArticle(aid);
+        BasicArticleVo basicArticle = this.basicBbsService.readArticle(aid, user);
 
         modelAndView.addObject("basicArticle", basicArticle);
 
@@ -278,6 +276,29 @@ public class BasicBbsController {
             modelAndView.addObject("basicArticles", basicArticles);
         }
         return modelAndView;
+    }
+
+    // 게시글 좋아요
+    @PostMapping(value = "basic-like",
+    produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity basicArticleLike) {
+        JSONObject responseJson = new JSONObject();
+        Enum<?> result = this.basicBbsService.likeBasicArticle(basicArticleLike, user);
+        responseJson.put("result", result.name().toLowerCase());
+        return responseJson.toString();
+    }
+
+    // 게시글 좋아요 취소
+    @DeleteMapping(value = "basic-like",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity basicArticleLike) {
+
+        JSONObject responseJson = new JSONObject();
+        Enum<?> result = this.basicBbsService.unlikeBasic(basicArticleLike, user);
+        responseJson.put("result", result.name().toLowerCase());
+        return responseJson.toString();
     }
 
 }

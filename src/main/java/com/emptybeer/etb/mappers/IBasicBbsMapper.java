@@ -1,9 +1,6 @@
 package com.emptybeer.etb.mappers;
 
-import com.emptybeer.etb.entities.bbs.BasicArticleEntity;
-import com.emptybeer.etb.entities.bbs.BasicCommentEntity;
-import com.emptybeer.etb.entities.bbs.BoardEntity;
-import com.emptybeer.etb.entities.bbs.ImageEntity;
+import com.emptybeer.etb.entities.bbs.*;
 import com.emptybeer.etb.vos.BasicArticleVo;
 import com.emptybeer.etb.vos.BasicCommentVo;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,7 +20,13 @@ public interface IBasicBbsMapper {
     ImageEntity selectImageByIndex(@Param(value = "index") int index);
 
     // 글 읽기
-    BasicArticleVo selectIndex(@Param(value = "index") int index);
+    BasicArticleVo selectIndex(
+            @Param(value = "index") int index);
+
+    // 글 읽기(추천 포함)
+    BasicArticleVo selectIndexUser(
+            @Param(value = "index") int index,
+            @Param(value = "userEmail") String userEmail);
 
     // 게시글 수정
     int updateArticle(BasicArticleVo basicArticle);
@@ -54,8 +57,16 @@ public interface IBasicBbsMapper {
 
     // 게시글 리스트
     BasicArticleVo[] selectArticlesByBoardId(@Param(value = "boardId") String boardId,
-                                            @Param(value = "criterion") String criterion,
-                                            @Param(value = "keyword") String keyword,
-                                            @Param(value = "limit") int limit,
-                                            @Param(value = "offset") int offset);
+                                             @Param(value = "criterion") String criterion,
+                                             @Param(value = "keyword") String keyword,
+                                             @Param(value = "limit") int limit,
+                                             @Param(value = "offset") int offset);
+
+    // 게시글 좋아요
+    int insertBasicArticleLike(BasicArticleLikeEntity basicArticleLike);
+
+    // 게시글 좋아요 취소
+    int deleteBasicLike(BasicArticleLikeEntity basicArticleLike);
+
+
 }

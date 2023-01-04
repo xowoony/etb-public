@@ -1,9 +1,6 @@
 package com.emptybeer.etb.services;
 
-import com.emptybeer.etb.entities.bbs.BasicArticleEntity;
-import com.emptybeer.etb.entities.bbs.BasicCommentEntity;
-import com.emptybeer.etb.entities.bbs.BoardEntity;
-import com.emptybeer.etb.entities.bbs.ImageEntity;
+import com.emptybeer.etb.entities.bbs.*;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.basicBbs.CommentResult;
@@ -57,10 +54,10 @@ public class BasicBbsService {
     }
 
     // 글 읽기 + 닉네임 불러오기
-    public BasicArticleVo readArticle(int index) {
-        BasicArticleVo basicArticle = this.basicBbsMapper.selectIndex(index);
+    public BasicArticleVo readArticle(int index, UserEntity signedUser) {
+        BasicArticleVo basicArticle = this.basicBbsMapper.selectIndexUser(index, signedUser == null ? null : signedUser.getEmail());
         basicArticle.setIndex(this.basicBbsMapper.updateArticle(basicArticle));
-        return this.basicBbsMapper.selectIndex(index);
+        return this.basicBbsMapper.selectIndexUser(index, signedUser == null ? null : signedUser.getEmail());
     }
 
     // 댓글 작성
@@ -201,6 +198,30 @@ public class BasicBbsService {
                 board.getId(), criterion, keyword,
                 paging.countPerPage,
                 (paging.requestPage - 1) * paging.countPerPage);
+    }
+
+
+    // 게시글 좋아요
+    public Enum<? extends IResult> likeBasicArticle(BasicArticleLikeEntity basicArticleLike, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        basicArticleLike.setUserEmail(user.getEmail());
+        return this.basicBbsMapper.insertBasicArticleLike(basicArticleLike) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
+    // 게시글 좋아요 취소
+    public Enum<? extends IResult> unlikeBasic(BasicArticleLikeEntity basicArticleLike, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        basicArticleLike.setUserEmail(user.getEmail());
+        return this.basicBbsMapper.deleteBasicLike(basicArticleLike) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+
     }
 
 }

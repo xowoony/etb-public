@@ -229,3 +229,45 @@ deleteButton?.addEventListener('click', e => {
     };
     xhr.send(formData);
 });
+
+const basicToggleElement = document.querySelector('[rel="basicToggle"]');
+const basicLikeButton = document.querySelector('[rel="basicLikeButton"]');
+if(!basicToggleElement.classList.contains('prohibited')) {
+    basicLikeButton.addEventListener('click', e => {
+        e.preventDefault();
+        console.log('먼데');
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        const method = basicLikeButton.classList.contains('liked') ? 'DELETE' : 'POST';
+        formData.append('articleIndex', commentForm['aid'].value);
+        formData.append('boardId', commentForm['bid'].value);
+        xhr.open(method, './basic-like');
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    const responseObject = JSON.parse(xhr.responseText);
+                    switch (responseObject['result']) {
+                        case 'success' :
+                            // 값을 받아와서 innerText
+                            // if(responseObject['isLiked'] === true) {
+                            //     reviewToggleElement.parentElement.classList.add('liked');
+                            //     reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
+                            //     reviewToggleElement.value = "추천취소"
+                            // } else {
+                            //     reviewToggleElement.parentElement.classList.remove('liked');
+                            //     reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
+                            //     reviewToggleElement.value = "추천하기"
+                            // }
+                            alert('추천 반영 완료');
+                            break;
+                        default:
+                            alert('알 수 없는 이유로 추천결과가 반영되지 못했습니다.\n\n잠시 후 다시 시도해 주세요.');
+                    }
+                } else {
+                    alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+}
