@@ -20,4 +20,9 @@ public interface IFestivalMapper {
 
     int insertFestivalComment(FestivalCommentEntity festivalComment);
 
+
+    FestivalCommentEntity selectFestivalCommentByCommentIndex(@Param(value="index")int index);
+
+    int deleteFestivalCommentByIndex(@Param(value="index") int index);
+
 }

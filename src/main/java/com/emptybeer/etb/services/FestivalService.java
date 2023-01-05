@@ -3,7 +3,9 @@ package com.emptybeer.etb.services;
 import com.emptybeer.etb.entities.bbs.FestivalArticleEntity;
 import com.emptybeer.etb.entities.bbs.FestivalCommentEntity;
 import com.emptybeer.etb.entities.bbs.ImageEntity;
+import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
+import com.emptybeer.etb.enums.festival.FestivalResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.mappers.IFestivalMapper;
@@ -45,5 +47,20 @@ public class FestivalService {
         }
 
         return this.festivalMapper.insertFestivalComment(festivalComment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Enum<? extends IResult> deleteFestivalComment(FestivalCommentEntity festivalComment, UserEntity user){
+//        FestivalCommentEntity existingComment = this.festivalMapper.selectCommentByIndex(comment.getIndex());
+        FestivalCommentEntity existingComment = this.festivalMapper.selectFestivalCommentByCommentIndex(festivalComment.getIndex());
+        if(existingComment == null){
+            return FestivalResult.NO_SUCH_COMMENT;
+        }
+
+
+        if(user==null || !user.getEmail().equals(existingComment.getUserEmail())){
+            return FestivalResult.NOT_ALLOWED;
+        }
+
+        return this.festivalMapper.deleteFestivalCommentByIndex(festivalComment.getIndex()) > 0  ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 }

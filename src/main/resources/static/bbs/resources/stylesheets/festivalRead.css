@@ -12,9 +12,9 @@ body > main {
 /*festival-imageContainer 아래 info-container도 width와 margin-left속성을 동일하게 적용*/
 body > main > .festival-imageContainer {
     display: flex;
-    width: 75%;
-    height: 75%;
-    margin-left: 23rem;
+    width: 80%;
+    height: 80%;
+    margin-left: 27rem;
 }
 
 
@@ -33,24 +33,24 @@ body > main > .festival-imageContainer > .main-imageContainer > img {
     height: 100%;
 }
 
-body > main > .festival-imageContainer > .side-imageContainer {
-    margin-left: 2rem;
-    width: 40%;
-    align-items: flex-start;
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-}
+/*body > main > .festival-imageContainer > .side-imageContainer {*/
+/*    margin-left: 2rem;*/
+/*    width: 40%;*/
+/*    align-items: flex-start;*/
+/*    display: block;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    overflow: hidden;*/
+/*}*/
 
-body > main > .festival-imageContainer > .side-imageContainer > img {
-    width: 50%;
-    height: 30%;
-}
+/*body > main > .festival-imageContainer > .side-imageContainer > img {*/
+/*    width: 50%;*/
+/*    height: 30%;*/
+/*}*/
 
-body > main > .festival-imageContainer > .side-imageContainer > img + img {
-    padding-top: 1.25rem;
-}
+/*body > main > .festival-imageContainer > .side-imageContainer > img + img {*/
+/*    padding-top: 1.25rem;*/
+/*}*/
 
 
 body > main > .festival-infoContainer {
@@ -107,7 +107,7 @@ body > main > .festival-infoContainer > .map-container {
 }
 
 body > main > .festival-infoContainer > .map-container > #map{
-    margin-left: 15rem;
+    /*margin-left: 10rem;*/
     width: 600px;
     height: 500px;
     z-index: 0;
@@ -118,7 +118,7 @@ body > main > .festival-infoContainer > .map-container > #map{
 body > main > .review-container{
     color: black;
     font-size: 2rem;
-    width: 75%;
+    width: 90%;
     margin-left: 11rem;
     margin-bottom: 10rem;
 }
@@ -128,6 +128,10 @@ body > main > .review-container{
 
 
 /*댓글*/
+#festivalReviewForm{
+    margin-bottom: 5rem;
+}
+
 
 #festivalReviewForm > .festivalRead-input{
     width: 800px;
@@ -151,3 +155,55 @@ body > main > .review-container{
     cursor: pointer;
 }
 
+
+/*리뷰관련*/
+
+#comment{
+    width: 80%;
+    border-top: black solid;
+    position: relative;
+}
+
+#comment:last-child{
+    border-bottom: black solid;
+}
+
+
+#comment > .festival-comment{
+    position: relative;
+}
+
+
+#comment > .festival-comment > .comment-nickname{
+    color: black;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+
+#comment > .festival-comment > .comment-content{
+    color: black;
+    font-size: 1rem;
+}
+
+#comment > .festival-comment > .comment-written{
+    color: black;
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 30px;
+    left: 45px;
+}
+
+#comment > .festival-comment > form > .comment-button{
+    position: absolute;
+    right: 0px;
+    bottom: 20px;
+}
+
+
+
+#comment > .festival-comment > form > .comment-button> .delete,
+#comment > .festival-comment > form > .comment-button> .modify{
+    font-size: 0.8rem;
+    color: grey;
+}
