@@ -20,70 +20,53 @@
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 <!--  main  -->
 <main>
-    <form name="form" id="form">
-        <section class="my-page" id="myPage">
-            <div class="section1" id="titleBox">
-                <div class="title">MY PAGE</div>
-            </div>
-            <div class="section2">
-            <!--  마이페이지 메뉴 탭   -->
-                <aside>
-                    <nav>
-                        <div>
+    <!--  beerSection1  -->
+    <section class="beer-section" id="beerSection">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">MY PAGE</div>
+            <div class="title-content">잔이비어 마이페이지</div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="category-tab">
                             <table>
                                 <tbody>
-                                    <tr class="tab-header">
-                                        <th>
-                                            <a>모아보기</a>
-                                        </th>
+                                    <tr>
+                                        <td>모아보기</td>
                                     </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>작성 글 보기</a>
-                                        </td>
+                                    <tr>
+                                        <td>작성한 글 보기</td>
                                     </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>작성 댓글 보기</a>
-                                        </td>
+                                    <tr>
+                                        <td>작성한 댓글 보기</td>
                                     </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>좋아요한 글 보기</a>
-                                        </td>
+                                    <tr>
+                                        <td>좋아요한 글 보기</td>
                                     </tr>
-                                    <tr class="tab-header">
-                                        <th>
-                                            <a>회원정보 수정</a>
-
-                                        </th>
+                                    <tr>
+                                        <td>회원정보 수정</td>
                                     </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>닉네임 변경</a>
-                                        </td>
+                                    <tr>
+                                        <td>닉네임 변경</td>
                                     </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>주소 변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a th:href="@{/member/delete}">회원탈퇴</a>
-                                        </td>
+                                    <tr>
+                                        <td>주소 수정</td>
                                     </tr>
                                 </tbody>
                             </table>
-
-                        </div>
-                    </nav>
-                </aside>
-            </div>
-        </section>
-    </form>
+                        </td>
+                        <td class="category-tab2">2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </main>
 <!--  footer  -->
-<!--<th:block th:replace="~{fragments/body :: footer}"></th:block>-->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
 </body>
 </html>
