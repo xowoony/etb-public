@@ -4,6 +4,10 @@ body {
     color: rgb(0, 0, 0);
 }
 
+body > .main {
+    width: 90%;
+}
+
 body > .main > .content {
     margin: 5rem 0;
 
@@ -16,7 +20,7 @@ body > .main > .content {
 body > .main > .content > .title {
     font-size: 2rem;
     font-weight: 500;
-    margin-bottom: 2.5rem;
+    margin: 10vh 0 1.5rem 0;
 }
 
 #form > .table .warning-row .warning {

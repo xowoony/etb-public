@@ -20,8 +20,8 @@
             <li>
                 <a class="community" th:href="@{/community}">COMMUNITY</a>
                 <ul class="depth_1">
-                    <li class="community-board"><a href="http://localhost:8080/basicBbs/list?bid=free">자유게시판</a></li>
-                    <li class="community-board"><a href="http://localhost:8080/basicBbs/list?bid=meeting">모임게시판</a></li>
+                    <li class="community-board"><a th:href="@{/basicBbs/list (bid=free)}">자유게시판</a></li>
+                    <li class="community-board"><a th:href="@{/basicBbs/list (bid=meeting)}">모임게시판</a></li>
                 </ul>
             </li>
             <li>

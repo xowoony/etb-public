@@ -285,7 +285,10 @@ public class BasicBbsController {
     public String postBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity basicArticleLike) {
         JSONObject responseJson = new JSONObject();
         Enum<?> result = this.basicBbsService.likeBasicArticle(basicArticleLike, user);
+        BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleLike.getArticleIndex(), user);
         responseJson.put("result", result.name().toLowerCase());
+        responseJson.put("isLiked", basicArticle.isLiked());
+        responseJson.put("likeCount", basicArticle.getLikeCount());
         return responseJson.toString();
     }
 
@@ -297,7 +300,10 @@ public class BasicBbsController {
 
         JSONObject responseJson = new JSONObject();
         Enum<?> result = this.basicBbsService.unlikeBasic(basicArticleLike, user);
+        BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleLike.getArticleIndex(), user);
         responseJson.put("result", result.name().toLowerCase());
+        responseJson.put("isLiked", basicArticle.isLiked());
+        responseJson.put("likeCount", basicArticle.getLikeCount());
         return responseJson.toString();
     }
 

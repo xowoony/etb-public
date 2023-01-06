@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: unset;
 }
 
+body > .main {
+    width: 90%;
+}
+
 body > .main > .content {
     margin: 5rem 0;
 

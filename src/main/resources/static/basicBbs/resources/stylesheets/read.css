@@ -128,10 +128,6 @@ body > .main > .content > .table .button-container > a[href].delete {
     justify-content: flex-start;
 }
 
-#commentContainer .comment.sub {
-    margin-left: 5rem;
-}
-
 #commentContainer .comment > .head {
     background-color: rgb(128,139,150);
     color: rgb(255,255,255);

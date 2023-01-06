@@ -44,15 +44,15 @@
     </select>
 
     <select id="selectIndex" resultType="com.emptybeer.etb.vos.BasicArticleVo">
-        SELECT `basicArticle`.`index`                        AS `index`,
-               `basicArticle`.`user_email`                   AS `userEmail`,
-               `basicArticle`.`board_id`                     AS `boardId`,
-               `basicArticle`.`title`                        AS `title`,
-               `basicArticle`.`content`                      AS `content`,
-               `basicArticle`.`view`                         AS `view`,
-               `basicArticle`.`written_on`                   AS `writtenOn`,
-               `basicArticle`.`modified_on`                  AS `modifiedOn`,
-               `user`.`nickname`                             AS `userNickname`
+        SELECT `basicArticle`.`index`       AS `index`,
+               `basicArticle`.`user_email`  AS `userEmail`,
+               `basicArticle`.`board_id`    AS `boardId`,
+               `basicArticle`.`title`       AS `title`,
+               `basicArticle`.`content`     AS `content`,
+               `basicArticle`.`view`        AS `view`,
+               `basicArticle`.`written_on`  AS `writtenOn`,
+               `basicArticle`.`modified_on` AS `modifiedOn`,
+               `user`.`nickname`            AS `userNickname`
         FROM `etb_bbs`.`basic_articles` AS `basicArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
         WHERE BINARY `index` = #{index}
@@ -180,19 +180,23 @@
 
     <select id="selectArticlesByBoardId"
             resultType="com.emptybeer.etb.vos.BasicArticleVo">
-        SELECT `basicArticle`.`index` AS `index`,
-        `basicArticle`.user_email AS `userEmail`,
-        `basicArticle`.board_id AS `boardId`,
-        `basicArticle`.title AS `title`,
-        `basicArticle`.view AS `view`,
-        `basicArticle`.written_on AS `writtenOn`,
-        `basicArticle`.modified_on AS `modifiedOn`,
-        `user`.`nickname` AS `usernickname`,
-        COUNT(`basicComment`.`index`) AS `commentCount`
+        SELECT `basicArticle`.`index`         AS `index`,
+               `basicArticle`.user_email      AS `userEmail`,
+               `basicArticle`.board_id        AS `boardId`,
+               `basicArticle`.title           AS `title`,
+               `basicArticle`.view            AS `view`,
+               `basicArticle`.written_on      AS `writtenOn`,
+               `basicArticle`.modified_on     AS `modifiedOn`,
+               `user`.`nickname`              AS `usernickname`,
+               COUNT(`basicComment`.`index`)  AS `commentCount`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`basic_article_likes`
+                WHERE `etb_bbs`.`basic_article_likes`.`article_index` =
+                      `basicArticle`.`index`) AS `likeCount`
         FROM etb_bbs.basic_articles AS `basicArticle`
-        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticle`.`user_email`
-        LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
-        ON `basicArticle`.`index` = `basicComment`.`article_index`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticle`.`user_email`
+                 LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
+                           ON `basicArticle`.`index` = `basicComment`.`article_index`
         WHERE `basicArticle`.`board_id` = #{boardId}
         <if test="criterion != null and criterion.equals('title')">
             AND REPLACE(basicArticle.`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')

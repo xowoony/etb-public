@@ -18,7 +18,7 @@ const loadComments = () => {
                 const responseArray = JSON.parse(xhr.responseText);
                 const appendComment = (commentObject) => {
                     const commentHtmlText = `
-                    <div class="comment ${commentObject['isMine'] === true ? 'mine': ''} rel="comment">
+                    <div class="comment ${commentObject['isMine'] === true ? 'mine': ''}" rel="comment">
                             <div class="head">
                                 <span class="writer">${commentObject['userNickname']}</span>
                                 <span class="dt">${commentObject['writtenOn']}</span>
@@ -141,7 +141,6 @@ const loadComments = () => {
                         };
                         xhr.send(formData);
                     });
-
                     commentContainer.append(commentElement);
                 };
 
@@ -249,16 +248,15 @@ if(!basicToggleElement.classList.contains('prohibited')) {
                     switch (responseObject['result']) {
                         case 'success' :
                             // 값을 받아와서 innerText
-                            // if(responseObject['isLiked'] === true) {
-                            //     reviewToggleElement.parentElement.classList.add('liked');
-                            //     reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
-                            //     reviewToggleElement.value = "추천취소"
-                            // } else {
-                            //     reviewToggleElement.parentElement.classList.remove('liked');
-                            //     reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
-                            //     reviewToggleElement.value = "추천하기"
-                            // }
-                            alert('추천 반영 완료');
+                            if(responseObject['isLiked'] === true) {
+                                basicLikeButton.classList.add('liked');
+                                // reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
+                                basicToggleElement.value = "추천취소"
+                            } else {
+                                basicLikeButton.classList.remove('liked');
+                                // reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
+                                basicToggleElement.value = "추천하기"
+                            }
                             break;
                         default:
                             alert('알 수 없는 이유로 추천결과가 반영되지 못했습니다.\n\n잠시 후 다시 시도해 주세요.');
