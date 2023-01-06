@@ -88,11 +88,12 @@ body > main > .beer-section > .title-box2 > table > tbody > tr {
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab {
     background-color: red;
     width: 100%;
+    height: 100%;
+
     align-items: center;
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    height: 100%;
+    justify-content: center;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
@@ -102,13 +103,21 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
     height: 100%;
     width: 100%;
+
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    border-collapse: collapse;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
     width: 100%;
     height: 100%;
 }
