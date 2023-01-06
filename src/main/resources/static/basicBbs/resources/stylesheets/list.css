@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+body {
+    color: rgb(0, 0, 0);
+}
+
+body > .main {
+    margin: 5rem 0;
+}
+
+body > .main > .content {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+}
+
+#table {
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+#table td {
+    background-color: rgb(255, 255, 255);
+    padding: 0.5rem 1rem;
+}
+
+#table th {
+    background-color: rgb(86, 101, 115);
+    color: rgb(234, 236, 238);
+    font-weight: inherit;
+    padding: 0.75rem;
+}
+
+#table td,
+#table th {
+    white-space: nowrap;
+}
+
+#table td:nth-of-type(2),
+#table th:nth-of-type(2) {
+    width: 100%;
+    white-space: normal;
+}
+
+#table > thead > tr:first-of-type > th:first-of-type {
+    border-top-left-radius: 0.5rem;
+}
+
+#table > thead > tr:first-of-type > th:last-of-type {
+    border-top-right-radius: 0.5rem;
+}
+
+#table > tbody > tr:not(:last-of-type) > td {
+    border-bottom: 0.0625rem solid rgb(234, 236, 238);
+}
+
+
+#table > tbody > tr > td > .title {
+    color: inherit;
+    text-decoration: none;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#table > tbody > tr > td > .title:hover {
+    text-decoration: underline;
+}
+
+#table > tbody > tr > td > .title > .comment {
+    color: rgb(211, 84, 0);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+#table > tfoot > tr > td {
+    background-color: rgb(86, 101, 115);
+    color: rgb(234, 236, 238);
+    padding: unset;
+}
+
+
+#table > tfoot > tr:last-of-type > td:first-of-type {
+    border-bottom-left-radius: 0.5rem;
+}
+
+#table > tfoot > tr:last-of-type > td:last-of-type {
+    border-bottom-right-radius: 0.5rem;
+}
+
+#table > tfoot > tr > td > .page-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#table > tfoot > tr > td > .page-container > .page {
+    border-left: 0.0625rem solid rgb(76, 91, 105);
+    color: inherit;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+}
+
+#table > tfoot > tr > td > .page-container > .page:last-of-type {
+    border-right: 0.0625rem solid rgb(76, 91, 105);
+}
+
+#table > tfoot > tr > td > .page-container > .page.selected,
+#table > tfoot > tr > td > .page-container > .page:hover {
+    background-color: rgb(66, 81, 95);
+}
+
+#searchForm {
+    margin-top: 1.5rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#searchForm > * + * {
+    margin-left: 0.5rem;
+}
+
+#buttonContainer {
+    margin-top: 0.5rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#buttonContainer > .--object-button {
+    text-decoration: none;
+}

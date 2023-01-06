@@ -172,7 +172,7 @@
                 등록된 리뷰가 없습니다.
             </div>
         </div>
-        <form class="review-container" rel="reviewListForm" th:each="reviewArticle : ${reviewArticles}">
+        <form class="review-container" id="reviewContainer" rel="reviewListForm" th:each="reviewArticle : ${reviewArticles}">
             <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
             <input name="aid" type="hidden" th:value="${reviewArticle.getIndex()}">
             <div class="head-container">
