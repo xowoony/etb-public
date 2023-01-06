@@ -32,11 +32,12 @@
                 <i class="fa-sharp fa-solid fa-user icon"></i>
                 <span>
                     <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
+                    <span>님</span>
                 </span>
                 <ul class="depth_1 my">
                     <!-- 마이페이지 -->
                     <li class="user-board">
-                        <a href="#">마이페이지</a>
+                        <a th:href="@{/member/myPage}">마이페이지</a>
                     </li>
                     <!-- 로그아웃  -->
                     <li class="user-board">
@@ -52,7 +53,7 @@
             <li class="start" th:if="${session.user == null}">
                 <i class="fa-sharp fa-solid fa-user icon"></i>
                 <span>
-                  <a class="login" href="http://localhost:8080/member/login">시작하기</a>
+                  <a class="login" th:href="@{/member/login}">시작하기</a>
                 </span>
             </li>
         </ul>

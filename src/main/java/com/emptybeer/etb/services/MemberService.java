@@ -292,6 +292,7 @@ public class MemberService {
 
 
     // 회원 탈퇴
+
     public Enum<? extends IResult> deleteUser(UserEntity user) {
         int existingUser = this.memberMapper.deleteUser(user);
         return CommonResult.SUCCESS;
