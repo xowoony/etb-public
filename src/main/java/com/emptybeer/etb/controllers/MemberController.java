@@ -137,6 +137,14 @@ public class MemberController {
         return modelAndView;
     }
 
+    // 마이페이지 연락처 변경 카테고리 맵핑
+    @GetMapping(value="changeContact",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getChangeContact(){
+        ModelAndView modelAndView = new ModelAndView("member/changeContact");
+        return modelAndView;
+    }
+
     // 마이페이지 주소 변경 카테고리 맵핑
     @GetMapping(value="changeAddress",
             produces = MediaType.TEXT_HTML_VALUE)

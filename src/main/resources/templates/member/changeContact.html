@@ -9,9 +9,9 @@
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <!--  myPage.css 연결  -->
-    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/myLike.css}">
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/changeContact.css}">
     <!--  myPage.js 연결  -->
-    <script defer th:src="@{/member/resources/scripts/myLike.js}"></script>
+    <script defer th:src="@{/member/resources/scripts/changeContact.js}"></script>
 </head>
 <body>
 <!--  header  -->
@@ -48,7 +48,7 @@
                                     <a th:href="@{/member/myComment}"><div>작성한 댓글 보기</div></a>
                                 </td>
                             </tr>
-                            <tr class="category-content content3">
+                            <tr class="category-content">
                                 <td>
                                     <a th:href="@{/member/myLike}"><div>좋아요한 글 보기</div></a>
                                 </td>
@@ -63,12 +63,12 @@
                                     <a th:href="@{/member/changeNickname}"><div>닉네임 변경</div></a>
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content5">
                                 <td>
                                     <a th:href="@{/member/changeContact}"><div>연락처 변경</div></a>
                                 </td>
                             </tr>
-                            <tr class="category-content ">
+                            <tr class="category-content">
                                 <td>
                                     <a th:href="@{/member/changeAddress}"><div>주소 변경</div></a>
                                 </td>

@@ -40,17 +40,19 @@
                             </tr>
                             <tr class="category-content">
                                 <td>
-                                    <a th:href="@{/member/myArticle}">작성한 글 보기</a>
+                                    <a th:href="@{/member/myArticle}"><div>작성한 글 보기</div></a>
                                 </td>
                             </tr>
                             <tr class="category-content">
                                 <td>
-                                    <a th:href="@{/member/myComment}">작성한 댓글 보기</a>
+                                    <a th:href="@{/member/myComment}"><div>작성한 댓글 보기</div></a>
                                 </td>
                             </tr>
                             <tr class="category-content content3">
                                 <td>
-                                    <a th:href="@{/member/myLike}">좋아요한 글 보기</a>
+                                    <a th:href="@{/member/myLike}"><div>
+                                        좋아요한 글 보기
+                                    </div></a>
                                 </td>
                             </tr>
                             <tr class="category-title">
@@ -60,28 +62,101 @@
                             </tr>
                             <tr class="category-content">
                                 <td>
-                                    <a th:href="@{/member/changeNickname}">닉네임 변경</a>
+                                    <a th:href="@{/member/changeNickname}"><div>닉네임 변경</div></a>
                                 </td>
                             </tr>
                             <tr class="category-content">
                                 <td>
-                                    <a th:href="@{/member/changeAddress}">주소 변경</a>
+                                    <a th:href="@{/member/changeContact}"><div>연락처 변경</div></a>
                                 </td>
                             </tr>
                             <tr class="category-content">
-                                <td><a th:href="@{/member/delete}">회원 탈퇴</a></td>
+                                <td>
+                                    <a th:href="@{/member/changeAddress}"><div>주소 변경</div></a>
+                                </td>
                             </tr>
-                            <tr class="category-title contact">
-                                <td>잔이비어 어쩌고</td>
+                            <tr class="category-content">
+                                <td><a th:href="@{/member/delete}"><div>회원 탈퇴</div></a></td>
                             </tr>
-                            </tbody>
+<!--                            <tr class="category-title contact">-->
+<!--                                <td>잔이비어 어쩌고</td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
                         </table>
                     </td>
-                    <td class="category-tab2">2</td>
+                    <td class="category-tab2">
+                        <div class="profile-container">
+                            <div class="profile-title">내 프로필</div>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="user-container">
+                                        <div class="user-nickname">양파쿵야님</div>
+                                        <div class="user-email">xowoony@gmail.com</div>
+                                    </td>
+                                    <td class="change-nick-container">
+                                        <div class="change-nick">
+                                            <a th:href="@{/member/changeNickname}">닉네임 변경</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="change-contact-container">
+                                        <div class="user-contact">010-7561-1975</div>
+                                    </td>
+                                    <td class="contact">
+                                        <div class="change-contact">
+                                            <a th:href="@{/member/changeContact}">연락처 변경</a></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="change-address-container">
+                                        <div class="user-address">서울특별시 서초구 테헤란로 131 13층 잔이비어</div>
+                                    </td>
+                                    <td class="address">
+                                        <div class="change-address">
+                                            <a th:href="@{/member/changeAddress}">주소 변경</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="service-title">잔이비어의 다양한 서비스를 만나보세요.</div>
+                            <div class="service-container">
+                                <div class="service">
+                                    <span>
+                                        <div class="first-icon">
+                                            <i class="fa-solid fa-beer-mug-empty"></i>
+                                        </div>
+                                        <div class="beer">beer</div>
+                                    </span>
+                                    <span>
+                                        <div class="second-icon">
+                                             <i class="fa-solid fa-beer-mug-empty"></i>
+                                        </div>
+                                        <div>review</div>
+                                    </span>
+                                    <span>
+                                        <div class="third-icon">
+                                             <i class="fa-solid fa-beer-mug-empty"></i>
+                                        </div>
+                                        <div>community</div>
+                                    </span>
+                                    <span>
+                                        <div class="forth-icon">
+                                             <i class="fa-solid fa-beer-mug-empty"></i>
+                                        </div>
+                                        <div>festival</div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
     </section>
 </main>
 <!--  footer  -->

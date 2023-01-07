@@ -138,12 +138,11 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 /*북마크*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .content1 {
-    background-color: rgba(237, 250, 0, 0.67);
-}
+    background-color: rgb(131 140 22 / 34%);}
 
 /*카테고리 content hover시*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content:hover {
-    background-color: rgba(237, 250, 0, 0.67);
+    background-color: rgb(220, 213, 215, 10%);
     cursor: pointer;
 
 }
@@ -151,7 +150,6 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 /*카테고리 content 안 td margin */
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td {
     font-family: 'Do Hyeon', sans-serif;
-
     width: 100%;
     height: 100%;
     align-items: center;
@@ -169,7 +167,10 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 2.5rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a > div {
+    margin-right: 3rem;
 }
 
 /*잔이비어 contact 정보*/
@@ -180,18 +181,18 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
     width: 80%;
+    background-color: #080506;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
     height: 100%;
     width: 100%;
-
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     border-collapse: collapse;
+    border: 0.125rem solid rgb(100 93 38 / 21%);
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody {

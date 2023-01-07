@@ -141,6 +141,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     background-color: rgb(131 140 22 / 34%);
 }
 
+
 /*카테고리 content hover시*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content:hover {
     background-color: rgb(220, 213, 215, 10%);
@@ -168,7 +169,6 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a > div {
