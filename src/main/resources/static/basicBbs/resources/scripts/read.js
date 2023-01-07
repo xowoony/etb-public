@@ -271,7 +271,7 @@ if(!basicToggleElement.classList.contains('prohibited')) {
 
 const topButton = document.getElementById('topButton');
 topButton.addEventListener('click', () => {
-    document.getElementById('commentContainer').scrollIntoView();
+    window.scrollTo(0, 0);
 });
 
 const goComment = document.getElementById('goComment');

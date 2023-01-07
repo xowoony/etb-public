@@ -82,6 +82,7 @@ body > .main > .content > .user > div:nth-of-type(3){
 
 body > .main > .content > .user > div:last-of-type {
     margin-left: auto;
+    cursor: pointer;
 }
 
 body > .main > .content > .user > div:last-of-type > span {
@@ -121,6 +122,7 @@ body > .main > .content > .table .button-container {
 body > .main > .content > .table .button-container > .basic-like-button > .toggle {
     background-color: unset;
     border: none;
+    cursor: pointer;
     font-size: 0.9rem;
     color: #4e4e4e;
 }
@@ -344,6 +346,7 @@ body > .main > .content > .foot > .--object-button {
     text-decoration: none;
     background-color: rgba(0, 0, 0, 10%);
     color: #333333;
+    cursor: pointer;
 }
 
 body > .main > .content > .foot > .--object-button.write {
