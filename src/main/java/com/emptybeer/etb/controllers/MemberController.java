@@ -97,7 +97,7 @@ public class MemberController {
         // 3. <2>에서 만들어진 'JSONObject' 객체를 문자열화(toString) 하여 반환하기.
     }
 
-    // 마이페이지
+    // 마이페이지 맵핑
     @GetMapping(value = "myPage",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getMyPage() {
@@ -105,11 +105,43 @@ public class MemberController {
         return modelAndView;
     }
 
-    // 작성 글 보기
+    // 마이페이지 작성 글 보기 카테고리 맵핑
     @GetMapping(value = "myArticle",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getMyArticle(){
+    public ModelAndView getMyArticle() {
         ModelAndView modelAndView = new ModelAndView("member/myArticle");
+        return modelAndView;
+    }
+
+    // 마이페이지 작성 댓글 보기 카테고리 맵핑
+    @GetMapping(value = "myComment",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyComment() {
+        ModelAndView modelAndView = new ModelAndView("member/myComment");
+        return modelAndView;
+    }
+
+    // 마이페이지 좋아요한 글 보기 카테고리 맵핑
+    @GetMapping(value="myLike",
+    produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyLike(){
+        ModelAndView modelAndView = new ModelAndView("member/myLike");
+        return modelAndView;
+    }
+
+    // 마이페이지 닉네임 변경 카테고리 맵핑
+    @GetMapping(value="changeNickname",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getChangeNickname(){
+        ModelAndView modelAndView = new ModelAndView("member/changeNickname");
+        return modelAndView;
+    }
+
+    // 마이페이지 주소 변경 카테고리 맵핑
+    @GetMapping(value="changeAddress",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getChangeAddress(){
+        ModelAndView modelAndView = new ModelAndView("member/changeAddress");
         return modelAndView;
     }
 

@@ -136,6 +136,11 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 }
 
+/*북마크*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .content3 {
+    background-color: rgba(237, 250, 0, 0.67);
+}
+
 /*카테고리 content hover시*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content:hover {
     background-color: rgba(237, 250, 0, 0.67);
