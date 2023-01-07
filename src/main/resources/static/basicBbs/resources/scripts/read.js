@@ -234,7 +234,6 @@ const basicLikeButton = document.querySelector('[rel="basicLikeButton"]');
 if(!basicToggleElement.classList.contains('prohibited')) {
     basicLikeButton.addEventListener('click', e => {
         e.preventDefault();
-        console.log('먼데');
         const xhr = new XMLHttpRequest();
         const formData = new FormData();
         const method = basicLikeButton.classList.contains('liked') ? 'DELETE' : 'POST';
@@ -250,12 +249,12 @@ if(!basicToggleElement.classList.contains('prohibited')) {
                             // 값을 받아와서 innerText
                             if(responseObject['isLiked'] === true) {
                                 basicLikeButton.classList.add('liked');
-                                // reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
-                                basicToggleElement.value = "추천취소"
+                                basicToggleElement.value = "추천 취소"
+                                basicLikeButton.parentNode.querySelector('.like-count').innerHTML = responseObject['likeCount'];
                             } else {
                                 basicLikeButton.classList.remove('liked');
-                                // reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
-                                basicToggleElement.value = "추천하기"
+                                basicToggleElement.value = "추천"
+                                basicLikeButton.parentNode.querySelector('.like-count').innerHTML = responseObject['likeCount'];
                             }
                             break;
                         default:
@@ -269,3 +268,13 @@ if(!basicToggleElement.classList.contains('prohibited')) {
         xhr.send(formData);
     });
 }
+
+const topButton = document.getElementById('topButton');
+topButton.addEventListener('click', () => {
+    document.getElementById('commentContainer').scrollIntoView();
+});
+
+const goComment = document.getElementById('goComment');
+goComment.addEventListener('click', () => {
+    goComment.scrollIntoView();
+})

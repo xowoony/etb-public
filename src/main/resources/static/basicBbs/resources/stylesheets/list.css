@@ -29,7 +29,7 @@ body > .main > .content {
 }
 
 body > .main > .content > .title-container {
-    margin: 10vh 0 1.2rem 0;
+    margin: 9vh 0 1.2rem 0;
 
     align-items: center;
     display: flex;
@@ -43,7 +43,6 @@ body > .main > .content > .title-container > .title {
 }
 
 body > .main > .content > .title-container > .button-container {
-    /*margin-top: 0.1rem;*/
     margin-bottom: 0.1rem;
 }
 
@@ -74,11 +73,9 @@ body > .main > .content > .title-container > .button-container > .write-button >
 }
 
 #table th {
-    /*background-color: rgb(86, 101, 115);*/
-    /*background-color: #555555;*/
-    /*color: rgb(234, 236, 238);*/
     font-weight: 600;
     padding: 0.75rem;
+    background-color: rgb(255, 255, 255);
     border-top: 1px solid #333333;
     border-bottom: 1px solid #333333;
 }
@@ -93,18 +90,6 @@ body > .main > .content > .title-container > .button-container > .write-button >
     width: 100%;
     white-space: normal;
 }
-
-/*#table > thead > tr:first-of-type > th:first-of-type {*/
-/*    border-top-left-radius: 0.5rem;*/
-/*}*/
-
-/*#table > thead > tr:first-of-type > th:last-of-type {*/
-/*    border-top-right-radius: 0.5rem;*/
-/*}*/
-
-/*#table > tbody > tr:not(:last-of-type) > td {*/
-/*    border-bottom: 0.0625rem solid rgb(234, 236, 238);*/
-/*}*/
 
 #table > tbody > tr > td {
     border-bottom: 0.0625rem solid rgb(234, 236, 238);
@@ -147,28 +132,6 @@ body > .main > .content > .title-container > .button-container > .write-button >
     border-bottom-right-radius: 0.5rem;
 }
 
-/*#table > tfoot > tr > td > .page-container {*/
-/*    align-items: center;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*}*/
-
-/*#table > tfoot > tr > td > .page-container > .page {*/
-/*    border-left: 0.0625rem solid rgb(76, 91, 105);*/
-/*    color: inherit;*/
-/*    padding: 0.5rem 0.75rem;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*#table > tfoot > tr > td > .page-container > .page:last-of-type {*/
-/*    border-right: 0.0625rem solid rgb(76, 91, 105);*/
-/*}*/
-
-/*#table > tfoot > tr > td > .page-container > .page.selected,*/
-/*#table > tfoot > tr > td > .page-container > .page:hover {*/
-/*    background-color: rgb(66, 81, 95);*/
-/*}*/
 
 #foot-container {
     background-color: #f9f9f8;
@@ -203,12 +166,7 @@ body > .main > .content > .title-container > .button-container > .write-button >
     text-decoration: none;
 }
 
-/*#page-container > .page:last-of-type {*/
-/*    border-right: 0.0625rem solid rgb(76, 91, 105);*/
-/*}*/
-
 #page-container > .page.selected{
-    /*background-color: rgb(66, 81, 95);*/
     border: solid 1px #e5e5e5;
     background-color: #fff;
     color: #346aff;

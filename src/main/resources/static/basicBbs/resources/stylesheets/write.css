@@ -21,9 +21,32 @@ body > .main > .content {
 }
 
 body > .main > .content > .title {
-    font-size: 2rem;
+    font-size: 10rem;
     font-weight: 500;
     margin: 10vh 0 1.5rem 0;
+    color: red;
+}
+
+body > .main > .content > .user {
+    color: red;
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .user > div:first-of-type {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .user > div:first-of-type > div:nth-of-type(2) {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 #form > .table .label .title-input {
