@@ -229,14 +229,12 @@ const searchParams = url.searchParams  // 이건 reviewList?beerIndex= 뒤에 �
 // 추천순
 const beerIndex = searchParams.get('beerIndex');
 sortGood.addEventListener('click', () => {
-    window.location.href = `./reviewList?beerIndex=${beerIndex}&sort=good`;
-    sortGood.scrollIntoView();
+    window.location.href = `./reviewList?beerIndex=${beerIndex}&sort=good#reviewContainer`;
 });
 // 최신순
 const sortNew = window.document.getElementById('sortNew');
 sortNew.addEventListener('click', () => {
-    window.location.href = `./reviewList?beerIndex=${beerIndex}&sort=new`;
-    sortNew.scrollIntoView();
+    window.location.href = `./reviewList?beerIndex=${beerIndex}&sort=new#reviewContainer`;
 })
 
 
@@ -245,5 +243,5 @@ const starRank = window.document.getElementById('starRank');
 starRank.onchange = e => {
     e.preventDefault();
     const value = (starRank.options[starRank.selectedIndex].value);
-    window.location.href = `./reviewList?beerIndex=${beerIndex}&starRank=${value}`;
+    window.location.href = `./reviewList?beerIndex=${beerIndex}&starRank=${value}#reviewContainer`;
 }

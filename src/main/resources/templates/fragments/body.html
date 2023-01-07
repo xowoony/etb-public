@@ -20,8 +20,8 @@
             <li>
                 <a class="community" th:href="@{/community}">COMMUNITY</a>
                 <ul class="depth_1">
-                    <li class="community-board"><a href="#">자유게시판</a></li>
-                    <li class="community-board"><a href="#">모임게시판</a></li>
+                    <li class="community-board"><a th:href="@{/basicBbs/list (bid=free)}">자유게시판</a></li>
+                    <li class="community-board"><a th:href="@{/basicBbs/list (bid=meeting)}">모임게시판</a></li>
                 </ul>
             </li>
             <li>
@@ -32,19 +32,16 @@
                 <i class="fa-sharp fa-solid fa-user icon"></i>
                 <span>
                     <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
+                    <span>님</span>
                 </span>
                 <ul class="depth_1 my">
                     <!-- 마이페이지 -->
                     <li class="user-board">
-                        <a href="#">마이페이지</a>
+                        <a th:href="@{/member/myPage}">마이페이지</a>
                     </li>
                     <!-- 로그아웃  -->
                     <li class="user-board">
                         <a th:href="@{/member/logout}">로그아웃</a>
-                    </li>
-                    <!--  회원탈퇴하기  -->
-                    <li class="user-board">
-                        <a th:href="@{/member/delete}">탈퇴하기</a>
                     </li>
                 </ul>
             </li>
@@ -52,7 +49,7 @@
             <li class="start" th:if="${session.user == null}">
                 <i class="fa-sharp fa-solid fa-user icon"></i>
                 <span>
-                  <a class="login" href="http://localhost:8080/member/login">시작하기</a>
+                  <a class="login" th:href="@{/member/login}">시작하기</a>
                 </span>
             </li>
         </ul>

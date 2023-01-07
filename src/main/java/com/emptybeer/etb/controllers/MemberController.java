@@ -98,6 +98,14 @@ public class MemberController {
         // 3. <2>에서 만들어진 'JSONObject' 객체를 문자열화(toString) 하여 반환하기.
     }
 
+    // 마이페이지
+    @GetMapping(value = "myPage",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyPage() {
+        ModelAndView modelAndView = new ModelAndView("member/myPage");
+        return modelAndView;
+    }
+
     // 이메일
     @RequestMapping(value = "email",
             method = RequestMethod.POST,
