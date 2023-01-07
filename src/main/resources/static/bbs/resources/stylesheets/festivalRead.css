@@ -186,24 +186,101 @@ body > main > .review-container{
     font-size: 1rem;
 }
 
+#comment > .festival-comment > .comment-content.hidden{
+    display: none;
+}
+
 #comment > .festival-comment > .comment-written{
     color: black;
     font-size: 0.9rem;
     position: absolute;
-    bottom: 30px;
-    left: 45px;
+    bottom: 0;
+    right: 0;
 }
 
-#comment > .festival-comment > form > .comment-button{
+#comment > .festival-comment > .comment-written.hidden{
+    display: none;
+}
+
+#comment > .festival-comment > .button > .comment-button{
     position: absolute;
     right: 0px;
-    bottom: 20px;
+    bottom: 27px;
+}
+
+
+#comment > .festival-comment > .button > .comment-button.hidden{
+    display: none;
 }
 
 
 
-#comment > .festival-comment > form > .comment-button> .delete,
-#comment > .festival-comment > form > .comment-button> .modify{
+#comment > .festival-comment > .button > .comment-button> .delete,
+#comment > .festival-comment > .button > .comment-button> .modify{
     font-size: 0.8rem;
     color: grey;
+    text-decoration-line: none;
+}
+
+
+#comment > .festival-comment > .modify-content > .modify-form{
+    display: none;
+    position: relative;
+}
+
+
+#comment > .festival-comment > .modify-content > .modify-form.visible{
+    display: flex;
+    color: black;
+    font-size: 1rem;
+    position: relative;
+}
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .cancel {
+    font-size: 0.8rem;
+    color: grey;
+    position: absolute;
+    right: 36px;
+    bottom: 28.3px;
+    text-decoration-line: none;
+}
+
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .check{
+    font-size: 0.8rem;
+    color: grey;
+    position: absolute;
+    right: 0px;
+    bottom: 27px;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    background-color: white;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .check:focus{
+    font-size: 0.8rem;
+    color: grey;
+    position: absolute;
+    right: 0px;
+    bottom: 27px;
+    border: none;
+    cursor: pointer;
+    width: 35px;
+    outline: none;
+    background-color: white;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .comment-modifyInput{
+    width: 45rem;
 }

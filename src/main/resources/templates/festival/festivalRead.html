@@ -101,11 +101,26 @@
         <div id="comment" rel="commentList" class="review-list" th:each="festivalComment : ${festivalComments}">
             <div class="festival-comment">
                 <div class="comment-nickname" th:text="${festivalComment.getNickname()}"></div>
-                <div class="comment-content" th:text="${festivalComment.getContent()}"></div>
-                <div class="comment-written"
+                <div rel="commentContent" class="comment-content"  th:text="${festivalComment.getContent()}"></div>
+
+
+                <!--        a태그를 이용하여 수정을 할 수 있게 로직들을 작성하였으나        -->
+                <!--        수정된 텍스를 전송하기 위해서는 form을        -->
+                <form id="modifyByIndex" class="modify-content" method="get" action="/festival/festivalModify">
+                    <div class="modify-form" rel="modifyForm">
+
+                        <input class="comment-modifyInput" type="text" placeholder="수정할 내용을 입력하세요.(최대200자)"
+                               maxlength="200" name="content">
+                        <a class="cancel" rel="cancelButton" href="#">취소</a>
+
+                        <input type="hidden" name="index" th:value="${festivalComment.getIndex()}">
+                        <input class="check" type="submit" value="확인">
+                    </div>
+                </form>
+                <div rel="commentWritten" class="comment-written"
                      th:text="${#dates.format(festivalComment.getWrittenOn(), 'YYYY-MM-DD')}"></div>
 
-                <form>
+                <form class="button">
                     <div rel="commentButton" class="comment-button">
 
                         <a class="delete" rel="deleteButton" href="#"
@@ -122,6 +137,39 @@
 
             </div>
         </div>
+    </div>
+
+
+
+    <!--  페이징 컨테이너  -->
+
+
+    <div class="page-container"
+         th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+        <a class="page"
+           th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+           th:if="${paging.requestPage > 1}">
+            <i class="fa-solid fa-angles-left"></i>
+        </a>
+        <a class="page"
+           th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+           th:if="${paging.requestPage > 1}">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+           th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+           th:text="${page}"
+           th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+        <a class="page"
+           th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+           th:if="${paging.requestPage < paging.maxPage}">
+            <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a class="page"
+           th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+           th:if="${paging.requestPage < paging.maxPage}">
+            <i class="fa-solid fa-angles-right"></i>
+        </a>
     </div>
 
 </main>

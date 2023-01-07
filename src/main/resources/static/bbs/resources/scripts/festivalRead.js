@@ -1,8 +1,7 @@
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 const festivalReviewForm = document.getElementById('festivalReviewForm'); //축제와 관련된 리뷰영역
 const festivalDataForm = document.getElementById('festivalDataForm');
-const deleteButton = window.document.querySelector('[rel="deleteButton"]');
-const modifyButton = window.document.querySelector('[rel="modifyButton"]');
+const modifyCommentForm = document.getElementById('modify');
 const commentForm = window.document.getElementById('comment');
 
 // 지도관련
@@ -10,7 +9,6 @@ const commentForm = window.document.getElementById('comment');
 let longi = festivalDataForm['longitude'].value;
 let lati = festivalDataForm['latitude'].value;
 let festivalTitle = festivalDataForm['festivalTitle'].value;
-
 
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -86,7 +84,8 @@ if (festivalReviewForm != null) {
 
 const commentLists = document.querySelectorAll('[rel="commentList"]');
 
-for(let comment of commentLists){
+
+for (let comment of commentLists) {
     const deleteComment = comment.querySelector('[rel="deleteButton"]')
     deleteComment?.addEventListener('click', e => {
             e.preventDefault();
@@ -127,5 +126,102 @@ for(let comment of commentLists){
 
 // 댓글 수정
 
+// const modifyForm = document.querySelector('[rel="modifyForm"]');
+// const commentContent = document.querySelector('[rel="commentContent"]');
+// const commentButton = document.querySelector('[rel="commentButton"]');
+// const commentWritten = document.querySelector('[rel="commentWritten"]');
 
 
+// comment와 modifyButton, cancelButton의 querySelector 지정은 올바르게 되었으나, 상단에서 지정된 modifyForm, commentContent,
+// commentButton, commentWritten들은 각 리스트의 첫번째 요소만 반환하게 되었다. 즉 comment에서 따로 다시 지정하지 않아서 리스트의 첫번째
+// 부분만 항상 출력이나 취소되게 되어서 문제가 발생하였다.
+
+// 수정 버튼 클릭
+for (let comment of commentLists) {
+    const modifyComment = comment.querySelector('[rel="modifyButton"]')
+    modifyComment?.addEventListener('click', e => {
+            e.preventDefault();
+
+            const modifyForm = comment.querySelector('[rel="modifyForm"]');
+            const commentContent = comment.querySelector('[rel="commentContent"]');
+            const commentButton = comment.querySelector('[rel="commentButton"]');
+            const commentWritten = comment.querySelector('[rel="commentWritten"]');
+
+            modifyForm.classList.add('visible');
+            commentContent.classList.add('hidden');
+            commentButton.classList.add('hidden');
+            commentWritten.classList.add('hidden');
+        }
+    )
+}
+;
+
+
+// 취소 버튼 클릭
+for (let comment of commentLists) {
+    const cancelComment = comment.querySelector('[rel="cancelButton"]')
+    cancelComment?.addEventListener('click', e => {
+            e.preventDefault();
+
+            const modifyForm = comment.querySelector('[rel="modifyForm"]');
+            const commentContent = comment.querySelector('[rel="commentContent"]');
+            const commentButton = comment.querySelector('[rel="commentButton"]');
+            const commentWritten = comment.querySelector('[rel="commentWritten"]');
+
+            modifyForm.classList.remove('visible');
+            commentContent.classList.remove('hidden');
+            commentButton.classList.remove('hidden');
+            commentWritten.classList.remove('hidden');
+        }
+    )
+}
+;
+
+const modifyCheck = document.getElementById('modifyByIndex');
+
+// 수정 확인 클릭
+
+for (let comment of commentLists) {
+    if (modifyCheck != null) {
+        modifyCheck.onsubmit = e => {
+            e.preventDefault();
+            if (!confirm('댓글을 수정하시겠습니까?')) {
+                return;
+            }
+
+            console.log('11111111111');
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append('index', modifyCheck['index'].value);
+            formData.append('content', modifyCheck['content'].value);
+
+
+            xhr.open('PATCH', `./festivalComment`);
+
+
+            console.log('22222222222222222');
+            xhr.onreadystatechange = () => {
+
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        const responseObject = JSON.parse(xhr.responseText);
+                        switch (responseObject['result']) {
+                            case 'success':
+                                alert('댓글을 수정하였습니다.');
+                                window.location.href = `festivalRead?index=${festivalReviewForm['aid'].value}`
+                                break;
+                            default:
+                                alert('알 수 없는 이유로 게시글을 수정하는데 실패하였습니다.');
+                        }
+                    } else {
+                        alert('서버와 통신을 하는데 실패하였습니다. 다시 시도해주세요.');
+                    }
+                }
+            }
+            xhr.send(formData);
+
+
+        }
+        ;
+    }
+}

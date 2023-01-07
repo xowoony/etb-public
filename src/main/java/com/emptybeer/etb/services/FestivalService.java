@@ -63,4 +63,40 @@ public class FestivalService {
 
         return this.festivalMapper.deleteFestivalCommentByIndex(festivalComment.getIndex()) > 0  ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
+
+
+
+    //festivalRead관련 메소드
+    public Enum<? extends IResult> updateFestivalComment(FestivalCommentEntity festivalComment, UserEntity user){
+        //user의 내용이 있고, 앞에서 가져온 Content나 Index를 가지고 값이 수정되었으면 SUCCESS 반환
+        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"+festivalComment.getContent());
+        if(this.festivalMapper.updateFestivalCommentByIndex(festivalComment.getContent(), festivalComment.getIndex())>0 && user != null){
+            System.out.println("수정완료");
+            return CommonResult.SUCCESS;
+        }
+
+        //그렇지 않을시 FAILURE 반환
+        return CommonResult.FAILURE;
+
+    }
+
+
+
+    // festivalModify 관련 메소드
+    public int updateFestivalComment(int index, String content){
+        if(this.festivalMapper.updateFestivalCommentByIndexFromFestivalModify(index, content)>0){
+            FestivalCommentEntity comment = this.festivalMapper.selectFestivalArticleIndexByIndexFromFestivalModify(index);
+
+
+            //articleIndex를 반환하여 리다이렉팅
+            return comment.getArticleIndex();
+        }
+
+        return 0;
+    }
+
+    public int getALLFestivalCommentCountByFestivalArticleIndex(int index){
+        return this.festivalMapper.selectFestivalCommentCountByFestivalArticleIndex(index);
+    }
+
 }

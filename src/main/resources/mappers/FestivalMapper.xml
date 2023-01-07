@@ -45,14 +45,13 @@
     </select>
 
 
-
     <select id="selectFestivalCommentByArticleIndex"
             resultType="com.emptybeer.etb.vos.FestivalCommentVo">
         SELECT `festivalComment`.`index`      AS `index`,
                `festivalComment`.`content`    AS `content`,
                `festivalComment`.`written_on` AS `writtenOn`,
                `festivalComment`.`user_email` AS `userEmail`,
-               `user`.`nickname` AS `nickname`
+               `user`.`nickname`              AS `nickname`
         FROM `etb_bbs`.`festival_comments` AS `festivalComment`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `festivalComment`.`user_email`
         WHERE `festivalComment`.`article_index` = #{index}
@@ -79,9 +78,8 @@
     </select>
 
 
-
     <select id="selectFestivalCommentByCommentIndex"
-    resultType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+            resultType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
         SELECT `festivalComment`.`index`      AS `index`,
                `festivalComment`.`content`    AS `content`,
                `festivalComment`.`written_on` AS `writtenOn`,
@@ -94,7 +92,7 @@
 
     <insert id="insertFestivalComment"
             parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
-        INSERT INTO `etb_bbs`.`festival_comments` (`user_email`,`article_index`, `content`, `written_on`)
+        INSERT INTO `etb_bbs`.`festival_comments` (`user_email`, `article_index`, `content`, `written_on`)
         VALUES (#{userEmail}, #{articleIndex}, #{content}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)))
     </insert>
 
@@ -102,8 +100,39 @@
     <delete id="deleteFestivalCommentByIndex">
         DELETE
         FROM `etb_bbs`.`festival_comments`
-        WHERE `index` = #{index}
-        LIMIT 1
+        WHERE `index` = #{index} LIMIT 1
     </delete>
+
+    <update id="updateFestivalCommentByIndex"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        UPDATE `etb_bbs`.`festival_comments`
+        SET `festival_comments`.`content`    = #{content},
+            `festival_comments`.`written_on` = NOW()
+        WHERE `festival_comments`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <update id="updateFestivalCommentByIndexFromFestivalModify"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        UPDATE `etb_bbs`.`festival_comments`
+        SET `festival_comments`.`content`    = #{content},
+            `festival_comments`.`written_on` = NOW()
+        WHERE `festival_comments`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <select id="selectFestivalArticleIndexByIndexFromFestivalModify"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        SELECT `festivalComment`.`article_index` AS `articleIndex`
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+        WHERE `festivalComment`.`index` = #{index}
+    </select>
+
+    <select id="selectFestivalCommentCountByFestivalArticleIndex"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+        WHERE `festivalComment`.`article_index` = #{index}
+    </select>
 
 </mapper>

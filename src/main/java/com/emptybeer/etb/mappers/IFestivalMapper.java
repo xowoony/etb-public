@@ -25,4 +25,13 @@ public interface IFestivalMapper {
 
     int deleteFestivalCommentByIndex(@Param(value="index") int index);
 
+
+    int updateFestivalCommentByIndex(@Param(value="content")String content, @Param(value="index")int index);
+
+
+    int updateFestivalCommentByIndexFromFestivalModify(@Param(value="index")int index, @Param(value="content")String content);
+
+    int selectFestivalCommentCountByFestivalArticleIndex(@Param(value="index")int index);
+
+    FestivalCommentEntity selectFestivalArticleIndexByIndexFromFestivalModify(@Param(value="index")int index);
 }
