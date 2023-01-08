@@ -53,7 +53,9 @@
                             <div class="slide_show">
                                 <div class="slide_img">
                                     <div class="slide" th:each="beer : ${beers}">
-                                        <img th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}" alt="이미지2">
+                                        <a th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
+                                            <img th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}" alt="이미지2">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
