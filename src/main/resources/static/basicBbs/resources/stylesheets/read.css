@@ -100,13 +100,33 @@ body > .main > .content > .table th {
     white-space: nowrap;
 }
 
+body > .main > .content > .table > tbody > tr > td {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .table > tbody > tr > td > .report-button {
+    border: none;
+    color: #346aff;
+    cursor: pointer;
+    background-color: unset;
+    font-size: 0.75rem;
+    margin: 0.2rem 0 0 auto;
+}
+
+body > .main > .content > .table > tbody > tr > td > .report-button.prohibited {
+    cursor: not-allowed;
+}
+
 body > .main > .content > .table .content-container {
-    font-family: 돋, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif;
+    font-family: 돋움, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif;
 
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
-    margin: 0.75rem 0;
-    padding: 1rem 2rem;
+    /*margin: 0.75rem 0;*/
+    padding: 0 1rem 1rem 1rem;
 }
 
 body > .main > .content > .table .button-container {

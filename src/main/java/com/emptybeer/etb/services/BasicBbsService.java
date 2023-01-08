@@ -224,4 +224,15 @@ public class BasicBbsService {
 
     }
 
+    // 게시글 신고
+    public Enum<? extends IResult> articleReport(BasicArticleReportEntity basicArticleReport, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        basicArticleReport.setUserEmail(user.getEmail());
+        return this.basicBbsMapper.insertArticleReport(basicArticleReport) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
 }

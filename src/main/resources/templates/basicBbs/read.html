@@ -35,6 +35,7 @@
             <tbody>
             <tr>
                 <td colspan="6">
+                    <input class="report-button" rel="reportButton" type="button" value="신고하기" th:if="${session.user == null || !session.user.getEmail().equals(basicArticle.getUserEmail())}" th:classappend="${basicArticle.isSigned() == true ? '' : 'prohibited'}" th:value="${basicArticle.isReported() == true ? '신고완료' : '신고하기'}">
                     <div class="content-container">
                         <p th:utext="${basicArticle.getContent()}">제가... 보이시나요...?</p>
                     </div>
@@ -57,8 +58,6 @@
                            th:if="${session.user != null && session.user.getEmail().equals(basicArticle.getUserEmail())}">수정</a>
                         <a class="--object-button delete" href="#" id="deleteButton"
                            th:if="${session.user != null && session.user.getEmail().equals(basicArticle.getUserEmail()) || session.user != null && session.user.getEmail().equals('admin@admin')}">삭제</a>
-                        <a class="--object-button report" href="#" id="reportButton"
-                           th:if="${session.user != null && !session.user.getEmail().equals(basicArticle.getUserEmail())}">신고</a>
                     </div>
                 </td>
             </tr>
@@ -93,7 +92,7 @@
                     </div>
                     <form class="comment-form" id="commentForm" th:if="${session.user != null}">
                         <label class="label">
-                            <div class="nickname" th:text="${basicArticle.getUserNickname()}"></div>
+                            <div class="nickname" th:text="${session.userNickname}">바꿔야함</div>
                             <span hidden>댓글 작성</span>
                             <textarea class="--object-input" maxlength="100" name="content" placeholder="댓글을 남겨보세요"></textarea>
                         </label>

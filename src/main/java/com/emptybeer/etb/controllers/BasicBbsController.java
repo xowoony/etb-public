@@ -8,6 +8,7 @@ import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BasicBbsService;
 import com.emptybeer.etb.vos.BasicArticleVo;
 import com.emptybeer.etb.vos.BasicCommentVo;
+import com.emptybeer.etb.vos.ReviewArticleVo;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -126,11 +128,15 @@ public class BasicBbsController {
             produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
     public ModelAndView getRead(@RequestParam(value = "aid") int aid,
-                                @SessionAttribute(value = "user", required = false) UserEntity user) {
+                                @SessionAttribute(value = "user", required = false) UserEntity user,
+                                HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("basicBbs/read");
         BasicArticleVo basicArticle = this.basicBbsService.readArticle(aid, user);
 
         modelAndView.addObject("basicArticle", basicArticle);
+        if (user != null) {
+            session.setAttribute("userNickname", user.getNickname());
+        }
 
         // 게시판 이름 맞추는거
         if (basicArticle != null) {  // 글이 있으면
@@ -305,6 +311,24 @@ public class BasicBbsController {
         responseJson.put("isLiked", basicArticle.isLiked());
         responseJson.put("likeCount", basicArticle.getLikeCount());
         return responseJson.toString();
+    }
+
+    // 게시글 신고하기
+    @PostMapping(value = "article-report",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postArticleReport(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            BasicArticleReportEntity basicArticleReport,
+            @RequestParam(value = "aid", required = false) int aid) {
+        JSONObject responseObject = new JSONObject();
+        basicArticleReport.setArticleIndex(aid);
+        Enum<?> result = this.basicBbsService.articleReport(basicArticleReport, user);
+        BasicArticleVo basicArticle = this.basicBbsService.readArticle( basicArticleReport.getArticleIndex(), user);
+
+        responseObject.put("result", result.name().toLowerCase());
+        responseObject.put("isReported", basicArticle.isReported());
+        return responseObject.toString();
     }
 
 }

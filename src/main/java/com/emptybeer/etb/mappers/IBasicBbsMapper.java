@@ -68,5 +68,8 @@ public interface IBasicBbsMapper {
     // 게시글 좋아요 취소
     int deleteBasicLike(BasicArticleLikeEntity basicArticleLike);
 
+    // 게시글 신고하기
+    int insertArticleReport(BasicArticleReportEntity basicArticleReport);
+
 
 }
