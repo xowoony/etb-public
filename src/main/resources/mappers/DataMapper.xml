@@ -94,7 +94,8 @@
                `beer`.`category_index`             AS `categoryIndex`,
                `beer`.created_on                   AS `createdOn`,
                `beer`.modified_on                  AS `modifiedOn`,
-               COUNT(`beerLikeCount`.`beer_index`) AS `likeCount`
+               COUNT(`beerLikeCount`.`beer_index`) AS `likeCount`,
+               ROW_NUMBER() over (ORDER BY COUNT(`beerLikeCount`.`beer_index`) DESC) AS `rank`
         FROM `etb_data`.`beers` AS `beer`
                  LEFT JOIN `etb_data`.`beer_likes` AS `beerLikeCount`
                            ON `beer`.`index` = `beerLikeCount`.`beer_index`

@@ -179,12 +179,19 @@ h2 {
     overflow: hidden;
 }
 
-.slide_show .slide_img > div {
+.slide_show .slide_img > .slide {
     float: left;
     width: 280px;
     height: 280px;
     padding: 5px;
     overflow: hidden;
+}
+
+.slide_show .slide_img > .slide > .rank {
+    position: absolute;
+    z-index: 9;
+    width: 3rem;
+    margin: -0.2rem 0 0 -17.2rem;
 }
 
 .slide_btn a {

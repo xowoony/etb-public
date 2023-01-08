@@ -1,6 +1,5 @@
 package com.emptybeer.etb.controllers;
 
-import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BbsService;
 import com.emptybeer.etb.services.DataService;

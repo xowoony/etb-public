@@ -54,8 +54,11 @@
                                 <div class="slide_img">
                                     <div class="slide" th:each="beer : ${beers}">
                                         <a th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
-                                            <img th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}" alt="이미지2">
+                                            <img th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"  alt="이미지2">
                                         </a>
+                                        <img class="rank 1st" th:src="@{/resources/images/1st.png}" th:if="${beer.getRank() != null && beer.getRank() == 1}" alt="1위">
+                                        <img class="rank 2nd" th:src="@{/resources/images/2nd.png}" th:if="${beer.getRank() != null && beer.getRank() == 2}" alt="2위">
+                                        <img class="rank 3rd" th:src="@{/resources/images/3rd.png}" th:if="${beer.getRank() != null && beer.getRank() == 3}" alt="3위">
                                     </div>
                                 </div>
                             </div>

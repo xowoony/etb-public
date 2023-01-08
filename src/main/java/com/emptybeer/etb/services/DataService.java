@@ -40,11 +40,6 @@ public class DataService {
 //        return this.dataMapper.selectBeerCategory(categoryIndex);
 //    }
 
-    // 맥주 인기 이미지순 가져오기
-//    public BeerVo getReviewRankingImage() {
-//        return this.dataMapper.selectBeerRanking();
-//    }
-
     // 맥주 인기순위 배열
     public BeerVo[] getBeerRanking() {
         return this.dataMapper.selectBeerRanking();
