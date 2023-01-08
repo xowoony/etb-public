@@ -1,8 +1,10 @@
 const commentForm = window.document.getElementById('commentForm');
 const commentContainer = window.document.getElementById('commentContainer');
 const reportButton = document.querySelector('[rel="reportButton"]');
-if (reportButton.value === '신고완료') {
-    reportButton.style.color = "grey";
+if (reportButton !== null) {
+    if (reportButton.value === '신고완료') {
+        reportButton.style.color = "grey";
+    }
 }
 
 // 댓글 : aid 와 같은 article_index 찾은 다음에
