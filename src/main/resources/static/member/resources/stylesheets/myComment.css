@@ -246,7 +246,9 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     width: 15rem;
     margin-left: 6rem;
     margin-top: 3rem;
-    /* border: 0.0625rem solid;*/
+    border-left: 0.2rem solid #383737;
+    background-color: rgb(202 129 129 / 8%);
+    padding: 0.1rem 0.9rem 0.7rem;
 }
 
 
@@ -292,12 +294,61 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     height: 2.5rem;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .created-on {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .view {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+
+/*tbody*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody {
+    background-color: rgb(255 255 255 / 3%);
+    color: #b9b9b9;
+}
+
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td {
     height: 2.5rem;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > input {
     cursor: pointer;
+}
+
+/*게시글 제목*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title {
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(166, 164, 164);
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > div{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*게시글 제목 hover시*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title:hover {
+    text-decoration: underline;
+}
+
+/*댓글 갯수*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .count {
+    color: #e07f7fe6;
 }
 
 /*작성한 글 테이블 thead 안 체크박스 간격*/
@@ -404,7 +455,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     margin-right: 10rem;
 }
 
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > div > .delete-button:hover{
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > div > .delete-button:hover {
     background-color: rgba(137, 178, 126, 0.14);
 }
 

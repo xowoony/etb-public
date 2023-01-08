@@ -294,9 +294,28 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     height: 2.5rem;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .created-on {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .view {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+
 /*tbody*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody {
     background-color: rgb(255 255 255 / 3%);
+    color: #b9b9b9;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td {
@@ -305,6 +324,31 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > input {
     cursor: pointer;
+}
+
+/*게시글 제목*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title {
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(166, 164, 164);
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > div{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*게시글 제목 hover시*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title:hover {
+    text-decoration: underline;
+}
+
+/*댓글 갯수*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .count {
+    color: #e07f7fe6;
 }
 
 /*작성한 글 테이블 thead 안 체크박스 간격*/

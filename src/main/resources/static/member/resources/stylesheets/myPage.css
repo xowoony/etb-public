@@ -222,9 +222,9 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     margin-right: 17.6rem;
     margin-top: 1rem;
     padding: 1.2rem 1.2rem;
-    /* background-color: rgb(51 141 168 / 11%); */
+    background-color: rgb(201 201 201 / 5%);
     border-radius: 0.4rem;
-    border: 0.0625rem solid #d0b748;
+    border: 0.0625rem solid rgb(164 161 161 / 58%);
 }
 
 /*닉네임 변경 테이블 높이*/
