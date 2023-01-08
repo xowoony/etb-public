@@ -86,9 +86,9 @@ body > main > .beer-section > .title-box2 {
 }
 
 body > main > .beer-section > .title-box2 > table {
+    background-color: rgb(56 28 35);
     width: 100%;
     height: 100%;
-
     border-collapse: collapse;
 }
 
@@ -219,12 +219,12 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table {
-    margin-right: 30rem;
+    margin-right: 17.6rem;
     margin-top: 1rem;
     padding: 1.2rem 1.2rem;
     /* background-color: rgb(51 141 168 / 11%); */
     border-radius: 0.4rem;
-    border: 0.0625rem solid rgb(51 141 168 / 52%);
+    border: 0.0625rem solid #d0b748;
 }
 
 /*닉네임 변경 테이블 높이*/
@@ -240,7 +240,8 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 /*user-container*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .user-container {
     background-color: rgb(31 54 84 / 9%);
-    border-bottom: 0.01rem solid rgb(255,255,255, 10%);
+    border-bottom: 0.01rem solid rgb(255, 255, 255, 10%);
+    width: 35rem;
 }
 
 
@@ -250,8 +251,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     font-family: 'Do Hyeon', sans-serif;
     font-size: 1.3rem;
     font-weight: 100;
-    color: rgb(255 189 180 / 60%);
-
+    color: rgb(255 189 180 / 99%);
 }
 
 /*user-email*/
@@ -263,7 +263,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 
 /*닉네임 변경*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .change-nick-container > .change-nick {
-    margin: 1rem;
+    margin-left: 1rem;
     height: 5rem;
     align-items: center;
     display: flex;
@@ -322,7 +322,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 
 /*프로필 타이틀*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .profile-title {
-    margin-right: 53rem;
+    margin-right: 54rem;
     font-size: 2rem;
     margin-top: 3rem;
     align-items: center;
@@ -337,7 +337,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-title {
     margin-top: 6rem;
     margin-bottom: 1rem;
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Do Hyeon', sans-serif;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container {
@@ -372,19 +372,15 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .forth-icon {
     width: 6rem;
     height: 6rem;
-    /*border: 0.0625rem solid rgb(255, 255, 255);*/
-    /*border-radius: 0.5rem;*/
-    /*margin-right: 2rem;*/
-}
-
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > div > i {
-    border: 0.0625rem solid rgb(255, 255, 255);
-    border-radius: 0.4rem;
-    padding: 0.3rem;
-    font-size: 5rem;
-    color: #d0b748;
 }
 
 
+/*이미지 크기*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .second-icon > img,
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .third-icon > img,
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .forth-icon > img {
+    width: 100%;
+    height: 100%;
+}
 
 

@@ -79,9 +79,9 @@ body > main > .beer-section > .title-box2 {
 }
 
 body > main > .beer-section > .title-box2 > table {
+    background-color: rgb(56 28 35);
     width: 100%;
     height: 100%;
-
     border-collapse: collapse;
 }
 
