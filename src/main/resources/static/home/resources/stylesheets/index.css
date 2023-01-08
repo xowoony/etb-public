@@ -25,7 +25,7 @@ body > main {
 
 /*homeSection1*/
 body > main > .home-section1 {
-    background-color: rgb(47 6 0 / 34%);
+    /*background-color: rgba(0, 0, 0, 0.2);*/
 
     align-items: center;
     display: flex;
@@ -80,7 +80,7 @@ body > main > .home-section2 {
     flex-direction: column;
     justify-content: center;
 
-    background-color: rgb(47 6 0 / 34%);
+    /*background-color: rgb(47 6 0 / 34%);*/
 }
 
 body > main > .home-section2 > .title-box2 {

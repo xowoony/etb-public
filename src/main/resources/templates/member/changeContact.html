@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 마이페이지</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <!--  myPage.css 연결  -->
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/changeContact.css}">
+    <!--  myPage.js 연결  -->
+    <script defer th:src="@{/member/resources/scripts/changeContact.js}"></script>
+</head>
+<body>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<!--  main  -->
+<main>
+    <!--  beerSection1  -->
+    <section class="beer-section" id="beerSection">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">MY PAGE</div>
+            <div class="title-content">잔이비어 마이페이지</div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="category-tab">
+                        <table>
+                            <tbody>
+                            <tr class="category-title">
+                                <td>모아보기</td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/myArticle}"><div>작성한 글 보기</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/myComment}"><div>작성한 댓글 보기</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/myLike}"><div>좋아요한 글 보기</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-title">
+                                <td>
+                                    회원정보 수정
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/changeNickname}"><div>닉네임 변경</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content5">
+                                <td>
+                                    <a th:href="@{/member/changeContact}"><div>연락처 변경</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/changeAddress}"><div>주소 변경</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td><a th:href="@{/member/delete}"><div>회원 탈퇴</div></a></td>
+                            </tr>
+<!--                            <tr class="category-title contact">-->
+<!--                                <td>잔이비어 어쩌고</td>-->
+<!--                            </tr>-->
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="category-tab2">2</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>
