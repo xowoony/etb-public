@@ -2,33 +2,19 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>잔이비어 :: 글 목록</title>
-    <script th:if="${board == null}">
-        alert('존재하지 않는 게시판 입니다.');
-        if (window.history.length > 1) {
-            window.history.back();
-        } else {
-            window.close();
-        }
-    </script>
+    <title>잔이비어 :: 기본 게시판 관리자 모</title>
     <th:block th:replace="~{fragments/head :: common}"></th:block>
-    <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/list.css}">
-    <script defer th:src="@{/basicBbs/resources/scripts/list.js}"></script>
+    <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/admin.css}">
+    <script defer th:src="@{/basicBbs/resources/scripts/admin.js}"></script>
 </head>
-<body th:if="${board != null}">
+<body>
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
-<main class="--main main">
+<main class="main">
     <div class="--content content">
         <div class="title-container">
-            <h1 class="title" th:text="${board.getText()}"></h1>
-            <div class="button-container" id="buttonContainer">
-                <a class="write-button" th:href="@{/basicBbs/write (bid=${board.getId()})}">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </a>
-            </div>
-            <a type="button" class="admin" th:href="@{/basicBbs/basic-admin (bid=${board.getId()})}">신고 게시글 관리</a>
+            <h1 class="title" th:text="${'신고 게시물 관리 - ' + board.getText()}"></h1>
         </div>
         <table class="table" id="table">
             <thead>
@@ -42,18 +28,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="basicArticle : ${basicArticles}">
-                <td th:text="${basicArticle.getIndex()}"></td>
+            <tr th:each="reportedArticle : ${reportedArticles}">
+                <td th:text="${reportedArticle.getIndex()}"></td>
                 <td>
-                    <a class="title" th:href="@{/basicBbs/read (aid=${basicArticle.getIndex()})}">
-                        <span class="text" th:text="${basicArticle.getTitle()}"></span>
-                        <span class="comment" th:text="${'[' + basicArticle.getCommentCount() + ']'}"></span>
+                    <a class="title" th:href="@{/basicBbs/read (aid=${reportedArticle.getIndex()})}">
+                        <span class="text" th:text="${reportedArticle.getTitle()}"></span>
+                        <span class="comment" th:text="${'[' + reportedArticle.getCommentCount() + ']'}"></span>
                     </a>
                 </td>
-                <td th:text="${basicArticle.getUserNickname()}"></td>
-                <td th:text="${basicArticle.getView()}"></td>
-                <td th:text="${basicArticle.getLikeCount()}">0</td>
-                <td th:text="${#dates.format(basicArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${reportedArticle.getUserNickname()}"></td>
+                <td th:text="${reportedArticle.getView()}"></td>
+                <td th:text="${reportedArticle.getLikeCount()}">0</td>
+                <td th:text="${#dates.format(reportedArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </tbody>
         </table>

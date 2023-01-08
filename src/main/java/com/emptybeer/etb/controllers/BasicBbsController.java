@@ -331,4 +331,27 @@ public class BasicBbsController {
         return responseObject.toString();
     }
 
+    // 관리자 페이지
+    @GetMapping(value = "basic-admin",
+    produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getBasicAdmin(@RequestParam(value = "bid") String bid,
+                                @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                @RequestParam(value = "criterion", required = false) String criterion,
+                                @RequestParam(value = "keyword", required = false) String keyword) {
+        page = Math.max(1, page);
+        ModelAndView modelAndView = new ModelAndView("basicBbs/admin");
+        BoardEntity board = this.basicBbsService.getBoard(bid);
+        modelAndView.addObject("board", board);
+        if (board != null) {
+            int totalCount = this.basicBbsService.getReportedArticleCount(board, criterion, keyword);
+
+            PagingModel paging = new PagingModel(totalCount, page);
+            modelAndView.addObject("paging", paging);
+
+            BasicArticleVo[] reportedArticles = this.basicBbsService.getReportedArticles(board, paging, criterion, keyword);
+            modelAndView.addObject("reportedArticles", reportedArticles);
+        }
+        return modelAndView;
+    }
+
 }
