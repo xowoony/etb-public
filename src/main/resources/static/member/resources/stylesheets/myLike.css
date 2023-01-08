@@ -183,7 +183,8 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
     width: 80%;
-    background-color: #080506;}
+    background-color: #080506;
+}
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
     height: 100%;
@@ -205,6 +206,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     width: 100%;
     height: 100%;
 }
+
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
     width: 80%;
@@ -246,7 +248,6 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     margin-top: 3rem;
     /* border: 0.0625rem solid;*/
 }
-
 
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > .nick {
@@ -291,9 +292,18 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     height: 2.5rem;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td {
+    height: 2.5rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > input {
+    cursor: pointer;
+}
+
 /*작성한 글 테이블 thead 안 체크박스 간격*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .check-box {
     width: 3rem;
+
 }
 
 /*작성한 글 테이블 thead 안 index 간격*/
@@ -365,24 +375,37 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 10rem;
+    /* margin-right: 10rem; */
     margin-top: 1rem;
+    width: 100%;
 }
 
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > .delete-button {
+/* 전체 체크박스 */
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > div > .check-box {
+    /*margin-right: auto;*/
+    /*margin-left: 6rem;*/
+    cursor: pointer;
+}
+
+/*전체 체크박스 정렬*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > .check-box-container {
+    margin-right: auto;
+    margin-left: 6rem;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > div > .delete-button {
     font-size: 0.7rem;
     color: rgb(255, 255, 255);
     text-decoration: none;
     border: 0.0625rem solid rgb(255 255 255 / 30%);
     background-color: rgb(202 59 59 / 11%);
     padding: 0.5rem 1rem;
+    margin-right: 10rem;
 }
 
-/*전체선택 버튼*/
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > .all-button{
-    margin-right: auto;
-    margin-left: 8rem;
-    color: rgb(255,255,255);
-    text-decoration: none;
-    font-size: 0.8rem;
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .admin-button > .delete-button-container > div > .delete-button:hover{
+    background-color: rgba(137, 178, 126, 0.14);
 }
+

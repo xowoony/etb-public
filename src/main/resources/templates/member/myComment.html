@@ -104,12 +104,9 @@
                                         <!--    게시물 1개     -->
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -118,12 +115,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -132,12 +126,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -146,12 +137,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -160,12 +148,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -174,12 +159,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -188,12 +170,42 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="--object-check">
-                                                    <input name="termAgree" type="checkbox">
-                                                    <span class="--checkbox">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </span>
-                                                </label>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
+                                            </td>
+                                            <td>34</td>
+                                            <td>아아아아아아아아아주 좋아요 이 맥주</td>
+                                            <td>2023-01-08</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
+                                            </td>
+                                            <td>34</td>
+                                            <td>아아아아아아아아아주 좋아요 이 맥주</td>
+                                            <td>2023-01-08</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
+                                            </td>
+                                            <td>34</td>
+                                            <td>아아아아아아아아아주 좋아요 이 맥주</td>
+                                            <td>2023-01-08</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type='checkbox'
+                                                       name='myLike'
+                                                       onclick='checkSelectAll()'/>
                                             </td>
                                             <td>34</td>
                                             <td>아아아아아아아아아주 좋아요 이 맥주</td>
@@ -206,11 +218,17 @@
                             </div>
                             <div class="admin-button">
                                 <div class="delete-button-container">
-                                    <a href="#" class="delete-button">삭제</a>
+                                    <div class="check-box-container">
+                                        <input class="check-box" type='checkbox'
+                                               name='selectall'
+                                               value='selectall'
+                                               onclick='selectAll(this)'/> <span>전체선택</span>
+                                    </div>
+                                    <div> <a href="#" class="delete-button">삭제</a></div>
+
                                 </div>
                             </div>
                         </div>
-
                     </td>
                 </tr>
                 </tbody>
