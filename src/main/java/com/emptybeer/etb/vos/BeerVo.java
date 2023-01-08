@@ -13,6 +13,8 @@ public class BeerVo extends BeerEntity {
 
     private int likeCount;  // 좋아요 개수
 
+    private int rank; // 인기 순위
+
     private int all; // 맥주 후기 전체 개수
     private int star5; // 맥주 점수 개수
     private int star4;
@@ -98,6 +100,15 @@ public class BeerVo extends BeerEntity {
 
     public BeerVo setLikeCount(int likeCount) {
         this.likeCount = likeCount;
+        return this;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public BeerVo setRank(int rank) {
+        this.rank = rank;
         return this;
     }
 

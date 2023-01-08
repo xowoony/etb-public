@@ -24,6 +24,9 @@
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <main class="main">
     <form class="content --content" id="form">
+<!--        <a href="#" class="back-button" id="back">-->
+<!--            <i class="fa-solid fa-circle-chevron-left"></i>-->
+<!--        </a>-->
         <h1 class="title" th:text="${board + ' - 글 쓰기'}">글쓰기</h1>
         <input name="bid" type="hidden" th:value="${bid}">
         <table class="table" id="table">

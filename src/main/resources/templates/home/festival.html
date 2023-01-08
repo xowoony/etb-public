@@ -36,14 +36,6 @@
         <!--   2. image entity를 지정시 index 없이 이미지를 출력하려 하였으며 이 결과 하나의 이미지만 중복적으로 나옴  -->
         <!--   3. festivalArticle과 image entity 사이의 연결점이 하나도 없었음 image에 index연결점을 추가한 결과 해당 문제가 해결됨    -->
         <div class="title-box2" id="titleBox2">
-<!--                <div class="festival-container" th:href="@{/bbs/festivalRead (index=${festivalArticle.getIndex()})}" th:each="festivalArticle : ${festivalArticles}">-->
-<!--                        <img class="festival-image" th:src="@{/image (index=${festivalArticle.getIndex()})}" alt="">-->
-<!--                        <div class="festival-title" th:text="${festivalArticle.getTitle()}"></div>-->
-<!--                    <form id="data">-->
-<!--                        <input type="hidden" name="findex" th:value="${festivalArticle.getIndex()}">-->
-<!--                    </form>-->
-<!--                </div>-->
-
             <a class="festival-container" th:href="@{/festival/festivalRead (index=${festivalArticle.getIndex()})}" th:each="festivalArticle : ${festivalArticles}">
                 <img class="festival-image" th:src="@{/image (index=${festivalArticle.getIndex()})}" alt="">
                 <div class="festival-title" th:text="${festivalArticle.getTitle()}"></div>

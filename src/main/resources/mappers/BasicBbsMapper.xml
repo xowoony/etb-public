@@ -59,6 +59,38 @@
         LIMIT 1
     </select>
 
+    <select id="selectIndexUser" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`                                                             AS `index`,
+               `basicArticle`.`user_email`                                                        AS `userEmail`,
+               `basicArticle`.`board_id`                                                          AS `boardId`,
+               `basicArticle`.`title`                                                             AS `title`,
+               `basicArticle`.`content`                                                           AS `content`,
+               `basicArticle`.`view`                                                              AS `view`,
+               `basicArticle`.`written_on`                                                        AS `writtenOn`,
+               `basicArticle`.`modified_on`                                                       AS `modifiedOn`,
+               `user`.`nickname`                                                                  AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                                                         AS `isSigned`,
+               COUNT(`basicArticleLike`.`article_index`) > 0                                      AS `isLiked`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`basic_article_likes`
+                WHERE `etb_bbs`.`basic_article_likes`.`article_index` =
+                      `basicArticle`.`index`)                                                     AS `likeCount`,
+               COUNT(`basicReport`.article_index) > 0                                             AS `isReported`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`basic_article_reports`
+                WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+                 LEFT JOIN `etb_bbs`.`basic_article_likes` AS `basicArticleLike`
+                           ON `basicArticle`.`index` = `basicArticleLike`.`article_index`
+                               AND `basicArticleLike`.user_email = IFNULL(#{userEmail}, '')
+                 LEFT JOIN `etb_bbs`.`basic_article_reports` AS `basicReport`
+                           ON `basicArticle`.`index` = `basicReport`.`article_index`
+                               AND `basicReport`.user_email = IFNULL(#{userEmail}, '')
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
     <update id="updateArticle" parameterType="com.emptybeer.etb.vos.BasicArticleVo">
         update `etb_bbs`.`basic_articles`
         SET `user_email`  = #{userEmail},
@@ -120,11 +152,11 @@
 
     <update id="modifyCommentByIndex" parameterType="com.emptybeer.etb.vos.BasicCommentVo">
         update `etb_bbs`.`basic_comments`
-        SET `index`         = #{index},
-            `user_email`    = #{userEmail},
+        SET `index`        = #{index},
+            `user_email`   = #{userEmail},
             `article_index`= #{articleIndex},
-            `content`       = #{content},
-            `written_on`    = #{writtenOn}
+            `content`      = #{content},
+            `written_on`   = #{writtenOn}
         WHERE BINARY `index` = #{index}
     </update>
 
@@ -156,7 +188,7 @@
 
     <select id="selectArticlesByBoardId"
             resultType="com.emptybeer.etb.vos.BasicArticleVo">
-        SELECT `basicArticle`.`index` AS `index`,
+        SELECT * FROM (SELECT `basicArticle`.`index` AS `index`,
         `basicArticle`.user_email AS `userEmail`,
         `basicArticle`.board_id AS `boardId`,
         `basicArticle`.title AS `title`,
@@ -164,7 +196,14 @@
         `basicArticle`.written_on AS `writtenOn`,
         `basicArticle`.modified_on AS `modifiedOn`,
         `user`.`nickname` AS `usernickname`,
-        COUNT(`basicComment`.`index`) AS `commentCount`
+        COUNT(`basicComment`.`index`) AS `commentCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`basic_article_likes`
+        WHERE `etb_bbs`.`basic_article_likes`.`article_index` =
+        `basicArticle`.`index`)                                                     AS `likeCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`basic_article_reports`
+        WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`
         FROM etb_bbs.basic_articles AS `basicArticle`
         LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticle`.`user_email`
         LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
@@ -181,8 +220,31 @@
             AND BINARY `user`.nickname = #{keyword}
         </if>
         GROUP BY `basicArticle`.`index`
-        ORDER BY `basicArticle`.`index` DESC
+        ORDER BY `basicArticle`.`index` DESC) AS `basicList`
+        WHERE basicList.reportCount <![CDATA[ < ]]> 5
         LIMIT #{limit} OFFSET #{offset}
     </select>
+
+    <insert id="insertBasicArticleLike"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleLikeEntity">
+        INSERT INTO `etb_bbs`.`basic_article_likes` (`user_email`, `board_id`, article_index, `created_on`)
+        VALUES (#{userEmail}, #{boardId}, #{articleIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+
+    <delete id="deleteBasicLike"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleLikeEntity">
+        DELETE
+        FROM `etb_bbs`.`basic_article_likes`
+        WHERE `user_email` = #{userEmail}
+          AND `article_index` = #{articleIndex}
+        LIMIT 1
+    </delete>
+
+    <!-- 게시글 신고 -->
+    <insert id="insertArticleReport"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleReportEntity">
+        INSERT INTO `etb_bbs`.`basic_article_reports` (`user_email`, `article_index`, `created_on`)
+        VALUES (#{userEmail}, #{articleIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
 
 </mapper>
