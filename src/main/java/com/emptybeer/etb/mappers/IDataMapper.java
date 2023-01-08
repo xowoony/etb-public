@@ -25,5 +25,7 @@ public interface IDataMapper {
                                    @Param(value = "keyword") String keyword);
 
 
+    // 인기 맥주 배열로 가져오기
+    BeerVo[] selectBeerRanking();
 
 }

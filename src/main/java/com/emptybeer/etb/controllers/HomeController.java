@@ -1,9 +1,10 @@
 package com.emptybeer.etb.controllers;
 
-import com.emptybeer.etb.entities.bbs.FestivalArticleEntity;
 import com.emptybeer.etb.entities.bbs.ImageEntity;
-import com.emptybeer.etb.services.BbsService;
+import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.services.FestivalService;
+import com.emptybeer.etb.vos.BeerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,16 +22,20 @@ import java.io.IOException;
 @RequestMapping(value = "/")
 public class HomeController {
     private final FestivalService festivalService;
+    private final DataService dataService;
 
     @Autowired
-    public HomeController(FestivalService festivalService) {
+    public HomeController(FestivalService festivalService, DataService dataService) {
         this.festivalService = festivalService;
+        this.dataService = dataService;
     }
 
     @GetMapping(value = "/",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getIndex() {
         ModelAndView modelAndView = new ModelAndView("home/index");
+        BeerVo[] beers = this.dataService.getBeerRanking();
+        modelAndView.addObject("beers", beers);
         return modelAndView;
     }
 
@@ -74,6 +78,18 @@ public class HomeController {
         // 헤더의 컨텐트 타입이 무엇을 받을지를 결정한다.(추후 해당 키워드 검색)
         headers.add("Content-Type", image.getFileMime());
         return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "beerImage")
+    public ResponseEntity<byte[]> getBeerImage(@RequestParam(value = "beerIndex") int beerIndex) {
+        ResponseEntity<byte[]> responseEntity;
+        BeerVo beer = this.dataService.getBeerImage(beerIndex);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf(beer.getImageType()));
+        headers.setContentLength(beer.getImage().length);
+        responseEntity = new ResponseEntity<>(beer.getImage(), headers, HttpStatus.OK);
+
+        return responseEntity;
     }
 
 }

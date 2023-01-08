@@ -174,14 +174,17 @@ h2 {
 }
 
 .slide_show .slide_img {
-    width: 5000px;
+    width: 15000px;
+    height: 18.5rem;
     overflow: hidden;
 }
 
 .slide_show .slide_img > div {
     float: left;
     width: 280px;
+    height: 280px;
     padding: 5px;
+    overflow: hidden;
 }
 
 .slide_btn a {

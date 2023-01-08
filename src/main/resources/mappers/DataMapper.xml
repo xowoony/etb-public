@@ -61,28 +61,47 @@
     </select>
 
     <!--  맥주 카테고리별 보기  -->
-<!--    <select id="selectBeerCategory"-->
-<!--            resultType="com.emptybeer.etb.vos.BeerVo">-->
-<!--        SELECT-->
-<!--        `beer`.`index` AS `index`,-->
-<!--        `beer`.`name` AS `name`,-->
-<!--        `beer`.image AS `image`,-->
-<!--        `beer`.image_type AS `imageType`,-->
-<!--        `beer`.`category_index` AS `categoryIndex`,-->
-<!--        `beerCategory`.`text` AS `categoryText`,-->
-<!--        `beer`.created_on AS `createdOn`,-->
-<!--        `beer`.modified_on AS `modifiedOn`-->
-<!--        FROM `etb_data`.`beers` AS `beer`-->
-<!--        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`-->
-<!--        ON `beer`.`category_index` = `beerCategory` .`index`-->
-<!--        WHERE `beer`.`index`-->
-<!--        <if test="beerCategory != null and beerCategory.equals('domestic')">-->
-<!--            AND `beer`.`category_index` = 1-->
-<!--        </if>-->
-<!--        <if test="beerCategory != null and beerCategory.equals('foreign')">-->
-<!--            AND `beer`.`category_index` = 2-->
-<!--        </if>-->
-<!--    </select>-->
+    <!--    <select id="selectBeerCategory"-->
+    <!--            resultType="com.emptybeer.etb.vos.BeerVo">-->
+    <!--        SELECT-->
+    <!--        `beer`.`index` AS `index`,-->
+    <!--        `beer`.`name` AS `name`,-->
+    <!--        `beer`.image AS `image`,-->
+    <!--        `beer`.image_type AS `imageType`,-->
+    <!--        `beer`.`category_index` AS `categoryIndex`,-->
+    <!--        `beerCategory`.`text` AS `categoryText`,-->
+    <!--        `beer`.created_on AS `createdOn`,-->
+    <!--        `beer`.modified_on AS `modifiedOn`-->
+    <!--        FROM `etb_data`.`beers` AS `beer`-->
+    <!--        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`-->
+    <!--        ON `beer`.`category_index` = `beerCategory` .`index`-->
+    <!--        WHERE `beer`.`index`-->
+    <!--        <if test="beerCategory != null and beerCategory.equals('domestic')">-->
+    <!--            AND `beer`.`category_index` = 1-->
+    <!--        </if>-->
+    <!--        <if test="beerCategory != null and beerCategory.equals('foreign')">-->
+    <!--            AND `beer`.`category_index` = 2-->
+    <!--        </if>-->
+    <!--    </select>-->
+
+    <!--  맥주 인기순 정보 배열로 가져오기 -->
+    <select id="selectBeerRanking"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index`                      AS `index`,
+               `beer`.`name`                       AS `name`,
+               `beer`.image                        AS `image`,
+               `beer`.image_type                   AS `imageType`,
+               `beer`.`category_index`             AS `categoryIndex`,
+               `beer`.created_on                   AS `createdOn`,
+               `beer`.modified_on                  AS `modifiedOn`,
+               COUNT(`beerLikeCount`.`beer_index`) AS `likeCount`
+        FROM `etb_data`.`beers` AS `beer`
+                 LEFT JOIN `etb_data`.`beer_likes` AS `beerLikeCount`
+                           ON `beer`.`index` = `beerLikeCount`.`beer_index`
+        WHERE `beer`.`index`
+        GROUP BY beer.`index`
+        ORDER BY likeCount DESC
+    </select>
 
 
 </mapper>
