@@ -71,5 +71,16 @@ public interface IBasicBbsMapper {
     // 게시글 신고하기
     int insertArticleReport(BasicArticleReportEntity basicArticleReport);
 
+    // 신고 게시물 리스트
+    BasicArticleVo[] selectReportedArticlesByBoardId(@Param(value = "boardId") String boardId,
+                                             @Param(value = "criterion") String criterion,
+                                             @Param(value = "keyword") String keyword,
+                                             @Param(value = "limit") int limit,
+                                             @Param(value = "offset") int offset);
+
+    // 신고 게시글 리스트 count
+    int selectReportedArticleCountByBoardId(@Param(value = "boardId") String boardId,
+                                    @Param(value = "criterion") String criterion,
+                                    @Param(value = "keyword") String keyword);
 
 }

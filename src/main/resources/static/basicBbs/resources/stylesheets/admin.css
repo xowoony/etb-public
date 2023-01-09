@@ -85,8 +85,13 @@ body > .main > .content > .title-container > .admin:active {
 }
 
 #table td:nth-of-type(4),
-#table td:nth-of-type(5) {
+#table td:nth-of-type(5),
+#table td:nth-of-type(6){
     text-align: center;
+}
+
+#table th:nth-of-type(6) {
+    color: rgba(232, 106, 106, 90%);
 }
 
 #table th {

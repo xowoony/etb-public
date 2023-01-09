@@ -235,4 +235,17 @@ public class BasicBbsService {
                 : CommonResult.FAILURE;
     }
 
+    // 신고 게시물 리스트
+    public BasicArticleVo[] getReportedArticles(BoardEntity board, PagingModel paging, String criterion, String keyword) {
+        return this.basicBbsMapper.selectReportedArticlesByBoardId(
+                board.getId(), criterion, keyword,
+                paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
+    }
+
+    // 신고 게시글 리스트 카운트
+    public int getReportedArticleCount(BoardEntity board, String criterion, String keyword) {
+        return this.basicBbsMapper.selectReportedArticleCountByBoardId(board.getId(), criterion, keyword);
+    }
+
 }
