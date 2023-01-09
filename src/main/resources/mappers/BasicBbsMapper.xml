@@ -313,4 +313,27 @@
         GROUP BY basicArticle.`index` HAVING COUNT(reportCount.article_index) > 0) A;
     </select>
 
+<!--   체크된 게시글 -->
+    <select id="selectCheckedArticlesByIndex" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`       AS `index`,
+               `basicArticle`.`user_email`  AS `userEmail`,
+               `basicArticle`.`board_id`    AS `boardId`,
+               `basicArticle`.`title`       AS `title`,
+               `basicArticle`.`content`     AS `content`,
+               `basicArticle`.`view`        AS `view`,
+               `basicArticle`.`written_on`  AS `writtenOn`,
+               `basicArticle`.`modified_on` AS `modifiedOn`,
+               `user`.`nickname`            AS `userNickname`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        WHERE BINARY `index` = #{index}
+    </select>
+
+<!-- 신고 수 삭제(리셋 )-->
+    <delete id="deleteReportByArticleIndex">
+        DELETE
+        FROM `etb_bbs`.basic_article_reports
+        WHERE `article_index` = #{articleIndex}
+    </delete>
+
 </mapper>

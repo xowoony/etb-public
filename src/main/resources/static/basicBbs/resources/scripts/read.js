@@ -220,8 +220,8 @@ deleteButton?.addEventListener('click', e => {
                 const responseObject = JSON.parse(xhr.responseText);
                 switch (responseObject['result']) {
                     case 'success':
-                        // const bid = responseObject['bid'];
-                        // window.location.href = `./list?bid=${bid}`;
+                        const bid = responseObject['bid'];
+                        window.location.href = `./list?bid=${bid}`;
                         alert('게시글이 삭제되었습니다.');
                         break;
                     default:

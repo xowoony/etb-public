@@ -28,7 +28,7 @@
                     <i class="fa-regular fa-pen-to-square"></i>
                 </a>
             </div>
-            <a type="button" class="admin" th:href="@{/basicBbs/basic-admin (bid=${board.getId()})}">신고 게시글 관리</a>
+            <a type="button" class="admin" th:href="@{/basicBbs/basic-admin (bid=${board.getId()})}" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">신고 게시글 관리</a>
         </div>
         <table class="table" id="table">
             <thead>
