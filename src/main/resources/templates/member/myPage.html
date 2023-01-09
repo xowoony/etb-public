@@ -20,70 +20,142 @@
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 <!--  main  -->
 <main>
-    <form name="form" id="form">
-        <section class="my-page" id="myPage">
-            <div class="section1" id="titleBox">
-                <div class="title">MY PAGE</div>
-            </div>
-            <div class="section2">
-            <!--  마이페이지 메뉴 탭   -->
-                <aside>
-                    <nav>
-                        <div>
+    <!--  beerSection1  -->
+    <section class="beer-section" id="beerSection">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">MY PAGE</div>
+            <div class="title-content">잔이비어 마이페이지</div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="category-tab">
+                        <table>
+                            <tbody>
+                            <tr class="category-title">
+                                <td>모아보기</td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/myArticle}"><div>작성한 글 보기</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/myComment}"><div>작성한 댓글 보기</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content3">
+                                <td>
+                                    <a th:href="@{/member/myLike}"><div>
+                                        좋아요한 글 보기
+                                    </div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-title">
+                                <td>
+                                    회원정보 수정
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/changeNickname}"><div>닉네임 변경</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/changeContact}"><div>연락처 변경</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td>
+                                    <a th:href="@{/member/changeAddress}"><div>주소 변경</div></a>
+                                </td>
+                            </tr>
+                            <tr class="category-content">
+                                <td><a th:href="@{/member/delete}"><div>회원 탈퇴</div></a></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="category-tab2">
+                        <div class="profile-container">
+                            <div class="profile-title">내 프로필</div>
                             <table>
                                 <tbody>
-                                    <tr class="tab-header">
-                                        <th>
-                                            <a>모아보기</a>
-                                        </th>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>작성 글 보기</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>작성 댓글 보기</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>좋아요한 글 보기</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tab-header">
-                                        <th>
-                                            <a>회원정보 수정</a>
-
-                                        </th>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>닉네임 변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a>주소 변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tab-content">
-                                        <td>
-                                            <a th:href="@{/member/delete}">회원탈퇴</a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td class="user-container">
+                                        <div class="user-nickname">양파쿵야님</div>
+                                        <div class="user-email">xowoony@gmail.com</div>
+                                    </td>
+                                    <td class="change-nick-container">
+                                        <div class="change-nick">
+                                            <a th:href="@{/member/changeNickname}">닉네임 변경</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="change-contact-container">
+                                        <div class="user-contact">010-7561-1975</div>
+                                    </td>
+                                    <td class="contact">
+                                        <div class="change-contact">
+                                            <a th:href="@{/member/changeContact}">연락처 변경</a></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="change-address-container">
+                                        <div class="user-address">서울특별시 서초구 테헤란로 131 13층 잔이비어</div>
+                                    </td>
+                                    <td class="address">
+                                        <div class="change-address">
+                                            <a th:href="@{/member/changeAddress}">주소 변경</a>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
-
+                            <div class="service-title">잔이비어의 다양한 서비스를 만나보세요.</div>
+                            <div class="service-container">
+                                <div class="service">
+                                    <span>
+                                        <div class="first-icon">
+                                            <img src="/member/resources/images/icons8-clinking-beer-mugs-96.png" alt="">
+                                        </div>
+                                        <div class="beer">beer</div>
+                                    </span>
+                                    <span>
+                                        <div class="second-icon">
+                                             <img src="/member/resources/images/review.png" alt="">
+                                        </div>
+                                        <div>review</div>
+                                    </span>
+                                    <span>
+                                        <div class="third-icon">
+                                             <img src="/member/resources/images/community.png" alt="">
+                                        </div>
+                                        <div>community</div>
+                                    </span>
+                                    <span>
+                                        <div class="forth-icon">
+                                             <img src="/member/resources/images/festival.jpg" alt="">
+                                        </div>
+                                        <div>festival</div>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </nav>
-                </aside>
-            </div>
-        </section>
-    </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
 </main>
 <!--  footer  -->
-<!--<th:block th:replace="~{fragments/body :: footer}"></th:block>-->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
 </body>
 </html>

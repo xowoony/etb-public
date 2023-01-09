@@ -47,7 +47,6 @@ public class MemberController {
     public String postLogin(HttpSession session, UserEntity user) {
         Enum<?> result = this.memberService.login(user);
         if (result == CommonResult.SUCCESS) {
-            JSONObject responseObject = new JSONObject();
             session.setAttribute("user", user); // 해당 요소에 user 이름의 user 값을 가지는 HTML 속성을 추가한다.
             System.out.println("이메일/비밀번호 맞음.");
         } else {
@@ -98,11 +97,59 @@ public class MemberController {
         // 3. <2>에서 만들어진 'JSONObject' 객체를 문자열화(toString) 하여 반환하기.
     }
 
-    // 마이페이지
+    // 마이페이지 맵핑
     @GetMapping(value = "myPage",
             produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getMyPage() {
         ModelAndView modelAndView = new ModelAndView("member/myPage");
+        return modelAndView;
+    }
+
+    // 마이페이지 작성 글 보기 카테고리 맵핑
+    @GetMapping(value = "myArticle",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyArticle() {
+        ModelAndView modelAndView = new ModelAndView("member/myArticle");
+        return modelAndView;
+    }
+
+    // 마이페이지 작성 댓글 보기 카테고리 맵핑
+    @GetMapping(value = "myComment",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyComment() {
+        ModelAndView modelAndView = new ModelAndView("member/myComment");
+        return modelAndView;
+    }
+
+    // 마이페이지 좋아요한 글 보기 카테고리 맵핑
+    @GetMapping(value="myLike",
+    produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyLike(){
+        ModelAndView modelAndView = new ModelAndView("member/myLike");
+        return modelAndView;
+    }
+
+    // 마이페이지 닉네임 변경 카테고리 맵핑
+    @GetMapping(value="changeNickname",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getChangeNickname(){
+        ModelAndView modelAndView = new ModelAndView("member/changeNickname");
+        return modelAndView;
+    }
+
+    // 마이페이지 연락처 변경 카테고리 맵핑
+    @GetMapping(value="changeContact",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getChangeContact(){
+        ModelAndView modelAndView = new ModelAndView("member/changeContact");
+        return modelAndView;
+    }
+
+    // 마이페이지 주소 변경 카테고리 맵핑
+    @GetMapping(value="changeAddress",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getChangeAddress(){
+        ModelAndView modelAndView = new ModelAndView("member/changeAddress");
         return modelAndView;
     }
 
