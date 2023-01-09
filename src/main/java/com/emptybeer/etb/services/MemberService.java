@@ -40,7 +40,7 @@ public class MemberService {
         this.memberMapper = MemberMapper;
     }
 
-
+    // 이메일 인증
     @Transactional
     public Enum<? extends IResult> sendEmailAuth(UserEntity user, EmailAuthEntity emailAuth)
             throws NoSuchAlgorithmException, MessagingException {
@@ -126,6 +126,7 @@ public class MemberService {
         return CommonResult.SUCCESS;
     }
 
+    // 회원가입
     public Enum<? extends IResult> register(UserEntity user, EmailAuthEntity emailAuth) {
         // 1. 'emailAuth'가 가진 'email', 'code', 'salt'값 기준으로 새로운 'EmailAuthEntity' SELECT 해서 가져오기
         EmailAuthEntity existingEmailAuth = this.memberMapper.selectEmailAuthByEmailCodeSalt(
@@ -155,6 +156,7 @@ public class MemberService {
         return CommonResult.SUCCESS;
     }
 
+    // 비밀번호 재설정
     @Transactional
     // recoverPasswordSend 리펙터링
     public Enum<? extends IResult> recoverPasswordSend(EmailAuthEntity emailAuth) throws MessagingException {
@@ -256,7 +258,7 @@ public class MemberService {
         existingUser.setPassword(CryptoUtils.hashSha512(user.getPassword()));
         // 새롭게 입력한 비밀번호로 해싱 후 비밀번호를 수정한다.
         if (this.memberMapper.updateUser(existingUser) == 0) {
-            // 데이터를 싹다 가지고 와서 그중에 비밀번호만 바꾸고 다시 집어넣는 과정이 다.
+            // 데이터를 싹다 가지고 와서 그중에 비밀번호만 바꾸고 다시 집어넣는 과정이다.
             return CommonResult.FAILURE;
         }
         return CommonResult.SUCCESS;
@@ -292,7 +294,6 @@ public class MemberService {
 
 
     // 회원 탈퇴
-
     public Enum<? extends IResult> deleteUser(UserEntity user) {
         int existingUser = this.memberMapper.deleteUser(user);
         return CommonResult.SUCCESS;

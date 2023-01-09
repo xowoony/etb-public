@@ -97,10 +97,9 @@ body > main > .beer-section > .title-box2 > table > tbody > tr {
 
 /*카테고리 탭*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab {
-    background-color: rgb(19 2 0 / 59%);
+    background-color: rgb(0 0 0);
     width: 100%;
     height: 100%;
-
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -112,13 +111,11 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     font-family: 'Do Hyeon', sans-serif;
     width: 100%;
     height: 4rem;
-
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    background-color: rgb(57 15 15 / 55%);
+    background-color: rgb(70 70 70 / 17%);
 
 }
 
@@ -143,7 +140,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 /*카테고리 content hover시*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content:hover {
-    background-color: rgb(131 140 22 / 34%);
+    background-color: rgb(220, 213, 215, 10%);
     cursor: pointer;
 
 }
@@ -157,7 +154,6 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     flex-direction: row;
     display: flex;
     justify-content: flex-end;
-
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a {
@@ -169,13 +165,12 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-}
 
+}
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a > div {
     margin-right: 3rem;
 }
-
 
 /*잔이비어 contact 정보*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .contact {
@@ -185,7 +180,8 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
     width: 80%;
-    background-color: #080506;}
+    background-color: #080506;
+}
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
     height: 100%;
@@ -206,4 +202,10 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
     width: 100%;
     height: 100%;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
+    width: 80%;
+    background-color: #080506;
 }
