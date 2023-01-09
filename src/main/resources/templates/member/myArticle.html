@@ -45,14 +45,14 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content2">
                                 <td>
                                     <a th:href="@{/member/myComment}">
                                         <div>작성한 댓글 보기</div>
                                     </a>
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content3">
                                 <td>
                                     <a th:href="@{/member/myLike}">
                                         <div>좋아요한 글 보기</div>
@@ -64,28 +64,28 @@
                                     회원정보 수정
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content4">
                                 <td>
                                     <a th:href="@{/member/changeNickname}">
                                         <div>닉네임 변경</div>
                                     </a>
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content5">
                                 <td>
                                     <a th:href="@{/member/changeContact}">
                                         <div>연락처 변경</div>
                                     </a>
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content6">
                                 <td>
                                     <a th:href="@{/member/changeAddress}">
                                         <div>주소 변경</div>
                                     </a>
                                 </td>
                             </tr>
-                            <tr class="category-content">
+                            <tr class="category-content content7">
                                 <td><a th:href="@{/member/delete}">
                                     <div>회원 탈퇴</div>
                                 </a></td>
@@ -97,8 +97,7 @@
                         <div class="article-nick-container">
                             <div class="article-nick">
                                 <div>
-                                    <div class="nick">
-                                        양파쿵야
+                                    <div class="nick">양파쿵야
                                         <span>님</span>
                                     </div>
                                     <div class="email">xowoony@gmail.com</div>
@@ -141,26 +140,26 @@
                                             </td>
                                         </tr>
                                         </tbody>
+                                        <tfoot>
+                                        <tr class="tfoot-header">
+                                            <td><input class="check-box" type='checkbox'
+                                                       name='selectall'
+                                                       value='selectall'
+                                                       onclick='selectAll(this)'/> </td>
+                                            <td>전체선택</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="delete-container"><a href="#">삭제</a></td>
+                                        </tr>
+                                        </tfoot>
                                     </table>
                                 </form>
-                            </div>
-                            <div class="admin-button">
-                                <div class="delete-button-container">
-                                    <div class="check-box-container">
-                                        <input class="check-box" type='checkbox'
-                                               name='selectall'
-                                               value='selectall'
-                                               onclick='selectAll(this)'/> <span>전체선택</span>
-                                    </div>
-                                    <div><a href="#" class="delete-button">좋아요 취소</a></div>
-                                </div>
                             </div>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
-
         </div>
     </section>
 </main>
