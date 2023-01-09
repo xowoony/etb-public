@@ -20,7 +20,8 @@
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 <!--  main  -->
 <main>
-    <form>
+    <form id="form">
+        <input type="hidden" th:value="${session.userEmail}" name="email">
         <!--  beerSection1  -->
         <section class="beer-section" id="beerSection">
             <!--  Section1  -->
@@ -33,7 +34,7 @@
                 <table>
                     <tbody>
                     <tr>
-                        <!--  오른쪽 섹션  -->
+                        <!--  왼쪽 섹션  -->
                         <td class="category-tab">
                             <table>
                                 <tbody>
@@ -97,8 +98,26 @@
                         </td>
                         <!--  오른쪽 섹션  -->
                         <td class="category-tab2">
-                            <div>
-
+                            <div class="change-nickname-container">
+                                <table>
+                                    <caption class="title">닉네임 변경</caption>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    <input type="text" class="nickname" id="nicknameModify" name="nicknameModify" placeholder="변경하실 닉네임을 입력해 주세요.">
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="submit-container">
+                                                    <input type="submit" value="변경하기" class="modify" id="modify" name="modify">
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </td>
                     </tr>

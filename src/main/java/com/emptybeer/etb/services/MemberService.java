@@ -21,6 +21,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -300,4 +301,16 @@ public class MemberService {
     }
 
 
+    // 닉네임 수정
+    @Transactional
+    public Enum<? extends IResult>changeNickname(UserEntity user) {
+        UserEntity existingUser = this.memberMapper.selectUserByNickname(user.getNickname());
+        System.out.println("여기는 서비스");
+        existingUser.setNickname(user.getNickname());
+        System.out.println("셋 닉네임은 되나?");
+
+        return this.memberMapper.updateUser(existingUser) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
 }

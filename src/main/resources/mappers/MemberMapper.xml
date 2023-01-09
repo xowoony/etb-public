@@ -109,6 +109,26 @@
         LIMIT 1
     </select>
 
+    <!--  닉네임 변경  -->
+    <select id="selectUserByNickname"
+            resultType="com.emptybeer.etb.entities.member.UserEntity">
+        SELECT `email`             AS `email`,
+               `password`          AS `password`,
+               `nickname`          AS `nickname`,
+               `name`              AS `name`,
+               `contact`           AS `contact`,
+               `address_postal`    AS `addressPostal`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `registered_on`     AS `registeredOn`
+        FROM `etb_member`.`users`
+        WHERE
+        BINARY `nickname` = #{nickname}
+        LIMIT 1
+    </select>
+
+
+
 
     <update id="updateEmailAuth"
             parameterType="com.emptybeer.etb.entities.member.EmailAuthEntity">

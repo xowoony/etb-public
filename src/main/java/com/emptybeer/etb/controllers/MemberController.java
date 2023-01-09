@@ -318,4 +318,20 @@ public class MemberController {
         session.setAttribute("user", null);
         return responseObject.toString();
     }
+
+    // 닉네임 수정
+    @RequestMapping(value = "changeNickname",
+            method = RequestMethod.PATCH,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchChangeNickname(@SessionAttribute(value = "user", required = false) UserEntity user, HttpSession session) {
+        session.setAttribute("userEmail", user.getEmail());
+        Enum<?> result = this.memberService.changeNickname(user);
+        System.out.println("넘어오나????");
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
+
+
 }

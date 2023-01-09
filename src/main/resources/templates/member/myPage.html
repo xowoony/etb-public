@@ -41,19 +41,25 @@
                                 </tr>
                                 <tr class="category-content">
                                     <td>
-                                        <a th:href="@{/member/myArticle}"><div>작성한 글 보기</div></a>
+                                        <a th:href="@{/member/myArticle}">
+                                            <div>작성한 글 보기</div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr class="category-content">
                                     <td>
-                                        <a th:href="@{/member/myComment}"><div>작성한 댓글 보기</div></a>
+                                        <a th:href="@{/member/myComment}">
+                                            <div>작성한 댓글 보기</div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr class="category-content content3">
                                     <td>
-                                        <a th:href="@{/member/myLike}"><div>
-                                            좋아요한 글 보기
-                                        </div></a>
+                                        <a th:href="@{/member/myLike}">
+                                            <div>
+                                                좋아요한 글 보기
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr class="category-title">
@@ -63,21 +69,29 @@
                                 </tr>
                                 <tr class="category-content">
                                     <td>
-                                        <a th:href="@{/member/changeNickname}"><div>닉네임 변경</div></a>
+                                        <a th:href="@{/member/changeNickname}">
+                                            <div>닉네임 변경</div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr class="category-content">
                                     <td>
-                                        <a th:href="@{/member/changeContact}"><div>연락처 변경</div></a>
+                                        <a th:href="@{/member/changeContact}">
+                                            <div>연락처 변경</div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr class="category-content">
                                     <td>
-                                        <a th:href="@{/member/changeAddress}"><div>주소 변경</div></a>
+                                        <a th:href="@{/member/changeAddress}">
+                                            <div>주소 변경</div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr class="category-content">
-                                    <td><a th:href="@{/member/delete}"><div>회원 탈퇴</div></a></td>
+                                    <td><a th:href="@{/member/delete}">
+                                        <div>회원 탈퇴</div>
+                                    </a></td>
                                 </tr>
                             </table>
                         </td>
@@ -121,30 +135,31 @@
                                 <div class="service-title">잔이비어의 다양한 서비스를 만나보세요.</div>
                                 <div class="service-container">
                                     <div class="service">
-                                    <span>
-                                        <div class="first-icon">
-                                            <img src="/member/resources/images/icons8-clinking-beer-mugs-96.png" alt="">
-                                        </div>
-                                        <div class="beer">beer</div>
-                                    </span>
                                         <span>
-                                        <div class="second-icon">
-                                             <img src="/member/resources/images/review.png" alt="">
-                                        </div>
-                                        <div>review</div>
-                                    </span>
+                                            <div class="first-icon">
+                                                <a th:href="@{/data/beer}"><img src="/member/resources/images/icons8-clinking-beer-mugs-96.png"
+                                                        alt=""></a>
+                                            </div>
+                                            <div class="beer">beer</div>
+                                        </span>
                                         <span>
-                                        <div class="third-icon">
-                                             <img src="/member/resources/images/community.png" alt="">
-                                        </div>
-                                        <div>community</div>
-                                    </span>
+                                            <div class="second-icon">
+                                                <a th:href="@{/bbs/review}"> <img src="/member/resources/images/review.png" alt=""></a>
+                                            </div>
+                                            <div>review</div>
+                                        </span>
                                         <span>
-                                        <div class="forth-icon">
-                                             <img src="/member/resources/images/festival.jpg" alt="">
-                                        </div>
-                                        <div>festival</div>
-                                    </span>
+                                            <div class="third-icon">
+                                                <a th:href="@{/community}"><img src="/member/resources/images/community.png" alt=""></a>
+                                            </div>
+                                            <div>community</div>
+                                        </span>
+                                        <span>
+                                            <div class="forth-icon">
+                                                <a th:href="@{/festival}"><img src="/member/resources/images/festival.jpg" alt=""></a>
+                                            </div>
+                                            <div>festival</div>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
