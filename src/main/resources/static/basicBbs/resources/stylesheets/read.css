@@ -215,6 +215,7 @@ body > .main > .content > .table .button-container > a[href].delete {
     background-color: unset;
     border: none;
     color: #888888;
+    cursor: pointer;
     float: right;
     margin: 0 0.5rem 0.5rem 0;
 }
@@ -342,6 +343,7 @@ body > .main > .content > .table .button-container > a[href].delete {
 #commentContainer .comment > .body > .modify-form > .--object-button {
     border: none;
     border-radius: 0.5rem;
+    cursor: pointer;
     font-size: 0.8rem;
     margin-right: 1rem;
     padding: 0.3rem;
