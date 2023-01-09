@@ -225,9 +225,28 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     height: 100%;
 }
 
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > .profile-container {
+    width: 100%;
+}
+
+
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > .profile-container > div > .nick {
+    font-size: 2rem;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > .profile-container > div {
+    width: 15rem;
+    margin-left: 6rem;
+    margin-top: 3rem;
+    border-left: 0.2rem solid #383737;
+    /* background-color: rgb(202 129 129 / 8%); */
+    padding: 0.1rem 0.9rem 0.7rem;
+}
+
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > table {
     min-width: 25rem;
-    margin-top: 8rem;
+    /*margin-top: 8rem;/*/
 }
 
 /*변경할 닉네임 입력받는 곳 border 속성*/
