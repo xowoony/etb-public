@@ -14,7 +14,7 @@
 <main class="main">
     <div class="--content content">
         <div class="title-container">
-            <h1 class="title" th:text="${'신고 게시물 관리 - ' + board.getText()}"></h1>
+            <h1 class="title" th:text="${'신고 게시글 관리 - ' + board.getText()}"></h1>
         </div>
         <table class="table" id="table">
             <thead>
@@ -24,6 +24,7 @@
                 <th>작성자</th>
                 <th>조회수</th>
                 <th>추천수</th>
+                <th>신고수</th>
                 <th>작성 일시</th>
             </tr>
             </thead>
@@ -39,6 +40,7 @@
                 <td th:text="${reportedArticle.getUserNickname()}"></td>
                 <td th:text="${reportedArticle.getView()}"></td>
                 <td th:text="${reportedArticle.getLikeCount()}">0</td>
+                <td th:text="${reportedArticle.getReportCount()}">0</td>
                 <td th:text="${#dates.format(reportedArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </tbody>
