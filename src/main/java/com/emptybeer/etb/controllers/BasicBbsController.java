@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.spring5.context.SpringContextUtils;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class BasicBbsController {
 
     // 글쓰기 게시판
     @GetMapping(value = "write",
-    produces = MediaType.TEXT_HTML_VALUE)
+            produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getWrite(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "bid", required = false) String bid) {
         ModelAndView modelAndView;
 
@@ -218,14 +219,23 @@ public class BasicBbsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteRead(@SessionAttribute(value = "user", required = false) UserEntity user,
-                             @RequestParam(value = "aid") int aid) {
-        BasicArticleVo basicArticle = new BasicArticleVo();
-        basicArticle.setIndex(aid);
-        Enum<?> result = this.basicBbsService.deleteArticle(basicArticle, user);
+                             @RequestParam(value = "aid") int[] aids) {
+        String bid = null;
+        int count = 0;
+        for (int aid : aids) {
+            System.out.println(aid);
+            BasicArticleVo basicArticle = new BasicArticleVo();
+            basicArticle.setIndex(aid);
+            count += this.basicBbsService.deleteArticle(basicArticle, user) == CommonResult.SUCCESS ? 1 : 0;
+            bid = basicArticle.getBoardId();
+        }
+        Enum<?> result = count == aids.length
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
         if (result == CommonResult.SUCCESS) {
-            responseObject.put("bid", basicArticle.getBoardId());
+            responseObject.put("bid", bid);
         }
         return responseObject.toString();
     }
@@ -286,7 +296,7 @@ public class BasicBbsController {
 
     // 게시글 좋아요
     @PostMapping(value = "basic-like",
-    produces = MediaType.APPLICATION_JSON_VALUE)
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity basicArticleLike) {
         JSONObject responseJson = new JSONObject();
@@ -324,22 +334,46 @@ public class BasicBbsController {
         JSONObject responseObject = new JSONObject();
         basicArticleReport.setArticleIndex(aid);
         Enum<?> result = this.basicBbsService.articleReport(basicArticleReport, user);
-        BasicArticleVo basicArticle = this.basicBbsService.readArticle( basicArticleReport.getArticleIndex(), user);
+        BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleReport.getArticleIndex(), user);
 
         responseObject.put("result", result.name().toLowerCase());
         responseObject.put("isReported", basicArticle.isReported());
         return responseObject.toString();
     }
 
+    // 신고 초기화
+    @DeleteMapping(value = "article-report",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteArticleReport(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            @RequestParam(value = "aid", required = false) int[] aids) {
+        int count = 0;
+        for (int aid : aids) {
+            BasicArticleReportEntity basicArticleReport = new BasicArticleReportEntity();
+            basicArticleReport.setArticleIndex(aid);
+            count += this.basicBbsService.resetReport(basicArticleReport, user) == CommonResult.SUCCESS ? 1 : 0;
+        }
+        Enum<?> result = count == aids.length ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
+
     // 관리자 페이지
     @GetMapping(value = "basic-admin",
-    produces = MediaType.TEXT_HTML_VALUE)
+            produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getBasicAdmin(@RequestParam(value = "bid") String bid,
-                                @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                                @RequestParam(value = "criterion", required = false) String criterion,
-                                @RequestParam(value = "keyword", required = false) String keyword) {
+                                      @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                      @RequestParam(value = "criterion", required = false) String criterion,
+                                      @RequestParam(value = "keyword", required = false) String keyword,
+                                      @SessionAttribute(value = "user", required = false) UserEntity user,
+                                      HttpSession session) {
         page = Math.max(1, page);
         ModelAndView modelAndView = new ModelAndView("basicBbs/admin");
+        if (user != null) {
+            session.setAttribute("userEmail", user.getEmail());
+        }
         BoardEntity board = this.basicBbsService.getBoard(bid);
         modelAndView.addObject("board", board);
         if (board != null) {

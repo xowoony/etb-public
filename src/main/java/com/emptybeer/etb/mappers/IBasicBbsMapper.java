@@ -83,4 +83,13 @@ public interface IBasicBbsMapper {
                                     @Param(value = "criterion") String criterion,
                                     @Param(value = "keyword") String keyword);
 
+
+    // 체크 게시글
+    BasicArticleVo[] selectCheckedArticlesByIndex(@Param(value = "index") int index);
+
+
+    // 신고 수 리셋
+    int deleteReportByArticleIndex(@Param(value = "articleIndex") int index);
+
+
 }
