@@ -125,3 +125,25 @@ body > main > .home-section1 > .title-box2 > .festival-container > .festival-tit
 }
 
 
+body > main > .home-section1 > .festival-admin{
+    background-color: grey;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 5%;
+    top: 29rem;
+    right: 4rem;
+    color: black;
+    border: black 1px solid;
+}
+
+
+body > main > .home-section1 > .festival-admin:hover{
+    background-color: beige;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 5%;
+    top: 29rem;
+    right: 4rem;
+    color: black;
+    border: black 1px solid;
+}

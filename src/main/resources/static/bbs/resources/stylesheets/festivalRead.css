@@ -120,7 +120,7 @@ body > main > .review-container{
     font-size: 2rem;
     width: 90%;
     margin-left: 11rem;
-    margin-bottom: 10rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -283,4 +283,53 @@ body > main > .review-container{
 
 #comment > .festival-comment > .modify-content > .modify-form.visible > .comment-modifyInput{
     width: 45rem;
+}
+
+
+
+
+
+#foot-container {
+    background-color: #f9f9f8;
+    margin-bottom: 7rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#foot-container > div:last-of-type {
+    width: 100%;
+    border-top: 1px solid #ebebea;
+}
+
+#page-container {
+    margin: 0.3rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#page-container > .page {
+    /*border-left: 0.0625rem solid rgb(76, 91, 105);*/
+    color: black;
+    font-size: 13px;
+    padding: 0.3rem 0.55rem;
+    margin: 0.1rem;
+    text-decoration: none;
+    border: solid 1px #e5e5e5;
+    background-color: #fff;
+}
+
+
+#page-container > .page.selected{
+    /*background-color: rgb(66, 81, 95);*/
+    border: solid 1px #e5e5e5;
+    background-color: #fff;
+    color: #346aff;
+}
+
+#page-container > .page:hover {
+    color: #346aff;
 }
