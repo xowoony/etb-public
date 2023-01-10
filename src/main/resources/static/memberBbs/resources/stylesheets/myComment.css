@@ -395,6 +395,11 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-top: 0.02rem solid rgb(147 140 140);
 }
 
+/*댓글 관리 테이블 footer에 가리지 않게 하기*/
+#contentTable {
+    margin-bottom: 7vh;
+}
+
 /*체크박스*/
 .--object-check {
     align-items: center;

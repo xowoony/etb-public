@@ -407,6 +407,83 @@
         WHERE `index` = #{index}
     </delete>
 
+<!--    신고리뷰-->
+    <select id="selectReportedReviewCount"
+            resultType="int">
+        SELECT COUNT (*) FROM(SELECT COUNT(reviewArticle.`index`)
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        <if test="criterion != null and criterion.equals('nickname')">
+            LEFT JOIN `etb_member`.`users` AS `user` ON `reviewArticle`.`user_email` = `user`.`email`
+        </if>
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaCount` ON `reviewArticle`.`index` =
+        `reviewDeclaCount`.article_index
+        WHERE reviewArticle.`index`
+        <if test="criterion != null and criterion.equals('content')">
+            AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(reviewArticle.`content_bad`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.nickname = #{keyword}
+        </if>
+        GROUP BY reviewArticle.`index` HAVING COUNT(reviewDeclaCount.article_index) > 0) A;
+    </select>
+
+<!--  신고 리뷰 리스트-->
+    <select id="selectReportedReviews"
+            resultType="com.emptybeer.etb.vos.ReviewArticleVo">
+        SELECT * FROM (SELECT `reviewArticle`.`index` AS `index`,
+        `reviewArticle`.`user_email` AS `userEmail`,
+        `reviewArticle`.`board_id` AS `boardId`,
+        `reviewArticle`.`beer_index` AS `beerIndex`,
+        `beer`.`name` AS `beerName`,
+        `reviewArticle`.`score` AS `score`,
+        `reviewArticle`.`content_good` AS `contentGood`,
+        `reviewArticle`.`content_bad` AS `contentBad`,
+        `reviewArticle`.`declaration` AS `declaration`,
+        `reviewArticle`.`written_on` AS `writtenOn`,
+        `reviewArticle`.`modified_on` AS `modifiedOn`,
+        `user`.`nickname` AS `usernickname`,
+        (#{userEmail} IS NOT NULL) AS `isSigned`,
+        COUNT(`reviewArticleLike`.article_index) > 0 AS `isLiked`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_likes`
+        WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+        `reviewArticle`.`index`) AS `likeCount`,
+        COUNT(`reviewDeclaration`.article_index) > 0 AS `isDeclared`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`review_article_declaration`
+        WHERE `etb_bbs`.`review_article_declaration`.`article_index` = `reviewArticle`.`index`) AS `declaCount`
+        FROM etb_bbs.review_articles AS `reviewArticle`
+        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
+        LEFT JOIN `etb_data`.`beers` AS `beer` ON `beer`.`index` = `reviewArticle`.beer_index
+        LEFT JOIN `etb_bbs`.review_article_likes AS `reviewArticleLike`
+        ON `reviewArticle`.`index` = reviewArticleLike.article_index
+        AND `reviewArticleLike`.user_email = IFNULL(#{userEmail}, '')
+        LEFT JOIN `etb_bbs`.review_article_declaration AS `reviewDeclaration` ON `reviewArticle`.`index` =
+        `reviewDeclaration`.`article_index` AND `reviewDeclaration`.user_email = IFNULL(#{userEmail}, '')
+        WHERE reviewArticle.`index`
+        <if test="criterion != null and criterion.equals('content')">
+            AND (REPLACE(reviewArticle.`content_good`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(reviewArticle.`content_bad`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.`nickname` = #{keyword}
+        </if>
+        GROUP BY `reviewArticle`.`index`
+        ORDER BY CASE
+        WHEN #{sort} = 'report' THEN declaCount
+        WHEN #{sort} = 'new' THEN `reviewArticle`.`index`
+        ELSE `reviewArticle`.`index` END DESC) AS reviewList
+        WHERE reviewList.declaCount > 0
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 신고 수 삭제(리셋 )-->
+    <delete id="deleteReportByArticleIndex">
+        DELETE
+        FROM `etb_bbs`.review_article_declaration
+        WHERE `article_index` = #{articleIndex}
+    </delete>
 
 
 

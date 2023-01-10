@@ -106,7 +106,7 @@
                                     <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
                                 </div>
                                 <form>
-                                    <table>
+                                    <table id="contentTable">
                                         <thead>
                                         <tr class="header-border">
                                             <td colspan="4">
@@ -147,7 +147,9 @@
                                                        onclick='selectAll(this)'/> </td>
                                             <td>전체선택</td>
                                             <td></td>
-                                            <td class="delete-container"><a href="#">삭제</a></td>
+                                            <td class="delete-container" rel="commentDeleteButton">
+                                                <a href="#">삭제</a>
+                                            </td>
                                         </tr>
                                         </tfoot>
                                     </table>

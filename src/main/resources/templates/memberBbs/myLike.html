@@ -106,7 +106,7 @@
                                     <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
                                 </div>
                                 <form>
-                                    <table>
+                                    <table id="contentTable">
                                         <thead>
                                         <tr class="header-border">
                                             <td colspan="3">
@@ -121,7 +121,8 @@
                                                 <input type='checkbox'
                                                        name='myArticle'
                                                        onclick='checkSelectAll()'
-                                                       th:data-aid="${basicArticleLike.getArticleIndex()}"/>
+                                                       th:data-aid="${basicArticleLike.getArticleIndex()}"
+                                                th:data-bid="${basicArticleLike.getBoardId()}"/>
                                             </td>
                                             <td>
                                                 <div th:text="${basicArticleLike.getBoardName()}" class="index"></div>
@@ -140,7 +141,9 @@
                                                        onclick='selectAll(this)'/> </td>
                                             <td>전체선택</td>
                                             <td></td>
-                                            <td class="delete-container"><a href="#">삭제</a></td>
+                                            <td class="delete-container">
+                                                <a href="#" rel="basicLikeDeleteButton">추천 취소</a>
+                                            </td>
                                         </tr>
                                         </tfoot>
                                     </table>

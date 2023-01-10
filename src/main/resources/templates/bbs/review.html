@@ -22,6 +22,7 @@
                     <i class="fa-solid fa-square-pen"></i>
                 </a>
             </div>
+            <a type="button" class="admin" th:href="@{/bbs/review-admin}" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">신고 리뷰 관리</a>
         </div>
         <div class="form-container">
             <div class="sort" name="sort">

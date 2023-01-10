@@ -6,7 +6,7 @@
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/admin.css}">
     <script defer th:src="@{/basicBbs/resources/scripts/admin.js}"></script>
-    <script th:if="${session.user == null || session.userEmail != 'admin@admin'}">
+    <script th:if="${session.user == null || session.user.getEmail() != 'admin@admin'}">
         alert('접근 권한이 없습니다.');
         if (window.history.length > 1) {
             window.history.back();
@@ -15,7 +15,7 @@
         }
     </script>
 </head>
-<body th:if="${session.user != null && session.userEmail == 'admin@admin'}">
+<body th:if="${session.user != null && session.user.getEmail() == 'admin@admin'}">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <th:block th:replace="~{fragments/body :: cover}"></th:block>

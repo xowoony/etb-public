@@ -92,5 +92,21 @@ public interface IBbsMapper {
     // 리뷰 좋아요 취소
     int deleteReviewLike(ReviewArticleLikeEntity reviewArticleLike);
 
+    // (신고리뷰)
+    int selectReportedReviewCount(
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword);
+
+    // (신고리뷰) 리스트
+    ReviewArticleVo[] selectReportedReviews(
+            @Param(value = "userEmail") String userEmail,
+            @Param(value = "criterion") String criterion,
+            @Param(value = "keyword") String keyword,
+            @Param(value = "sort") String sort,
+            @Param(value = "limit") int limit,
+            @Param(value = "offset") int offset);
+
+    // 신고 수 리셋
+    int deleteReportByArticleIndex(@Param(value = "articleIndex") int index);
 
 }

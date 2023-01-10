@@ -189,7 +189,7 @@ public class BbsService {
         if (existingArticle == null) {
             return ArticleModifyResult.NO_SUCH_ARTICLE;
         }
-        if (user == null || !user.getEmail().equals(existingArticle.getUserEmail())) {
+        if (user == null || !(user.getEmail().equals(existingArticle.getUserEmail())|| user.getEmail().equals("admin@admin"))) {
             return ArticleModifyResult.NOT_ALLOWED;
         }
 
@@ -232,4 +232,28 @@ public class BbsService {
     }
 
 
+    // 신고 게시물 리스트 카운트
+    public int getReportedReviewCount(String criterion, String keyword) {
+        return this.bbsMapper.selectReportedReviewCount(criterion, keyword);
+    }
+
+    //(신고 맥주) 리뷰 배열
+    public ReviewArticleVo[] getReportedReviews(UserEntity signedUser, PagingModel paging, String criterion, String keyword, String sort) {
+        return this.bbsMapper.selectReportedReviews(signedUser == null ? null : signedUser.getEmail(),
+                criterion, keyword, sort,
+                paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
+    }
+
+    // 신고 수 초기화
+    public Enum<? extends IResult> resetReport(ReviewArticleDeclarationEntity reviewArticleDeclaration, UserEntity user) {
+
+        if (user == null || !(user.getEmail().equals("admin@admin"))) {
+            return CommonResult.FAILURE;
+        }
+
+        return this.bbsMapper.deleteReportByArticleIndex(reviewArticleDeclaration.getArticleIndex()) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
 }

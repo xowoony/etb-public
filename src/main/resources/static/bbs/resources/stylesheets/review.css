@@ -36,6 +36,25 @@ body {
     color: rgba(87, 127, 236, 0.8);
 }
 
+.review-list > .first > .admin {
+    text-decoration: none;
+    border: 1px solid #888888;
+    color: #888888;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 0.3rem;
+    margin-left: auto;
+}
+
+.review-list > .first > .admin:hover {
+    background-color: rgba(52, 106, 255, 0.2);
+}
+
+.review-list > .first > .admin:active {
+    border: 1px solid rgb(255, 255, 255);
+}
+
 .review-list > .rating-container {
     margin-bottom: 1rem;
 
