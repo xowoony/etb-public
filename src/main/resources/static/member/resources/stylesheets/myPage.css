@@ -14,6 +14,9 @@
 /*연락처 글씨체*/
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 
+/*마이페이지 footer쪽*/
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
 html {
     width: 100%;
     height: 100%;
@@ -238,7 +241,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     margin-right: 17.6rem;
     margin-top: 1rem;
     padding: 1.2rem 1.2rem;
-    background-color: rgb(201 201 201 / 5%);
+    /*background-color: rgb(201 201 201 / 5%);*/
     border-radius: 0.4rem;
     border: 0.0625rem solid rgb(164 161 161 / 58%);
 }
@@ -267,7 +270,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     font-family: 'Do Hyeon', sans-serif;
     font-size: 1.3rem;
     font-weight: 100;
-    color: rgb(255 189 180 / 99%);
+    color: rgb(200 205 199 / 99%);
 }
 
 /*user-email*/
@@ -336,6 +339,16 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     font-size: 0.85rem;
 }
 
+
+/* 변경하기 글씨 hover 시 red*/
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .change-nick-container > .change-nick > a:hover,
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .contact > .change-contact > a:hover,
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .address > .change-address > a:hover{
+    color: rgba(255, 0, 0, 0.85);
+}
+
+
+
 /*프로필 타이틀*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .profile-title {
     margin-right: 54rem;
@@ -346,8 +359,11 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     flex-direction: row;
     justify-content: flex-start;
     font-family: 'Do Hyeon', sans-serif;
-    color: #c2c2c2b5;
+    color: #ffffffb5;
 }
+
+
+
 
 
 /*잔이비어의 다양한 서비스를 만나보세요*/
@@ -356,6 +372,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     margin-bottom: 1rem;
     font-family: 'Do Hyeon', sans-serif;
     color: #9e9e97;
+    font-size: 1.15rem;
 }
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container {
@@ -383,6 +400,16 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     justify-content: center;
 }
 
+/*beer*/
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .beer,
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .review,
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .community,
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .festival {
+    font-family: 'Manrope', sans-serif;
+    color: rgb(255 255 255 / 59%);
+}
+
+
 /*icon*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .first-icon,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .second-icon,
@@ -390,6 +417,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .forth-icon {
     width: 6rem;
     height: 6rem;
+    margin-bottom: 0.5rem;
 }
 
 /*icon hover 시*/

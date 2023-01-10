@@ -324,12 +324,14 @@ public class MemberController {
             method = RequestMethod.PATCH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String patchChangeNickname(@SessionAttribute(value = "user", required = false) UserEntity user, HttpSession session) {
-        session.setAttribute("userEmail", user.getEmail());
-        Enum<?> result = this.memberService.changeNickname(user);
+    public String patchChangeNickname(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "changeNickname") String changeNickname, HttpSession session) {
+//        session.setAttribute("userEmail", user.getEmail());
+        Enum<?> result = this.memberService.changeNickname(user, changeNickname);
         System.out.println("넘어오나????");
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
+        //세션 null -> 다시 user
+        session.setAttribute("user", this.memberService.getUser(user.getEmail()) );// UserEntity 값.   user.getEmail() 기준으로 다시 유저정보 모두 들고 와서 session에 set
         return responseObject.toString();
     }
 
