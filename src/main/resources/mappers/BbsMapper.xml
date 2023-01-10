@@ -107,7 +107,7 @@
         <if test="starRank != null and starRank.equals('star1')">
             AND `reviewArticle`.score = 1
         </if>
-        GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
+        GROUP BY reviewArticle.`index` HAVING COUNT(reviewDeclaCount.article_index) <![CDATA[ < ]]> 5) A;
     </select>
     <select id="selectReviewArticleCountByBeerIndex"
             resultType="int">
@@ -141,7 +141,7 @@
         <if test="starRank != null and starRank.equals('star1')">
             AND `reviewArticle`.score = 1
         </if>
-        GROUP BY reviewArticle.`index` HAVING COUNT(reviewArticle.index) <![CDATA[ < ]]> 5) A;
+        GROUP BY reviewArticle.`index` HAVING COUNT(reviewDeclaCount.article_index) <![CDATA[ < ]]> 5) A;
     </select>
     <select id="selectReviewAvgByBeerIndex"
             resultType="Double">

@@ -148,7 +148,7 @@ body {
 }
 
 .review-list > .form-container > .search-form > .label:first-of-type > .--object-input {
-    width: 3rem;
+    width: 4rem;
     height: 1.5rem;
     border: none;
 }
