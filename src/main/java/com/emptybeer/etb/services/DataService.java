@@ -6,6 +6,8 @@ import com.emptybeer.etb.vos.BeerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service(value = "com.emptybeer.etb.services.DataService")
 public class DataService {
 
@@ -37,6 +39,12 @@ public class DataService {
 //    public BeerVo getBeerCategory(int categoryIndex) {
 //        return this.dataMapper.selectBeerCategory(categoryIndex);
 //    }
+
+    // 맥주 인기순위 배열
+    public BeerVo[] getBeerRanking() {
+        return this.dataMapper.selectBeerRanking();
+    }
+
 
 }
 

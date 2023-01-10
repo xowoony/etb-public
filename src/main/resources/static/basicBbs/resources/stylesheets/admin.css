@@ -42,6 +42,22 @@ body > .main > .content > .title-container > .title {
     font-weight: 500;
 }
 
+body > .main > .content > .title-container > input {
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    margin-bottom: -1rem;
+}
+
+body > .main > .content > .title-container > input:hover {
+    filter: invert(20%);
+}
+
+body > .main > .content > .title-container > .delete-button {
+    margin: 0 0.5rem -1rem auto;
+}
+
 body > .main > .content > .title-container > .button-container {
     margin-bottom: 0.1rem;
 }
@@ -84,9 +100,14 @@ body > .main > .content > .title-container > .admin:active {
     font-size: 13px;
 }
 
-#table td:nth-of-type(4),
-#table td:nth-of-type(5) {
+#table td:nth-of-type(5),
+#table td:nth-of-type(6),
+#table td:nth-of-type(7){
     text-align: center;
+}
+
+#table th:nth-of-type(7) {
+    color: rgba(232, 106, 106, 90%);
 }
 
 #table th {
@@ -102,8 +123,8 @@ body > .main > .content > .title-container > .admin:active {
     white-space: nowrap;
 }
 
-#table td:nth-of-type(2),
-#table th:nth-of-type(2) {
+#table td:nth-of-type(3),
+#table th:nth-of-type(3) {
     width: 100%;
     white-space: normal;
 }
@@ -148,7 +169,6 @@ body > .main > .content > .title-container > .admin:active {
 #table > tfoot > tr:last-of-type > td:last-of-type {
     border-bottom-right-radius: 0.5rem;
 }
-
 
 #foot-container {
     background-color: #f9f9f8;

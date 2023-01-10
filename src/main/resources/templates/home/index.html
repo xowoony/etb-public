@@ -6,8 +6,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>잔이비어 :: HOME</title>
-    <!-- 메뉴 슬라이드-->
-
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <!--  index.css 연결  -->
@@ -52,14 +50,14 @@
                         <div class="slide_wrap">
                             <div class="slide_show">
                                 <div class="slide_img">
-                                    <div class="slide"><img src="/resources/images/J에게%20라거.jpg" alt="이미지2"></div>
-                                    <div class="slide"><img src="/resources/images/칭따오.jpg" alt="이미지3"></div>
-                                    <div class="slide"><img src="/resources/images/진라거.jpg" alt="이미지4"></div>
-                                    <div class="slide"><img src="/resources/images/에일의%20정석.jpg"></div>
-                                    <div class="slide"><img src="/resources/images/칼스버그.jpg"></div>
-                                    <div class="slide"><img src="/resources/images/1866%20블론드%20500ml.jpg"></div>
-                                    <div class="slide"><img src="/resources/images/말표%20흑맥주.jpg"></div>
-                                    <div class="slide"><img src="/resources/images/코젤%20라거.jpg"></div>
+                                    <div class="slide" th:each="beer : ${beers}">
+                                        <a th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
+                                            <img th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"  alt="이미지2">
+                                        </a>
+                                        <img class="rank 1st" th:src="@{/resources/images/1st.png}" th:if="${beer.getRank() != null && beer.getRank() == 1}" alt="1위">
+                                        <img class="rank 2nd" th:src="@{/resources/images/2nd.png}" th:if="${beer.getRank() != null && beer.getRank() == 2}" alt="2위">
+                                        <img class="rank 3rd" th:src="@{/resources/images/3rd.png}" th:if="${beer.getRank() != null && beer.getRank() == 3}" alt="3위">
+                                    </div>
                                 </div>
                             </div>
                             <!--   좌우 슬라이드 버튼  -->
@@ -68,7 +66,6 @@
                                 <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
                             </div>
                         </div>
-
                     </td>
                 </tr>
                 <!-- 다음섹션 이동 NEXT 버튼-->

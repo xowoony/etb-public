@@ -1,5 +1,11 @@
 const commentForm = window.document.getElementById('commentForm');
 const commentContainer = window.document.getElementById('commentContainer');
+const reportButton = document.querySelector('[rel="reportButton"]');
+if (reportButton !== null) {
+    if (reportButton.value === '신고완료') {
+        reportButton.style.color = "grey";
+    }
+}
 
 // 댓글 : aid 와 같은 article_index 찾은 다음에
 const loadComments = () => {
@@ -214,8 +220,8 @@ deleteButton?.addEventListener('click', e => {
                 const responseObject = JSON.parse(xhr.responseText);
                 switch (responseObject['result']) {
                     case 'success':
-                        // const bid = responseObject['bid'];
-                        // window.location.href = `./list?bid=${bid}`;
+                        const bid = responseObject['bid'];
+                        window.location.href = `./list?bid=${bid}`;
                         alert('게시글이 삭제되었습니다.');
                         break;
                     default:
@@ -234,7 +240,6 @@ const basicLikeButton = document.querySelector('[rel="basicLikeButton"]');
 if(!basicToggleElement.classList.contains('prohibited')) {
     basicLikeButton.addEventListener('click', e => {
         e.preventDefault();
-        console.log('먼데');
         const xhr = new XMLHttpRequest();
         const formData = new FormData();
         const method = basicLikeButton.classList.contains('liked') ? 'DELETE' : 'POST';
@@ -250,12 +255,12 @@ if(!basicToggleElement.classList.contains('prohibited')) {
                             // 값을 받아와서 innerText
                             if(responseObject['isLiked'] === true) {
                                 basicLikeButton.classList.add('liked');
-                                // reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
-                                basicToggleElement.value = "추천취소"
+                                basicToggleElement.value = "추천 취소"
+                                basicLikeButton.parentNode.querySelector('.like-count').innerHTML = responseObject['likeCount'];
                             } else {
                                 basicLikeButton.classList.remove('liked');
-                                // reviewToggleElement.parentNode.parentNode.querySelector('.review-like-count').innerHTML = responseObject['likeCount'];
-                                basicToggleElement.value = "추천하기"
+                                basicToggleElement.value = "추천"
+                                basicLikeButton.parentNode.querySelector('.like-count').innerHTML = responseObject['likeCount'];
                             }
                             break;
                         default:
@@ -268,4 +273,61 @@ if(!basicToggleElement.classList.contains('prohibited')) {
         };
         xhr.send(formData);
     });
+}
+
+const topButton = document.getElementById('topButton');
+topButton.addEventListener('click', () => {
+    window.scrollTo(0, 0);
+});
+
+const goComment = document.getElementById('goComment');
+goComment.addEventListener('click', () => {
+    goComment.scrollIntoView();
+})
+
+
+// 게시글 신고하기
+if (reportButton !== null) {
+    if (!reportButton.classList.contains('prohibited') && reportButton.value === '신고하기') {
+        reportButton.addEventListener('click', e => {
+            e.preventDefault();
+            if (!confirm('정말로 게시글을 신고할까요?')) {
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append('aid', commentForm['aid'].value);
+            xhr.open('POST', './article-report');
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        const responseObject = JSON.parse(xhr.responseText);
+                        switch (responseObject['result']) {
+                            case 'success' :
+                                // 값을 받아와서 innerText
+                                // if(responseObject['isReported'] === true) {
+                                //     reportButton.value = '신고완료'
+                                //     reportButton.style.color = "grey"
+                                // }
+                                reportButton.value = '신고완료'
+                                reportButton.style.color = "grey"
+                                alert('신고가 완료되었습니다.');
+                                break;
+                            default:
+                                alert('알 수 없는 이유로 추천결과가 반영되지 못했습니다.\n\n잠시 후 다시 시도해 주세요.');
+                        }
+                    } else {
+                        alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                    }
+                }
+            };
+            xhr.send(formData);
+        });
+    }
+    if (!reportButton.classList.contains('prohibited') && reportButton.value === '신고완료') {
+        reportButton.addEventListener('click', () => {
+            alert('신고가 완료되었습니다.');
+        });
+    }
 }

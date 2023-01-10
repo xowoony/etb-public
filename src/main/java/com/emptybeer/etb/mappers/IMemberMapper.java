@@ -28,6 +28,9 @@ public interface IMemberMapper {
     // 회원탈퇴
     UserEntity selectUserByEmail(@Param(value = "email") String email);
 
+    // 닉네임 변경
+    UserEntity selectUserByNickname(@Param(value = "nickname") String nickname);
+
     UserEntity selectUserByEmailPassword(@Param(value = "email") String email,
                                          @Param(value = "password") String password);
 

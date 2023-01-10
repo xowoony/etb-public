@@ -14,6 +14,7 @@ import com.emptybeer.etb.vos.BasicCommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @Service(value = "com.emptybeer.etb.services.BasicBbsService")
@@ -128,7 +129,7 @@ public class BasicBbsService {
         if (existingArticle == null) {
             return CommonResult.FAILURE;
         }
-        if (user == null || !user.getEmail().equals(existingArticle.getUserEmail())) {
+        if (user == null || !(user.getEmail().equals(existingArticle.getUserEmail())|| user.getEmail().equals("admin@admin"))) {
             return CommonResult.FAILURE;
         }
 
@@ -222,6 +223,48 @@ public class BasicBbsService {
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
 
+    }
+
+    // 게시글 신고
+    public Enum<? extends IResult> articleReport(BasicArticleReportEntity basicArticleReport, UserEntity user) {
+        if (user == null) {
+            return CommonResult.FAILURE;
+        }
+        basicArticleReport.setUserEmail(user.getEmail());
+        return this.basicBbsMapper.insertArticleReport(basicArticleReport) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
+
+    // 신고 게시물 리스트
+    public BasicArticleVo[] getReportedArticles(BoardEntity board, PagingModel paging, String criterion, String keyword) {
+        return this.basicBbsMapper.selectReportedArticlesByBoardId(
+                board.getId(), criterion, keyword,
+                paging.countPerPage,
+                (paging.requestPage - 1) * paging.countPerPage);
+    }
+
+    // 신고 게시글 리스트 카운트
+    public int getReportedArticleCount(BoardEntity board, String criterion, String keyword) {
+        return this.basicBbsMapper.selectReportedArticleCountByBoardId(board.getId(), criterion, keyword);
+    }
+
+    // 체크 게시글
+    public BasicArticleVo[] getCheckedArticles(int aid) {
+        BasicArticleVo[] checkedArticles = this.basicBbsMapper.selectCheckedArticlesByIndex(aid);
+        return checkedArticles;
+    }
+
+    // 신고 수 초기화
+    public Enum<? extends IResult> resetReport(BasicArticleReportEntity basicArticleReport, UserEntity user) {
+
+        if (user == null || !(user.getEmail().equals("admin@admin"))) {
+            return CommonResult.FAILURE;
+        }
+
+        return this.basicBbsMapper.deleteReportByArticleIndex(basicArticleReport.getArticleIndex()) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
     }
 
 }
