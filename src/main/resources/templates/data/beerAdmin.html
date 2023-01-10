@@ -31,6 +31,13 @@
                 <div th:text="${beer.getDescription()}"></div>
                 <div th:text="${beer.getCategoryIndex()==1 ? '국내맥주' : '해외맥주'}"></div>
             </div>
+            <div class="admin-button-container">
+                <div class="admin-button">
+                    <span><a href="#">입력</a></span>
+                    <span><a href="">수정</a></span>
+                    <span><a href="#">삭제</a></span>
+                </div>
+            </div>
         </div>
 
     </section>
