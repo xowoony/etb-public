@@ -12,6 +12,8 @@
     <link rel="stylesheet" th:href="@{/member/resources/stylesheets/changeAddress.css}">
     <!--  myPage.js 연결  -->
     <script defer th:src="@{/member/resources/scripts/changeAddress.js}"></script>
+    <!--  카카오 주소 찾기 API  -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body th:if="${session.user != null}">
 <!--  header  -->
@@ -152,27 +154,6 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-    <!--                                    <table>-->
-    <!--                                        <caption class="title">주소 변경</caption>-->
-    <!--                                        <tbody>-->
-    <!--                                        <tr>-->
-    <!--                                            <td>-->
-    <!--                                                <label>-->
-    <!--                                                    <input type="text" class="nickname" id="nicknameModify"-->
-    <!--                                                           name="nicknameModify" placeholder="변경하실 주소를 입력해 주세요.">-->
-    <!--                                                </label>-->
-    <!--                                            </td>-->
-    <!--                                        </tr>-->
-    <!--                                        <tr>-->
-    <!--                                            <td>-->
-    <!--                                                <label class="submit-container">-->
-    <!--                                                    <input type="submit" value="변경하기" class="modify" id="modify"-->
-    <!--                                                           name="modify">-->
-    <!--                                                </label>-->
-    <!--                                            </td>-->
-    <!--                                        </tr>-->
-    <!--                                        </tbody>-->
-    <!--                                    </table>-->
                                     </div>
 
                                 </div>
