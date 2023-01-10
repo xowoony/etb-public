@@ -30,58 +30,51 @@
         <input type="hidden" name="festivalTitle" th:text="${festivalArticles.getTitle()}">
     </form>
 
-    <!--  페스티벌 관련 이미지 컨테이너  -->
-    <div class="festival-imageContainer">
-        <div class="main-imageContainer">
-            <img th:src="@{/image (index=${festivalArticles.getIndex()})}">
-        </div>
-        <!--        <div class="side-imageContainer">-->
-        <!--            <img src="/bbs/resources/images/cat.jpg">-->
-        <!--            <img src="/bbs/resources/images/chicken.jpg">-->
-        <!--            <img src="/bbs/resources/images/cow.jpg">-->
-        <!--        </div>-->
-    </div>
-
-    <!--  페스티벌 관련 내용 컨테이너  -->
-    <div class="festival-infoContainer">
-        <div class="title" th:text="${festivalArticles.getTitle()}"></div>
-        <table id="content">
-            <thead>
-            <tr>
-                <td>Period</td>
-                <td th:text="${#dates.format(festivalArticles.getDateFrom(), 'yyyy-MM-dd')}"></td>
-                <td>~</td>
-                <td th:text="${#dates.format(festivalArticles.getDateTo(), 'yyyy-MM-dd')}"></td>
-            </tr>
-
-            <tr>
-                <td>Time</td>
-                <td th:text="${#dates.format(festivalArticles.getTimeFrom(), 'HH:mm')}"></td>
-                <td>~</td>
-                <td th:text="${#dates.format(festivalArticles.getTimeTo(), 'HH:mm')}"></td>
-            </tr>
-
-            <tr>
-                <td>Introduction</td>
-                <td th:text="${festivalArticles.getDescription()}" colspan="5"></td>
-            </tr>
-
-            <tr>
-                <td>Location</td>
-                <td th:text="${festivalArticles.getAddress()}" colspan="5"></td>
-            </tr>
-
-            <tr>
-                <td>Map</td>
-            </tr>
-            </thead>
-        </table>
-
-        <div class="map-container">
-            <div id="map"></div>
+    <div class="festival-container">
+        <!--  페스티벌 관련 이미지 컨테이너  -->
+        <div class="festival-imageContainer">
+            <div class="main-imageContainer">
+                <img th:src="@{/image (index=${festivalArticles.getIndex()})}">
+            </div>
         </div>
 
+        <!--    페스티벌 관련 내용    -->
+        <div class="festival-infoContainer">
+            <div class="festival-title" th:text="${festivalArticles.getTitle()}"></div>
+            <br>
+
+            <span>Period: </span>
+            <span th:text="${#dates.format(festivalArticles.getDateFrom(), 'yyyy-MM-dd')}"></span>
+            <span> ~ </span>
+            <span th:text="${#dates.format(festivalArticles.getDateTo(), 'yyyy-MM-dd')}"></span>
+            <br>
+
+            <span>Time: </span>
+            <span th:text="${#dates.format(festivalArticles.getTimeFrom(), 'HH:mm')}"></span>
+            <span> ~ </span>
+            <span th:text="${#dates.format(festivalArticles.getTimeTo(), 'HH:mm')}"></span>
+            <br>
+
+            <span>Introduction: </span>
+            <span th:text="${festivalArticles.getDescription()}"></span>
+            <br>
+
+            <span>Location: </span>
+            <span th:text="${festivalArticles.getAddress()}"></span>
+            <br>
+
+            <span>Map: </span>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+
     </div>
+
+
+
+
 
 
     <!-- 페스티벌 댓글 컨테이너  -->

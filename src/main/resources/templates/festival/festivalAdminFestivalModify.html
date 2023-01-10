@@ -18,7 +18,7 @@
 <th:block th:replace="~{fragments/body :: cover}"></th:block>
 
 <!--  main  -->
-<main>
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
     <!--  productSection1  -->
     <section class="home-section1" id="homeSection1">
 
