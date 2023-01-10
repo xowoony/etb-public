@@ -25,11 +25,11 @@ public interface IMemberMapper {
 
     EmailAuthEntity selectEmailAuthByIndex(@Param(value = "index") int index);
 
-    // 회원탈퇴
+    // 회원탈퇴, 닉네임 변경
     UserEntity selectUserByEmail(@Param(value = "email") String email);
 
     // 닉네임 변경
-    UserEntity selectUserByNickname(@Param(value = "nickname") String nickname);
+//    UserEntity selectUserByNickname(@Param(value = "nickname") String nickname);
 
     UserEntity selectUserByEmailPassword(@Param(value = "email") String email,
                                          @Param(value = "password") String password);

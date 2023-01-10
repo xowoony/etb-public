@@ -10,7 +10,7 @@ form.onsubmit = (e)=>{
 
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
-    formData.append('nickname', form['nicknameModify'].value);
+    formData.append('changeNickname', form['nicknameModify'].value);
     // formData.append('email', form['email'].value);
     xhr.open('PATCH', './changeNickname');
     xhr.onreadystatechange = () => {
@@ -22,7 +22,7 @@ form.onsubmit = (e)=>{
                 switch (responseObject['result']) {
                     case'success':
                         alert('닉네임이 성공적으로 변경되었습니다.');
-                        window.location.href = 'login';
+                        window.location.href = 'myPage';
                         break;
                     default:
                         alert('닉네임을 변경하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
