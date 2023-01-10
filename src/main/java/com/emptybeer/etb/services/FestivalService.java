@@ -30,6 +30,9 @@ public class FestivalService {
         return this.festivalMapper.selectFestivalArticle();
     }
 
+
+
+
     public ImageEntity getImage(int index) {return this.festivalMapper.selectImageByIndex(index);}
 
     public FestivalArticleEntity getFestivalArticleByIndex(int index){

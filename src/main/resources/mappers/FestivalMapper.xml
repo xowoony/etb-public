@@ -46,6 +46,7 @@
     </select>
 
 
+
     <select id="selectFestivalCommentByArticleIndex"
             resultType="com.emptybeer.etb.vos.FestivalCommentVo">
         SELECT `festivalComment`.`index`      AS `index`,

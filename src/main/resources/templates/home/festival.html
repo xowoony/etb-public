@@ -27,6 +27,10 @@
             <div class="title-content">다양한 맥주페스티벌에 대한 정보와
                 리뷰를 한 눈에 볼 수 있는 공간을 소개합니다.
             </div>
+
+            <!--    관리자 접속 시 관리자 페스티벌을 관리할 수 있는 페이지로 이동    -->
+            <a class="festival-admin" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}"
+               th:href="@{/festival/etbAdmin}">관리자 페이지로 이동</a>
         </div>
         <!--  Section2  -->
 
@@ -37,9 +41,6 @@
         <!--   3. festivalArticle과 image entity 사이의 연결점이 하나도 없었음 image에 index연결점을 추가한 결과 해당 문제가 해결됨    -->
 
 
-        <!--    관리자 접속 시 관리자 페스티벌을 관리할 수 있는 페이지로 이동    -->
-        <a class="festival-admin" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}"
-           th:href="@{/festival/festivalAdmin}">페스티벌 관리</a>
 
         <div class="title-box2" id="titleBox2">
             <a class="festival-container" th:href="@{/festival/festivalRead (index=${festivalArticle.getIndex()})}" th:each="festivalArticle : ${festivalArticles}">
