@@ -341,7 +341,9 @@ public class MemberController {
             method = RequestMethod.PATCH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String patchChangeContact(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "changeContact") String changeContact, HttpSession session) {
+    public String patchChangeContact(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                     @RequestParam(value = "changeContact") String changeContact,
+                                     HttpSession session) {
         Enum<?> result = this.memberService.changeContact(user, changeContact);
         System.out.println("넘어오나????");
         JSONObject responseObject = new JSONObject();
@@ -349,6 +351,25 @@ public class MemberController {
         //세션 null -> 다시 user
         session.setAttribute("user", this.memberService.getUser(user.getEmail()));// UserEntity 값.   user.getEmail() 기준으로 다시 유저정보 모두 들고 와서 session에 set
         System.out.println("con check " + this.memberService.getUser(user.getEmail()).getContact());
+        return responseObject.toString();
+    }
+
+    // 주소 수정
+    @RequestMapping(value = "changeAddress",
+            method = RequestMethod.PATCH,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchChangeAddress(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                     @RequestParam(value = "changeAddressPostal") String changeAddressPostal,
+                                     @RequestParam(value = "changeAddressPrimary") String changeAddressPrimary,
+                                     @RequestParam(value = "changeAddressSecondary") String changeAddressSecondary,
+                                     HttpSession session) {
+        Enum<?> result = this.memberService.changeAddress(user, changeAddressPostal, changeAddressPrimary, changeAddressSecondary);
+        System.out.println("주소 변경 컨트롤러로 넘어오나????");
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        //세션 null -> 다시 user
+        session.setAttribute("user", this.memberService.getUser(user.getEmail()));// UserEntity 값.   user.getEmail() 기준으로 다시 유저정보 모두 들고 와서 session에 set
         return responseObject.toString();
     }
 
