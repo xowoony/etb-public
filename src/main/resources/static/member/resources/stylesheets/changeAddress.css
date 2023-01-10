@@ -357,11 +357,11 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     font-size: 0.8rem;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    background-color: rgb(167 192 95 / 22%);
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: rgb(237 250 0 / 20%);
 }
 
 /*주소찾기 버튼 hover 시*/

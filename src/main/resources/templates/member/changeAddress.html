@@ -23,7 +23,7 @@
 <!--  main  -->
 <main>
     <form id="form">
-        <input type="hidden" th:value="${session.userEmail}" name="email">
+        <!--        <input type="hidden" th:value="${session.userEmail}" name="email">-->
         <!--  beerSection1  -->
         <section class="beer-section" id="beerSection">
             <!--  Section1  -->
@@ -35,72 +35,72 @@
             <div class="title-box2" id="titleBox2">
                 <table>
                     <tbody>
-                        <tr>
-                            <!--  왼쪽 섹션  -->
-                            <td class="category-tab">
-                                <table>
-                                    <tbody>
-                                    <tr class="category-title">
-                                        <td>모아보기</td>
-                                    </tr>
-                                    <tr class="category-content">
-                                        <td>
-                                            <a th:href="@{/memberBbs/myArticle}">
-                                                <div>작성한 글 보기</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="category-content">
-                                        <td>
-                                            <a th:href="@{/memberBbs/myComment}">
-                                                <div>작성한 댓글 보기</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="category-content">
-                                        <td>
-                                            <a th:href="@{/memberBbs/myLike}">
-                                                <div>좋아요한 글 보기</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="category-title">
-                                        <td>
-                                            회원정보 수정
-                                        </td>
-                                    </tr>
-                                    <tr class="category-content">
-                                        <td>
-                                            <a th:href="@{/member/changeNickname}">
-                                                <div>닉네임 변경</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="category-content">
-                                        <td>
-                                            <a th:href="@{/member/changeContact}">
-                                                <div>연락처 변경</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="category-content content6">
-                                        <td>
-                                            <a th:href="@{/member/changeAddress}">
-                                                <div>주소 변경</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="category-content">
-                                        <td><a th:href="@{/member/delete}">
-                                            <div>회원 탈퇴</div>
-                                        </a></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <!--  오른쪽 섹션  -->
-                            <td class="category-tab2">
-                                <div class="change-nickname-container">
+                    <tr>
+                        <!--  왼쪽 섹션  -->
+                        <td class="category-tab">
+                            <table>
+                                <tbody>
+                                <tr class="category-title">
+                                    <td>모아보기</td>
+                                </tr>
+                                <tr class="category-content">
+                                    <td>
+                                        <a th:href="@{/memberBbs/myArticle}">
+                                            <div>작성한 글 보기</div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="category-content">
+                                    <td>
+                                        <a th:href="@{/memberBbs/myComment}">
+                                            <div>작성한 댓글 보기</div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="category-content">
+                                    <td>
+                                        <a th:href="@{/memberBbs/myLike}">
+                                            <div>좋아요한 글 보기</div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="category-title">
+                                    <td>
+                                        회원정보 수정
+                                    </td>
+                                </tr>
+                                <tr class="category-content">
+                                    <td>
+                                        <a th:href="@{/member/changeNickname}">
+                                            <div>닉네임 변경</div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="category-content">
+                                    <td>
+                                        <a th:href="@{/member/changeContact}">
+                                            <div>연락처 변경</div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="category-content content6">
+                                    <td>
+                                        <a th:href="@{/member/changeAddress}">
+                                            <div>주소 변경</div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="category-content">
+                                    <td><a th:href="@{/member/delete}">
+                                        <div>회원 탈퇴</div>
+                                    </a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <!--  오른쪽 섹션  -->
+                        <td class="category-tab2">
+                            <div class="change-nickname-container">
                                     <span class="profile-container">
                                         <div>
                                             <div>
@@ -112,53 +112,57 @@
                                             </div>
                                         </div>
                                     </span>
-                                    <div>
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <label>
-                                                            <div class="address-title">
-                                                                주소 변경
-                                                            </div>
-                                                        </label>
-                                                        <label class="label address">
-                                                            <span hidden>우편번호</span>
-                                                            <input class="--object-input input" maxlength="6" name="addressPostal" id="addressPostal"
-                                                                   placeholder="우편번호" readonly type="text">
-                                                            <input class="--object-button address-button" name="addressFind" value="주소 찾기" type="button">
-                                                        </label>
-                                                        <label class="label address">
-                                                            <span hidden>기본 주소</span>
-                                                            <input class="--object-input input" maxlength="100" name="addressPrimary" id="addressPrimary"
-                                                                   placeholder="주소 찾기를 통해 주소를 입력해 주세요" readonly type="text">
-                                                        </label>
-                                                        <label class="label address">
-                                                            <span hidden>상세 주소</span>
-                                                            <input class="--object-input input" maxlength="100" name="addressSecondary" id="addressSecondary"
-                                                                   placeholder="상세주소를 입력해 주세요" type="text">
-                                                        </label>
-                                                        <div class="panel address" rel="addressFindPanel">
-                                                            <div class="dialog" rel="addressFindPanelDialog"></div>
-                                                        </div>
+                                <div>
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    <div class="address-title">
+                                                        주소 변경
+                                                    </div>
+                                                </label>
+                                                <label class="label address">
+                                                    <span hidden>우편번호</span>
+                                                    <input class="--object-input input" maxlength="6"
+                                                           name="addressPostal" id="addressPostal"
+                                                           placeholder="우편번호" readonly type="text">
+                                                    <input class="--object-button address-button" name="addressFind"
+                                                           value="주소 찾기" type="button">
+                                                </label>
+                                                <label class="label address">
+                                                    <span hidden>기본 주소</span>
+                                                    <input class="--object-input input" maxlength="100"
+                                                           name="addressPrimary" id="addressPrimary"
+                                                           placeholder="주소 찾기를 통해 주소를 입력해 주세요" readonly type="text">
+                                                </label>
+                                                <label class="label address">
+                                                    <span hidden>상세 주소</span>
+                                                    <input class="--object-input input" maxlength="100"
+                                                           name="addressSecondary" id="addressSecondary"
+                                                           placeholder="상세주소를 입력해 주세요" type="text">
+                                                </label>
+                                                <div class="panel address" rel="addressFindPanel">
+                                                    <div class="dialog" rel="addressFindPanelDialog"></div>
+                                                </div>
 
-                                                        <label class="submit-container">
-                                                            <input type="submit" value="변경하기" class="modify" id="modify"
-                                                                   name="modify">
-                                                        </label>
+                                                <label class="submit-container">
+                                                    <input type="submit" value="변경하기" class="modify" id="modify"
+                                                           name="modify">
+                                                </label>
 
-                                                        <div class="warning" rel="warning">
-                                                            <div class="text" rel="warningText"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
+                                                <div class="warning" rel="warning">
+                                                    <div class="text" rel="warningText"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </td>
-                        </tr>
+
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

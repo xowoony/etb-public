@@ -4,6 +4,16 @@ const form = window.document.getElementById('form');
 form.onsubmit = (e)=>{
     e.preventDefault();
 
+    if (form['addressPostal'].value === '') {
+        alert('변경하실 주소를 입력해 주세요.');
+        return;
+    }
+    if (form['addressPrimary'].value === '') {
+        alert('변경하실 주소를 입력해 주세요.');
+        return;
+    }
+
+
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append('changeAddressPostal', form['addressPostal'].value);
