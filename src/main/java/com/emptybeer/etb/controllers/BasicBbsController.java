@@ -6,6 +6,7 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BasicBbsService;
+import com.emptybeer.etb.vos.BasicArticleLikeVo;
 import com.emptybeer.etb.vos.BasicArticleVo;
 import com.emptybeer.etb.vos.BasicCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
@@ -204,13 +205,16 @@ public class BasicBbsController {
     @DeleteMapping(value = "comment",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String deleteComment(@SessionAttribute(value = "user", required = false) UserEntity user, BasicCommentVo[] comments) {
+    public String deleteComment(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                @RequestParam(value = "index", required = false) int[] indexes) {
 
         int count = 0;
-        for (BasicCommentVo comment : comments) {
-            count += this.basicBbsService.deleteComment(comment, user) == CommonResult.SUCCESS ? 1 : 0;
+        for (int index : indexes) {
+            BasicCommentVo basicComment = new BasicCommentVo();
+            basicComment.setIndex(index);
+            count += this.basicBbsService.deleteComment(basicComment, user) == CommonResult.SUCCESS ? 1 : 0;
         }
-        Enum<?> result = count == comments.length
+        Enum<?> result = count == indexes.length
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
         JSONObject responseJson = new JSONObject();
@@ -341,19 +345,22 @@ public class BasicBbsController {
     @DeleteMapping(value = "basic-like",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String deleteBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity[] basicArticleLikes) {
+    public String deleteBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                  @RequestParam(value = "articleIndex", required = false) int[] aids) {
 
         Boolean isLiked = null;
         int likeCount = 0;
         int count = 0;
-        for (BasicArticleLikeEntity basicArticleLike : basicArticleLikes) {
+        for (int aid : aids) {
+            BasicArticleLikeEntity basicArticleLike = new BasicArticleLikeEntity();
+            basicArticleLike.setArticleIndex(aid);
             count += this.basicBbsService.unlikeBasic(basicArticleLike, user) == CommonResult.SUCCESS ? 1 : 0;
             BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleLike.getArticleIndex(), user);
             isLiked = basicArticle.isLiked();
             likeCount = basicArticle.getLikeCount();
         }
 
-        Enum<?> result = count == basicArticleLikes.length
+        Enum<?> result = count == aids.length
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
         JSONObject responseJson = new JSONObject();

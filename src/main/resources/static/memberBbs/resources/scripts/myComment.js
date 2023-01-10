@@ -27,7 +27,7 @@ function selectAll(selectAll)  {
 }
 
 
-// 내가 쓴 게시글 삭제
+// 내가 쓴 댓글 삭제
 const commentDeleteButton = window.document.querySelector('[rel="commentDeleteButton"]');
 commentDeleteButton?.addEventListener('click', e => {
     e.preventDefault();
