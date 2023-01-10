@@ -9,9 +9,9 @@
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <!--  myPage.css 연결  -->
-    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/myLike.css}">
+    <link rel="stylesheet" th:href="@{/memberBbs/resources/stylesheets/myComment.css}">
     <!--  myPage.js 연결  -->
-    <script defer th:src="@{/member/resources/scripts/myLike.js}"></script>
+    <script defer th:src="@{/memberBbs/resources/scripts/myComment.js}"></script>
 </head>
 <body>
 <!--  header  -->
@@ -39,21 +39,21 @@
                             </tr>
                             <tr class="category-content content1">
                                 <td>
-                                    <a th:href="@{/memberBbs/myArticle}">
+                                    <a th:href="@{/member/myArticle}">
                                         <div>작성한 글 보기</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content2">
                                 <td>
-                                    <a th:href="@{/memberBbs/myComment}">
+                                    <a th:href="@{/member/myComment}">
                                         <div>작성한 댓글 보기</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content3">
                                 <td>
-                                    <a th:href="@{/memberBbs/myLike}">
+                                    <a th:href="@{/member/myLike}">
                                         <div>좋아요한 글 보기</div>
                                     </a>
                                 </td>
@@ -72,20 +72,20 @@
                             </tr>
                             <tr class="category-content content5">
                                 <td>
-                                    <a th:href="@{/member/changeContact}">
+                                    <a th:href="@{/memberBbs/changeContact}">
                                         <div>연락처 변경</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content6">
                                 <td>
-                                    <a th:href="@{/member/changeAddress}">
+                                    <a th:href="@{/memberBbs/changeAddress}">
                                         <div>주소 변경</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content7">
-                                <td><a th:href="@{/member/delete}">
+                                <td><a th:href="@{/memberBbs/delete}">
                                     <div>회원 탈퇴</div>
                                 </a></td>
                             </tr>
@@ -106,7 +106,7 @@
                                         <thead>
                                         <tr class="header-border">
                                             <td colspan="3">
-                                                <div class="header-title">좋아요한 글</div>
+                                                <div class="header-title">작성한 댓글</div>
                                             </td>
                                             <td>
                                                 <div class="created-on">작성일</div>

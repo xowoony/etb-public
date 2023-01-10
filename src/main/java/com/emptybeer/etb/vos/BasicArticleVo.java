@@ -10,6 +10,16 @@ public class BasicArticleVo extends BasicArticleEntity {
     private int likeCount;  // 좋아요 개수
     private boolean isReported; // 신고여부
     private int reportCount; // 신고 개수
+    private String boardName; // 게시판 이름
+
+    public String getBoardName() {
+        return boardName;
+    }
+
+    public BasicArticleVo setBoardName(String boardName) {
+        this.boardName = boardName;
+        return this;
+    }
 
     public String getUserNickname() {
         return userNickname;
