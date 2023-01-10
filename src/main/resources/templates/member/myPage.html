@@ -13,7 +13,7 @@
     <!--  myPage.js 연결  -->
     <script defer th:src="@{/member/resources/scripts/myPage.js}"></script>
 </head>
-<body>
+<body th:if="${session.user != null}">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
@@ -100,10 +100,15 @@
                                 <div class="profile-title">내 프로필</div>
                                 <table>
                                     <tbody>
+                                    <!--유저 닉네임, 이메일-->
                                     <tr>
                                         <td class="user-container">
-                                            <div class="user-nickname">양파쿵야님</div>
-                                            <div class="user-email">xowoony@gmail.com</div>
+                                            <div>
+                                                <span class="user-nickname"
+                                                      th:text="${session.user.getNickname()}"></span>
+                                                <span class="user-nickname2">님</span>
+                                            </div>
+                                            <div class="user-email" th:text="${session.user.getEmail()}"></div>
                                         </td>
                                         <td class="change-nick-container">
                                             <div class="change-nick">
@@ -111,18 +116,24 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!--유저 연락처-->
                                     <tr>
                                         <td class="change-contact-container">
-                                            <div class="user-contact">010-7561-1975</div>
+                                            <div class="user-contact" th:text="${session.user.getContact()}"></div>
                                         </td>
                                         <td class="contact">
                                             <div class="change-contact">
                                                 <a th:href="@{/member/changeContact}" class="red">연락처 변경</a></div>
                                         </td>
                                     </tr>
+                                    <!--유저 주소-->
                                     <tr>
                                         <td class="change-address-container">
-                                            <div class="user-address">서울특별시 서초구 테헤란로 131 13층 잔이비어</div>
+                                            <div class="user-address">
+                                                <span th:text="${session.user.getAddressPostal()}"></span>
+                                                <span th:text="${session.user.getAddressPrimary()}"></span>
+                                                <span th:text="${session.user.getAddressSecondary()}"></span>
+                                            </div>
                                         </td>
                                         <td class="address">
                                             <div class="change-address">
@@ -137,26 +148,30 @@
                                     <div class="service">
                                         <span>
                                             <div class="first-icon">
-                                                <a th:href="@{/data/beer}"><img src="/member/resources/images/icons8-clinking-beer-mugs-96.png"
+                                                <a th:href="@{/data/beer}"><img
+                                                        src="/member/resources/images/icons8-clinking-beer-mugs-96.png"
                                                         alt=""></a>
                                             </div>
                                             <div class="beer">beer</div>
                                         </span>
                                         <span>
                                             <div class="second-icon">
-                                                <a th:href="@{/bbs/review}"> <img src="/member/resources/images/review.png" alt=""></a>
+                                                <a th:href="@{/bbs/review}"> <img
+                                                        src="/member/resources/images/review.png" alt=""></a>
                                             </div>
                                             <div class="review">review</div>
                                         </span>
                                         <span>
                                             <div class="third-icon">
-                                                <a th:href="@{/community}"><img src="/member/resources/images/community.png" alt=""></a>
+                                                <a th:href="@{/community}"><img
+                                                        src="/member/resources/images/community.png" alt=""></a>
                                             </div>
                                             <div class="community">community</div>
                                         </span>
                                         <span>
                                             <div class="forth-icon">
-                                                <a th:href="@{/festival}"><img src="/member/resources/images/festival.jpg" alt=""></a>
+                                                <a th:href="@{/festival}"><img
+                                                        src="/member/resources/images/festival.jpg" alt=""></a>
                                             </div>
                                             <div class="festival">festival</div>
                                         </span>

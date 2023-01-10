@@ -264,14 +264,23 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 }
 
 
-/*양파쿵야님*/
-body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > td > .user-nickname {
+/*양파쿵야*/
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > td > div > .user-nickname {
     margin-left: 2rem;
     font-family: 'Do Hyeon', sans-serif;
     font-size: 1.3rem;
     font-weight: 100;
     color: rgb(200 205 199 / 99%);
 }
+
+/*님*/
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > td > div > .user-nickname2 {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: rgb(200 205 199 / 99%);
+}
+
 
 /*user-email*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > td > .user-email {

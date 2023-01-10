@@ -48,6 +48,7 @@ public class MemberController {
         Enum<?> result = this.memberService.login(user);
         if (result == CommonResult.SUCCESS) {
             session.setAttribute("user", user); // 해당 요소에 user 이름의 user 값을 가지는 HTML 속성을 추가한다.
+            session.setAttribute("user", this.memberService.getUser(user.getEmail()));
             System.out.println("이메일/비밀번호 맞음.");
         } else {
             System.out.println("이메일/비밀번호 틀림.");
@@ -122,33 +123,33 @@ public class MemberController {
     }
 
     // 마이페이지 좋아요한 글 보기 카테고리 맵핑
-    @GetMapping(value="myLike",
-    produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getMyLike(){
+    @GetMapping(value = "myLike",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getMyLike() {
         ModelAndView modelAndView = new ModelAndView("member/myLike");
         return modelAndView;
     }
 
     // 마이페이지 닉네임 변경 카테고리 맵핑
-    @GetMapping(value="changeNickname",
+    @GetMapping(value = "changeNickname",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getChangeNickname(){
+    public ModelAndView getChangeNickname() {
         ModelAndView modelAndView = new ModelAndView("member/changeNickname");
         return modelAndView;
     }
 
     // 마이페이지 연락처 변경 카테고리 맵핑
-    @GetMapping(value="changeContact",
+    @GetMapping(value = "changeContact",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getChangeContact(){
+    public ModelAndView getChangeContact() {
         ModelAndView modelAndView = new ModelAndView("member/changeContact");
         return modelAndView;
     }
 
     // 마이페이지 주소 변경 카테고리 맵핑
-    @GetMapping(value="changeAddress",
+    @GetMapping(value = "changeAddress",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getChangeAddress(){
+    public ModelAndView getChangeAddress() {
         ModelAndView modelAndView = new ModelAndView("member/changeAddress");
         return modelAndView;
     }
@@ -325,13 +326,29 @@ public class MemberController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String patchChangeNickname(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "changeNickname") String changeNickname, HttpSession session) {
-//        session.setAttribute("userEmail", user.getEmail());
         Enum<?> result = this.memberService.changeNickname(user, changeNickname);
         System.out.println("넘어오나????");
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
         //세션 null -> 다시 user
-        session.setAttribute("user", this.memberService.getUser(user.getEmail()) );// UserEntity 값.   user.getEmail() 기준으로 다시 유저정보 모두 들고 와서 session에 set
+        session.setAttribute("user", this.memberService.getUser(user.getEmail()));// UserEntity 값.   user.getEmail() 기준으로 다시 유저정보 모두 들고 와서 session에 set
+        System.out.println("con check " + this.memberService.getUser(user.getEmail()).getContact());
+        return responseObject.toString();
+    }
+
+    // 연락처 수정
+    @RequestMapping(value = "changeContact",
+            method = RequestMethod.PATCH,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchChangeContact(@SessionAttribute(value = "user", required = false) UserEntity user, @RequestParam(value = "changeContact") String changeContact, HttpSession session) {
+        Enum<?> result = this.memberService.changeContact(user, changeContact);
+        System.out.println("넘어오나????");
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        //세션 null -> 다시 user
+        session.setAttribute("user", this.memberService.getUser(user.getEmail()));// UserEntity 값.   user.getEmail() 기준으로 다시 유저정보 모두 들고 와서 session에 set
+        System.out.println("con check " + this.memberService.getUser(user.getEmail()).getContact());
         return responseObject.toString();
     }
 

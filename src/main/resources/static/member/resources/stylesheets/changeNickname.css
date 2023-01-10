@@ -230,15 +230,16 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 }
 
 
-body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div{
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div {
     width: 100%;
 }
 
 
-body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > .profile-container > div > .nick {
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > .profile-container > div > div > div > span {
     font-size: 2rem;
     font-family: 'Do Hyeon', sans-serif;
 }
+
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > .profile-container > div {
     width: 15rem;
@@ -251,8 +252,6 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div > table {
     min-width: 25rem;
-    /*margin-top: 8rem;/*/
-
     margin-left: 18rem;
 }
 
@@ -292,7 +291,6 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 /*변경하기 버튼*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div > table > tbody > tr > td > .submit-container > .modify {
-    /*border: 0.0625rem solid rgb(255, 255, 255);*/
     background-color: rgb(237 250 0 / 20%);
     color: rgb(255, 255, 255);
     padding: 1rem 1.25rem;
