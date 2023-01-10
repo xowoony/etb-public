@@ -293,10 +293,13 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 /*변경하기 버튼*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div > table > tbody > tr > td > .submit-container > .modify {
-    background-color: rgb(237 250 0 / 20%);
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 0.3rem; */
+    background-color: rgba(0, 0, 0, 25%);
     color: rgb(255, 255, 255);
     padding: 1rem 1.25rem;
     width: 100%;
+    margin-top: 1rem;
     font-size: 1rem;
 }
 
@@ -343,7 +346,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     background-color: rgba(0, 0, 0, 25%);
     color: rgb(255, 255, 255);
     padding: 1rem 1.25rem;
-    width: 22rem;
+    width: 25rem;
     font-size: 1rem;
 }
 
