@@ -238,10 +238,16 @@ public class BbsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                   @RequestParam(value = "aid") int aid) {
-        ReviewArticleVo reviewArticle = new ReviewArticleVo();
-        reviewArticle.setIndex(aid);
-        Enum<?> result = this.bbsService.deleteReview(reviewArticle, user);
+                                   @RequestParam(value = "aid") int[] aids) {
+        int count = 0;
+        for (int aid : aids) {
+            ReviewArticleVo reviewArticle = new ReviewArticleVo();
+            reviewArticle.setIndex(aid);
+            count += this.bbsService.deleteReview(reviewArticle, user) == CommonResult.SUCCESS ? 1 : 0;
+        }
+        Enum<?> result = count == aids.length
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
         return responseObject.toString();

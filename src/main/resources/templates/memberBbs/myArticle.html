@@ -160,13 +160,15 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td class="delete-container"><a href="#">삭제</a></td>
+                                            <td class="delete-container">
+                                                <a href="#" rel="basicDeleteButton">삭제</a>
+                                            </td>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </form>
                                 <form>
-                                    <table>
+                                    <table id="secondTable">
                                         <thead>
                                         <tr class="header-border">
                                             <td colspan="2">
@@ -187,7 +189,7 @@
                                                 <input type='checkbox'
                                                        name='myReview'
                                                        onclick='checkSelectAll2()'
-                                                       th:data-aid="${reviewArticle.getIndex()}"/>
+                                                       th:data-aid2="${reviewArticle.getIndex()}"/>
                                             </td>
                                             <td>
                                                 <a th:href="@{/bbs/reviewRead (aid=${reviewArticle.getIndex()})}" class="title" th:text="${reviewArticle.getBeerName()}">아아아아아아아아아주 좋아요 이 맥주</a>
@@ -208,7 +210,9 @@
                                                        onclick='selectAll2(this)'/> </td>
                                             <td>전체선택</td>
                                             <td></td>
-                                            <td class="delete-container"><a href="#">삭제</a></td>
+                                            <td class="delete-container">
+                                                <a href="#" rel="reviewDeleteButton">삭제</a>
+                                            </td>
                                         </tr>
                                         </tfoot>
                                     </table>

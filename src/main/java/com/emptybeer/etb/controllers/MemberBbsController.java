@@ -68,8 +68,6 @@ public class MemberBbsController {
             session.setAttribute("userEmail", user.getEmail());
             BasicArticleLikeVo[] basicArticleLikes = this.memberBbsService.getMyLikeArticles(user);
             modelAndView.addObject("basicArticleLikes", basicArticleLikes);
-//            ReviewArticleLikeVo[] reviewArticleLikes = this.memberBbsService.getMyLikeReviews(user);
-//            modelAndView.addObject("reviewArticleLikes", reviewArticleLikes);
         }
         return modelAndView;
     }
