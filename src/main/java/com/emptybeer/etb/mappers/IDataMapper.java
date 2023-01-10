@@ -28,4 +28,6 @@ public interface IDataMapper {
     // 인기 맥주 배열로 가져오기
     BeerVo[] selectBeerRanking();
 
+    BeerVo[] selectBeerForAdmin();
+
 }

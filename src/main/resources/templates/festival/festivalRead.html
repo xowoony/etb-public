@@ -40,33 +40,29 @@
 
         <!--    페스티벌 관련 내용    -->
         <div class="festival-infoContainer">
-            <div class="festival-title" th:text="${festivalArticles.getTitle()}"></div>
             <br>
-
             <span>Period: </span>
             <span th:text="${#dates.format(festivalArticles.getDateFrom(), 'yyyy-MM-dd')}"></span>
             <span> ~ </span>
             <span th:text="${#dates.format(festivalArticles.getDateTo(), 'yyyy-MM-dd')}"></span>
-            <br>
+            <br><br>
 
             <span>Time: </span>
             <span th:text="${#dates.format(festivalArticles.getTimeFrom(), 'HH:mm')}"></span>
             <span> ~ </span>
             <span th:text="${#dates.format(festivalArticles.getTimeTo(), 'HH:mm')}"></span>
-            <br>
+            <br><br>
 
             <span>Introduction: </span>
+            <br>
             <span th:text="${festivalArticles.getDescription()}"></span>
-            <br>
+            <br><br>
 
-            <span>Location: </span>
+            <span>Address: </span>
+            <br>
             <span th:text="${festivalArticles.getAddress()}"></span>
-            <br>
 
-            <span>Map: </span>
-            <div class="map-container">
-                <div id="map"></div>
-            </div>
+
         </div>
 
 
@@ -75,11 +71,9 @@
 
 
 
-
-
     <!-- 페스티벌 댓글 컨테이너  -->
     <div class="review-container">
-        <span>댓글</span>
+        <span class="review-comment">Comment</span>
         <form id="festivalReviewForm" th:if="${session.user != null}">
             <input class="festivalRead-input" maxlength="200" name="content" type="text"
                    placeholder="댓글을 입력하세요(최대200자)">
@@ -116,17 +110,36 @@
                 <form class="button">
                     <div rel="commentButton" class="comment-button">
 
+<!-- 관리자일시 댓글 수정 삭제에 접근할 수 있게하는 로직을 구성하는 동안 생긴 시행착오를 정리하면 먼저 초기에는-->
+<!-- session.user != null && session.user.getEmail().equals(festivalComment.getUserEmail())-->
+<!-- || session.user.getEmail().equals('admin@admin') 라고 생각을 하였으나, 로그인시 페이지에서 정상적으로 작동하였으나 로그인을 하지 않고 접근시 오류가 발생하였다.-->
+<!-- 팀원의 조언에 따라 session.user != null을 하나 더 추가를 하였더니 정상적으로 작동하였다. -->
+<!-- 오류의 원인을 분석해본 결과 session.user.getEmail.equals('admin@admin')의 반환값에서 발생한 문제였었다. 기존 참, 거짓을 확인하기 위해서는 0, 그 이외의 수로 참, 거짓을 판별하나,-->
+<!-- session.user.getEmail.equals('admin@admin')에서 관리자 접속이 되지 않았을 시 null값이 반환이 되어서 발생한문제였다. 다른 이메일로 접속시에는 '1 || null'이 되어 참이 되어 실행이 되었으나,-->
+<!-- 접속하지 않을 시 '0 || null'이 수행이 되어 실행이 되지 않았던 것이다.-->
+<!-- 이를 session.user != null을 하나 더 추가 해주면서, `1 || 0` `0 || 0` 같은 로직이 되면서 오류도 해결하고 기능도 정상적으로 작동하였다. -->
+
+
                         <a class="delete" rel="deleteButton" href="#"
-                           th:if="${session.user != null && session.user.getEmail().equals(festivalComment.getUserEmail())}"
+                           th:if="${session.user != null &&
+                           session.user.getEmail().equals(festivalComment.getUserEmail())
+                           || session.user != null && session.user.getEmail().equals('admin@admin')}"
+
                            th:data-index="${festivalComment.getIndex()}">삭제</a>
 
                         <a class="modify" rel="modifyButton" href="#"
-                           th:if="${session.user != null && session.user.getEmail().equals(festivalComment.getUserEmail())}"
+                           th:if="${session.user != null &&
+                           session.user.getEmail().equals(festivalComment.getUserEmail())
+                           || session.user != null && session.user.getEmail().equals('admin@admin')}"
                            th:data-index="${festivalComment.getIndex()}">수정</a>
+
+
 
                         <input type="hidden" name="commentIndex" th:value="${festivalComment.getIndex()}">
                     </div>
                 </form>
+
+
 
             </div>
         </div>
@@ -167,6 +180,12 @@
         </div>
     </div>
 
+
+
+    <div class="map-container">
+        <div>Map</div>
+        <div id="map"></div>
+    </div>
 
 </main>
 <!--  footer  -->

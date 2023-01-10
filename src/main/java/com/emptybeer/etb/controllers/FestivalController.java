@@ -9,9 +9,6 @@ import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BbsService;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.services.FestivalService;
-import com.emptybeer.etb.vos.BeerVo;
-import com.emptybeer.etb.vos.ReviewArticleVo;
-import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -166,10 +162,10 @@ public class FestivalController {
 
 
     // 페스티벌 관리자 페이지 관련
-    @GetMapping(value="festivalAdmin")
-    public ModelAndView getFestivalAdmin(){
+    @GetMapping(value="etbAdmin")
+    public ModelAndView getAdmin(){
 
-        ModelAndView modelAndView = new ModelAndView("festival/festivalAdmin");
+        ModelAndView modelAndView = new ModelAndView("festival/etbAdmin");
 
         return modelAndView;
     }
@@ -177,7 +173,7 @@ public class FestivalController {
 
 
 
-    //  FestivalAdmin 관련
+    //  Admin 관련
 
 
     // 이미지의 갯수만큼 grid로 나열하기 위해 bbsService맵퍼를 이용

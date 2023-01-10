@@ -56,5 +56,14 @@ public class DataController {
         return responseEntity;
     }
 
+    @GetMapping(value="beerAdmin")
+    public ModelAndView getBeerAdmin(){
+        ModelAndView modelAndView = new ModelAndView("data/beerAdmin");
+
+        // 관리자 페이지용 맥주 정보를 가져온다.
+        modelAndView.addObject("beers", this.dataService.getBeerForAdmin());
+
+        return modelAndView;
+    }
 
 }

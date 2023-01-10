@@ -12,6 +12,7 @@ public interface IFestivalMapper {
     // festival관련
     FestivalArticleEntity[] selectFestivalArticle();
 
+
     FestivalArticleEntity selectFestivalArticleByIndex(@Param(value="index")int index);
 
     FestivalCommentVo[] selectFestivalCommentByArticleIndex(@Param(value="index")int index,

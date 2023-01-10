@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 body > main {
     margin-top: 10rem;
 
@@ -15,10 +18,23 @@ body > main {
 
 .festival-container{
     display: flex;
-    width: 100rem;
-    height: 50rem;
+    width: 80rem;
+    height: 45rem;
 }
 
+#festivalDataForm{
+    color: black;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    font-family: 'Jua', sans-serif;
+}
+
+body > main > .festival-container > .festival-imageContainer{
+    width: 50rem;
+    height: 50rem;
+
+}
 
 
 
@@ -35,64 +51,65 @@ body > main > .festival-container > .festival-imageContainer > .main-imageContai
 body > main > .festival-container > .festival-imageContainer > .main-imageContainer > img {
     /*padding-left: 7rem;*/
     width: 100%;
+    height: 70%;
+}
+
+
+body > main > .festival-container > .festival-infoContainer{
+    color: black;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 3rem;
     height: 75%;
+    width: 50%;
+    font-family: 'Jua', sans-serif;
 }
 
 
-
-body > main > .festival-container > .festival-infoContainer > .map-container {
-    width: 75%;
-    height: 60%;
-    margin-left: 11rem;
-    margin-bottom: 10rem;
-}
-
-body > main > .festival-container > .festival-infoContainer > .map-container > #map{
-    /*margin-left: 10rem;*/
-    width: 600px;
-    height: 500px;
-    z-index: 0;
-}
 
 
 
 body > main > .review-container{
     color: black;
     font-size: 2rem;
-    width: 90%;
-    margin-left: 11rem;
-    margin-bottom: 2rem;
+    width: 100%;
+    margin-left: 20rem;
+    font-family: 'Varela Round', sans-serif;
 }
 
+
+body > main > .review-container > .review-comment{
+    font-weight: 600;
+}
 
 
 
 
 /*댓글*/
 #festivalReviewForm{
-    margin-bottom: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
 }
 
 
 #festivalReviewForm > .festivalRead-input{
-    width: 800px;
+    width: 890px;
     height: 50px;
+    margin-bottom: 0.3rem;
 }
 
 #festivalReviewForm > .festivalRead-button{
     border-radius: 20%;
-    border-color: burlywood;
-    background-color: burlywood;
-    width: 3rem;
-    height: 2rem;
+    border-color: dodgerblue;
+    background-color: dodgerblue;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
 }
 
 #festivalReviewForm > .festivalRead-button:hover{
-    border-radius: 20%;
-    border-color: greenyellow;
-    background-color: greenyellow;
-    width: 3rem;
-    height: 2rem;
+    border-color: #3d80bb;
+    background-color: #3d80bb;
     cursor: pointer;
 }
 
@@ -103,7 +120,7 @@ body > main > .review-container{
 /*리뷰관련*/
 
 #comment{
-    width: 80%;
+    width: 70%;
     border-top: black solid;
     position: relative;
 }
@@ -128,6 +145,7 @@ body > main > .review-container{
 #comment > .festival-comment > .comment-content{
     color: black;
     font-size: 1rem;
+    padding-top: 2rem;
 }
 
 #comment > .festival-comment > .comment-content.hidden{
@@ -149,7 +167,7 @@ body > main > .review-container{
 #comment > .festival-comment > .button > .comment-button{
     position: absolute;
     right: 0px;
-    bottom: 27px;
+    bottom: 55px;
 }
 
 
@@ -185,7 +203,7 @@ body > main > .review-container{
     color: grey;
     position: absolute;
     right: 36px;
-    bottom: 28.3px;
+    bottom: 60px;
     text-decoration-line: none;
 }
 
@@ -195,7 +213,7 @@ body > main > .review-container{
     color: grey;
     position: absolute;
     right: 0px;
-    bottom: 27px;
+    bottom: 60px;
     border: none;
     cursor: pointer;
     width: 32px;
@@ -226,7 +244,8 @@ body > main > .review-container{
 
 
 #comment > .festival-comment > .modify-content > .modify-form.visible > .comment-modifyInput{
-    width: 45rem;
+    width: 51rem;
+    height: 3rem;
 }
 
 
@@ -276,4 +295,29 @@ body > main > .review-container{
 
 #page-container > .page:hover {
     color: #346aff;
+}
+
+
+
+
+
+
+/*맵 관련*/
+.map-container {
+    width: 100%;
+    height: 60%;
+    margin-left: 20rem;
+    margin-bottom: 10rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: black;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.map-container > #map{
+    /*margin-left: 10rem;*/
+    width: 890px;
+    height: 600px;
+    z-index: 0;
+    margin-top: 1rem;
 }

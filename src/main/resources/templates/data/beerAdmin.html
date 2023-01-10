@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: BEERADMIN</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/data/resources/stylesheets/beerAdmin.css}">
+    <script defer th:src="@{/data/resources/scripts/beerAdmin.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <div class="beer-container">
+            <div class="beer-content" th:each="beer : ${beers}">
+                <div th:text="${beer.getName()}"></div>
+                <img class="image" alt="" th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}">
+                <div th:text="${beer.getMfr()}"></div>
+                <div th:text="${beer.getVolume()}"></div>
+                <div th:text="${beer.getDegree()}"></div>
+                <div th:text="${beer.getDescription()}"></div>
+                <div th:text="${beer.getCategoryIndex()==1 ? '국내맥주' : '해외맥주'}"></div>
+            </div>
+        </div>
+
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>
