@@ -46,6 +46,9 @@ public class DataService {
     }
 
 
+    public BeerVo[] getBeerForAdmin(){
+        return this.dataMapper.selectBeerForAdmin();
+    }
 }
 
 

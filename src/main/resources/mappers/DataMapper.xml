@@ -105,4 +105,22 @@
     </select>
 
 
+
+    <!--  관리자 페이지용 맥주 정보  -->
+    <select id="selectBeerForAdmin"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index`          AS `index`,
+               `beer`.`name`           AS `name`,
+               `beer`.`image`          AS `image`,
+               `beer`.`image_type`     AS `imageType`,
+               `beer`.`mfr`            AS `mfr`,
+               `beer`.`volume`         AS `volume`,
+               `beer`.`degree`         AS `degree`,
+               `beer`.`description`    AS `description`,
+               `beer`.`category_index` AS `categoryIndex`,
+               `beer`.`created_on`     AS `createdOn`,
+               `beer`.`modified_on`    AS `modifiedOn`
+        FROM `etb_data`.`beers` AS `beer`
+    </select>
+
 </mapper>
