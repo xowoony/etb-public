@@ -14,7 +14,9 @@ public interface IFestivalMapper {
 
     FestivalArticleEntity selectFestivalArticleByIndex(@Param(value="index")int index);
 
-    FestivalCommentVo[] selectFestivalCommentByArticleIndex(@Param(value="index")int index);
+    FestivalCommentVo[] selectFestivalCommentByArticleIndex(@Param(value="index")int index,
+                                                            @Param(value = "limit") int limit,
+                                                            @Param(value = "offset") int offset);
 
     ImageEntity selectImageByIndex(@Param(value="index") int index);
 
@@ -34,4 +36,17 @@ public interface IFestivalMapper {
     int selectFestivalCommentCountByFestivalArticleIndex(@Param(value="index")int index);
 
     FestivalCommentEntity selectFestivalArticleIndexByIndexFromFestivalModify(@Param(value="index")int index);
+
+
+
+
+    //festivalAdmin 관련
+    int insertFestivalArticle(FestivalArticleEntity festivalArticle);
+
+
+    int updateFestivalArticle(FestivalArticleEntity festivalArticle);
+
+    int updateFestivalArticleExceptImage(FestivalArticleEntity festivalArticle);
+
+    int deleteFestivalArticleByIndex(@Param(value="index")int index);
 }

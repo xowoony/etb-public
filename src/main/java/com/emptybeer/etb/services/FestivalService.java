@@ -9,6 +9,7 @@ import com.emptybeer.etb.enums.festival.FestivalResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.mappers.IFestivalMapper;
+import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.FestivalCommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,8 @@ public class FestivalService {
         return this.festivalMapper.selectFestivalArticleByIndex(index);
     }
 
-    public FestivalCommentVo[] getFestivalCommentByArticleIndex(int index){
-        return this.festivalMapper.selectFestivalCommentByArticleIndex(index);
+    public FestivalCommentVo[] getFestivalCommentByArticleIndex(int index, PagingModel paging){
+        return this.festivalMapper.selectFestivalCommentByArticleIndex(index, paging.countPerPage, (paging.requestPage - 1)* paging.countPerPage);
     }
 
     public Enum<? extends IResult> writeFestivalComment(FestivalCommentEntity festivalComment){
@@ -97,6 +98,51 @@ public class FestivalService {
 
     public int getALLFestivalCommentCountByFestivalArticleIndex(int index){
         return this.festivalMapper.selectFestivalCommentCountByFestivalArticleIndex(index);
+    }
+
+
+
+
+    // festivalAdmin 관련 메소드
+
+    //입력
+    public Enum<? extends IResult> festivalWrite(FestivalArticleEntity festivalArticle){
+
+
+        return this.festivalMapper.insertFestivalArticle(festivalArticle) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+
+    // 수정
+    public Enum<? extends IResult> festivalUpdate(FestivalArticleEntity festivalArticle){
+
+        int result;
+
+        // 이미지를 변경하지 않을시와 하지 않을시의 로직을 수행
+        if(festivalArticle.getTitleImage() != null){
+            System.out.println("1111111111111111111");
+            result = this.festivalMapper.updateFestivalArticle(festivalArticle);
+        } else{
+            System.out.println("222222222222222222222");
+            result = this.festivalMapper.updateFestivalArticleExceptImage(festivalArticle);
+        }
+
+        System.out.println("result=========="+result);
+        return result > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+
+
+    //삭제
+
+    public Enum<? extends IResult> deleteFestivalArticle(FestivalArticleEntity festivalArticle, UserEntity user){
+
+        if(user==null){
+            return CommonResult.FAILURE;
+        } else{
+            return this.festivalMapper.deleteFestivalArticleByIndex(festivalArticle.getIndex()) > 0  ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        }
+
     }
 
 }

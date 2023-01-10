@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+
+#festivalForm{
+    margin-top: 15rem;
+}
+
+.festival-container{
+    display: flex;
+
+    margin-bottom: 6rem;
+}
+
+.festival-image > img{
+    width: 20rem;
+    height: 20rem;
+}
+
+.festival-content{
+    color: black;
+    font-weight: bold;
+    margin-left: 2rem;
+}
+
+
+.festival-input{
+    color: Black;
+    background-color: #19ce60;
+    border: 1px solid #15c654;
+    position: absolute;
+    padding: 10px 20px;
+    right: 20%;
+    top: 15%;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.festival-input:hover{
+    background-color: #53ffaf;
+    border: 1px solid #43ffa2;
+}
+
+
+
+.festival-button > .modify,
+.festival-button > .delete{
+    text-decoration: none;
+    color: Black;
+    background-color: #19ce60;
+    border: 1px solid #15c654;
+    padding: 4px 10px;
+}
+
+
+
+.festival-button > .modify:hover,
+.festival-button > .delete:hover{
+    background-color: #53ffaf;
+    border: 1px solid #43ffa2;
+}
