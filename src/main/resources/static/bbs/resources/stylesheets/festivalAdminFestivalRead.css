@@ -1,60 +1,87 @@
 @charset "UTF-8";
 
 
-#festivalForm{
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: unset;
+    width: 100%;
+    /* color: rgb(255, 255, 255); */
+    background-color: black;
+}
+
+.home-section1 {
+    height: 100%;
+    width: 100%;
+}
+
+.home-section1 > div {
+    width: 100%;
+    height: 100%;
     margin-top: 15rem;
 }
 
-.festival-container{
+#festivalForm {
+    margin-top: 15rem;
+}
+
+.festival-container {
     display: flex;
 
     margin-bottom: 6rem;
 }
 
-.festival-image > img{
+.festival-image > img {
     width: 20rem;
     height: 20rem;
 }
 
-.festival-content{
-    color: black;
+.festival-content {
+    color: white;
     font-weight: bold;
     margin-left: 2rem;
 }
 
 
-.festival-input{
-    color: Black;
-    background-color: #19ce60;
-    border: 1px solid #15c654;
-    position: absolute;
+.festival-input {
+    color: white;
+    /* background-color: #ffffff; */
+    border: 1px solid #ffffff;
+    /* position: absolute; */
     padding: 10px 20px;
-    right: 20%;
-    top: 15%;
+    /* right: 20%; */
+    /* top: 15%; */
     text-decoration: none;
-    font-size: 1.5rem;
 }
 
-.festival-input:hover{
-    background-color: #53ffaf;
-    border: 1px solid #43ffa2;
-}
+.festival-input:hover {
+    background-color: rgba(190, 180, 180, 0.08);
 
+}
 
 
 .festival-button > .modify,
-.festival-button > .delete{
+.festival-button > .delete {
     text-decoration: none;
-    color: Black;
-    background-color: #19ce60;
-    border: 1px solid #15c654;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0.0625rem solid #ffffff;
     padding: 4px 10px;
 }
 
 
-
 .festival-button > .modify:hover,
-.festival-button > .delete:hover{
-    background-color: #53ffaf;
-    border: 1px solid #43ffa2;
+.festival-button > .delete:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 0.0625rem solid #ffffff;
+}
+
+.festivalForm > .insert-button {
+    margin-bottom: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
