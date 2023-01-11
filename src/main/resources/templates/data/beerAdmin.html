@@ -20,23 +20,39 @@
 <!--  main  -->
 <main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
     <!--  productSection1  -->
+
+    <a class="beer-input" th:href="@{/data/beerAdminWrite}">맥주 입력</a>
     <section class="home-section1" id="homeSection1">
         <div class="beer-container">
-            <div class="beer-content" th:each="beer : ${beers}">
-                <div th:text="${beer.getName()}"></div>
+            <div rel="beerContent" class="beer-content" th:each="beer : ${beers}">
                 <img class="image" alt="" th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}">
-                <div th:text="${beer.getMfr()}"></div>
-                <div th:text="${beer.getVolume()}"></div>
-                <div th:text="${beer.getDegree()}"></div>
-                <div th:text="${beer.getDescription()}"></div>
-                <div th:text="${beer.getCategoryIndex()==1 ? '국내맥주' : '해외맥주'}"></div>
-            </div>
-            <div class="admin-button-container">
+                <span th:text="${beer.getCategoryIndex()==1 ? '(국내맥주)' : '(해외맥주)'}"></span>
+                <br><br>
+
+                <span>이름 : <span th:text="${beer.getName()}"></span></span>
+                <br><br>
+
+                <span>제조사 : <span th:text="${beer.getMfr()}"></span></span>
+                <br><br>
+
+                <span>용량 : <span th:text="${beer.getVolume()}"></span></span>
+                <br><br>
+
+                <span>도수 : <span th:text="${beer.getDegree()}"></span></span>
+                <br><br>
+
+                <span>소개 : <span th:text="${beer.getDescription()}"></span></span>
+                <br><br>
+
+
                 <div class="admin-button">
-                    <span><a href="#">입력</a></span>
-                    <span><a href="">수정</a></span>
-                    <span><a href="#">삭제</a></span>
+                    <a th:href="@{/data/beerAdminModify (index=${beer.getIndex()})}"
+                       th:data-index="${beer.getIndex()}" class="beer-modify" href="#">수정</a>
+
+                    <a  rel="deleteButton" th:data-index="${beer.getIndex()}"
+                        class="beer-delete" href="#">삭제</a>
                 </div>
+
             </div>
         </div>
 

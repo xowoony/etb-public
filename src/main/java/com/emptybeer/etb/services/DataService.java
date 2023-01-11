@@ -1,11 +1,17 @@
 package com.emptybeer.etb.services;
 
+import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.entities.member.UserEntity;
+import com.emptybeer.etb.enums.CommonResult;
+import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IDataMapper;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.vos.BeerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 @Service(value = "com.emptybeer.etb.services.DataService")
@@ -46,8 +52,42 @@ public class DataService {
     }
 
 
+
+    // 관리자
+
     public BeerVo[] getBeerForAdmin(){
         return this.dataMapper.selectBeerForAdmin();
+    }
+
+    public Enum<? extends IResult> beerWrite(BeerEntity beer){
+        return this.dataMapper.insertBeer(beer) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public BeerEntity getBeerByIndex(int index){
+        return this.dataMapper.selectBeerFromAdminByIndex(index);
+    }
+
+    public Enum<? extends IResult> beerUpdate(BeerEntity beer, MultipartFile image) throws IOException {
+
+        int result;
+        //이미지가 삽입 되었을 시와 아닐시에 대한 로직
+        if(image != null){
+            beer.setImage(image.getBytes());
+            result = this.dataMapper.updateBeer(beer);
+        } else{
+            result = this.dataMapper.updateBeerExceptImage(beer);
+        }
+
+        return result>0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Enum<? extends IResult> deleteBeer(BeerEntity beer, UserEntity user){
+        if(user==null){
+            return CommonResult.FAILURE;
+        } else {
+            return this.dataMapper.deleteBeerByIndex(beer.getIndex()) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        }
+
     }
 }
 
