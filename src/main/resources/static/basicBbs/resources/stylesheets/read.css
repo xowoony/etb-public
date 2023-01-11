@@ -113,7 +113,7 @@ body > .main > .content > .table > tbody > tr > td > .report-button {
     cursor: pointer;
     background-color: unset;
     font-size: 0.75rem;
-    margin: 0.2rem 0 0 auto;
+    margin: 0.7rem 0 0 auto;
 }
 
 body > .main > .content > .table > tbody > tr > td > .report-button.prohibited {
