@@ -89,7 +89,7 @@ for (let comment of commentLists) {
     const deleteComment = comment.querySelector('[rel="deleteButton"]')
     deleteComment?.addEventListener('click', e => {
             e.preventDefault();
-            if (!confirm('정말로 게시글을 삭제합니까?')) {
+            if (!confirm('정말로 게시글을 삭제하시겠습니까?')) {
                 return;
             }
 
