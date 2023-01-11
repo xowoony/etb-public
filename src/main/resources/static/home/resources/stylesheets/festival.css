@@ -106,19 +106,16 @@ body > main > .home-section1 > .title-box2 > .festival-container:nth-child(even)
 }
 
 body > main > .home-section1 > .title-box2 > .festival-container:hover{
-    transform:scale(1.2);
-    transition: transform .5s;
+    /*transform:scale(1.2);*/
+    /*transition: transform .5s;*/
 }
 
 
-body > main > .home-section1 > .title-box2 > .festival-container > img:hover{
-    opacity: 100%;
-}
+
 
 body > main > .home-section1 > .title-box2 > .festival-container > img{
     height: 35rem;
     width: 35rem;
-    opacity: 50%;
 }
 
 
@@ -132,25 +129,10 @@ body > main > .home-section1 > .title-box2 > .festival-container > .festival-tit
 }
 
 
-body > main > .home-section1 > .festival-admin{
-    background-color: grey;
+body > main > .home-section1 > .title-box1 > .festival-admin{
+
     cursor: pointer;
     position: absolute;
-    border-radius: 5%;
-    top: 29rem;
-    right: 4rem;
-    color: black;
-    border: black 1px solid;
+    color: white;
 }
 
-
-body > main > .home-section1 > .festival-admin:hover{
-    background-color: beige;
-    cursor: pointer;
-    position: absolute;
-    border-radius: 5%;
-    top: 29rem;
-    right: 4rem;
-    color: black;
-    border: black 1px solid;
-}

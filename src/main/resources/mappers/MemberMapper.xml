@@ -132,6 +132,7 @@
             `name`              = #{name},
             `contact`           = #{contact},
             `address_postal`    = #{addressPostal},
+            `address_primary` = #{addressPrimary},
             `address_secondary` = #{addressSecondary},
             `registered_on`     = #{registeredOn}
         WHERE BINARY `email` = #{email}

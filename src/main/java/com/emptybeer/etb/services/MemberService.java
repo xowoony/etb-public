@@ -325,6 +325,21 @@ public class MemberService {
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;
     }
+
+    // 주소 수정
+    @Transactional
+    public Enum<? extends IResult>changeAddress(UserEntity user,
+                                                String changeAddressPostal,
+                                                String changeAddressPrimary,
+                                                String changeAddressSecondary) {
+        UserEntity existingUser = this.memberMapper.selectUserByEmail(user.getEmail());
+        existingUser.setAddressPostal(changeAddressPostal);
+        existingUser.setAddressPrimary(changeAddressPrimary);
+        existingUser.setAddressSecondary(changeAddressSecondary);
+        return this.memberMapper.updateUser(existingUser) > 0
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
+    }
     
     // 유저 정보 다 불러오기
     public UserEntity getUser(String email) {
