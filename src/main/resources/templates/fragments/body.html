@@ -43,6 +43,10 @@
                     <li class="user-board">
                         <a th:href="@{/member/logout}">로그아웃</a>
                     </li>
+                    <!-- 관리자 모드  -->
+                    <li class="user-board" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+                        <a th:href="@{/festival/etbAdmin}">관리자모드</a>
+                    </li>
                 </ul>
             </li>
             <!-- 로그인 안했을 경우  -->
