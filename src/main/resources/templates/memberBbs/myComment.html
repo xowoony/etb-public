@@ -58,7 +58,7 @@
                             <tr class="category-content content3">
                                 <td>
                                     <a th:href="@{/memberBbs/myLike}">
-                                        <div>좋아요한 글 보기</div>
+                                        <div>추천한 글 보기</div>
                                     </a>
                                 </td>
                             </tr>
@@ -130,8 +130,8 @@
                                             <td>
                                                 <div class="index" th:text="${basicComment.getIndex()}">34</div>
                                             </td>
-                                            <td>
-                                                <div th:text="${basicComment.getContent()}"></div>
+                                            <td class="com">
+                                                <div class="com" th:text="${basicComment.getContent()}"></div>
                                                 <a th:text="${basicComment.getArticleTitle()}" th:href="@{/basicBbs/read (aid=${basicComment.getArticleIndex()})}" class="title">아아아아아아아아아주 좋아요 이 맥주</a>
                                             </td>
                                             <td>
@@ -146,6 +146,8 @@
                                                        value='selectall'
                                                        onclick='selectAll(this)'/> </td>
                                             <td>전체선택</td>
+                                            <td></td>
+                                            <td></td>
                                             <td></td>
                                             <td class="delete-container" rel="commentDeleteButton">
                                                 <a href="#">삭제</a>
