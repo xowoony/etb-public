@@ -300,7 +300,7 @@ public class MemberService {
     }
 
 
-    // 닉네임 수정
+    // 닉네임 변경
     @Transactional
     public Enum<? extends IResult>changeNickname(UserEntity user, String changeNickname) {
         UserEntity existingUser = this.memberMapper.selectUserByEmail(user.getEmail());
@@ -315,7 +315,7 @@ public class MemberService {
                 : CommonResult.FAILURE;
     }
 
-    // 연락처 수정
+    // 연락처 변경
     @Transactional
     public Enum<? extends IResult>changeContact(UserEntity user, String changeContact) {
         UserEntity existingUser = this.memberMapper.selectUserByEmail(user.getEmail());
@@ -326,7 +326,7 @@ public class MemberService {
                 : CommonResult.FAILURE;
     }
 
-    // 주소 수정
+    // 주소 변경
     @Transactional
     public Enum<? extends IResult>changeAddress(UserEntity user,
                                                 String changeAddressPostal,

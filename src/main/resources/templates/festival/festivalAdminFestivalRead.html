@@ -24,64 +24,68 @@
 
         <!--   board_id, user_email, title_image_type은 고정     -->
 
-        <!--    festival입력페이지    -->
-
-        <a class="festival-input" th:href="@{/festival/festivalAdminFestivalWrite}">페스티벌 입력</a>
 
         <!--        <a class="festival-input" th:href="@{/festival/festivalAdminFestivalWrite}">페스티벌 입력</a>-->
-
-        <div class="festivalForm" id="festivalForm">
-            <div rel="festivalContainer" class="festival-container" th:each=" festivalArticle : ${festivalArticles}">
-                <div class="festival-image">
-                    <img th:src="@{/image (index=${festivalArticle.getIndex()})}">
+        <div>
+            <div class="festivalForm" id="festivalForm">
+                <!--    festival입력페이지    -->
+                <div class="insert-button">
+                    <a class="festival-input" th:href="@{/festival/festivalAdminFestivalWrite}">페스티벌 입력</a>
                 </div>
+                <div rel="festivalContainer" class="festival-container"
+                     th:each=" festivalArticle : ${festivalArticles}">
+                    <div class="festival-image">
+                        <img th:src="@{/image (index=${festivalArticle.getIndex()})}">
+                    </div>
 
-                <div class="festival-content">
-                    <span>축제명: <span th:text="${festivalArticle.getTitle()}"></span></span>
-                    <br><br>
+                    <div class="festival-content">
+                        <span>축제명 : <span th:text="${festivalArticle.getTitle()}"></span></span>
+                        <br><br>
 
-                    <span>소개: <span th:text="${festivalArticle.getDescription()}"></span></span>
-                    <br><br>
+                        <span>소개 : <span th:text="${festivalArticle.getDescription()}"></span></span>
+                        <br><br>
 
-                    <span>주소: <span th:text="${festivalArticle.getAddress()}"></span></span>
-                    <br><br>
+                        <span>주소 : <span th:text="${festivalArticle.getAddress()}"></span></span>
+                        <br><br>
 
-                    <span>축제일정:
+                        <span>축제일정 :
                         <span th:text="${#dates.format(festivalArticle.getDateFrom(), 'yyyy-MM-dd')}">
                         </span>
                         <span> ~ </span>
                         <span th:text="${#dates.format(festivalArticle.getDateTo(), 'yyyy-MM-dd')}">
                         </span>
                     </span>
-                    <br><br>
+                        <br><br>
 
-                    <span>시간:
+                        <span>시간 :
                         <span th:text="${#dates.format(festivalArticle.getTimeFrom(), 'HH:mm')}">
                         </span>
                         <span> ~ </span>
                         <span th:text="${#dates.format(festivalArticle.getTimeTo(), 'HH:mm')}">
                         </span>
                     </span>
-                    <br><br>
+                        <br><br>
 
-                    <span>위도(latitude): <span th:text="${festivalArticle.getLatitude()}"></span></span>
-                    <br><br>
+                        <span>위도(latitude) : <span th:text="${festivalArticle.getLatitude()}"></span></span>
+                        <br><br>
 
-                    <span>경도(longitude): <span th:text="${festivalArticle.getLongitude()}"></span></span>
-                    <br><br>
+                        <span>경도(longitude) : <span th:text="${festivalArticle.getLongitude()}"></span></span>
+                        <br><br>
 
-                    <div rel="festivalButton" class="festival-button">
-                        <a class="modify" rel="modifyButton" href="#"
-                           th:href="@{/festival/festivalAdminFestivalModify (index=${festivalArticle.getIndex()})}"
-                           th:data-index="${festivalArticle.getIndex()}">수정</a>
+                        <div rel="festivalButton" class="festival-button">
+                            <a class="modify" rel="modifyButton" href="#"
+                               th:href="@{/festival/festivalAdminFestivalModify (index=${festivalArticle.getIndex()})}"
+                               th:data-index="${festivalArticle.getIndex()}">수정</a>
 
 
-                        <a class="delete" rel="deleteButton" href="#"
-                           th:data-index="${festivalArticle.getIndex()}">삭제</a>
+                            <a class="delete" rel="deleteButton" href="#"
+                               th:data-index="${festivalArticle.getIndex()}">삭제</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
     </section>
 </main>

@@ -9,6 +9,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
+/*축제 타이틀*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
 html {
     width: 100%;
     height: 100%;
@@ -22,6 +25,7 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
+    background-color: #181515;
 }
 
 /*main*/
@@ -57,7 +61,7 @@ body > main > .home-section1 > .title-box1 {
 }
 
 
-/*PRODUCT 타이틀 글씨체*/
+/*FESTIVAL 타이틀 글씨체*/
 body > main > .home-section1 > .title-box1 > .title {
     font-size: 3rem;
     font-family: 'Secular One', sans-serif;
@@ -71,68 +75,83 @@ body > main > .home-section1 > .title-box1 > .title-content {
 
 
 /*section2 파트, product, community 파트 참조*/
-
-
 body > main > .home-section1 > .title-box2 {
-    display: grid;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    display: grid;
     object-fit: fill;
     color: black;
-    background-color: #babbb7;
+    padding-bottom: 15rem;
+    margin-left: 9rem;
+    margin-right: 9rem;
 }
 
-body > main > .home-section1 > .title-box2 > .festival-container{
+body > main > .home-section1 > .title-box2 > .festival-container {
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     text-align: center;
-    font-size: 20px;
-    font-weight: 600;
+    /* font-size: 20px; */
+    /* font-weight: 600; */
     cursor: pointer;
     text-decoration: none;
-    width: 35rem;
-    height: 37.5rem;
+    width: 17.5rem;
+    height: 21.5rem;
     background-color: white;
-
+    /* border: 0.0625rem solid rgb(0, 0, 0); */
+    color: rgb(0, 0, 0);
+    border-radius: 0.5rem;
 }
 
-body > main > .home-section1 > .title-box2 > .festival-container:nth-child(odd){
-    margin-left: 4rem;
-}
-
-body > main > .home-section1 > .title-box2 > .festival-container:nth-child(even){
-    margin-right: 4rem;
-}
-
-body > main > .home-section1 > .title-box2 > .festival-container:hover{
-    /*transform:scale(1.2);*/
-    /*transition: transform .5s;*/
+body > main > .home-section1 > .title-box2 > .festival-container > div {
+    width: 100%;
+    height: 100%;
 }
 
 
-
-
-body > main > .home-section1 > .title-box2 > .festival-container > img{
-    height: 35rem;
-    width: 35rem;
+/*페스티벌 타이틀*/
+body > main > .home-section1 > .title-box2 > .festival-container > div > .festival-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(197 197 197);
 }
 
 
-
-body > main > .home-section1 > .title-box2 > .festival-container > .festival-title{
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: black;
-    font-weight: 1000;
-    font-family: 'Jua', sans-serif;
+/*페스티벌 그림 크기 설정*/
+body > main > .home-section1 > .title-box2 > .festival-container > div > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
 }
 
 
-body > main > .home-section1 > .title-box1 > .festival-admin{
+/*body > main > .home-section1 > .title-box2 > .festival-container > .festival-title {*/
+/*    font-size: 1.5rem;*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*    font-weight: 1000;*/
+/*    font-family: 'Jua', sans-serif;*/
+/*}*/
 
+
+body > main > .home-section1 > .title-box1 > .festival-admin {
     cursor: pointer;
     position: absolute;
     color: white;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    padding: 0.2rem 0.8rem;
+    font-size: 0.9rem;
 }
+
+
+body > main > .home-section1 > .title-box1 > .festival-admin:hover {
+    background-color: #00000061;
+}
+
+
+
+
 
