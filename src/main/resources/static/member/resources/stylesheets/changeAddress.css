@@ -293,13 +293,13 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 /*변경하기 버튼*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div > table > tbody > tr > td > .submit-container > .modify {
-    background-color: rgb(237 250 0 / 20%);
+    border: 0.0625rem solid rgb(255, 255, 255);
+    background-color: rgb(237 250 0 / 0%);
     color: rgb(255, 255, 255);
     padding: 1rem 1.25rem;
     width: 100%;
     font-size: 1rem;
-    margin-top: 1rem;
-    /*border: 0.0625rem solid rgb(211 211 211 / 67%);*/
+    margin-top: 0.5rem;
 }
 
 /*변경하기 버튼 hover시 */
@@ -361,7 +361,8 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(237 250 0 / 20%);
+    border: 0.0625rem solid rgb(255, 255, 255);
+    background-color: rgb(237 250 0 / 0%);
 }
 
 /*주소찾기 버튼 hover 시*/
