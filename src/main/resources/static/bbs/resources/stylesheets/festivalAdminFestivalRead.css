@@ -25,6 +25,7 @@ body {
 
 #festivalForm {
     margin-top: 15rem;
+    width: 63rem;
 }
 
 .festival-container {
@@ -57,8 +58,7 @@ body {
 }
 
 .festival-input:hover {
-    background-color: rgba(190, 180, 180, 0.08);
-
+    background-color: rgb(117 168 86 / 25%);
 }
 
 
