@@ -71,7 +71,7 @@ body {
 }
 
 .festival-input:hover {
-    background-color: rgb(117 168 86 / 25%);
+    background-color: rgb(0 63 255 / 22%);
 }
 
 
@@ -85,9 +85,11 @@ body {
 }
 
 
-.festival-button > .modify:hover,
+.festival-button > .modify:hover{
+    background-color: rgba(95, 184, 192, 0.22);
+}
 .festival-button > .delete:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(232, 28, 28, 0.15);
     border: 0.0625rem solid #ffffff;
 }
 
