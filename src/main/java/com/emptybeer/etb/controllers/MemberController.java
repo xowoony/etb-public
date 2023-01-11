@@ -6,7 +6,6 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.services.MemberService;
 import com.emptybeer.etb.utils.CryptoUtils;
-import org.apache.catalina.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

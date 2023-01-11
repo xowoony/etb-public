@@ -6,6 +6,7 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.enums.bbs.WriteResult;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.services.BasicBbsService;
+import com.emptybeer.etb.vos.BasicArticleLikeVo;
 import com.emptybeer.etb.vos.BasicArticleVo;
 import com.emptybeer.etb.vos.BasicCommentVo;
 import com.emptybeer.etb.vos.ReviewArticleVo;
@@ -190,15 +191,34 @@ public class BasicBbsController {
     }
 
     // 댓글 삭제
+//    @DeleteMapping(value = "comment",
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public String deleteComment(@SessionAttribute(value = "user", required = false) UserEntity user, BasicCommentVo comment) {
+//
+//        Enum<?> result = this.basicBbsService.deleteComment(comment, user);
+//        JSONObject responseJson = new JSONObject();
+//        responseJson.put("result", result.name().toLowerCase());
+//
+//        return responseJson.toString();
+//    }
     @DeleteMapping(value = "comment",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String deleteComment(@SessionAttribute(value = "user", required = false) UserEntity user, BasicCommentVo comment) {
+    public String deleteComment(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                @RequestParam(value = "index", required = false) int[] indexes) {
 
-        Enum<?> result = this.basicBbsService.deleteComment(comment, user);
+        int count = 0;
+        for (int index : indexes) {
+            BasicCommentVo basicComment = new BasicCommentVo();
+            basicComment.setIndex(index);
+            count += this.basicBbsService.deleteComment(basicComment, user) == CommonResult.SUCCESS ? 1 : 0;
+        }
+        Enum<?> result = count == indexes.length
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
         JSONObject responseJson = new JSONObject();
         responseJson.put("result", result.name().toLowerCase());
-
         return responseJson.toString();
     }
 
@@ -309,19 +329,49 @@ public class BasicBbsController {
     }
 
     // 게시글 좋아요 취소
+//    @DeleteMapping(value = "basic-like",
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public String deleteBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity basicArticleLike) {
+//
+//        JSONObject responseJson = new JSONObject();
+//        Enum<?> result = this.basicBbsService.unlikeBasic(basicArticleLike, user);
+//        BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleLike.getArticleIndex(), user);
+//        responseJson.put("result", result.name().toLowerCase());
+//        responseJson.put("isLiked", basicArticle.isLiked());
+//        responseJson.put("likeCount", basicArticle.getLikeCount());
+//        return responseJson.toString();
+//    }
     @DeleteMapping(value = "basic-like",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String deleteBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user, BasicArticleLikeEntity basicArticleLike) {
+    public String deleteBasicLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+                                  @RequestParam(value = "articleIndex", required = false) int[] aids) {
 
+        Boolean isLiked = null;
+        int likeCount = 0;
+        int count = 0;
+        for (int aid : aids) {
+            BasicArticleLikeEntity basicArticleLike = new BasicArticleLikeEntity();
+            basicArticleLike.setArticleIndex(aid);
+            count += this.basicBbsService.unlikeBasic(basicArticleLike, user) == CommonResult.SUCCESS ? 1 : 0;
+            BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleLike.getArticleIndex(), user);
+            isLiked = basicArticle.isLiked();
+            likeCount = basicArticle.getLikeCount();
+        }
+
+        Enum<?> result = count == aids.length
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
         JSONObject responseJson = new JSONObject();
-        Enum<?> result = this.basicBbsService.unlikeBasic(basicArticleLike, user);
-        BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicArticleLike.getArticleIndex(), user);
         responseJson.put("result", result.name().toLowerCase());
-        responseJson.put("isLiked", basicArticle.isLiked());
-        responseJson.put("likeCount", basicArticle.getLikeCount());
+        if (result == CommonResult.SUCCESS) {
+            responseJson.put("isLiked", isLiked);
+            responseJson.put("likeCount", likeCount);
+        }
         return responseJson.toString();
     }
+
 
     // 게시글 신고하기
     @PostMapping(value = "article-report",
@@ -363,12 +413,13 @@ public class BasicBbsController {
     // 관리자 페이지
     @GetMapping(value = "basic-admin",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getBasicAdmin(@RequestParam(value = "bid") String bid,
-                                      @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                                      @RequestParam(value = "criterion", required = false) String criterion,
-                                      @RequestParam(value = "keyword", required = false) String keyword,
-                                      @SessionAttribute(value = "user", required = false) UserEntity user,
-                                      HttpSession session) {
+    public ModelAndView getBasicAdmin(
+            @RequestParam(value = "bid") String bid,
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "criterion", required = false) String criterion,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            HttpSession session) {
         page = Math.max(1, page);
         ModelAndView modelAndView = new ModelAndView("basicBbs/admin");
         if (user != null) {

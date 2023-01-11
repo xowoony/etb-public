@@ -188,6 +188,7 @@ if (commentForm !== null) {
                     switch (responseObject['result']) {
                         case 'success':
                             loadComments();
+                            commentForm['content'].value = '';
                             break;
                         default:
                             alert('알 수 없는 이유로 댓글을 작성하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');

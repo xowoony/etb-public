@@ -171,7 +171,7 @@ const sortNew = window.document.getElementById('sortNew');
 sortNew.addEventListener('click', () => {
     window.location.href = `./review?sort=new`;
     sortNew.scrollIntoView();
-})
+});
 
 
 // 평점별 보기

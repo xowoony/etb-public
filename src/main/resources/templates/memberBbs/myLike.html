@@ -9,11 +9,15 @@
     <!--  common.css + common.js 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <!--  myPage.css 연결  -->
-    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/myComment.css}">
+    <link rel="stylesheet" th:href="@{/memberBbs/resources/stylesheets/myLike.css}">
     <!--  myPage.js 연결  -->
-    <script defer th:src="@{/member/resources/scripts/myComment.js}"></script>
+    <script defer th:src="@{/memberBbs/resources/scripts/myLike.js}"></script>
+    <script th:if="${session.user == null}">
+        alert("로그인이 필요한 페이지입니다.")
+        window.location.href = '../member/login'
+    </script>
 </head>
-<body>
+<body th:if="${session.user != null}">
 <!--  header  -->
 <th:block th:replace="~{fragments/body :: header}"></th:block>
 <!--무언가를 불러오고 있습니다 loading-->
@@ -39,22 +43,22 @@
                             </tr>
                             <tr class="category-content content1">
                                 <td>
-                                    <a th:href="@{/member/myArticle}">
+                                    <a th:href="@{/memberBbs/myArticle}">
                                         <div>작성한 글 보기</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content2">
                                 <td>
-                                    <a th:href="@{/member/myComment}">
+                                    <a th:href="@{/memberBbs/myComment}">
                                         <div>작성한 댓글 보기</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content3">
                                 <td>
-                                    <a th:href="@{/member/myLike}">
-                                        <div>좋아요한 글 보기</div>
+                                    <a th:href="@{/memberBbs/myLike}">
+                                        <div>추천한 글 보기</div>
                                     </a>
                                 </td>
                             </tr>
@@ -72,20 +76,20 @@
                             </tr>
                             <tr class="category-content content5">
                                 <td>
-                                    <a th:href="@{/memberBbs/changeContact}">
+                                    <a th:href="@{/member/changeContact}">
                                         <div>연락처 변경</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content6">
                                 <td>
-                                    <a th:href="@{/memberBbs/changeAddress}">
+                                    <a th:href="@{/member/changeAddress}">
                                         <div>주소 변경</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content7">
-                                <td><a th:href="@{/memberBbs/delete}">
+                                <td><a th:href="@{/member/delete}">
                                     <div>회원 탈퇴</div>
                                 </a></td>
                             </tr>
@@ -96,46 +100,36 @@
                         <div class="article-nick-container">
                             <div class="article-nick">
                                 <div>
-                                    <div class="nick">양파쿵야
+                                    <div class="nick" th:text="${session.userNickname}">양파쿵야
                                         <span>님</span>
                                     </div>
-                                    <div class="email">xowoony@gmail.com</div>
+                                    <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
                                 </div>
                                 <form>
-                                    <table>
+                                    <table id="contentTable">
                                         <thead>
                                         <tr class="header-border">
                                             <td colspan="3">
-                                                <div class="header-title">작성한 댓글</div>
-                                            </td>
-                                            <td>
-                                                <div class="created-on">작성일</div>
-                                            </td>
-                                            <td>
-                                                <div class="view">조회수</div>
+                                                <div class="header-title">추천한 글</div>
                                             </td>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <!--    게시물 1개     -->
-                                        <tr>
+                                        <tr th:each="basicArticleLike : ${basicArticleLikes}">
                                             <td>
                                                 <input type='checkbox'
-                                                       name='myLike'
-                                                       onclick='checkSelectAll()'/>
+                                                       name='myArticle'
+                                                       onclick='checkSelectAll()'
+                                                       th:data-aid="${basicArticleLike.getArticleIndex()}"
+                                                th:data-bid="${basicArticleLike.getBoardId()}"/>
                                             </td>
                                             <td>
-                                                <div class="index">34</div>
+                                                <div th:text="${basicArticleLike.getBoardName()}" class="index"></div>
                                             </td>
                                             <td>
-                                                <a href="#" class="title">아아아아아아아아아주 좋아요 이 맥주</a>
-                                                <span class="count">[5]</span>
-                                            </td>
-                                            <td>
-                                                <div class="created-on">2023-01-08</div>
-                                            </td>
-                                            <td>
-                                                <div class="hits">3</div>
+                                                <a th:href="@{/basicBbs/read (aid=${basicArticleLike.getArticleIndex()})}" th:text="${basicArticleLike.getTitle()}"  class="title">아아아아아아아아아주 좋아요 이 맥주</a>
+                                                <span class="count" th:text="${'[' + basicArticleLike.getCommentCount() + ']'}">[5]</span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -147,8 +141,9 @@
                                                        onclick='selectAll(this)'/> </td>
                                             <td>전체선택</td>
                                             <td></td>
-                                            <td></td>
-                                            <td class="delete-container"><a href="#">삭제</a></td>
+                                            <td class="delete-container">
+                                                <a href="#" rel="basicLikeDeleteButton">추천 취소</a>
+                                            </td>
                                         </tr>
                                         </tfoot>
                                     </table>

@@ -238,10 +238,16 @@ public class BbsController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteReviewRead(@SessionAttribute(value = "user", required = false) UserEntity user,
-                                   @RequestParam(value = "aid") int aid) {
-        ReviewArticleVo reviewArticle = new ReviewArticleVo();
-        reviewArticle.setIndex(aid);
-        Enum<?> result = this.bbsService.deleteReview(reviewArticle, user);
+                                   @RequestParam(value = "aid") int[] aids) {
+        int count = 0;
+        for (int aid : aids) {
+            ReviewArticleVo reviewArticle = new ReviewArticleVo();
+            reviewArticle.setIndex(aid);
+            count += this.bbsService.deleteReview(reviewArticle, user) == CommonResult.SUCCESS ? 1 : 0;
+        }
+        Enum<?> result = count == aids.length
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
         return responseObject.toString();
@@ -303,5 +309,46 @@ public class BbsController {
         return responseObject.toString();
     }
 
+    // 리뷰 신고 초기화
+    @DeleteMapping(value = "reviewDeclaration",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteReviewDeclaration(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            @RequestParam(value = "aid", required = false) int[] aids) {
+        int count = 0;
+        for (int aid : aids) {
+            ReviewArticleDeclarationEntity reviewArticleDeclaration = new ReviewArticleDeclarationEntity();
+            reviewArticleDeclaration.setArticleIndex(aid);
+            count += this.bbsService.resetReport(reviewArticleDeclaration, user) == CommonResult.SUCCESS ? 1 : 0;
+        }
+        Enum<?> result = count == aids.length ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("result", result.name().toLowerCase());
+        return responseObject.toString();
+    }
 
+
+    // 관리자 페이지
+    @GetMapping(value = "review-admin",
+            produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView getReviewAdmin(
+            @SessionAttribute(value = "user", required = false) UserEntity user,
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "criterion", required = false) String criterion,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "sort", required = false) String sort) {
+        page = Math.max(1, page);
+
+        ModelAndView modelAndView = new ModelAndView("bbs/reviewAdmin");
+
+        int totalCount = this.bbsService.getReportedReviewCount(criterion, keyword);
+
+        PagingModel paging = new PagingModel(totalCount, page);
+        modelAndView.addObject("paging", paging);
+
+        ReviewArticleVo[] reportedReviews = this.bbsService.getReportedReviews(user, paging, criterion, keyword, sort);
+        modelAndView.addObject("reportedReviews", reportedReviews);
+        return modelAndView;
+    }
 }
