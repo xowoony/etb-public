@@ -29,7 +29,7 @@
             </div>
             <!--    관리자 접속 시 관리자 페스티벌을 관리할 수 있는 페이지로 이동    -->
             <a class="festival-admin" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}"
-               th:href="@{/festival/etbAdmin}">관리자 페이지로 이동</a>
+               th:href="@{/festival/festivalAdminFestivalRead}">관리자 페이지로 이동</a>
         </div>
         <!--  Section2  -->
         <!--   서버단에서 타이틀을 가져오는데는 성공하였으나 이미지를 게속실패하였음-->
