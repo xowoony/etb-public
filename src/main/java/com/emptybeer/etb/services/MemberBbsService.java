@@ -38,4 +38,9 @@ public class MemberBbsService {
         return this.memberBbsMapper.selectArticlesByLike(user.getEmail());
     }
 
+    // 좋아요한 리뷰 게시글 리스트
+    public ReviewArticleLikeVo[] getMyLikeReviews(UserEntity user) {
+        return this.memberBbsMapper.selectReviewsByLike(user.getEmail());
+    }
+
 }

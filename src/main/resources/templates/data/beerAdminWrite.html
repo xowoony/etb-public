@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: BEERWRITE</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/data/resources/stylesheets/beerAdminWrite.css}">
+    <script defer th:src="@{/data/resources/scripts/beerAdminWrite.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+
+        <form id="form">
+            <div class="page-title">맥주 입력</div>
+
+
+            <div class="beer-inputContainer">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th colspan="1">맥주명</th>
+                        <td>
+                            <label class="label-beerTitle">
+                                <span hidden>맥주명</span>
+                                <input autofocus class="beer-input" maxlength="50" name="beerTitle"
+                                       placeholder="맥주명을 입력해주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>맥주사진</th>
+                        <td>
+                            <label class="label-beerImage">
+                                <span hidden>맥주사진</span>
+                                <input id="beerFile" autofocus class="beer-fileInput" maxlength="50" name="beerImage"
+                                       placeholder="맥주사진을 업로드해주세요." type="file">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>소개</th>
+                        <td>
+                            <label class="label-beerDescription">
+                                <span hidden>소개</span>
+<!--                                <input class="beer-descriptionInput" maxlength="100" name="beerDescription"-->
+<!--                                       placeholder="소개내용을 입력해주세요." type="text">-->
+                                <textarea class="beer-descriptionInput" name="beerDescription"
+                                          placeholder="소개내용을 입력해주세요.(1000자 이내)" cols="100" rows="10"></textarea>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>제조사</th>
+                        <td>
+                            <label class="label-beerMfr">
+                                <span hidden>제조사</span>
+                                <input class="beer-mfrInput" maxlength="50" name="beerMfr"
+                                       placeholder="제조사를 입력해주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>용량</th>
+                        <td>
+                            <label class="label-beerVolume">
+                                <span hidden>용량</span>
+                                <input class="beer-volumeInput" maxlength="20" name="beerVolume"
+                                       placeholder="용량을 입력해주세요.(단위포함)" type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>도수</th>
+                        <td>
+                            <label class="label-beerDegree">
+                                <span hidden>도수</span>
+                                <input class="beer-degreeInput" maxlength="20" name="beerDegree"
+                                       placeholder="도수를 입력해주세요.(%포함)" type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>분류</th>
+                        <td>
+                            <label class="label-beerCategory">
+                                <span hidden>분류</span>
+                                <select name="beerCategory">
+                                    <option value="1">국내맥주</option>
+                                    <option value="2">해외맥주</option>
+                                </select>
+                            </label>
+                        </td>
+                    </tr>
+
+
+
+                    </tbody>
+                </table>
+
+                <input class="beer-submit" type="submit" value="입력">
+            </div>
+        </form>
+
+
+
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

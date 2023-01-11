@@ -22,4 +22,7 @@ public interface IMemberBbsMapper {
 
     // 좋아요 한 기본 게시글 리스트
     BasicArticleLikeVo[] selectArticlesByLike(@Param(value = "email") String email);
+
+    // 좋아요한 리뷰 게시글 리스트
+    ReviewArticleLikeVo[] selectReviewsByLike(@Param(value = "email") String email);
 }

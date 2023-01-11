@@ -98,4 +98,24 @@
         ORDER BY `basicArticleLike`.`article_index` DESC
     </select>
 
+    <!--  좋아요 한 리뷰 게시글 조회-->
+    <select id="selectReviewsByLike"
+            resultType="com.emptybeer.etb.vos.ReviewArticleLikeVo">
+        SELECT `reviewArticleLike`.user_email    AS `userEmail`,
+               `reviewArticleLike`.article_index AS `articleIndex`,
+               `beer`.`name`                     AS `beerName`,
+               `reviewArticle`.`score`           AS `score`,
+               `reviewArticle`.`content_good`    AS `contentGood`,
+               `reviewArticle`.`content_bad`     AS `contentBad`,
+               `user`.`nickname`                 AS `usernickname`
+        FROM etb_bbs.review_article_likes AS `reviewArticleLike`
+                 LEFT JOIN `etb_bbs`.review_articles AS `reviewArticle`
+                           ON reviewArticle.`index` = reviewArticleLike.article_index
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
+                 LEFT JOIN `etb_data`.`beers` AS beer ON beer.`index` = reviewArticle.beer_index
+        WHERE `reviewArticleLike`.`user_email` = #{email}
+        GROUP BY `reviewArticleLike`.`article_index`
+        ORDER BY `reviewArticleLike`.`article_index` DESC
+    </select>
+
 </mapper>

@@ -209,6 +209,7 @@ body > .main > .content > .title-container > .admin:active {
     color: #4e4e4e;
     padding: 0.5rem;
     margin: 0;
+    outline: none;
 }
 
 #searchForm .--object-input.search {
@@ -220,6 +221,7 @@ body > .main > .content > .title-container > .admin:active {
     border: none ;
     background-color: rgba(52, 106, 255, 90%);
     color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 
 #searchForm > label:nth-of-type(2) {

@@ -7,8 +7,9 @@ public class ReviewArticleLikeVo extends ReviewArticleLikeEntity {
     private String contentGood;
     private String contentBad;
     private String userNickname;
-
     private String beerName;
+    private int score;
+
 
     public String getTitle() {
         return title;
@@ -52,6 +53,15 @@ public class ReviewArticleLikeVo extends ReviewArticleLikeEntity {
 
     public ReviewArticleLikeVo setBeerName(String beerName) {
         this.beerName = beerName;
+        return this;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public ReviewArticleLikeVo setScore(int score) {
+        this.score = score;
         return this;
     }
 }
