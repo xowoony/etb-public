@@ -231,6 +231,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-bottom: 0.0625rem solid #7c7373;
     margin-top: 1.5rem;
     margin-left: 6rem;
+    margin-bottom: 3rem;
     width: 60rem;
     border-collapse: collapse;
 }
@@ -398,7 +399,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 /*두번째 테이블*/
 #secondTable {
     margin-top: 2rem;
-    margin-bottom: 7vh;
+    margin-bottom: 8vh;
 }
 
 /*체크박스*/

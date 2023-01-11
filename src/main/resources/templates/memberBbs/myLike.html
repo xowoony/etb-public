@@ -148,6 +148,61 @@
                                         </tfoot>
                                     </table>
                                 </form>
+                                <form>
+                                    <table id="secondTable">
+                                        <thead>
+                                        <tr class="header-border">
+                                            <td colspan="3">
+                                                <div class="header-title">추천한 리뷰</div>
+                                            </td>
+                                            <td>
+                                                <div class="view">평점</div>
+                                            </td>
+                                            <td>
+                                                <div class="writer">작성자</div>
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <!--    게시물 1개     -->
+                                        <tr th:each="reviewArticleLike : ${reviewArticleLikes}">
+                                            <td>
+                                                <input type='checkbox'
+                                                       name='myReview'
+                                                       onclick='checkSelectAll2()'
+                                                       th:data-aid2="${reviewArticleLike.getArticleIndex()}"/>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/bbs/reviewRead (aid=${reviewArticleLike.getArticleIndex()})}" class="title" th:text="${reviewArticleLike.getBeerName()}">아아아아아아아아아주 좋아요 이 맥주</a>
+                                            </td>
+                                            <td class="left">
+                                                <div th:text="${reviewArticleLike.getContentGood()}"></div>
+                                                <div th:text="${reviewArticleLike.getContentBad()}"></div>
+                                            </td>
+                                            <td>
+                                                <div th:text="${reviewArticleLike.getScore()}" class="hits">3</div>
+                                            </td>
+                                            <td>
+                                                <div th:text="${reviewArticleLike.getUserNickname()}"></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr class="tfoot-header">
+                                            <td><input class="check-box" type='checkbox'
+                                                       name='selectall2'
+                                                       value='selectall2'
+                                                       onclick='selectAll2(this)'/></td>
+                                            <td>전체선택</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="delete-container">
+                                                <a href="#" rel="reviewDeleteButton">추천 취소</a>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </form>
                             </div>
                         </div>
                     </td>

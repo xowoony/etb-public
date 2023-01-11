@@ -273,22 +273,50 @@ public class BbsController {
     }
 
     // 리뷰 좋아요 취소
+//    @DeleteMapping(value = "reviewLike",
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public String deleteReviewLike(@SessionAttribute(value = "user", required = false) UserEntity user,
+//                                   ReviewArticleLikeEntity reviewArticleLike,
+//                                   @RequestParam(value = "aid", required = false) int aid) {
+//        JSONObject responseObject = new JSONObject();
+//        reviewArticleLike.setArticleIndex(aid);
+//        Enum<?> result = this.bbsService.reviewUnlike(reviewArticleLike, user);
+//        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleLike.getArticleIndex());
+//
+//        responseObject.put("result", result.name().toLowerCase());
+//        responseObject.put("isLiked", reviewArticle.isLiked());
+//        responseObject.put("likeCount", reviewArticle.getLikeCount());
+//        return responseObject.toString();
+//    }
     @DeleteMapping(value = "reviewLike",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteReviewLike(@SessionAttribute(value = "user", required = false) UserEntity user,
                                    ReviewArticleLikeEntity reviewArticleLike,
-                                   @RequestParam(value = "aid", required = false) int aid) {
+                                   @RequestParam(value = "articleIndex", required = false) int[] aids){
+        Boolean isLiked = null;
+        int likeCount = 0;
+        int count = 0;
+        for (int aid : aids) {
+            reviewArticleLike.setArticleIndex(aid);
+            count += this.bbsService.reviewUnlike(reviewArticleLike, user) == CommonResult.SUCCESS ? 1 : 0;
+            ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleLike.getArticleIndex());
+            isLiked = reviewArticle.isLiked();
+            likeCount = reviewArticle.getLikeCount();
+        }
+        Enum<?> result = count == aids.length
+                ? CommonResult.SUCCESS
+                : CommonResult.FAILURE;
         JSONObject responseObject = new JSONObject();
-        reviewArticleLike.setArticleIndex(aid);
-        Enum<?> result = this.bbsService.reviewUnlike(reviewArticleLike, user);
-        ReviewArticleVo reviewArticle = this.bbsService.reviewReadArticle(user, reviewArticleLike.getArticleIndex());
-
         responseObject.put("result", result.name().toLowerCase());
-        responseObject.put("isLiked", reviewArticle.isLiked());
-        responseObject.put("likeCount", reviewArticle.getLikeCount());
+        if (result == CommonResult.SUCCESS) {
+            responseObject.put("isLiked", isLiked);
+            responseObject.put("likeCount", likeCount);
+        }
         return responseObject.toString();
     }
+
 
 
     // 리뷰 신고하기 기능

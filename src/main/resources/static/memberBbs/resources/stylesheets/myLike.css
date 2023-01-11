@@ -314,6 +314,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td {
     height: 2.5rem;
+    padding: 0.6rem 0.5rem;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > input {
@@ -328,7 +329,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 }
 
 
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > div {
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td:not(.left) > div {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -338,6 +339,18 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 /*게시글 제목 hover시*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title:hover {
     text-decoration: underline;
+}
+
+/*리뷰글 내용 정렬*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .left {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .left > div + div {
+    margin-top: 0.3rem;
 }
 
 /*댓글 갯수*/
@@ -396,8 +409,16 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 }
 
 /*contentTable 아래 간격 설정(footer 가림 방지)*/
-#contentTable {
-    margin-bottom: 7vh;
+#contentTable{
+    margin-bottom: 3rem;
+}
+
+#secondTable {
+    margin-bottom: 8vh;
+}
+
+#secondTable .writer {
+    text-align: center;
 }
 
 /*체크박스*/
