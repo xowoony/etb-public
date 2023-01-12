@@ -43,7 +43,7 @@
                                 <span hidden>축제사진</span>
                                 <img class="festival-image"  alt="" th:src="@{/image (index=${festivalArticles.getIndex()})}">
                                 <br>
-                                <input autofocus class="festival-fileInput" maxlength="50" name="festivalImage"
+                                <input id="fImageFile" autofocus class="festival-fileInput" maxlength="50" name="festivalImage"
                                        placeholder="축제사진을 업로드해주세요." type="file">
                             </label>
                         </td>
@@ -53,8 +53,10 @@
                         <td>
                             <label class="label-festivalDescription">
                                 <span hidden>소개</span>
-                                <input class="festival-descriptionInput" maxlength="100" name="festivalDescription"
-                                       placeholder="소개내용을 입력해주세요." type="text" th:value="${festivalArticles.getDescription()}">
+                                <textarea class="festival-descriptionInput" name="festivalDescription"
+                                          placeholder="소개내용을 입력해주세요." th:text="${festivalArticles.getDescription()}" th:value="${festivalArticles.getDescription()}"></textarea>
+<!--                                <input class="festival-descriptionInput" name="festivalDescription"-->
+<!--                                       placeholder="소개내용을 입력해주세요." type="text" th:value="${festivalArticles.getDescription()}">-->
                             </label>
                         </td>
                     </tr>

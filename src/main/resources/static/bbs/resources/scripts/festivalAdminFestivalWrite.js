@@ -59,7 +59,7 @@ form.onsubmit = e =>{
 
     // mime 타입을 구하는 코드
     // 참조: https://stackoverflow.com/questions/18299806/how-to-check-file-mime-type-with-javascript-before-upload
-    let control = document.getElementById("festivalImage");
+    let control = document.getElementById("fImage");
     let files = control.files;
     let blob
     for (let i = 0; i < files.length; i++) {
