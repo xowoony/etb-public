@@ -105,6 +105,7 @@ body {
     color: #9a9a9a;
     padding: 0.8rem;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 
     align-items: stretch;
     display: flex;
