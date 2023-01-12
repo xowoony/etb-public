@@ -58,10 +58,10 @@ body > main > .beer-section > .title-box1 > .beer-select-border {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
     width: 100%;
     height: 5rem;
     background-color: rgb(0, 0, 0, 25%);
+    white-space: nowrap;
 }
 
 /*BEER 타이틀 글씨*/
@@ -161,20 +161,24 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link {
 /*table 크기 조절*/
 body > main > .beer-section > .title-box2 > .item-container > .item > .link > table {
     width: 100%;
+    height: 100%;
 }
 
 /*tbody 크기 조절*/
 body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody {
     width: 100%;
+    height: 100%;
 }
 
 /*tr*/
 body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody > tr {
     width: 100%;
+    height: 100%;
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    white-space: nowrap;
 }
 
 
@@ -191,6 +195,9 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link > ta
 /*그리드 안 이미지 크기 조절*/
 body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody > tr > td > img {
     width: 100%;
+    white-space: nowrap;
+    min-width: 5rem;
+    min-height: 5rem;
 }
 
 
