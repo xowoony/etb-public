@@ -35,10 +35,23 @@ main{
     background-color: rgb(233, 233, 233);
 }
 
-.festival-descriptionInput,
+
+
 .festival-addressInput{
     width: 500px;
     height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+
+.festival-descriptionInput{
+    width: 500px;
+    height: 100px;
     font-size: 15px;
     border: 0;
     border-radius: 15px;

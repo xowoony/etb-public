@@ -197,7 +197,6 @@
         SET `festival_articles`.`board_id`    = #{boardId},
             `festival_articles`.`user_email` = #{userEmail},
             `festival_articles`.`title` = #{title},
-            `festival_articles`.`title_image_type` = #{titleImageType},
             `festival_articles`.`description` = #{description},
             `festival_articles`.`address` = #{address},
             `festival_articles`.`date_from` = #{dateFrom},

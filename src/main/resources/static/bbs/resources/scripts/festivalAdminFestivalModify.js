@@ -51,17 +51,6 @@ form.onsubmit = e =>{
     const formData = new FormData();
 
 
-    // mime 타입을 구하는 코드
-    // 참조: https://stackoverflow.com/questions/18299806/how-to-check-file-mime-type-with-javascript-before-upload
-    let control = document.getElementById("festivalImage");
-    let files = control.files;
-    let blob
-    for (let i = 0; i < files.length; i++) {
-        console.log("Filename: " + files[i].name);
-        console.log("Type: " + files[i].type);
-        console.log("Size: " + files[i].size + " bytes");
-        blob = files[i];
-    }
 
 
     // 서버로 보낼 페스티벌 데이터
@@ -75,18 +64,36 @@ form.onsubmit = e =>{
     formData.append('timeToStr', form['festivalTimeTo'].value);
     formData.append('latitude', form['festivalLatitude'].value);
     formData.append('longitude', form['festivalLongitude'].value);
-    formData.append('titleImageType', blob.type);
 
     // 이 2가지들은 고정이 되이있기에 단순 문자열로 전송
     formData.append('boardId', 'festival');
     formData.append('userEmail', 'admin@admin');
 
-    //이미지는 특수하게 바이트형태로 보낸다.
-    if(form['festivalImage'].files != null){
-        for (let file of form['festivalImage'].files) {
-            formData.append('titleImageTemp', file);
+    if(form['festivalImage'].value != ''){
+
+        let control = document.getElementById("fImageFile");
+        let files = control.files;
+        let blob
+
+        for (let i = 0; i < files.length; i++) {
+            console.log("Filename: " + files[i].name);
+            console.log("Type: " + files[i].type);
+            console.log("Size: " + files[i].size + " bytes");
+            blob = files[i];
+        }
+
+        if(blob.type != ''){
+            formData.append('titleImageType', blob.type);
+        }
+
+        //이미지는 특수하게 바이트형태로 보낸다.
+        if(form['festivalImage'].files != null){
+            for (let file of form['festivalImage'].files) {
+                formData.append('titleImageTemp', file);
+            }
         }
     }
+
 
 
     xhr.open('PATCH', './festivalAdminFestivalModify');
