@@ -64,11 +64,24 @@ main {
     margin-bottom: 0.5rem;
 }
 
-.festival-descriptionInput,
+
+.festival-descriptionInput{
+    color: rgb(255, 255, 255);
+    width: 96.5%;
+    height: 6rem;
+    font-size: 15px;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 15px; */
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233 233 233 / 0%);
+    margin-bottom: 0.3rem;
+}
+
 .festival-addressInput {
     color: rgb(255, 255, 255);
     width: 96.5%;
-    height: 2.5rem;
+    height: 1.5rem;
     font-size: 15px;
     border: 0.0625rem solid rgb(255, 255, 255);
     /* border-radius: 15px; */
