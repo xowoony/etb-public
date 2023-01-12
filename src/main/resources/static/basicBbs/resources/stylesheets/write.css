@@ -40,6 +40,10 @@ body > .main > .content > .title {
     padding: 0.625rem 0.875rem;
 }
 
+#form > .table .content-container * {
+    max-width: 100%;
+}
+
 #form > .table .warning-row .warning {
     border: 1px solid rgb(231, 76, 60);
     color: rgb(231, 76, 60);

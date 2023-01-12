@@ -122,11 +122,14 @@ body > .main > .content > .table > tbody > tr > td > .report-button.prohibited {
 
 body > .main > .content > .table .content-container {
     font-family: 돋움, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif;
-
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
     /*margin: 0.75rem 0;*/
     padding: 0 1rem 1rem 1rem;
+}
+
+body > .main > .content > .table .content-container * {
+    max-width: 100%;
 }
 
 body > .main > .content > .table .button-container {

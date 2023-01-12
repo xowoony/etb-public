@@ -43,7 +43,9 @@
                         <span>축제명 : <span th:text="${festivalArticle.getTitle()}"></span></span>
                         <br><br>
 
-                        <span>소개 : <span th:text="${festivalArticle.getDescription()}"></span></span>
+
+                        <!--  대체적으로 소개글이 아닌 다른 내용들은 짧으므로 이 부분만 따로 클래스를 지정해서 크기를 조절함       -->
+                        <span>소개 : <div class="description" th:text="${festivalArticle.getDescription()}"></div></span>
                         <br><br>
 
                         <span>주소 : <span th:text="${festivalArticle.getAddress()}"></span></span>

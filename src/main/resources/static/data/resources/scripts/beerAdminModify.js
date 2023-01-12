@@ -65,8 +65,6 @@ form.onsubmit = e =>{
     const formData = new FormData();
 
 
-    // mime 타입을 구하는 코드
-    // 참조: https://stackoverflow.com/questions/18299806/how-to-check-file-mime-type-with-javascript-before-upload
 
 
 
@@ -80,7 +78,8 @@ form.onsubmit = e =>{
     formData.append('categoryIndex', form['beerCategory'].value);
 
 
-
+    // mime 타입을 구하는 코드
+    // 참조: https://stackoverflow.com/questions/18299806/how-to-check-file-mime-type-with-javascript-before-upload
     //이미지는 특수하게 바이트형태로 보낸다.
     //수정페이지에서 이미지를 삽입하였으면 아래구문을 실행하고 그렇지 않으면 실행하는 않는 로직
     if(form['beerImage'].value != ''){
@@ -96,7 +95,7 @@ form.onsubmit = e =>{
             blob = files[i];
         }
 
-        console.log('이게 뭐야: '+blob.type);
+
         if(blob.type != ''){
             formData.append('imageType', blob.type);
         }

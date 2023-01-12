@@ -40,7 +40,7 @@
                             <div>맥주에 대해 자유롭게 글을 쓰고</div>
                             <div>의견을 나눌 수 있는 공간입니다.</div>
                             <div class="free-button">
-                                <a href="http://localhost:8080/basicBbs/list?bid=free">GO</a>
+                                <a th:href="@{/basicBbs/list (bid=free)}">GO</a>
                             </div>
                         </div>
                     </td>
@@ -52,7 +52,7 @@
                             <div>맥주 관련 모임을</div>
                             <div>추진할 수 있는 공간입니다.</div>
                             <div class="team-button">
-                                <a href="http://localhost:8080/basicBbs/list?bid=meeting">GO</a>
+                                <a th:href="@{/basicBbs/list (bid=meeting)}">GO</a>
                             </div>
                         </div>
 

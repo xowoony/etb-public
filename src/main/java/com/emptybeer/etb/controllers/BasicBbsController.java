@@ -106,7 +106,7 @@ public class BasicBbsController {
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
         if (result == CommonResult.SUCCESS) {
-            responseObject.put("url", "http://localhost:8080/basicBbs/image?id=" + image.getIndex());
+            responseObject.put("url", "../basicBbs/image?id=" + image.getIndex());
         }
         return responseObject.toString();
     }

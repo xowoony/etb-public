@@ -10,6 +10,10 @@
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalAdmin.css}">
     <script defer th:src="@{/bbs/resources/scripts/festivalAdmin.js}"></script>
+    <script th:if="${session.user == null || !session.user.getEmail().equals('admin@admin')}">
+        alert('접근 권한이 없습니다.');
+        window.location.href = '../member/login'
+    </script>
 </head>
 <body id="smoothScroll">
 <!--  header  -->
@@ -64,7 +68,10 @@
                         <div class="board-content">
                             <div>BASIC 관리자 페이지로 이동</div>
                             <div class="board-button">
-                                <a th:href="@{/festival/festivalAdminCommentRead}">GO</a>
+                                <a th:href="@{/basicBbs/basic-admin (bid=free)}">자유 게시판 GO</a>
+                            </div>
+                            <div class="board-button">
+                                <a th:href="@{/basicBbs/basic-admin (bid=meeting)}">모임 게시판 GO</a>
                             </div>
                         </div>
                     </td>
@@ -76,7 +83,7 @@
                         <div class="review-content">
                             <div>리뷰 관리자 페이지로 이동</div>
                             <div class="review-button">
-                                <a th:href="@{/festival/festivalAdminCommentRead}">GO</a>
+                                <a th:href="@{/bbs/review-admin}">GO</a>
                             </div>
                         </div>
                     </td>
