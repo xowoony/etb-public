@@ -6,6 +6,7 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.services.MemberService;
 import com.emptybeer.etb.utils.CryptoUtils;
+import org.apache.catalina.Context;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 
@@ -197,8 +200,8 @@ public class MemberController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody     // 중요
-    public String postRecoverPassword(EmailAuthEntity emailAuth) throws MessagingException {
-        Enum<?> result = this.memberService.recoverPasswordSend(emailAuth); // this.이 자리에 SUCCESS 또는 FAILURE 로 바뀌게 되고
+    public String postRecoverPassword(EmailAuthEntity emailAuth, HttpServletRequest request) throws MessagingException {
+        Enum<?> result = this.memberService.recoverPasswordSend(emailAuth, request); // this.이 자리에 SUCCESS 또는 FAILURE 로 바뀌게 되고
         JSONObject responseObject = new JSONObject();
         responseObject.put("result", result.name().toLowerCase());
         if (result == CommonResult.SUCCESS) {

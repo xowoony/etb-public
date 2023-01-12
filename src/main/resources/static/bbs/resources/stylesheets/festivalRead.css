@@ -74,6 +74,7 @@ body > main > .festival-container > .festival-infoContainer {
 
 
 body > main > .review-container {
+    min-width: 56rem;
     color: #000000;
     font-size: 2rem;
     font-family: 'Varela Round', sans-serif;
@@ -83,7 +84,7 @@ body > main > .review-container {
 
 body > main > .review-container > .review-comment {
     font-size: 1.3rem;
-    font-weight: 400;
+    font-weight: 600;
     font-family: 'Quicksand', sans-serif;
 }
 
