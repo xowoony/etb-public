@@ -69,6 +69,7 @@ body > .loading-cover {
     line-height: 40px;
     color: #fff;
     text-decoration: none;
+    white-space: nowrap;
 
 }
 
@@ -84,6 +85,7 @@ body > .loading-cover {
     right: 0;
     text-align: center;
     list-style: none;
+    white-space: nowrap;
 }
 
 /*카테고리 타이틀들 hover시 색깔 변화*/
@@ -97,11 +99,12 @@ body > .loading-cover {
     display: block;
     padding: 1rem;
 
-    background-color: rgb(222 225 45 / 25%);
+    background-color: rgba(87, 86, 86, 0.78);
     width: 100%;
     color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 1rem;
+    white-space: nowrap;
 }
 
 /*드롭다운 메뉴 안 글씨 hover 시 색깔*/
@@ -137,6 +140,7 @@ body > .loading-cover {
     color: rgb(255, 255, 255);
     border: 0.0625rem solid rgb(255, 255, 255);
     padding: 1rem 1.5rem;
+    white-space: nowrap;
 }
 
 /*common 버튼 hover*/
@@ -206,6 +210,7 @@ body > header > .spring > .category {
     padding-top: 2.5rem;
     font-size: 1rem;
     font-family: 'Dosis', sans-serif;
+    white-space: nowrap;
 }
 
 /*잔이비어 로고 오른쪽으로 보내기*/
@@ -268,23 +273,23 @@ body > header > .spring > .category > li > span > .login {
 
 
 /*footer*/
+body > footer{
+    z-index: 99;
+}
+
 body > footer > .footer-section1 {
-    background-color: rgb(10, 10, 10);
     background-color: rgba(0, 0, 0, 40%);
-    color: rgb(152, 151, 151);
-
-
+    color: rgb(218, 218, 218);
     bottom: 0;
     left: 0;
     right: 0;
-
     position: fixed;
     padding: 1.5rem;
-
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    white-space: nowrap;
 }
 
 /*사람 아이콘 항상 흰색*/

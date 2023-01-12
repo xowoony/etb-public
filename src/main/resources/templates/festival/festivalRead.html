@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>잔이비어 :: FESTIVALINFO</title>
+    <title>잔이비어 :: FESTIVAL INFO</title>
     <!--  common.css 연결  -->
     <th:block th:replace="~{fragments/head :: common}"></th:block>
     <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalRead.css}">
@@ -40,7 +40,7 @@
 
         <!--    페스티벌 관련 내용    -->
         <div class="festival-infoContainer">
-            <br>
+<!--            <br>-->
             <span>Period: </span>
             <span th:text="${#dates.format(festivalArticles.getDateFrom(), 'yyyy-MM-dd')}"></span>
             <span> ~ </span>
@@ -61,55 +61,43 @@
             <span>Address: </span>
             <br>
             <span th:text="${festivalArticles.getAddress()}"></span>
-
-
         </div>
-
-
     </div>
-
-
-
-
     <!-- 페스티벌 댓글 컨테이너  -->
     <div class="review-container">
         <span class="review-comment">Comment</span>
         <form id="festivalReviewForm" th:if="${session.user != null}">
-            <input class="festivalRead-input" maxlength="200" name="content" type="text"
-                   placeholder="댓글을 입력하세요(최대200자)">
-            <br>
+            <div>
+                <input class="festivalRead-input" maxlength="200" name="content" type="text"
+                       placeholder="댓글을 입력하세요(최대200자)">
+                <div>
+                    <input class="festivalRead-button" type="submit" value="입력">
+                </div>
+            </div>
             <!--      버튼이 아닌 hidden으로 된 input은 인덱스 값을 가져오기 위한 input으로 이를 js로 보내 data를 처리해야한다.     -->
             <input name="aid" type="hidden" th:value="${festivalArticles.getIndex()}">
-            <input class="festivalRead-button" type="submit" value="입력">
 
         </form>
-
         <!--    댓글리스트, 로그인이 되지 않아도 볼 수 있다.    -->
         <div id="comment" rel="commentList" class="review-list" th:each="festivalComment : ${festivalComments}">
             <div class="festival-comment">
                 <div class="comment-nickname" th:text="${festivalComment.getNickname()}"></div>
                 <div rel="commentContent" class="comment-content"  th:text="${festivalComment.getContent()}"></div>
-
-
                 <!--        a태그를 이용하여 수정을 할 수 있게 로직들을 작성하였으나        -->
                 <!--        수정된 텍스를 전송하기 위해서는 form을        -->
                 <form id="modifyByIndex" class="modify-content" method="get" action="/festival/festivalModify">
                     <div class="modify-form" rel="modifyForm">
-
                         <input class="comment-modifyInput" type="text" placeholder="수정할 내용을 입력하세요.(최대200자)"
                                maxlength="200" name="content">
                         <a class="cancel" rel="cancelButton" href="#">취소</a>
-
                         <input type="hidden" name="index" th:value="${festivalComment.getIndex()}">
                         <input class="check" type="submit" value="확인">
                     </div>
                 </form>
                 <div rel="commentWritten" class="comment-written"
                      th:text="${#dates.format(festivalComment.getWrittenOn(), 'YYYY-MM-DD')}"></div>
-
                 <form class="button">
                     <div rel="commentButton" class="comment-button">
-
 <!-- 관리자일시 댓글 수정 삭제에 접근할 수 있게하는 로직을 구성하는 동안 생긴 시행착오를 정리하면 먼저 초기에는-->
 <!-- session.user != null && session.user.getEmail().equals(festivalComment.getUserEmail())-->
 <!-- || session.user.getEmail().equals('admin@admin') 라고 생각을 하였으나, 로그인시 페이지에서 정상적으로 작동하였으나 로그인을 하지 않고 접근시 오류가 발생하였다.-->
@@ -118,29 +106,19 @@
 <!-- session.user.getEmail.equals('admin@admin')에서 관리자 접속이 되지 않았을 시 null값이 반환이 되어서 발생한문제였다. 다른 이메일로 접속시에는 '1 || null'이 되어 참이 되어 실행이 되었으나,-->
 <!-- 접속하지 않을 시 '0 || null'이 수행이 되어 실행이 되지 않았던 것이다.-->
 <!-- 이를 session.user != null을 하나 더 추가 해주면서, `1 || 0` `0 || 0` 같은 로직이 되면서 오류도 해결하고 기능도 정상적으로 작동하였다. -->
-
-
                         <a class="delete" rel="deleteButton" href="#"
                            th:if="${session.user != null &&
                            session.user.getEmail().equals(festivalComment.getUserEmail())
                            || session.user != null && session.user.getEmail().equals('admin@admin')}"
-
                            th:data-index="${festivalComment.getIndex()}">삭제</a>
-
                         <a class="modify" rel="modifyButton" href="#"
                            th:if="${session.user != null &&
                            session.user.getEmail().equals(festivalComment.getUserEmail())
                            || session.user != null && session.user.getEmail().equals('admin@admin')}"
                            th:data-index="${festivalComment.getIndex()}">수정</a>
-
-
-
                         <input type="hidden" name="commentIndex" th:value="${festivalComment.getIndex()}">
                     </div>
                 </form>
-
-
-
             </div>
         </div>
     </div>
@@ -183,10 +161,9 @@
 
 
     <div class="map-container">
-        <div>Map</div>
+        <div class="title">Map</div>
         <div id="map"></div>
     </div>
-
 </main>
 <!--  footer  -->
 <th:block th:replace="~{fragments/body :: footer}"></th:block>
