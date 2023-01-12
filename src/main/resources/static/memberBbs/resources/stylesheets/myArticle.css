@@ -76,7 +76,7 @@ body > main > .beer-section > .title-box2 {
     width: 100%;
     /*background-color: #151213;*/
     height: 100%;
-
+    white-space: nowrap;
 }
 
 body > main > .beer-section > .title-box2 > table {
