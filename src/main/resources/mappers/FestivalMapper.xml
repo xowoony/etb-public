@@ -43,6 +43,9 @@
                `festivalArticle`.`created_on`  AS `createdOn`,
                `festivalArticle`.`modified_on` AS `modifiedOn`
         FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        GROUP BY `festivalArticle`.`index`
+--         ORDER BY `festivalComment`.`index` DESC
+            LIMIT #{limit} OFFSET #{offset}
     </select>
 
 
@@ -149,6 +152,27 @@
         WHERE `festivalComment`.`article_index` = #{index}
     </select>
 
+
+
+    <select id="selectFestivalArticleForCount"
+    resultType="int">
+        SELECT COUNT(*)
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+    </select>
+
+
+
+    <select id="selectFestivalArticleForPaging"
+        resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`      AS `index`,
+               `festivalArticle`.`title`    AS `title`,
+               `festivalArticle`.`description` AS `description`,
+               `festivalArticle`.`address` AS `address`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        GROUP BY `festivalArticle`.`index`
+--         ORDER BY `festivalArticle`.`index` DESC
+            LIMIT #{limit} OFFSET #{offset}
+    </select>
 
 
 

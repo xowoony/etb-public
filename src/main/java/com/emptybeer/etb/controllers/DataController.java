@@ -5,6 +5,7 @@ import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.models.PagingModel;
+import com.emptybeer.etb.models.PagingModelBeer;
 import com.emptybeer.etb.services.BbsService;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.vos.BeerVo;
@@ -47,7 +48,7 @@ public class DataController {
         page = Math.max(1, page);
         ModelAndView modelAndView = new ModelAndView("data/beer");
         int totalCount = this.dataService.getBeerCount(criterion, keyword);
-        PagingModel paging = new PagingModel(totalCount, page);
+        PagingModelBeer paging = new PagingModelBeer(totalCount, page);
         modelAndView.addObject("paging", paging);
         BeerVo[] beers = this.dataService.getBeer(paging, criterion, keyword, beerCategory);
         modelAndView.addObject("beers", beers);

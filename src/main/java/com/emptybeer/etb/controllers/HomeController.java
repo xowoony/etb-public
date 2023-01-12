@@ -2,6 +2,7 @@ package com.emptybeer.etb.controllers;
 
 import com.emptybeer.etb.entities.bbs.ImageEntity;
 import com.emptybeer.etb.entities.data.BeerEntity;
+import com.emptybeer.etb.models.PagingModelFestival;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.services.FestivalService;
 import com.emptybeer.etb.vos.BeerVo;
@@ -59,10 +60,17 @@ public class HomeController {
     // 이미지의 갯수만큼 grid로 나열하기 위해 bbsService맵퍼를 이용
     @GetMapping(value = "festival",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getFestival() {
+    public ModelAndView getFestival(
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
         ModelAndView modelAndView = new ModelAndView("home/festival");
 
-        modelAndView.addObject("festivalArticles", this.festivalService.getFestivalArticle());
+
+
+        int totalCount = this.festivalService.getALLFestivalArticle();
+        PagingModelFestival paging = new PagingModelFestival(totalCount, page);
+        modelAndView.addObject("paging", paging);
+        modelAndView.addObject("festivalArticles", this.festivalService.getFestivalArticle(paging));
+
         return modelAndView;
     }
 

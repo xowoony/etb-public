@@ -10,6 +10,7 @@ import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IBbsMapper;
 import com.emptybeer.etb.mappers.IFestivalMapper;
 import com.emptybeer.etb.models.PagingModel;
+import com.emptybeer.etb.models.PagingModelFestival;
 import com.emptybeer.etb.vos.FestivalCommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,12 +26,14 @@ public class FestivalService {
     }
     // festival 관련
 
-    public FestivalArticleEntity[] getFestivalArticle(){
+    public FestivalArticleEntity[] getFestivalArticleInAdmin(PagingModelFestival paging){
 
-        return this.festivalMapper.selectFestivalArticle();
+        return this.festivalMapper.selectFestivalArticle(paging.countPerPage, (paging.requestPage - 1)* paging.countPerPage);
     }
 
-
+    public FestivalArticleEntity[] getFestivalArticle(PagingModelFestival paging){
+        return this.festivalMapper.selectFestivalArticleForPaging(paging.countPerPage, (paging.requestPage - 1)* paging.countPerPage);
+    }
 
 
     public ImageEntity getImage(int index) {return this.festivalMapper.selectImageByIndex(index);}
@@ -104,6 +107,12 @@ public class FestivalService {
     }
 
 
+
+
+    //페이징용
+    public int getALLFestivalArticle(){
+        return this.festivalMapper.selectFestivalArticleForCount();
+    }
 
 
     // festivalAdmin 관련 메소드

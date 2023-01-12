@@ -6,6 +6,7 @@ import com.emptybeer.etb.entities.bbs.ImageEntity;
 import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.models.PagingModel;
+import com.emptybeer.etb.models.PagingModelFestival;
 import com.emptybeer.etb.services.BbsService;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.services.FestivalService;
@@ -179,10 +180,17 @@ public class FestivalController {
     // 이미지의 갯수만큼 grid로 나열하기 위해 bbsService맵퍼를 이용
     @GetMapping(value = "festivalAdminFestivalRead",
             produces = MediaType.TEXT_HTML_VALUE)
-    public ModelAndView getFestivalAdminFestivalRead() {
+    public ModelAndView getFestivalAdminFestivalRead(@RequestParam(value = "page", required = false, defaultValue = "1")
+                                                         Integer page) {
         ModelAndView modelAndView = new ModelAndView("festival/festivalAdminFestivalRead");
 
-        modelAndView.addObject("festivalArticles", this.festivalService.getFestivalArticle());
+
+        int totalCount = this.festivalService.getALLFestivalArticle();
+        PagingModelFestival paging = new PagingModelFestival(totalCount, page);
+        modelAndView.addObject("paging", paging);
+        modelAndView.addObject("festivalArticles", this.festivalService.getFestivalArticleInAdmin(paging));
+
+
         return modelAndView;
     }
 
