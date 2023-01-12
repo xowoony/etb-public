@@ -264,6 +264,7 @@ body > main > .home-section3 > .title-box3 > .footer2 {
     flex-direction: column;
     justify-content: center;
     color: rgb(0, 0, 0);
+    white-space: nowrap;
 }
 
 body > main > .home-section3 > .title-box3 > .footer2 > table {

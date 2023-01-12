@@ -99,7 +99,7 @@ body > .loading-cover {
     display: block;
     padding: 1rem;
 
-    background-color: rgb(222 225 45 / 25%);
+    background-color: rgba(87, 86, 86, 0.78);
     width: 100%;
     color: rgb(255, 255, 255);
     text-decoration: none;
