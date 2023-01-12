@@ -21,6 +21,8 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -159,7 +161,7 @@ public class MemberService {
     // 비밀번호 재설정
     @Transactional
     // recoverPasswordSend 리펙터링
-    public Enum<? extends IResult> recoverPasswordSend(EmailAuthEntity emailAuth) throws MessagingException {
+    public Enum<? extends IResult> recoverPasswordSend(EmailAuthEntity emailAuth, HttpServletRequest req) throws MessagingException {
         UserEntity existingUser = this.memberMapper.selectUserByEmail(emailAuth.getEmail());
         // user가 가지고 있는 Email값을 넣는다. 여기 user는 위 user랑 같다. 위 user는 컨트롤러가 준다.
         if (existingUser == null) {
@@ -196,6 +198,10 @@ public class MemberService {
 
         // 서비스에서 html로 인증코드를 넘겨줘야 하는데 그게 Context가 하는 일이다.
         context.setVariable("code", emailAuth.getCode());
+        context.setVariable("domain", String.format("%s://%s:%d",
+                req.getScheme(),
+                req.getServerName(),
+                req.getServerPort()));
 
         String text = this.templateEngine.process("member/recoverPasswordemailAuth", context);
         MimeMessage mail = this.mailSender.createMimeMessage();
