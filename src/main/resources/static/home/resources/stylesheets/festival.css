@@ -82,7 +82,6 @@ body > main > .home-section1 > .title-box2 {
     display: grid;
     object-fit: fill;
     color: black;
-    padding-bottom: 15rem;
     margin-left: 9rem;
     margin-right: 9rem;
 }
@@ -149,8 +148,57 @@ body > main > .home-section1 > .title-box1 > .festival-admin {
 
 body > main > .home-section1 > .title-box1 > .festival-admin:hover {
     background-color: #00000061;
+
 }
 
+
+
+/*페이징*/
+
+#foot-container {
+    background-color: #181515;
+    padding-bottom: 6rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#foot-container > div:last-of-type {
+    width: 100%;
+    border-top: 1px solid #181515;
+}
+
+#page-container {
+    /*margin: 0.3rem;*/
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#page-container > .page {
+    /* border-left: 0.0625rem solid rgb(76, 91, 105); */
+    color: white;
+    font-size: 13px;
+    padding: 0.3rem 0.55rem;
+    margin: 0.1rem;
+    text-decoration: none;
+    border: solid 1px #e5e5e5;
+/* background-color: #fff;*/
+}
+
+
+#page-container > .page.selected {
+border: solid 1px #e5e5e5;
+background-color: #000;
+color: #ffffff;
+}
+
+#page-container > .page:hover {
+color: white;
+background-color: rgb(0,0,0,20%);
+}
 
 
 

@@ -6,6 +6,7 @@ import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IDataMapper;
 import com.emptybeer.etb.models.PagingModel;
+import com.emptybeer.etb.models.PagingModelBeer;
 import com.emptybeer.etb.vos.BeerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class DataService {
     }
 
     // 맥주 이미지, 이름 배열로 가져오기 + 맥주 카테고리별 보기
-    public BeerVo[] getBeer(PagingModel paging, String criterion, String keyword, String beerCategory) {
+    public BeerVo[] getBeer(PagingModelBeer paging, String criterion, String keyword, String beerCategory) {
         return this.dataMapper.selectBeer(criterion, keyword, paging.countPerPage,
                 (paging.requestPage - 1) * paging.countPerPage, beerCategory);
     }

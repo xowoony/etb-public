@@ -10,14 +10,20 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IFestivalMapper {
     // festival관련
-    FestivalArticleEntity[] selectFestivalArticle();
+    FestivalArticleEntity[] selectFestivalArticle(@Param(value="limit")int limit,
+                                                  @Param(value="offset")int offset);
 
 
     FestivalArticleEntity selectFestivalArticleByIndex(@Param(value="index")int index);
 
+
+    int selectFestivalArticleForCount();
+
     FestivalCommentVo[] selectFestivalCommentByArticleIndex(@Param(value="index")int index,
                                                             @Param(value = "limit") int limit,
                                                             @Param(value = "offset") int offset);
+    FestivalArticleEntity[] selectFestivalArticleForPaging(@Param(value="limit")int limit,
+                                                           @Param(value="offset")int offset);
 
     ImageEntity selectImageByIndex(@Param(value="index") int index);
 
