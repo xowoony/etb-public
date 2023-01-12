@@ -12,6 +12,10 @@
     <link rel="stylesheet" th:href="@{/member/resources/stylesheets/myPage.css}">
     <!--  myPage.js 연결  -->
     <script defer th:src="@{/member/resources/scripts/myPage.js}"></script>
+    <script th:if="${session.user == null}">
+        alert("로그인이 필요한 페이지입니다.")
+        window.location.href = '../member/login'
+    </script>
 </head>
 <body th:if="${session.user != null}">
 <!--  header  -->
