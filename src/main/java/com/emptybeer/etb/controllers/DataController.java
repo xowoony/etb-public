@@ -6,6 +6,7 @@ import com.emptybeer.etb.entities.member.UserEntity;
 import com.emptybeer.etb.enums.CommonResult;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.models.PagingModelBeer;
+import com.emptybeer.etb.models.PagingModelFestival;
 import com.emptybeer.etb.services.BbsService;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.vos.BeerVo;
@@ -71,11 +72,15 @@ public class DataController {
     // 관리자페이지 맥주관련
 
     @GetMapping(value = "beerAdmin")
-    public ModelAndView getBeerAdmin() {
+    public ModelAndView getBeerAdmin(@RequestParam(value = "page", required = false, defaultValue = "1")
+                                         Integer page) {
         ModelAndView modelAndView = new ModelAndView("data/beerAdmin");
 
+        int totalCount = this.dataService.getBeerForPageCount();
+        PagingModelBeer paging = new PagingModelBeer(totalCount, page);
+        modelAndView.addObject("paging", paging);
         // 관리자 페이지용 맥주 정보를 가져온다.
-        modelAndView.addObject("beers", this.dataService.getBeerForAdmin());
+        modelAndView.addObject("beers", this.dataService.getBeerForAdmin(paging));
 
         return modelAndView;
     }

@@ -24,6 +24,7 @@ public interface IDataMapper {
     int selectBeerCountByBeerIndex(@Param(value = "criterion") String criterion,
                                    @Param(value = "keyword") String keyword);
 
+    int selectBeerCount();
 
     // 인기 맥주 배열로 가져오기
     BeerVo[] selectBeerRanking();
@@ -32,7 +33,8 @@ public interface IDataMapper {
 
 
     //관리자
-    BeerVo[] selectBeerForAdmin();
+    BeerVo[] selectBeerForAdmin(@Param(value="limit")int limit,
+                                @Param(value="offset")int offset);
 
     int insertBeer(BeerEntity beer);
 

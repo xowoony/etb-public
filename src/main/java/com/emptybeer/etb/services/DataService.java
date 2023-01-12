@@ -7,6 +7,7 @@ import com.emptybeer.etb.interfaces.IResult;
 import com.emptybeer.etb.mappers.IDataMapper;
 import com.emptybeer.etb.models.PagingModel;
 import com.emptybeer.etb.models.PagingModelBeer;
+import com.emptybeer.etb.models.PagingModelFestival;
 import com.emptybeer.etb.vos.BeerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,11 +54,12 @@ public class DataService {
     }
 
 
+    public int getBeerForPageCount(){ return this.dataMapper.selectBeerCount();}
 
     // 관리자
 
-    public BeerVo[] getBeerForAdmin(){
-        return this.dataMapper.selectBeerForAdmin();
+    public BeerVo[] getBeerForAdmin(PagingModelBeer paging){
+        return this.dataMapper.selectBeerForAdmin(paging.countPerPage, (paging.requestPage - 1)* paging.countPerPage);
     }
 
     public Enum<? extends IResult> beerWrite(BeerEntity beer){
