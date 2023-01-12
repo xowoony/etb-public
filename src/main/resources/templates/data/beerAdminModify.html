@@ -30,7 +30,7 @@
                 <table class="table">
                     <tbody>
                     <tr>
-                        <th colspan="1">맥주명</th>
+                        <th>맥주명</th>
                         <td>
                             <label class="label-beerTitle">
                                 <span hidden>맥주명</span>
@@ -106,15 +106,12 @@
                                     <option value="2">해외맥주</option>
                                 </select>
                             </label>
+                            <input class="beer-submit" type="submit" value="입력">
                         </td>
                     </tr>
-
-
-
                     </tbody>
                 </table>
                 <input type="hidden" name="index" th:value="${beers.getIndex()}">
-                <input class="beer-submit" type="submit" value="입력">
             </div>
         </form>
 
