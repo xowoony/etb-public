@@ -198,7 +198,7 @@ h2 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: #2c160a7d;
+    color: rgba(255, 255, 255, 75%);
     width: 60px;
     height: 60px;
     line-height: 58px;
