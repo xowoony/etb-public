@@ -129,7 +129,7 @@ body > .loading-cover {
     padding: 0.5rem;
 }
 
-.category >.start > .my {
+.category > .start > .my {
     width: 100%;
 }
 
@@ -196,7 +196,7 @@ body > header > .spring {
     background-color: rgba(0, 0, 0, 40%);
     height: 8rem;
     width: 100vw;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
 }
 
 
@@ -273,7 +273,7 @@ body > header > .spring > .category > li > span > .login {
 
 
 /*footer*/
-body > footer{
+body > footer {
     z-index: 99;
 }
 
