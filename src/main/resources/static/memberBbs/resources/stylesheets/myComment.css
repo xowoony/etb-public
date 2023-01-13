@@ -250,7 +250,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
 }
 
 
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > .nick {
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > span {
     font-size: 2rem;
     font-family: 'Do Hyeon', sans-serif;
 }
