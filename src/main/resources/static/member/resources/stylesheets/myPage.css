@@ -246,12 +246,13 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 }
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table {
-    margin-right: 0.7rem;
+    margin-right: 13.7rem;
     margin-top: 1rem;
     padding: 1.2rem 1.2rem;
     /* background-color: rgb(201 201 201 / 5%); */
     border-radius: 0.4rem;
     border: 0.0625rem solid rgb(164 161 161 / 58%);
+    width: 49rem;
 }
 
 /*닉네임 변경 테이블 높이*/
@@ -367,7 +368,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 /*프로필 타이틀*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .profile-title {
-    margin-right: 54rem;
+    margin-right: 56rem;
     font-size: 2rem;
     margin-top: 3rem;
     align-items: center;
@@ -383,6 +384,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-title {
     margin-top: 6rem;
     margin-bottom: 1rem;
+    margin-right: 14rem;
     font-family: 'Do Hyeon', sans-serif;
     color: #9e9e97;
     font-size: 1.15rem;
@@ -390,9 +392,10 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container {
     border: 0.0625rem solid rgb(164 161 161 / 58%);
-    width: 61rem;
-    height: 12rem;
+    width: 49rem;
+    height: 7rem;
     border-radius: 0.3rem;
+    margin-right: 14rem;
 }
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service {
@@ -418,6 +421,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .review,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .community,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .festival {
+    font-size: 0.9rem;
     font-family: 'Manrope', sans-serif;
     color: rgb(255 255 255 / 59%);
 }
@@ -428,8 +432,8 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .second-icon,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .third-icon,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .forth-icon {
-    width: 6rem;
-    height: 6rem;
+    width: 3rem;
+    height: 3rem;
     margin-bottom: 0.5rem;
 }
 
