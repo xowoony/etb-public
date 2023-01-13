@@ -189,6 +189,7 @@ if (commentForm !== null) {
                         case 'success':
                             loadComments();
                             commentForm['content'].value = '';
+                            document.getElementById('commentCount').innerHTML = responseObject['commentCount'] + 1;
                             break;
                         default:
                             alert('알 수 없는 이유로 댓글을 작성하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
@@ -283,7 +284,7 @@ topButton.addEventListener('click', () => {
 
 const goComment = document.getElementById('goComment');
 goComment.addEventListener('click', () => {
-    goComment.scrollIntoView();
+    commentContainer.scrollIntoView();
 })
 
 
