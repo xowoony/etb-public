@@ -90,6 +90,10 @@ body > .main > .content > .user > div:last-of-type > span {
     vertical-align: bottom;
 }
 
+body > .main > .content > .user > div:last-of-type > span.comment-count {
+    vertical-align: top;
+}
+
 body > .main > .content > .table th {
     width: 0;
     background-color: rgb(255, 255, 255);

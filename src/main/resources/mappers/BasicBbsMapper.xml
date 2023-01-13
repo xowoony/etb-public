@@ -78,7 +78,10 @@
                COUNT(`basicReport`.article_index) > 0                                             AS `isReported`,
                (SELECT COUNT(0)
                 FROM `etb_bbs`.`basic_article_reports`
-                WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`
+                WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`,
+               (SELECT COUNT(0)
+                FROM etb_bbs.basic_comments
+                WHERE etb_bbs.basic_comments.article_index = basicArticle.`index`) AS `commentCount`
         FROM `etb_bbs`.`basic_articles` AS `basicArticle`
                  LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
                  LEFT JOIN `etb_bbs`.`basic_article_likes` AS `basicArticleLike`
