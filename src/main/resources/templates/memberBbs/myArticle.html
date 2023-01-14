@@ -139,9 +139,9 @@
                                                        onclick='checkSelectAll()'
                                                 th:data-aid="${basicArticle.getIndex()}"/>
                                             </td>
-
-                                            <td>
-                                                <div th:text="${basicArticle.getBoardName()}"></div>
+                                            <!---->
+                                            <td class="board-name-container">
+                                                <div class="board" th:text="${basicArticle.getBoardName()}"></div>
                                             </td>
                                             <td>
                                                 <div class="index" th:text="${basicArticle.getIndex()}">34</div>
@@ -150,7 +150,8 @@
                                                 <a th:href="@{/basicBbs/read (aid=${basicArticle.getIndex()})}" class="title" th:text="${basicArticle.getTitle()}">아아아아아아아아아주 좋아요 이 맥주</a>
                                                 <span class="count" th:text="${'[' + basicArticle.getCommentCount() + ']'}">[5]</span>
                                             </td>
-                                            <td>
+<!--                                            d-->
+                                            <td class="created-on-container">
                                                 <div th:text="${#dates.format(basicArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}" class="created-on">2023-01-08</div>
                                             </td>
                                             <td>
@@ -202,7 +203,7 @@
                                             <td>
                                                 <a th:href="@{/bbs/reviewRead (aid=${reviewArticle.getIndex()})}" class="title" th:text="${reviewArticle.getBeerName()}">아아아아아아아아아주 좋아요 이 맥주</a>
                                             </td>
-                                            <td>
+                                            <td class="created-on-container">
                                                 <div th:text="${#dates.format(reviewArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}" class="created-on">2023-01-08</div>
                                             </td>
                                             <td>

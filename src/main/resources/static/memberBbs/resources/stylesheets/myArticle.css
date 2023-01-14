@@ -263,6 +263,13 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-collapse: collapse;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .created-on-container{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div {
     width: 15rem;
@@ -379,6 +386,13 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     color: #e07f7fe6;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .board-name-container > .board{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 /*작성한 글 테이블 thead 안 체크박스 간격*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .check-box {
     width: 3rem;
@@ -429,12 +443,8 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-top: 0.02rem solid rgb(147 140 140);
 }
 
-/*body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-container{*/
-/*    width: 2rem;*/
-/*}*/
-
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .all-check-td{
-    width: 5rem;
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-container{
+    width: 2rem;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .delete-container{
@@ -464,14 +474,16 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     width: 2rem;
 }
 
-/*#secondTable > tfoot > .tfoot-header > .check-box-container{*/
-/*    width: 2rem;*/
-/*}*/
-
-#secondTable > tfoot > .tfoot-header > .all-check-td{
-    width: 5rem;
+#secondTable > tbody > tr > .created-on-container{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
+#secondTable > tfoot > .tfoot-header > .check-box-container{
+    width: 2rem;
+}
 
     /*체크박스*/
 .--object-check {
