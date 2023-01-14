@@ -39,6 +39,14 @@
                     <td class="category-tab">
                         <table>
                             <tbody>
+                            <tr class="category-title home">
+                                <td class="my-page-home">
+                                    <a th:href="@{/member/myPage}">
+                                        MY PAGE
+                                    </a>
+
+                                </td>
+                            </tr>
                             <tr class="category-title">
                                 <td>모아보기</td>
                             </tr>
@@ -152,11 +160,11 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
+                                            <td class="check-box-container"><input class="check-box" type='checkbox'
                                                        name='selectall'
                                                        value='selectall'
                                                        onclick='selectAll(this)'/> </td>
-                                            <td>전체선택</td>
+                                            <td class="all-check-td">전체선택</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -185,7 +193,7 @@
                                         <tbody>
                                         <!--    게시물 1개     -->
                                         <tr th:each="reviewArticle : ${reviewArticles}">
-                                            <td>
+                                            <td class="check-box-container">
                                                 <input type='checkbox'
                                                        name='myReview'
                                                        onclick='checkSelectAll2()'
@@ -204,11 +212,11 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
+                                            <td class="check-box-container"><input class="check-box" type='checkbox'
                                                        name='selectall2'
                                                        value='selectall2'
                                                        onclick='selectAll2(this)'/> </td>
-                                            <td>전체선택</td>
+                                            <td class="all-check-td">전체선택</td>
                                             <td></td>
                                             <td class="delete-container">
                                                 <a href="#" rel="reviewDeleteButton">삭제</a>

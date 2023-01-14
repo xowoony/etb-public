@@ -40,63 +40,73 @@
                         <td class="category-tab">
                             <table>
                                 <tbody>
-                                <tr class="category-title">
-                                    <td>모아보기</td>
-                                </tr>
-                                <tr class="category-content">
-                                    <td>
-                                        <a th:href="@{/memberBbs/myArticle}">
-                                            <div>작성한 글 보기</div>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="category-content">
-                                    <td>
-                                        <a th:href="@{/memberBbs/myComment}">
-                                            <div>작성한 댓글 보기</div>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="category-content content3">
-                                    <td>
-                                        <a th:href="@{/memberBbs/myLike}">
-                                            <div>
-                                                좋아요한 글 보기
-                                            </div>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="category-title">
-                                    <td>
-                                        회원정보 수정
-                                    </td>
-                                </tr>
-                                <tr class="category-content">
-                                    <td>
-                                        <a th:href="@{/member/changeNickname}">
-                                            <div>닉네임 변경</div>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="category-content">
-                                    <td>
-                                        <a th:href="@{/member/changeContact}">
-                                            <div>연락처 변경</div>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="category-content">
-                                    <td>
-                                        <a th:href="@{/member/changeAddress}">
-                                            <div>주소 변경</div>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="category-content">
-                                    <td><a th:href="@{/member/delete}">
-                                        <div>회원 탈퇴</div>
-                                    </a></td>
-                                </tr>
+                                    <tr class="category-title home">
+                                        <td class="my-page-home">
+                                            <a th:href="@{/member/myPage}">
+                                                <span class="house-emo">
+                                                </span>
+                                                <span>MY PAGE</span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="category-title">
+                                        <td>모아보기</td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/memberBbs/myArticle}">
+                                                <div>작성한 글 보기</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/memberBbs/myComment}">
+                                                <div>작성한 댓글 보기</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content content3">
+                                        <td>
+                                            <a th:href="@{/memberBbs/myLike}">
+                                                <div>
+                                                    추천한 글 보기
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-title">
+                                        <td>
+                                            회원정보 수정
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/member/changeNickname}">
+                                                <div>닉네임 변경</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/member/changeContact}">
+                                                <div>연락처 변경</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/member/changeAddress}">
+                                                <div>주소 변경</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td><a th:href="@{/member/delete}">
+                                            <div>회원 탈퇴</div>
+                                        </a></td>
+                                    </tr>
                             </table>
                         </td>
                         <td class="category-tab2">

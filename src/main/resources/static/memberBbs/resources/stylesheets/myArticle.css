@@ -123,6 +123,29 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home {
+    background-color: #9d9d9d42;
+    font-size: 1.5rem;
+    font-family: 'Secular One', sans-serif;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home > a {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
 /*카테고리 content*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content {
     width: 100%;
@@ -296,6 +319,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     flex-direction: row;
     justify-content: center;
     height: 2.5rem;
+    width: 15rem;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .created-on {
@@ -405,13 +429,51 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-top: 0.02rem solid rgb(147 140 140);
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-container{
+    width: 2rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .all-check-td{
+    width: 5rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .delete-container{
+    width: 5rem;
+    height: 1rem;
+}
+
 /*두번째 테이블*/
 #secondTable {
     margin-top: 2rem;
-    margin-bottom: 8vh;
+    margin-bottom: 10rem;
 }
 
-/*체크박스*/
+#secondTable > thead > .header-border > td > .header-title {
+    width: 40rem;
+}
+
+#secondTable > thead > .header-border > td > .created-on{
+    width: 15rem;
+}
+
+#secondTable > thead > .header-border > td > .view{
+    width: 5rem;
+}
+
+#secondTable > tbody > tr > .check-box-container{
+    width: 2rem;
+}
+
+#secondTable > tfoot > .tfoot-header > .check-box-container{
+    width: 2rem;
+}
+
+#secondTable > tfoot > .tfoot-header > .all-check-td{
+    width: 5rem;
+}
+
+
+    /*체크박스*/
 .--object-check {
     align-items: center;
     cursor: pointer;
