@@ -146,6 +146,7 @@ body > main > .review-container > .review-comment {
     padding: 0.5rem 1.5rem;
     /* text-align: center; */
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 
