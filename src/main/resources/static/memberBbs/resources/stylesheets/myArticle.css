@@ -429,9 +429,9 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-top: 0.02rem solid rgb(147 140 140);
 }
 
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-container{
-    width: 2rem;
-}
+/*body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-container{*/
+/*    width: 2rem;*/
+/*}*/
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .all-check-td{
     width: 5rem;
@@ -464,9 +464,9 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     width: 2rem;
 }
 
-#secondTable > tfoot > .tfoot-header > .check-box-container{
-    width: 2rem;
-}
+/*#secondTable > tfoot > .tfoot-header > .check-box-container{*/
+/*    width: 2rem;*/
+/*}*/
 
 #secondTable > tfoot > .tfoot-header > .all-check-td{
     width: 5rem;

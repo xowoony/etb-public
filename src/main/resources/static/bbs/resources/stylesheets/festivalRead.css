@@ -323,9 +323,8 @@ body > main > .review-container > .review-comment {
 
 
 #page-container > .page.selected {
-    /*background-color: rgb(66, 81, 95);*/
+    background-color: rgb(184 160 68 / 41%);
     border: solid 1px #e5e5e5;
-    background-color: #fff;
     color: #000000;
 }
 
