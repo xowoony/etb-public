@@ -193,7 +193,7 @@ body > main > .home-section1 > .title-box1 > .festival-admin:hover {
 
 #page-container > .page:hover {
     color: white;
-    background-color: rgb(0, 0, 0, 20%);
+    background-color: rgb(255 255 255 / 20%);
 }
 
 
