@@ -142,7 +142,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
     display: flex;
     flex-direction: row;
     justify-content: center;
-    color: rgb(255, 255, 255);
+    color: #ffffffb5;
     text-decoration: none;
 }
 
@@ -276,19 +276,18 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     margin-left: 6rem;
     margin-top: 3rem;
     border-left: 0.2rem solid #383737;
-    /*background-color: rgb(202 129 129 / 8%);*/
     padding: 0.1rem 0.9rem 0.7rem;
 
 }
 
-/*body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > span {*/
-/*    font-size: 2rem;*/
-/*    font-family: 'Do Hyeon', sans-serif;*/
-/*}*/
-
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > span {
+    color: #ffffffb5;
     font-size: 2rem;
     font-family: 'Do Hyeon', sans-serif;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div >  .email{
+    color: #ffffffb5;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {

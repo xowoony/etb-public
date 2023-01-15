@@ -172,7 +172,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
     display: flex;
     flex-direction: row;
     justify-content: center;
-    color: rgb(255, 255, 255);
+    color: #ffffffb5;
     text-decoration: none;
 }
 
@@ -377,7 +377,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .contact > .change-contact > a,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .address > .change-address > a {
     text-decoration: none;
-    color: #d8c2c2;
+    color: #ffffffb5;
     font-size: 0.85rem;
 }
 

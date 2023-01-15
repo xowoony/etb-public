@@ -136,7 +136,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home > a {
-    color: rgb(255, 255, 255);
+    color: #ffffffb5;
     text-decoration: none;
     align-items: center;
     display: flex;
@@ -272,8 +272,13 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     padding: 0.1rem 0.9rem 0.7rem;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > .email {
+    color: #ffffffb5;
+}
+
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > span {
+    color: #ffffffb5;
     font-size: 2rem;
     font-family: 'Do Hyeon', sans-serif;
 }
@@ -304,8 +309,6 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > .header-border {
     border-bottom: 0.02rem solid rgb(147 140 140);
 }
-
-
 
 
 /* 작성한 글 테이블 thead*/
@@ -462,15 +465,15 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     margin-bottom: 10rem;
 }
 
-#contentTable > tbody > tr > .check-box-container{
+#contentTable > tbody > tr > .check-box-container {
     width: 2rem;
 }
 
-#contentTable > thead > .header-border > .created-on{
+#contentTable > thead > .header-border > .created-on {
     width: 15rem;
 }
 
-#contentTable > tfoot > .tfoot-header > .tfoot-header-td{
+#contentTable > tfoot > .tfoot-header > .tfoot-header-td {
     width: 2rem;
 }
 
