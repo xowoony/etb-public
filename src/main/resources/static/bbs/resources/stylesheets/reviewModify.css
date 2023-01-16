@@ -113,6 +113,12 @@ h2 {
     user-select: none;
 }
 
+
+/*별 선택시 커서*/
+.score-container > .star-container > .star {
+    cursor: pointer;
+}
+
 /*별 채우기 디자인*/
 .score-container > .star-container > .star.selected {
     color: rgb(255, 191, 0);
