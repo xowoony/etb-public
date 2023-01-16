@@ -152,8 +152,7 @@ body > .main > .content > .title-container > .admin:active {
 
 #foot-container {
     background-color: #f9f9f8;
-    margin-top: 1.5rem;
-    /*padding: 1.5rem;*/
+    margin: 1.5rem 0 13vh 0;
 
     align-items: center;
     display: flex;

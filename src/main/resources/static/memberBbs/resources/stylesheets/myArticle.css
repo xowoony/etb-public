@@ -20,7 +20,7 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgb(0,0,0);
+    background-color: rgb(0, 0, 0);
 }
 
 /*main*/
@@ -76,7 +76,7 @@ body > main > .beer-section > .title-box2 {
     width: 100%;
     /*background-color: #151213;*/
     height: 100%;
-
+    white-space: nowrap;
 }
 
 body > main > .beer-section > .title-box2 > table {
@@ -101,6 +101,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab {
     background-color: rgb(0 0 0);
     width: 100%;
     height: 100%;
+    white-space: nowrap;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -109,15 +110,40 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab {
 
 /*카테고리 타이틀 - 모아보기, 회원정보 수정*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title {
-    font-family: 'Do Hyeon', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Gowun Batang', serif;
     width: 100%;
     height: 4rem;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(70 70 70 / 17%);
+    background-color: rgb(70 70 70 / 35%);
 
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home {
+    background-color: #9d9d9d42;
+    font-size: 1.5rem;
+    font-family: 'Secular One', sans-serif;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home > a {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #ffffffb5;
+    text-decoration: none;
 }
 
 /*카테고리 content*/
@@ -148,7 +174,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 /*카테고리 content 안 td margin */
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td {
-    font-family: 'Do Hyeon', sans-serif;
+    /*font-family: 'Do Hyeon', sans-serif;*/
     width: 100%;
     height: 100%;
     align-items: center;
@@ -171,6 +197,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab >
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a > div {
     margin-right: 3rem;
+    font-family: 'Gowun Batang', serif;
 }
 
 /*잔이비어 contact 정보*/
@@ -236,20 +263,31 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-collapse: collapse;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .created-on-container{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div {
     width: 15rem;
     margin-left: 6rem;
     margin-top: 3rem;
     border-left: 0.2rem solid #383737;
-    /*background-color: rgb(202 129 129 / 8%);*/
     padding: 0.1rem 0.9rem 0.7rem;
+
 }
 
-
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > .nick {
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > span {
+    color: #ffffffb5;
     font-size: 2rem;
     font-family: 'Do Hyeon', sans-serif;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div >  .email{
+    color: #ffffffb5;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
@@ -287,6 +325,7 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     flex-direction: row;
     justify-content: center;
     height: 2.5rem;
+    width: 15rem;
 }
 
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .created-on {
@@ -346,6 +385,13 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     color: #e07f7fe6;
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .board-name-container > .board{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 /*작성한 글 테이블 thead 안 체크박스 간격*/
 body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .check-box {
     width: 3rem;
@@ -380,13 +426,13 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     justify-content: center;
     border: 0.0625rem solid rgb(206 205 205);
     padding: 0.5rem 0.1rem;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 0.8rem;
 }
 
-body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > tr > .delete-container > a:hover{
-    background-color: rgba(94, 110, 66, 0.25);
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > tr > .delete-container > a:hover {
+    background-color: rgba(232, 28, 28, 0.15);
 
 }
 
@@ -396,13 +442,49 @@ body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 
     border-top: 0.02rem solid rgb(147 140 140);
 }
 
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-container{
+    width: 2rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .delete-container{
+    width: 5rem;
+    height: 1rem;
+}
+
 /*두번째 테이블*/
 #secondTable {
     margin-top: 2rem;
-    margin-bottom: 8vh;
+    margin-bottom: 10rem;
 }
 
-/*체크박스*/
+#secondTable > thead > .header-border > td > .header-title {
+    width: 40rem;
+}
+
+#secondTable > thead > .header-border > td > .created-on{
+    width: 15rem;
+}
+
+#secondTable > thead > .header-border > td > .view{
+    width: 5rem;
+}
+
+#secondTable > tbody > tr > .check-box-container{
+    width: 2rem;
+}
+
+#secondTable > tbody > tr > .created-on-container{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#secondTable > tfoot > .tfoot-header > .check-box-container{
+    width: 2rem;
+}
+
+    /*체크박스*/
 .--object-check {
     align-items: center;
     cursor: pointer;

@@ -38,6 +38,14 @@
                     <td class="category-tab">
                         <table>
                             <tbody>
+                            <tr class="category-title home">
+                                <td class="my-page-home">
+                                    <a th:href="@{/member/myPage}">
+                                        MY PAGE
+                                    </a>
+
+                                </td>
+                            </tr>
                             <tr class="category-title">
                                 <td>모아보기</td>
                             </tr>
@@ -76,20 +84,20 @@
                             </tr>
                             <tr class="category-content content5">
                                 <td>
-                                    <a th:href="@{/memberBbs/changeContact}">
+                                    <a th:href="@{/member/changeContact}">
                                         <div>연락처 변경</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content6">
                                 <td>
-                                    <a th:href="@{/memberBbs/changeAddress}">
+                                    <a th:href="@{/member/changeAddress}">
                                         <div>주소 변경</div>
                                     </a>
                                 </td>
                             </tr>
                             <tr class="category-content content7">
-                                <td><a th:href="@{/memberBbs/delete}">
+                                <td><a th:href="@{/member/delete}">
                                     <div>회원 탈퇴</div>
                                 </a></td>
                             </tr>
@@ -100,9 +108,9 @@
                         <div class="article-nick-container">
                             <div class="article-nick">
                                 <div>
-                                    <div class="nick" th:text="${session.userNickname}">양파쿵야
-                                        <span>님</span>
-                                    </div>
+                                    <span class="nick" th:text="${session.userNickname}">양파쿵야
+                                    </span>
+                                    <span>님</span>
                                     <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
                                 </div>
                                 <form>
@@ -112,7 +120,7 @@
                                             <td colspan="4">
                                                 <div class="header-title">작성한 댓글</div>
                                             </td>
-                                            <td>
+                                            <td class="created-on">
                                                 <div class="view">작성일</div>
                                             </td>
                                         </tr>
@@ -120,7 +128,7 @@
                                         <tbody>
                                         <!--    게시물 1개     -->
                                         <tr th:each="basicComment : ${basicComments}">
-                                            <td>
+                                            <td class="check-box-container">
                                                 <input type='checkbox'
                                                        name='myLike'
                                                        onclick='checkSelectAll()'
@@ -141,14 +149,14 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
+                                            <td class="tfoot-header-td"><input class="check-box" type='checkbox'
                                                        name='selectall'
                                                        value='selectall'
                                                        onclick='selectAll(this)'/> </td>
                                             <td>전체선택</td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>
+<!--                                            <td></td>-->
                                             <td class="delete-container" rel="commentDeleteButton">
                                                 <a href="#">삭제</a>
                                             </td>

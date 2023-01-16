@@ -1,7 +1,6 @@
 package com.emptybeer.etb.controllers;
 
 import com.emptybeer.etb.entities.bbs.ImageEntity;
-import com.emptybeer.etb.entities.data.BeerEntity;
 import com.emptybeer.etb.models.PagingModelFestival;
 import com.emptybeer.etb.services.DataService;
 import com.emptybeer.etb.services.FestivalService;
@@ -98,6 +97,17 @@ public class HomeController {
         responseEntity = new ResponseEntity<>(beer.getImage(), headers, HttpStatus.OK);
 
         return responseEntity;
+    }
+
+
+
+    // 페스티벌 관리자 페이지 관련
+    @GetMapping(value="etbAdmin")
+    public ModelAndView getAdmin(){
+
+        ModelAndView modelAndView = new ModelAndView("home/etbAdmin");
+
+        return modelAndView;
     }
 
 }

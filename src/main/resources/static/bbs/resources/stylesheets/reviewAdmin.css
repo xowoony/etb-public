@@ -23,6 +23,7 @@ body {
     margin: 5vh 0 1rem 0;
     font-size: 2rem;
     font-weight: 550;
+    white-space: nowrap;
 
     align-items: center;
     display: flex;
@@ -52,6 +53,7 @@ body {
     color: #9a9a9a;
     padding: 0.8rem;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 
     align-items: stretch;
     display: flex;
@@ -128,7 +130,12 @@ body {
 }
 
 .review-list > .review-table > thead > tr > th {
+    white-space: nowrap;
     padding: 0.5rem 0;
+}
+
+.review-list > .review-table > tbody {
+    white-space: nowrap;
 }
 
 .review-list > .review-table > tbody > tr {

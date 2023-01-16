@@ -159,8 +159,10 @@ public class BasicBbsController {
             responseObject.put("result", CommonResult.FAILURE.name().toLowerCase());
         } else {
             basicComment.setUserEmail(user.getEmail());
+            BasicArticleVo basicArticle = this.basicBbsService.readArticle(basicComment.getArticleIndex(), user);
             Enum<?> result = this.basicBbsService.writeComment(basicComment);
             responseObject.put("result", result.name().toLowerCase());
+            responseObject.put("commentCount", basicArticle.getCommentCount());
         }
         return responseObject.toString();
     }

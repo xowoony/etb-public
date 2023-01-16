@@ -38,6 +38,14 @@
                     <td class="category-tab">
                         <table>
                             <tbody>
+                            <tr class="category-title home">
+                                <td class="my-page-home">
+                                    <a th:href="@{/member/myPage}">
+                                        MY PAGE
+                                    </a>
+
+                                </td>
+                            </tr>
                             <tr class="category-title">
                                 <td>모아보기</td>
                             </tr>
@@ -100,9 +108,9 @@
                         <div class="article-nick-container">
                             <div class="article-nick">
                                 <div>
-                                    <div class="nick" th:text="${session.userNickname}">양파쿵야
-                                        <span>님</span>
-                                    </div>
+                                    <span class="nick" th:text="${session.userNickname}">양파쿵야
+                                    </span>
+                                    <span>님</span>
                                     <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
                                 </div>
                                 <form>
@@ -117,30 +125,33 @@
                                         <tbody>
                                         <!--    게시물 1개     -->
                                         <tr th:each="basicArticleLike : ${basicArticleLikes}">
-                                            <td>
+                                            <td class="check-box-container">
                                                 <input type='checkbox'
                                                        name='myArticle'
                                                        onclick='checkSelectAll()'
                                                        th:data-aid="${basicArticleLike.getArticleIndex()}"
-                                                th:data-bid="${basicArticleLike.getBoardId()}"/>
+                                                       th:data-bid="${basicArticleLike.getBoardId()}"/>
                                             </td>
-                                            <td>
+                                            <td class="board-name-container">
                                                 <div th:text="${basicArticleLike.getBoardName()}" class="index"></div>
                                             </td>
                                             <td>
-                                                <a th:href="@{/basicBbs/read (aid=${basicArticleLike.getArticleIndex()})}" th:text="${basicArticleLike.getTitle()}"  class="title">아아아아아아아아아주 좋아요 이 맥주</a>
-                                                <span class="count" th:text="${'[' + basicArticleLike.getCommentCount() + ']'}">[5]</span>
+                                                <a th:href="@{/basicBbs/read (aid=${basicArticleLike.getArticleIndex()})}"
+                                                   th:text="${basicArticleLike.getTitle()}" class="title">아아아아아아아아아주 좋아요
+                                                    이 맥주</a>
+                                                <span class="count"
+                                                      th:text="${'[' + basicArticleLike.getCommentCount() + ']'}">[5]</span>
                                             </td>
                                         </tr>
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
+                                            <td class="tfoot-header-td"><input class="check-box" type='checkbox'
                                                        name='selectall'
                                                        value='selectall'
-                                                       onclick='selectAll(this)'/> </td>
-                                            <td>전체선택</td>
-                                            <td></td>
+                                                       onclick='selectAll(this)'/></td>
+                                            <td class="total-check">전체선택</td>
+                                            <!--                                            <td></td>-->
                                             <td class="delete-container">
                                                 <a href="#" rel="basicLikeDeleteButton">추천 취소</a>
                                             </td>
@@ -152,13 +163,13 @@
                                     <table id="secondTable">
                                         <thead>
                                         <tr class="header-border">
-                                            <td colspan="3">
+                                            <td colspan="3" class="like-review-td">
                                                 <div class="header-title">추천한 리뷰</div>
                                             </td>
-                                            <td>
+                                            <td class="star-td">
                                                 <div class="view">평점</div>
                                             </td>
-                                            <td>
+                                            <td class="writer-td">
                                                 <div class="writer">작성자</div>
                                             </td>
                                         </tr>
@@ -173,7 +184,9 @@
                                                        th:data-aid2="${reviewArticleLike.getArticleIndex()}"/>
                                             </td>
                                             <td>
-                                                <a th:href="@{/bbs/reviewRead (aid=${reviewArticleLike.getArticleIndex()})}" class="title" th:text="${reviewArticleLike.getBeerName()}">아아아아아아아아아주 좋아요 이 맥주</a>
+                                                <a th:href="@{/bbs/reviewRead (aid=${reviewArticleLike.getArticleIndex()})}"
+                                                   class="title" th:text="${reviewArticleLike.getBeerName()}">아아아아아아아아아주
+                                                    좋아요 이 맥주</a>
                                             </td>
                                             <td class="left">
                                                 <div th:text="${reviewArticleLike.getContentGood()}"></div>
@@ -189,13 +202,13 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
-                                                       name='selectall2'
-                                                       value='selectall2'
-                                                       onclick='selectAll2(this)'/></td>
-                                            <td>전체선택</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="check-box-td"><input class="check-box" type='checkbox'
+                                                                            name='selectall2'
+                                                                            value='selectall2'
+                                                                            onclick='selectAll2(this)'/></td>
+                                            <td class="all-check-td">전체선택</td>
+                                            <td class="content-td"></td>
+                                            <td class="created-on-td"></td>
                                             <td class="delete-container">
                                                 <a href="#" rel="reviewDeleteButton">추천 취소</a>
                                             </td>

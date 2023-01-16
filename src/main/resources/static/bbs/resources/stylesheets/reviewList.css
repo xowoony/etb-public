@@ -9,13 +9,9 @@ body {
 /*section 부드러운 스크롤*/
 #smoothScroll {height:100vh; overflow:auto; scroll-snap-type:y mandatory; -ms-scroll-snap-type:mandatory;}
 #smoothScroll>section {padding:10px; height:500px; scroll-snap-align:start; -ms-scroll-snap-coordinate:0 0;}
-/*#smoothScroll>section:nth-child(3n+1) {background:gold;}*/
 #smoothScroll>section:nth-child(3n+2) {
-    /*background:skyblue;*/
-    /*height: 365vh;*/
     scroll-snap-type: none;
 }
-/*#smoothScroll>section:nth-child(3n) {background:pink;}*/
 
 .beer-detail {
     align-items: stretch;

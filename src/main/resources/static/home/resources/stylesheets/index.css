@@ -110,6 +110,7 @@ body > main > .home-section2 > .title-box2 > table > tbody {
 
 /*이미지 슬라이드*/
 body > main > .home-section2 > .title-box2 > table > tbody > .image-slide {
+    margin-top: 1rem;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -130,7 +131,7 @@ body > main > .home-section2 > .title-box2 > table > tbody > tr > .title-content
 
 
 body > main > .home-section2 > .title-box2 > table > tbody > .next {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 /*두번째 next 버튼*/
@@ -339,4 +340,5 @@ body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td 
 
 body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .top > .commonButton:hover {
     background-color: rgba(0, 0, 0, 0);
+    color: rgb(220 252 9);
 }

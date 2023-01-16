@@ -39,6 +39,14 @@
                     <td class="category-tab">
                         <table>
                             <tbody>
+                            <tr class="category-title home">
+                                <td class="my-page-home">
+                                    <a th:href="@{/member/myPage}">
+                                        MY PAGE
+                                    </a>
+
+                                </td>
+                            </tr>
                             <tr class="category-title">
                                 <td>모아보기</td>
                             </tr>
@@ -101,9 +109,9 @@
                         <div class="article-nick-container">
                             <div class="article-nick">
                                 <div>
-                                    <div class="nick" th:text="${session.userNickname}">양파쿵야
-                                        <span>님</span>
-                                    </div>
+                                    <span class="nick" th:text="${session.userNickname}">양파쿵야
+                                    </span>
+                                    <span>님</span>
                                     <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
                                 </div>
                                 <form>
@@ -131,9 +139,9 @@
                                                        onclick='checkSelectAll()'
                                                 th:data-aid="${basicArticle.getIndex()}"/>
                                             </td>
-
-                                            <td>
-                                                <div th:text="${basicArticle.getBoardName()}"></div>
+                                            <!---->
+                                            <td class="board-name-container">
+                                                <div class="board" th:text="${basicArticle.getBoardName()}"></div>
                                             </td>
                                             <td>
                                                 <div class="index" th:text="${basicArticle.getIndex()}">34</div>
@@ -142,7 +150,8 @@
                                                 <a th:href="@{/basicBbs/read (aid=${basicArticle.getIndex()})}" class="title" th:text="${basicArticle.getTitle()}">아아아아아아아아아주 좋아요 이 맥주</a>
                                                 <span class="count" th:text="${'[' + basicArticle.getCommentCount() + ']'}">[5]</span>
                                             </td>
-                                            <td>
+<!--                                            d-->
+                                            <td class="created-on-container">
                                                 <div th:text="${#dates.format(basicArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}" class="created-on">2023-01-08</div>
                                             </td>
                                             <td>
@@ -152,11 +161,11 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
+                                            <td class="check-box-container"><input class="check-box" type='checkbox'
                                                        name='selectall'
                                                        value='selectall'
                                                        onclick='selectAll(this)'/> </td>
-                                            <td>전체선택</td>
+                                            <td class="all-check-td">전체선택</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -185,7 +194,7 @@
                                         <tbody>
                                         <!--    게시물 1개     -->
                                         <tr th:each="reviewArticle : ${reviewArticles}">
-                                            <td>
+                                            <td class="check-box-container">
                                                 <input type='checkbox'
                                                        name='myReview'
                                                        onclick='checkSelectAll2()'
@@ -194,7 +203,7 @@
                                             <td>
                                                 <a th:href="@{/bbs/reviewRead (aid=${reviewArticle.getIndex()})}" class="title" th:text="${reviewArticle.getBeerName()}">아아아아아아아아아주 좋아요 이 맥주</a>
                                             </td>
-                                            <td>
+                                            <td class="created-on-container">
                                                 <div th:text="${#dates.format(reviewArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}" class="created-on">2023-01-08</div>
                                             </td>
                                             <td>
@@ -204,11 +213,11 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="tfoot-header">
-                                            <td><input class="check-box" type='checkbox'
+                                            <td class="check-box-container"><input class="check-box" type='checkbox'
                                                        name='selectall2'
                                                        value='selectall2'
                                                        onclick='selectAll2(this)'/> </td>
-                                            <td>전체선택</td>
+                                            <td class="all-check-td">전체선택</td>
                                             <td></td>
                                             <td class="delete-container">
                                                 <a href="#" rel="reviewDeleteButton">삭제</a>
