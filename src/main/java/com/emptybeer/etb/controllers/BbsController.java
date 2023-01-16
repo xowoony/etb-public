@@ -260,7 +260,7 @@ public class BbsController {
     public String postReviewLike(
             @SessionAttribute(value = "user", required = false) UserEntity user,
             ReviewArticleLikeEntity reviewArticleLike,
-            @RequestParam(value = "aid", required = false) int aid) {
+            @RequestParam(value = "articleIndex", required = false) int aid) {
         JSONObject responseObject = new JSONObject();
         reviewArticleLike.setArticleIndex(aid);
         Enum<?> result = this.bbsService.reviewLike(reviewArticleLike, user);
