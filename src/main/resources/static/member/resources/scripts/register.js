@@ -1,6 +1,5 @@
 const form = window.document.getElementById('form');
 const Warning = {
-    // 묶어낸다.
     show: (text) => {
         form.querySelector('[rel="warningText"]').innerText = text;
         form.querySelector('[rel="warning"]').classList.add('visible');
@@ -10,7 +9,6 @@ const Warning = {
     }
 }
 const EmailWarning = {
-    // 묶어낸다.
     show: (text) => {
         const emailWarning = form.querySelector('[rel="emailWarning"]');
         emailWarning.innerText = text;
@@ -183,11 +181,10 @@ form['emailSend'].addEventListener('click', () => {
     // 앞부분 email은 RequestParam에서 받을 value값이 되고, 뒤에 email은 form 태그안 input 태그 안에 있는
     // email이란 name값을 가진 value이다.
     xhr.open('POST', './email'); // post방식, RequestMapping의 ./email 은 POST를 요청할 도메인이다.
-    xhr.onreadystatechange = () => {        // 이 함수는 추후에 실행된다.
+    xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             Cover.hide();
             if (xhr.status >= 200 && xhr.status < 300) {
-                // Http 코드가 200이상 300미만일 경우 성공. success 가 표시된다.
                 const responseObject = JSON.parse(xhr.responseText);
                 switch (responseObject['result']) {
                     case 'success':
@@ -200,7 +197,6 @@ form['emailSend'].addEventListener('click', () => {
                         form['emailAuthCode'].focus();
                         form['emailAuthSalt'].value = responseObject['salt'];
                         form['emailVerify'].removeAttribute('disabled');
-                        // 외워야 되는 내용도 아니에요
                         break;
                     case 'email_duplicated':
                         form.querySelector('[rel="emailWarning"]').innerText = '해당 이메일은 이미 사용 중입니다.';
@@ -214,14 +210,8 @@ form['emailSend'].addEventListener('click', () => {
                         form['email'].focus();
                         form['email'].select();
                 }
-
-                // console.log('이게');
-                // console.log(xhr.responseText);
-                // console.log('이렇게 변함');
-                // console.log(JSON.parse(xhr.responseText));
             } else {
                 form.querySelector('[rel="emailWarning"]').innerText = '서버와 통신하지 못하였습니다. 잠시 후 다시 시도해 주세요.';
-                // 이너텍스트로 표시해준다.
                 form.querySelector('[rel="emailWarning"]').classList.add('visible');
             }
         }
