@@ -121,14 +121,14 @@
                 <span class="menu-icon"
                       th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">
                     <i class="fa-solid fa-bars" rel="menuIcon"></i>
-                    <div class="box" id="menuBox">
+                    <div class="box" rel="menuBox">
                         <div class="back">
                             <a href="#" class="xButton" rel="xButton">
                                 <i class="fa-solid fa-xmark"></i>
                             </a>
                         </div>
                         <a class="modify" th:href="@{/bbs/reviewModify (aid=${reviewArticle.getIndex()})}">수정하기</a>
-                        <a href="#" class="delete" id="deleteButton">삭제하기</a>
+                        <a href="#" class="delete" rel="deleteButton">삭제하기</a>
                     </div>
                 </span>
             </div>

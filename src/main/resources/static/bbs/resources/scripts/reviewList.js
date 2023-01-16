@@ -12,7 +12,7 @@ for(let declation of declarations) {
 
 // 뒤로가기 버튼
 document.querySelector('[rel="backButton"]').addEventListener('click', () => {
-    window.location.href = '/product'
+    window.location.href = '/data/beer'
 });
 
 // 자세히보기 버튼
@@ -143,7 +143,7 @@ for (let reviewListForm of reviewListForms) {
             const xhr = new XMLHttpRequest();
             const formData = new FormData();
             const method = reviewToggleElement.parentElement.classList.contains('liked') ? 'DELETE' : 'POST';
-            formData.append('aid', reviewToggleElement.dataset.aid);
+            formData.append('articleIndex', reviewToggleElement.dataset.aid);
             xhr.open(method, './reviewLike');
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {

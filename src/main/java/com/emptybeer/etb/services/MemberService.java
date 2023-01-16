@@ -310,12 +310,7 @@ public class MemberService {
     @Transactional
     public Enum<? extends IResult>changeNickname(UserEntity user, String changeNickname) {
         UserEntity existingUser = this.memberMapper.selectUserByEmail(user.getEmail());
-//        System.out.println("여기는 서비스");
-//        System.out.println(existingUser.getNickname());
         existingUser.setNickname(changeNickname);
-//        System.out.println("셋 닉네임은 되나?");
-//        System.out.println(existingUser.getNickname());
-
         return this.memberMapper.updateUser(existingUser) > 0
                 ? CommonResult.SUCCESS
                 : CommonResult.FAILURE;

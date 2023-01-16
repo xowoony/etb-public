@@ -147,7 +147,7 @@ body > main > .beer-section > .title-box2 > .item-container {
 
 /*맥주 그리드의 border */
 body > main > .beer-section > .title-box2 > .item-container > .item {
-    border: 0.0625rem solid rgb(214 212 212);;
+    border: 0.0625rem solid rgb(214 212 212);
     margin-bottom: 3.5rem;
 }
 
@@ -239,7 +239,7 @@ body > main > .beer-section > .title-box2 > .item-container > .item > .link > ta
 .label > .--object-input {
     background-color: rgb(188 184 184 / 38%);
     color: rgb(255, 255, 255);
-    border: 0.01rem solid rgb(188 184 184 / 38%);;
+    border: 0.01rem solid rgb(188 184 184 / 38%);
     width: 24rem;
     height: 2.3rem;
     padding-left: 1rem;

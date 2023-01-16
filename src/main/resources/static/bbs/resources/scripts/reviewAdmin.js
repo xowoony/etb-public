@@ -42,76 +42,81 @@ function selectAll(selectAll)  {
 
 
 // 신고 리뷰 삭제
-const deleteButton = window.document.querySelector('[rel="deleteButton"]');
-deleteButton?.addEventListener('click', e => {
-    e.preventDefault();
-    if (document.querySelector('input[name="reported"]:checked') === null) {
-        alert('삭제할 리뷰를 선택해 주세요.')
-    } else {
-        if (!confirm('정말로 리뷰를 삭제할까요?')) {
-            return;
-        }
-        const xhr = new XMLHttpRequest();
-        const formData = new FormData();
-        document.querySelectorAll('input[name="reported"]:checked').forEach(item => {
-            formData.append('aid', item.dataset.aid);
-        });
-        xhr.open('DELETE', "./reviewRead");
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    const responseObject = JSON.parse(xhr.responseText);
-                    switch (responseObject['result']) {
-                        case 'success':
-                            window.location.reload();
-                            alert('리뷰가 삭제되었습니다.');
-                            break;
-                        default:
-                            alert('알 수 없는 이유로 리뷰를 삭제하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
-                    }
-                } else {
-                    alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
-                }
+const deleteButtons = window.document.querySelectorAll('[rel="deleteButton"]');
+for (let deleteButton of deleteButtons) {
+    deleteButton?.addEventListener('click', e => {
+        e.preventDefault();
+        if (document.querySelector('input[name="reported"]:checked') === null) {
+            alert('삭제할 리뷰를 선택해 주세요.')
+        } else {
+            if (!confirm('정말로 리뷰를 삭제할까요?')) {
+                return;
             }
-        };
-        xhr.send(formData);
-    }
-});
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            document.querySelectorAll('input[name="reported"]:checked').forEach(item => {
+                formData.append('aid', item.dataset.aid);
+            });
+            xhr.open('DELETE', "./reviewRead");
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        const responseObject = JSON.parse(xhr.responseText);
+                        switch (responseObject['result']) {
+                            case 'success':
+                                window.location.reload();
+                                alert('리뷰가 삭제되었습니다.');
+                                break;
+                            default:
+                                alert('알 수 없는 이유로 리뷰를 삭제하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                        }
+                    } else {
+                        alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+    });
+}
+
 
 
 // 신고 개수 초기화
-const resetButton = window.document.querySelector('[rel="resetButton"]');
-resetButton?.addEventListener('click', e => {
-    e.preventDefault();
-    if (document.querySelector('input[name="reported"]:checked') === null) {
-        alert('신고 수를 초기화 할 리뷰를 선택해 주세요.')
-    } else {
-        if (!confirm('신고 수를 초기화할까요?')) {
-            return;
-        }
-        const xhr = new XMLHttpRequest();
-        const formData = new FormData();
-        document.querySelectorAll('input[name="reported"]:checked').forEach(item => {
-            formData.append('aid', item.dataset.aid);
-        });
-        xhr.open('DELETE', "./reviewDeclaration");
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    const responseObject = JSON.parse(xhr.responseText);
-                    switch (responseObject['result']) {
-                        case 'success':
-                            window.location.reload();
-                            alert('신고 수가 초기화 되었습니다.');
-                            break;
-                        default:
-                            alert('알 수 없는 이유로 신고 수를 초기화하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
-                    }
-                } else {
-                    alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
-                }
+const resetButtons = window.document.querySelectorAll('[rel="resetButton"]');
+for (let resetButton of resetButtons) {
+    resetButton?.addEventListener('click', e => {
+        e.preventDefault();
+        if (document.querySelector('input[name="reported"]:checked') === null) {
+            alert('신고 수를 초기화 할 리뷰를 선택해 주세요.')
+        } else {
+            if (!confirm('신고 수를 초기화할까요?')) {
+                return;
             }
-        };
-        xhr.send(formData);
-    }
-});
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            document.querySelectorAll('input[name="reported"]:checked').forEach(item => {
+                formData.append('aid', item.dataset.aid);
+            });
+            xhr.open('DELETE', "./reviewDeclaration");
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        const responseObject = JSON.parse(xhr.responseText);
+                        switch (responseObject['result']) {
+                            case 'success':
+                                window.location.reload();
+                                alert('신고 수가 초기화 되었습니다.');
+                                break;
+                            default:
+                                alert('알 수 없는 이유로 신고 수를 초기화하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                        }
+                    } else {
+                        alert('서버와 통신하지 못하였습니다.\n\n잠시 후 다시 시도해 주세요.');
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+    });
+}
