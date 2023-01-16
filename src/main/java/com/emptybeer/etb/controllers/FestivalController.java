@@ -162,18 +162,6 @@ public class FestivalController {
 
 
 
-    // 페스티벌 관리자 페이지 관련
-    @GetMapping(value="etbAdmin")
-    public ModelAndView getAdmin(){
-
-        ModelAndView modelAndView = new ModelAndView("festival/etbAdmin");
-
-        return modelAndView;
-    }
-
-
-
-
     //  Admin 관련
 
 
