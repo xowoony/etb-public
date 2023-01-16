@@ -63,6 +63,10 @@ for (let reviewListForm of reviewListForms) {
         if (!declaButton.classList.contains('prohibited') && declaButton.value === '신고하기') {
             declaButton.addEventListener('click', e => {
                 e.preventDefault();
+                if (declaButton.value === '신고완료') {
+                    alert('신고가 완료되었습니다.');
+                    return;
+                }
                 if (!confirm('정말로 게시글을 신고할까요?')) {
                     return;
                 }
@@ -94,8 +98,7 @@ for (let reviewListForm of reviewListForms) {
                 };
                 xhr.send(formData);
             });
-        }
-        if (!declaButton.classList.contains('prohibited') && declaButton.value === '신고완료') {
+        } else  {
             declaButton.addEventListener('click', () => {
                 alert('신고가 완료되었습니다.');
             });

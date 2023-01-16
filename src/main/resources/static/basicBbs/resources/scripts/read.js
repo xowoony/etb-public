@@ -293,6 +293,10 @@ if (reportButton !== null) {
     if (!reportButton.classList.contains('prohibited') && reportButton.value === '신고하기') {
         reportButton.addEventListener('click', e => {
             e.preventDefault();
+            if (reportButton.value === '신고완료') {
+                alert('신고가 완료되었습니다.');
+                return;
+            }
             if (!confirm('정말로 게시글을 신고할까요?')) {
                 return;
             }
@@ -326,8 +330,7 @@ if (reportButton !== null) {
             };
             xhr.send(formData);
         });
-    }
-    if (!reportButton.classList.contains('prohibited') && reportButton.value === '신고완료') {
+    } else {
         reportButton.addEventListener('click', () => {
             alert('신고가 완료되었습니다.');
         });
