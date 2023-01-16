@@ -305,7 +305,8 @@ public class MemberController {
         System.out.println("check1 " + user.getPassword());
         System.out.println("check1 " + email);
         System.out.println("check1 " + password);
-        if (user.getEmail().equals(email) && CryptoUtils.hashSha512(user.getPassword()).equals(CryptoUtils.hashSha512(password))) {
+        if (user.getEmail().equals(email) && user.getPassword().equals(CryptoUtils.hashSha512(password))) {
+//        if (user.getEmail().equals(email) && CryptoUtils.hashSha512(user.getPassword()).equals(CryptoUtils.hashSha512(password))) {
             result = this.memberService.deleteUser(user);
         } else {
             result = CommonResult.FAILURE;
@@ -316,9 +317,9 @@ public class MemberController {
         if (result == CommonResult.SUCCESS) {
             responseObject.put("email", user.getEmail());
             responseObject.put("password", user.getPassword());
-
+            session.setAttribute("user", null);
         }
-        session.setAttribute("user", null);
+
         return responseObject.toString();
     }
 

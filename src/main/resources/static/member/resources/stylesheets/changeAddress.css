@@ -341,7 +341,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 /*주소 변경 타이틀*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .change-nickname-container > div > table > tbody > tr > td > label > .address-title {
-    color: #ffffffb5;;
+    color: #ffffffb5;
     align-items: center;
     display: flex;
     flex-direction: row;
