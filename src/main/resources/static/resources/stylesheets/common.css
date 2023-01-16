@@ -88,7 +88,7 @@ body > .loading-cover {
     white-space: nowrap;
 }
 
-/*카테고리 타이틀들 hover시 색깔 변화*/
+/*카테고리 타이틀들 hover 시 색깔 변화*/
 .category > li > a:hover {
     color: rgba(237, 250, 0, 0.67);
 }
@@ -123,14 +123,18 @@ body > .loading-cover {
     font-size: 0.8rem;
 }
 
+.category > .start > .depth_1 > .user-board{
+   width: 5rem;
+}
 
 .category > .start > .depth_1 > .user-board > a {
     font-size: 0.8rem;
-    padding: 0.5rem;
+    /*padding: 0.5rem;*/
 }
 
 .category > .start > .my {
     width: 100%;
+
 }
 
 

@@ -17,6 +17,8 @@
 /*마이페이지 footer쪽*/
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&display=swap');
+
 html {
     width: 100%;
     height: 100%;
@@ -96,6 +98,7 @@ body > main > form > .beer-section > .title-box2 {
 }
 
 body > main > form > .beer-section > .title-box2 > table {
+    /*background-color: rgb(56 28 35);*/
     background-color: rgb(56 28 35);
     width: 100%;
     height: 100%;
@@ -137,16 +140,42 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 /*카테고리 타이틀 - 모아보기, 회원정보 수정*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title {
-    font-family: 'Do Hyeon', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Gowun Batang', serif;
     width: 100%;
     height: 4rem;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(70 70 70 / 17%);
+    background-color: rgb(70 70 70 / 35%);
 
 }
+
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home {
+    background-color: #9d9d9d42;
+    font-size: 1.5rem;
+    font-family: 'Secular One', sans-serif;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home > a {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #ffffffb5;
+    text-decoration: none;
+}
+
 
 /*카테고리 content*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content {
@@ -192,7 +221,9 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 }
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a > div {
+    font-size: 0.98rem;
     margin-right: 3rem;
+    font-family: 'Gowun Batang', serif;
 }
 
 /*잔이비어 contact 정보*/
@@ -239,12 +270,13 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 }
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table {
-    margin-right: 17.6rem;
+    margin-right: 13.7rem;
     margin-top: 1rem;
     padding: 1.2rem 1.2rem;
-    /*background-color: rgb(201 201 201 / 5%);*/
+    /* background-color: rgb(201 201 201 / 5%); */
     border-radius: 0.4rem;
     border: 0.0625rem solid rgb(164 161 161 / 58%);
+    width: 49rem;
 }
 
 /*닉네임 변경 테이블 높이*/
@@ -261,7 +293,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .user-container {
     background-color: rgb(31 54 84 / 9%);
     border-bottom: 0.01rem solid rgb(255, 255, 255, 10%);
-    width: 35rem;
+    width: 52rem;
 }
 
 
@@ -345,7 +377,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .contact > .change-contact > a,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .address > .change-address > a {
     text-decoration: none;
-    color: #d8c2c2;
+    color: #ffffffb5;
     font-size: 0.85rem;
 }
 
@@ -353,15 +385,14 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 /* 변경하기 글씨 hover 시 red*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .change-nick-container > .change-nick > a:hover,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .contact > .change-contact > a:hover,
-body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .address > .change-address > a:hover{
-    color: rgba(255, 0, 0, 0.85);
+body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > table > tbody > tr > .address > .change-address > a:hover {
+    color: rgba(237, 250, 0, 0.67);
 }
-
 
 
 /*프로필 타이틀*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .profile-title {
-    margin-right: 54rem;
+    margin-right: 56rem;
     font-size: 2rem;
     margin-top: 3rem;
     align-items: center;
@@ -373,13 +404,11 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 }
 
 
-
-
-
 /*잔이비어의 다양한 서비스를 만나보세요*/
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-title {
     margin-top: 6rem;
     margin-bottom: 1rem;
+    margin-right: 14rem;
     font-family: 'Do Hyeon', sans-serif;
     color: #9e9e97;
     font-size: 1.15rem;
@@ -387,9 +416,10 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container {
     border: 0.0625rem solid rgb(164 161 161 / 58%);
-    width: 61rem;
-    height: 12rem;
+    width: 49rem;
+    height: 7rem;
     border-radius: 0.3rem;
+    margin-right: 14rem;
 }
 
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service {
@@ -415,6 +445,7 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .review,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .community,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .festival {
+    font-size: 0.9rem;
     font-family: 'Manrope', sans-serif;
     color: rgb(255 255 255 / 59%);
 }
@@ -425,8 +456,8 @@ body > main > form > .beer-section > .title-box2 > table > tbody > tr > .categor
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .second-icon,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .third-icon,
 body > main > form > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .profile-container > .service-container > .service > span > .forth-icon {
-    width: 6rem;
-    height: 6rem;
+    width: 3rem;
+    height: 3rem;
     margin-bottom: 0.5rem;
 }
 
