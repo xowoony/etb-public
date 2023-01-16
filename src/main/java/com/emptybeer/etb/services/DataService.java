@@ -39,8 +39,8 @@ public class DataService {
     }
 
     // 페이징(맥주 total count)
-    public int getBeerCount(String criterion, String keyword) {
-        return this.dataMapper.selectBeerCountByBeerIndex(criterion, keyword);
+    public int getBeerCount(String criterion, String keyword, String beerCategory) {
+        return this.dataMapper.selectBeerCountByBeerIndex(criterion, keyword, beerCategory);
     }
 
     // 맥주 카테고리별 보기

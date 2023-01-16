@@ -17,12 +17,13 @@ public interface IDataMapper {
                         @Param(value = "limit") int limit,
                         @Param(value = "offset") int offset,
                         // 맥주 카테고리별 보기
-                        @Param(value="beerCategory") String beerCategory);
+                        @Param(value = "beerCategory") String beerCategory);
 
 
     // 페이징
     int selectBeerCountByBeerIndex(@Param(value = "criterion") String criterion,
-                                   @Param(value = "keyword") String keyword);
+                                   @Param(value = "keyword") String keyword,
+                                   @Param(value = "beerCategory") String beerCategory);
 
     int selectBeerCount();
 
@@ -30,20 +31,18 @@ public interface IDataMapper {
     BeerVo[] selectBeerRanking();
 
 
-
-
     //관리자
-    BeerVo[] selectBeerForAdmin(@Param(value="limit")int limit,
-                                @Param(value="offset")int offset);
+    BeerVo[] selectBeerForAdmin(@Param(value = "limit") int limit,
+                                @Param(value = "offset") int offset);
 
     int insertBeer(BeerEntity beer);
 
-    BeerEntity selectBeerFromAdminByIndex(@Param(value="index")int index);
+    BeerEntity selectBeerFromAdminByIndex(@Param(value = "index") int index);
 
     int updateBeer(BeerEntity beer);
 
     int updateBeerExceptImage(BeerEntity beer);
 
-    int deleteBeerByIndex(@Param(value="index")int index);
+    int deleteBeerByIndex(@Param(value = "index") int index);
 
 }

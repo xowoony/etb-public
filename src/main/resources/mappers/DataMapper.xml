@@ -50,13 +50,33 @@
 
 
     <!-- 페이징 -->
+<!--    <select id="selectBeerCountByBeerIndex"-->
+<!--            resultType="int">-->
+<!--        SELECT COUNT(0)-->
+<!--        FROM `etb_data`.`beers` AS `beer`-->
+<!--        WHERE `beer`.`index`-->
+<!--        <if test="criterion != null and criterion.equals('name')">-->
+<!--            AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')-->
+<!--        </if>-->
+
+<!--    </select>-->
+
+
     <select id="selectBeerCountByBeerIndex"
             resultType="int">
         SELECT COUNT(0)
         FROM `etb_data`.`beers` AS `beer`
+        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+        ON `beer`.`category_index` = `beerCategory` .`index`
         WHERE `beer`.`index`
         <if test="criterion != null and criterion.equals('name')">
             AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('domestic')">
+            AND `beer`.`category_index` = 1
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('foreign')">
+            AND `beer`.`category_index` = 2
         </if>
 
     </select>

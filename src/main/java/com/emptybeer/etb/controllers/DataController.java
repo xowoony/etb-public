@@ -48,7 +48,7 @@ public class DataController {
 
         page = Math.max(1, page);
         ModelAndView modelAndView = new ModelAndView("data/beer");
-        int totalCount = this.dataService.getBeerCount(criterion, keyword);
+        int totalCount = this.dataService.getBeerCount(criterion, keyword, beerCategory);
         PagingModelBeer paging = new PagingModelBeer(totalCount, page);
         modelAndView.addObject("paging", paging);
         BeerVo[] beers = this.dataService.getBeer(paging, criterion, keyword, beerCategory);
@@ -137,11 +137,6 @@ public class DataController {
             BeerEntity beer) throws IOException, ParseException, IllegalArgumentException {
 
 
-        if(image == null){
-            System.out.println("4444444444444444");
-        } else{
-            System.out.println("5555555555555555");
-        }
 
         JSONObject responseObject = new JSONObject();
 
