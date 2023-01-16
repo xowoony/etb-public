@@ -1,3 +1,9 @@
+let slideContainer = document.querySelector('.slide_img');
+let slides = document.querySelectorAll('.slide');
+let prevbtn = document.querySelector('.prev');
+let nextbtn = document.querySelector('.next');
+
+
 $(function(){
     var container = $(".slide_wrap");
     var slideShow = container.find(".slide_show");

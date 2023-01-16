@@ -101,9 +101,14 @@
                         <td>
                             <label class="label-beerCategory">
                                 <span hidden>분류</span>
-                                <select name="beerCategory">
+                                <select name="beerCategory" th:if="${beers.getCategoryIndex() == 1}">
                                     <option value="1">국내맥주</option>
                                     <option value="2">해외맥주</option>
+                                </select>
+
+                                <select name="beerCategory" th:if="${beers.getCategoryIndex() == 2}">
+                                    <option value="2">해외맥주</option>
+                                    <option value="1">국내맥주</option>
                                 </select>
                             </label>
                         </td>

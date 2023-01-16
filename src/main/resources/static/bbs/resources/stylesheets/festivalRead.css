@@ -236,22 +236,22 @@ body > main > .review-container > .review-comment {
     appearance: none;
 }
 
-#comment > .festival-comment > .modify-content > .modify-form.visible > .check:focus {
-    font-size: 0.8rem;
-    color: grey;
-    position: absolute;
-    right: 0px;
-    bottom: 27px;
-    border: none;
-    cursor: pointer;
-    width: 35px;
-    outline: none;
-    background-color: white;
+/*#comment > .festival-comment > .modify-content > .modify-form.visible > .check:focus {*/
+/*    font-size: 0.8rem;*/
+/*    color: grey;*/
+/*    position: absolute;*/
+/*    right: 0px;*/
+/*    bottom: 27px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    width: 35px;*/
+/*    outline: none;*/
+/*    background-color: white;*/
 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
+/*    -webkit-appearance: none;*/
+/*    -moz-appearance: none;*/
+/*    appearance: none;*/
+/*}*/
 
 
 #comment > .festival-comment > .modify-content > .modify-form.visible > .comment-modifyInput {

@@ -88,10 +88,10 @@
                 <form id="modifyByIndex" class="modify-content" method="get" action="/festival/festivalModify">
                     <div class="modify-form" rel="modifyForm">
                         <input class="comment-modifyInput" type="text" placeholder="수정할 내용을 입력하세요.(최대200자)"
-                               maxlength="200" name="content">
+                               rel="modifyContent" maxlength="200" name="content">
                         <a class="cancel" rel="cancelButton" href="#">취소</a>
-                        <input type="hidden" name="index" th:value="${festivalComment.getIndex()}">
-                        <input class="check" type="submit" value="확인">
+                        <input rel="modifyIndex" type="hidden" name="index" th:value="${festivalComment.getIndex()}">
+                        <input rel="modifyCheck" class="check" type="submit" value="확인">
                     </div>
                 </form>
                 <div rel="commentWritten" class="comment-written"

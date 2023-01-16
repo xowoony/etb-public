@@ -182,18 +182,33 @@ const modifyCheck = document.getElementById('modifyByIndex');
 // 수정 확인 클릭
 
 for (let comment of commentLists) {
-    if (modifyCheck != null) {
-        modifyCheck.onsubmit = e => {
+
+    const modifyCheck = comment.querySelector('[rel="modifyCheck"]')
+    modifyCheck?.addEventListener('click', e => {
+
             e.preventDefault();
+
+            const modifyContent = comment.querySelector('[rel="modifyContent"]');
+            const modifyIndex = comment.querySelector('[rel="modifyIndex"]');
+
+
+            if (modifyContent.value === '') {
+                alert('수정할 댓글을 입력해주세요.');
+                modifyContent.focus();
+                return false;
+            }
+
+
             if (!confirm('댓글을 수정하시겠습니까?')) {
                 return;
             }
 
+
             console.log('11111111111');
             const xhr = new XMLHttpRequest();
             const formData = new FormData();
-            formData.append('index', modifyCheck['index'].value);
-            formData.append('content', modifyCheck['content'].value);
+            formData.append('index', modifyIndex.value);
+            formData.append('content', modifyContent.value);
 
 
             xhr.open('PATCH', `./festivalComment`);
@@ -222,6 +237,5 @@ for (let comment of commentLists) {
 
 
         }
-        ;
-    }
+    );
 }
