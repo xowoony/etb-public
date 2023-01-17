@@ -89,7 +89,7 @@ public class MemberService {
         Context context = new Context();
         context.setVariable("code", emailAuth.getCode());
 
-        String text = this.templateEngine.process("member/registeremailAuth", context);
+        String text = this.templateEngine.process("member/registerEmailAuth", context);
         MimeMessage mail = this.mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail, "UTF-8");
         helper.setFrom("xowoony@gmail.com");
@@ -203,7 +203,7 @@ public class MemberService {
                 req.getServerName(),
                 req.getServerPort()));
 
-        String text = this.templateEngine.process("member/recoverPasswordemailAuth", context);
+        String text = this.templateEngine.process("member/recoverPasswordEmailAuth", context);
         MimeMessage mail = this.mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail, "UTF-8");
         helper.setFrom("xowoony@gmail.com");
