@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 관리자페이지</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalAdmin.css}">
+    <script defer th:src="@{/bbs/resources/scripts/festivalAdmin.js}"></script>
+    <script th:if="${session.user == null || !session.user.getEmail().equals('admin@admin')}">
+        alert('접근 권한이 없습니다.');
+        window.location.href = '../member/login'
+    </script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">ADMIN</div>
+            <div class="title-content">잔이비어 시스템을 관리하는 관리자 페이지입니다.
+            </div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="festival">
+                        <div class="festival-title">
+                            FESTIVAL
+                        </div>
+                        <div class="festival-content">
+                            <div>페스티벌 관리자 페이지로 이동</div>
+                            <div class="festival-button">
+                                <a th:href="@{/festival/festivalAdminFestivalRead}">GO</a>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td class="beer">
+                        <div class="beer-title">
+                            BEER
+                        </div>
+                        <div class="beer-content">
+                            <div>맥주 관리자 페이지로 이동</div>
+                            <div class="beer-button">
+                                <a th:href="@{/data/beerAdmin}">GO</a>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="board">
+                        <div class="board-title">
+                            BASIC
+                        </div>
+                        <div class="board-content">
+                            <div>BASIC 관리자 페이지로 이동</div>
+                            <div class="board-button">
+                                <a th:href="@{/basicBbs/basic-admin (bid=free)}">자유 게시판 GO</a>
+                            </div>
+                            <div class="board-button">
+                                <a th:href="@{/basicBbs/basic-admin (bid=meeting)}">모임 게시판 GO</a>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="review">
+                        <div class="review-title">
+                            REVIEW
+                        </div>
+                        <div class="review-content">
+                            <div>리뷰 관리자 페이지로 이동</div>
+                            <div class="review-button">
+                                <a th:href="@{/bbs/review-admin}">GO</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

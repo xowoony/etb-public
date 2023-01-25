@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div style="max-width: 600px;"></div>
+<div style="background-color: rgba(72,136,40,0.6); border-bottom: 2px solid rgb(86, 101, 115); color: rgb(234, 236, 238); font-size: 32px; font-size: 28px; font-weight: bold; padding: 20px 30px;">
+    잔이비어
+</div>
+<div style="font-size: 14px; line-height: 133%; padding: 30px;">
+    <span>안녕하세요!&nbsp;<b>잔이비어</b>입니다.</span>
+    <br>
+    <br>
+    <span>해당 이메일 주소로 잔이비어에 회원가입을 요청하여 인증할 수 있는 번호를 발송하였습니다. 본인이 요청한 것이 맞다면 아래 인증 번호를 이용하여 회원가입을 완료해 주시기 바랍니다.</span>
+    <br>
+    <br>
+    <code style="background-color: rgb(234, 236, 238); display: inline-block; font-size: 20px; font-size: 20px; font-weight: bold; letter-spacing: 5px; padding: 15px;"
+          th:text="${code}" }>123456</code>
+    <br>
+    <br>
+    <span>해당 번호를 타인에게 알려줄 경우 개인정보 도용의 위험이 있습니다. 절대 타인에게 해당 인증 번호를 알려주지 마세요.
+        </span>
+    <br>
+    <br>
+    <span>혹시 본인이 요청한 적이 없다면 이 이메일을 폐기해 주시기 바랍니다.</span>
+    <br>
+    <br>
+    <span>감사합니다.</span>
+</div>
+<div style="background-color: rgb(236,238,234); border-top: 2px solid rgb(213, 216, 220); color:rgb(65,80,91); font-size: 12px; padding: 20px 30px;">
+    <span>해당 이메일은 발신 전용 이메일 주소를 사용하여 발송되었고 회신이 불가합니다. 또한 경우에 따라 이메일 수신을 거부하였어도 이와 상관없이 발송되는 이메일이 있을 수 있으므로 양지바랍니다.</span>
+    <br>
+    <br>
+    <i style="color:rgb(86, 101, 115);">&copy; 2022 <a th:href="@{__${domain}__}" style="color: inherit;"
+                                                       target="_black">잔이비어</a> All Rights Reserved.</i>
+</div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: 신고 된 Review</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewAdmin.css}">
+    <script defer th:src="@{/bbs/resources/scripts/reviewAdmin.js}"></script>
+    <script th:if="${session.user == null || session.user.getEmail() != 'admin@admin'}">
+        alert('접근 권한이 없습니다.');
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.close();
+        }
+    </script>
+</head>
+<body th:if="${session.user != null && session.user.getEmail() == 'admin@admin'}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main>
+    <section class="review-list">
+        <div class="first">
+            신고 REVIEW 관리
+            <input type="button" class="delete-button" rel="deleteButton" value="삭제">
+            <input type="button" class="reset-button" rel="resetButton" value="신고 초기화">
+        </div>
+        <div class="form-container">
+            <div class="sort" name="sort">
+                <span class="sort1" name="sortReport" id="sortReport" value="sortReport">신고순</span>
+                <div class="sort-bar">|</div>
+                <span class="sort2" name="sortNew" value="sortNew" id="sortNew">최신순</span>
+            </div>
+            <form class="search-form" id="searchForm" method="get">
+                <label class="label">
+                    <span hidden>검색 기준</span>
+                    <select name="criterion" class="--object-input"
+                            th:with="criterion = ${#request.getParameter('criterion')}">
+                        <!--                    th:with는 변수 선언임-->
+                        <option value="content" th:selected="${criterion == null || criterion.equals('content')}">내용
+                        </option>
+                        <option value="nickname" th:selected="${criterion != null && criterion.equals('nickname')}">
+                            작성자
+                        </option>
+                    </select>
+                </label>
+                <label class="label">
+                    <span hidden>검색어</span>
+                    <input type="text" class="--object-input" maxlength="25" name="keyword" placeholder="검색어를 입력해 주세요."
+                           th:value="${#request.getParameter('keyword')}">
+                    <input type="image" class="search-button"
+                           src="https://img1a.coupangcdn.com/image/productreview/web/pdp/article/search-btn_v1.png">
+                </label>
+            </form>
+        </div>
+        <table class="review-table">
+            <thead>
+            <tr>
+                <th>
+                    <input class="check-box" type='checkbox'
+                           name='allSelect'
+                           value='allSelect'
+                           onclick='selectAll(this)'/>
+                </th>
+                <th>신고수</th>
+                <th>리뷰</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reportedReview : ${reportedReviews}">
+                <td>
+                    <input type='checkbox'
+                           name='reported'
+                           onclick='checkSelectAll()'
+                           th:data-aid="${reportedReview.getIndex()}"/>
+                </td>
+                <td th:text="${reportedReview.getDeclaCount()}"></td>
+                <td>
+                    <form class="review-container" rel="reviewListForm">
+                        <input name="beerIndex" hidden th:value="${reportedReview.getBeerIndex()}">
+                        <input name="aid" type="hidden" th:value="${reportedReview.getIndex()}">
+                        <div class="head-container">
+                            <div class="user-info">
+                                <div class="nickname" th:text="${reportedReview.getUserNickname()}">양파쿵야</div>
+                                <span class="star-container">
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reportedReview.getScore() >= 1 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reportedReview.getScore() >= 2 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reportedReview.getScore() >= 3 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reportedReview.getScore() >= 4 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reportedReview.getScore() >= 5 ? 'filled' : ''}"></i>
+                    </span>
+                                <span class="created-on" th:text="${#dates.format(reportedReview.getModifiedOn(), 'yyyy-MM-dd')}">2022.12.15</span>
+                            </div>
+                        </div>
+                        <a class="beer-info" th:text="${reportedReview.getBeerName()}" th:href="@{/bbs/reviewList (beerIndex=${reportedReview.getBeerIndex()})}">바르슈타이너 프리미엄 필스너 500ml</a>
+                        <div class="review-content">
+                            <div class="good-review">
+                                <div class="icon">
+                                    <i class="fa-solid fa-face-smile"></i>
+                                </div>
+                                <div class="text" th:text="${reportedReview.getContentGood()}">진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서
+                                    쟁여둘 예정임
+                                    독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                                    독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                                    독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                                    독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                                    독일 맥주 믿고 먹음
+                                </div>
+                            </div>
+                            <div class="bad-review">
+                                <div class="icon">
+                                    <i class="fa-solid fa-face-frown"></i>
+                                </div>
+                                <div class="text" th:text="${reportedReview.getContentBad()}">탄산이 넘 쎄서 목이 좀 따가워용 ㅠㅠ 그래도 시원해서 큰 단점은
+                                    아닌듯
+                                </div>
+                            </div>
+                        </div>
+                        <div class="foot">
+                            <span class="like-count review-like-count" th:text="${reportedReview.likeCount}">7</span>
+                            <span>명이 추천 함</span>
+                            <input type="hidden" name="declaration" th:value="${reportedReview.getDeclaCount()}">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="buttons">
+            <input type="button" class="delete-button" rel="deleteButton" value="삭제">
+            <input type="button" class="reset-button" rel="resetButton" value="신고 초기화">
+        </div>
+        <div class="page-container"
+             th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angles-left"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+               th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+               th:text="${page}"
+               th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angles-right"></i>
+            </a>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

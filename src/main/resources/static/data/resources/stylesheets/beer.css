@@ -1,0 +1,269 @@
+@charset "UTF-8";
+/*COMMUNITY 타이틀 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/*main*/
+body > main {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    overflow: auto;
+}
+
+/*상단 타이틀 section*/
+body > main > .beer-section {
+    width: 100%;
+    height: 100%;
+    /* margin-bottom: 3rem;*/
+}
+
+/*beerSection1*/
+body > main > .beer-section > .title-box1 {
+    background-image: url("/home/resources/images/beer-category.png");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47%;
+    /*position: fixed;*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/*맥주선택 코너 배경*/
+body > main > .beer-section > .title-box1 > .beer-select-border {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 5rem;
+    background-color: rgb(0, 0, 0, 25%);
+    white-space: nowrap;
+}
+
+/*BEER 타이틀 글씨*/
+body > main > .beer-section > .title-box1 > .title {
+    font-size: 3rem;
+    font-family: 'Secular One', sans-serif;
+}
+
+
+/*맥주선택 select 태그 박스 top, bottom, left*/
+body > main > .beer-section > .title-box1 > .beer-select-border > form > .border {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    width: 15rem;
+    /*box-sizing: border-box;*/
+    /*border-collapse: collapse;*/
+    /*border-top: 15px solid transparent;*/
+    /*border-bottom: 15px solid transparent;*/
+    /*border-left: 15px solid transparent;*/
+}
+
+/*다양한 맥주를 소개합니다.*/
+body > main > .beer-section > .title-box1 > .title-content {
+    margin-bottom: 2.5rem;
+    font-family: 'Gowun Batang', serif;
+}
+
+/*맥주 선택 select 태그*/
+#beerCategory {
+    background-color: rgb(255, 255, 255, 20%);
+    color: rgb(255 255 255);
+    width: 14rem;
+    border-top: 10px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 10px solid transparent;
+    font-family: inherit;
+    border-right: 16px solid transparent;
+}
+
+/*option 태그 배경, 폰트 색*/
+#beerCategory > option {
+    background-color: rgb(0, 0, 0, 10%);
+    color: black;
+}
+
+
+/*찾기 버튼*/
+body > main > .beer-section > .title-box1 > .beer-select-border > form > .find-beer {
+    border: 0.0625rem;
+    padding: 0.67rem 1.3rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: white;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+
+/*찾기 버튼 hover 시 */
+body > main > .beer-section > .title-box1 > .beer-select-border > form > .find-beer:hover {
+    cursor: pointer;
+}
+
+
+/*section2*/
+body > main > .beer-section > .title-box2 {
+    width: 100%;
+    /* background-color: #dcd5d7; */
+    height: 100%;
+}
+
+/*그리드 전체*/
+body > main > .beer-section > .title-box2 > .item-container {
+    display: grid;
+    gap: 2rem 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    list-style-type: none;
+    margin: 3.5rem;
+    padding: unset;
+}
+
+/*맥주 그리드의 border */
+body > main > .beer-section > .title-box2 > .item-container > .item {
+    border: 0.0625rem solid rgb(214 212 212);
+    margin-bottom: 3.5rem;
+}
+
+/*a*/
+body > main > .beer-section > .title-box2 > .item-container > .item > .link {
+    width: 100%;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+/*table 크기 조절*/
+body > main > .beer-section > .title-box2 > .item-container > .item > .link > table {
+    width: 100%;
+    height: 100%;
+}
+
+/*tbody 크기 조절*/
+body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody {
+    width: 100%;
+    height: 100%;
+}
+
+/*tr*/
+body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody > tr {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+
+/*td 크기 조절*/
+body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody > tr > td {
+    width: 100%;
+    height: 100%;
+    padding: 0.8rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*그리드 안 이미지 크기 조절*/
+body > main > .beer-section > .title-box2 > .item-container > .item > .link > table > tbody > tr > td > img {
+    width: 100%;
+    white-space: nowrap;
+    min-width: 5rem;
+    min-height: 5rem;
+}
+
+
+/*페이징*/
+.page-container {
+    margin-top: 2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.page-container > .page {
+    /* border-bottom: 0.0625rem solid rgb(0,0,0); */
+    /* border-left: 0.0625rem solid rgb(125 148 169); */
+    color: rgb(0 0 0);
+    padding: 0.5rem 0.95rem;
+    text-decoration: none;
+    background-color: rgb(0, 0, 0, 10%);
+}
+
+.page-container > .page.selected,
+.page-container > .page:hover {
+    background-color: #956f0ba1;
+    color: white;
+}
+
+.title-box2 > table {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-bottom: 10rem;
+}
+
+/*검색어 입력창*/
+.label > .--object-input {
+    background-color: rgb(188 184 184 / 38%);
+    color: rgb(255, 255, 255);
+    border: 0.01rem solid rgb(188 184 184 / 38%);
+    width: 24rem;
+    height: 2.3rem;
+    padding-left: 1rem;
+    margin-left: 22rem;
+}
+
+/*찾기 버튼*/
+main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label > .search-button {
+    border: 0.0625rem;
+    padding: 0.67rem 1.3rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: white;
+    text-decoration: none;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    margin-right: 4rem;
+}
+
+/*찾기 버튼 hover시 */
+main > .beer-section > .title-box1 > .beer-select-border > .search-form > .label > .search-button:hover {
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+/*input 태그 안 placeholder 글씨체*/
+input::placeholder {
+    color: rgb(222, 222, 222);
+}

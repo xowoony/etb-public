@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: 기본 게시판 관리자 모드</title>
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/admin.css}">
+    <script defer th:src="@{/basicBbs/resources/scripts/admin.js}"></script>
+    <script th:if="${session.user == null || session.user.getEmail() != 'admin@admin'}">
+        alert('접근 권한이 없습니다.');
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.close();
+        }
+    </script>
+</head>
+<body th:if="${session.user != null && session.user.getEmail() == 'admin@admin'}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main class="main">
+    <div class="--content content">
+        <div class="title-container">
+            <h1 class="title" th:text="${'신고 게시글 관리 - ' + board.getText()}"></h1>
+            <input type="button" class="delete-button" rel="deleteButton" value="삭제">
+            <input type="button" class="reset-button" rel="resetButton" value="신고 초기화">
+        </div>
+        <form id="listForm">
+            <table class="table" id="table">
+                <thead>
+                <tr>
+                    <th>
+                        <div class="check-box-container">
+                            <input class="check-box" type='checkbox'
+                                   name='selectAll'
+                                   value='selectAll'
+                                   onclick='selectAllArticles(this)'>
+                        </div>
+                    </th>
+                    <th></th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>추천수</th>
+                    <th>신고수</th>
+                    <th>작성 일시</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reportedArticle : ${reportedArticles}">
+                    <td>
+                        <input type='checkbox'
+                               name='reportedArticle'
+                               onclick='checkSelectAll()'
+                               th:data-aid="${reportedArticle.getIndex()}">
+                    </td>
+                    <td th:text="${reportedArticle.getIndex()}"></td>
+                    <td>
+                        <a class="title" th:href="@{/basicBbs/read (aid=${reportedArticle.getIndex()})}">
+                            <span class="text" th:text="${reportedArticle.getTitle()}"></span>
+                            <span class="comment" th:text="${'[' + reportedArticle.getCommentCount() + ']'}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${reportedArticle.getUserNickname()}"></td>
+                    <td th:text="${reportedArticle.getView()}"></td>
+                    <td th:text="${reportedArticle.getLikeCount()}">0</td>
+                    <td th:text="${reportedArticle.getReportCount()}">0</td>
+                    <td th:text="${#dates.format(reportedArticle.getModifiedOn(), 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+        <div class="foot-container" id="foot-container">
+            <div class="page-container" id="page-container"
+                 th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+                   th:if="${paging.requestPage > 1}">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+                   th:if="${paging.requestPage > 1}">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+                <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                   th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+                   th:text="${page}"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+                   th:if="${paging.requestPage < paging.maxPage}">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+                   th:if="${paging.requestPage < paging.maxPage}">
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            </div>
+            <div>
+                <form class="search-form" id="searchForm" method="get">
+                    <label class="label">
+                        <span hidden>검색 기준</span>
+                        <select name="criterion" class="--object-input" th:with="criterion = ${#request.getParameter('criterion')}">
+                            <option value="all" th:selected="${criterion == null || criterion.equals('all')}">제목 + 내용</option>
+                            <option value="title" th:selected="${criterion != null && criterion.equals('title')}">제목</option>
+                            <option value="nickname" th:selected="${criterion != null && criterion.equals('nickname')}">작성자</option>
+                        </select>
+                    </label>
+                    <label class="label">
+                        <span hidden>검색어</span>
+                        <input type="text" class="--object-input search" maxlength="50" name="keyword" placeholder="검색어를 입력해 주세요." th:value="${#request.getParameter('keyword')}">
+                    </label>
+                    <input type="hidden" name="bid" th:value="${board.getId()}">
+                    <input type="submit" class="--object-button" value="검색">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

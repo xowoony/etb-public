@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: BEER ADMIN</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/data/resources/stylesheets/beerAdmin.css}">
+    <script defer th:src="@{/data/resources/scripts/beerAdmin.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+    <!--  productSection1  -->
+
+    <a class="beer-input" th:href="@{/data/beerAdminWrite}">맥주 입력</a>
+    <section class="home-section1" id="homeSection1">
+        <div class="beer-container">
+            <div rel="beerContent" class="beer-content" th:each="beer : ${beers}">
+                <img class="image" alt="" th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}">
+                <span th:text="${beer.getCategoryIndex()==1 ? '(국내맥주)' : '(해외맥주)'}"></span>
+                <br><br>
+
+                <span>이름 : <span th:text="${beer.getName()}"></span></span>
+                <br><br>
+
+                <span>제조사 : <span th:text="${beer.getMfr()}"></span></span>
+                <br><br>
+
+                <span>용량 : <span th:text="${beer.getVolume()}"></span></span>
+                <br><br>
+
+                <span>도수 : <span th:text="${beer.getDegree()}"></span></span>
+                <br><br>
+
+                <span>소개 : <span th:text="${beer.getDescription()}"></span></span>
+                <br><br>
+
+
+                <div class="admin-button">
+                    <a th:href="@{/data/beerAdminModify (index=${beer.getIndex()})}"
+                       th:data-index="${beer.getIndex()}" class="beer-modify" href="#">수정</a>
+
+                    <a  rel="deleteButton" th:data-index="${beer.getIndex()}"
+                        class="beer-delete" href="#">삭제</a>
+                </div>
+            </div>
+        </div>
+
+        <!--    페이징    -->
+        <div class="foot-container" id="foot-container">
+            <div class="page-container" id="page-container"
+                 th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+                   th:if="${paging.requestPage > 1}">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+                   th:if="${paging.requestPage > 1}">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+                <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                   th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+                   th:text="${page}"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+                   th:if="${paging.requestPage < paging.maxPage}">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+                   th:if="${paging.requestPage < paging.maxPage}">
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

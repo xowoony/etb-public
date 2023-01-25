@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 글 쓰기</title>
+    <script th:if="${result.equals('FAILURE')}">
+        alert('존재하지 않는 게시판입니다.');
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.close();
+        }
+    </script>
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/write.css}">
+    <script defer th:src="@{/resources/libraries/ckeditor.js}"></script>
+    <script defer th:src="@{/basicBbs/resources/scripts/write.js}"></script>
+</head>
+<body th:if="${board != null}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<main class="main">
+    <form class="content --content" id="form">
+<!--        <a href="#" class="back-button" id="back">-->
+<!--            <i class="fa-solid fa-circle-chevron-left"></i>-->
+<!--        </a>-->
+        <h1 class="title" th:text="${board + ' - 글 쓰기'}">글쓰기</h1>
+        <input name="bid" type="hidden" th:value="${bid}">
+        <table class="table" id="table">
+            <tbody>
+            <tr>
+                <th>제목</th>
+                <td>
+                    <label class="label email">
+                        <span hidden>제목</span>
+                        <input class="title-input" maxlength="100" name="title" placeholder="제목을 입력해 주세요."
+                               type="text" autofocus>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td class="content-container">
+                    <label class="label">
+                        <span hidden>내용</span>
+                        <textarea class="content-input" maxlength="10000" name="content"
+                                  placeholder="내용을 입력해 주세요."></textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr class="warning-row" rel="warningRow">
+                <th></th>
+                <td>
+                    <span class="warning" name="warning">
+                        <i class="icon fa-solid fa-triangle-exclamation"></i>
+                        <span rel="warningText">제목을 입력해 주세요.</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <div class="button-container">
+                        <input class="back-button" name="back" type="button" value="돌아가기">
+                        <input class="submit-button" name="submit" type="submit" value="작성하기">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

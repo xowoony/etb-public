@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!--공통 header-->
+<header th:fragment="header">
+    <div class="spring">
+        <ul class="category">
+            <li class="etb-logo">
+                <a class="title-logo" th:href="@{/}">잔이비어</a>
+            </li>
+            <li>
+                <a class="home" th:href="@{/}">HOME</a>
+            </li>
+            <li>
+                <a class="product" th:href="@{/product}">PRODUCT</a>
+                <ul class="depth_1">
+                    <li class="product-board">
+                        <a th:href="@{/data/beer}">BEER</a>
+                    </li>
+                    <li class="product-board"><a th:href="@{/bbs/review}">REVIEW</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="community" th:href="@{/community}">COMMUNITY</a>
+                <ul class="depth_1">
+                    <li class="community-board"><a th:href="@{/basicBbs/list (bid=free)}">자유게시판</a></li>
+                    <li class="community-board"><a th:href="@{/basicBbs/list (bid=meeting)}">모임게시판</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="festival" th:href="@{/festival}">FESTIVAL</a>
+            </li>
+            <!-- 로그인 했을 경우  -->
+            <li class="start" th:if="${session.user != null}">
+                <i class="fa-sharp fa-solid fa-user icon"></i>
+                <span>
+                    <a class="login" href="#" th:text="${session.user.nickname}">양파쿵야님</a>
+                    <span>님</span>
+                </span>
+                <ul class="depth_1 my">
+                    <!-- 마이페이지 -->
+                    <li class="user-board">
+                        <a th:href="@{/member/myPage}">마이페이지</a>
+                    </li>
+                    <!-- 로그아웃  -->
+                    <li class="user-board">
+                        <a th:href="@{/member/logout}">로그아웃</a>
+                    </li>
+                    <!-- 관리자 모드  -->
+                    <li class="user-board" th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+                        <a th:href="@{/etbAdmin}">관리자모드</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 로그인 안했을 경우  -->
+            <li class="start" th:if="${session.user == null}">
+                <i class="fa-sharp fa-solid fa-user icon"></i>
+                <span>
+                  <a class="login" th:href="@{/member/login}">시작하기</a>
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<!--공통 footer-->
+<footer th:fragment="footer">
+    <section class="footer-section1" id="footerSection1">
+        <div class="fix-footer" id="fixFooter">
+            <i class="title">©2023 by Empty Beer</i>
+        </div>
+    </section>
+</footer>
+
+
+<!--무언가를 불러오고 있습니다 loading-->
+<div class="loading-cover" id="cover" th:fragment="cover">
+    <img alt="" class="--icon" th:src="@{/resources/images/loading.png}">
+    <span class="loading-text" rel="text">무언가를 불러오고 있습니다. 잠시만 기다려 주세요.</span>
+</div>
+
+</html>

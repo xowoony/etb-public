@@ -1,0 +1,164 @@
+@charset "UTF-8";
+/*로그인 글씨체*/
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+
+body {
+    width: 100%;
+    color: rgb(255, 255, 255);
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+form {
+    width: 100%;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-image: url("/resources/images/home-background.png");
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+/*테이블 전체*/
+body > main > form > .table {
+    /*border: 0.05rem solid rgb(255, 255, 255);*/
+    max-width: 80rem;
+}
+
+body > main > form > .table > tbody {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 30rem; */
+    /* height: 25rem;*/
+}
+
+/*로그인 글씨*/
+body > main > form > .table > .title {
+    color: rgb(255, 255, 255);
+    font-size: 2.5rem;
+    /*font-family: 'Gowun Dodum', sans-serif;*/
+    font-family: 'Do Hyeon', sans-serif;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid rgb(255, 255, 255);
+}
+
+
+/*이메일 입력창 내부*/
+body > main > form > .table > tbody > tr > td > .email > .email-input {
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 0.3rem; */
+    background-color: rgba(0, 0, 0, 25%);
+    color: rgb(255, 255, 255);
+    padding: 1rem 1.25rem;
+    width: 20rem;
+    font-size: 1rem;
+}
+
+
+/*비밀번호 입력창 내부*/
+body > main > form > .table > tbody > tr > td > .password > .password-input {
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 0.3rem; */
+    background-color: rgba(0, 0, 0, 25%);
+    color: rgb(255, 255, 255);
+    padding: 1rem 1.25rem;
+    width: 20rem;
+    font-size: 1rem;
+}
+
+/*회원가입 글씨 속성*/
+body > main > form > .table > tbody > tr > td > label > .register > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*이메일 찾기 글씨 속성*/
+body > main > form > .table > tbody > tr > td > label > .forgetEml > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*비밀번호 재설정 글씨 속성*/
+body > main > form > .table > tbody > tr > td > label > .forgetPswd > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*경고창*/
+#form > .table .warning-row {
+    display: none;
+}
+
+#form > .table .warning-row.visible {
+    display: table-row;
+    width: 100%;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#form > .table .warning-row .warning {
+    background-color: rgb(222 225 45 / 40%);
+    /*border-radius: 0.375rem;*/
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    padding: 1rem 1.25rem;
+    /* padding: 0.8rem 0.8rem; */
+    width: 20rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#form > .table .warning-row .warning > .icon {
+    font-size: 1.5rem;
+    margin: 0 1.25rem 0 0.25rem;
+}
+
+#form > .table .warning-row .warning > .text {
+    flex: 1;
+    text-align: justify;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*로그인 버튼*/
+body > main > form > .table > tbody > tr > td > .login-container > .login-button {
+    /* border: 0.0625rem solid rgb(255, 255, 255); */
+    /* border-radius: 0.3rem; */
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 1rem 1.25rem;
+    width: 22.6rem;
+    font-size: 1rem;
+}
+
+/*로그인 버튼 hover 시*/
+body > main > form > .table > tbody > tr > td > .login-container > .login-button:hover {
+    background-color: rgba(0, 0, 0, 0.29);
+    color: rgb(220, 213, 215);
+    cursor: pointer;
+}

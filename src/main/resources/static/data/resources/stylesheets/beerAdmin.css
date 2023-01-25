@@ -1,0 +1,133 @@
+html{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+
+
+.beer-input{
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    position: absolute;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    right: 4.8rem;
+    top: 12rem;
+}
+
+/*.beer-input:hover{*/
+/*    background-color: #2994bb;*/
+/*    border: 1px solid #1b9fbb;*/
+/*}*/
+
+
+.beer-container{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    object-fit: fill;
+    color: white;
+    margin-top: 17rem;
+}
+
+.beer-container > .beer-content{
+    width: 30rem;
+    height: 35rem;
+    position: relative;
+    border: 1px solid white;
+    margin-bottom: 4rem;
+}
+
+.beer-container > .beer-content > .image{
+    width: 100px;
+    height: 100px;
+}
+
+.beer-container > .beer-content > .admin-button{
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+}
+
+.beer-container > .beer-content > .admin-button > .beer-modify,
+.beer-container > .beer-content > .admin-button > .beer-delete{
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    padding: 4px 10px;
+}
+
+
+/*.beer-container > .beer-content > .admin-button > .beer-modify:hover,*/
+/*.beer-container > .beer-content > .admin-button > .beer-delete:hover{*/
+/*    background-color: #92bb79;*/
+/*    border: 1px solid #8dbb71;*/
+/*}*/
+
+
+
+
+/*페이징*/
+
+#foot-container {
+    background-color: black;
+    padding-bottom: 6rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#foot-container > div:last-of-type {
+    width: 100%;
+    border-top: 1px solid black;
+}
+
+#page-container {
+    /*margin: 0.3rem;*/
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#page-container > .page {
+    /*border-left: 0.0625rem solid rgb(76, 91, 105);*/
+    color: white;
+    font-size: 13px;
+    padding: 0.3rem 0.55rem;
+    margin: 0.1rem;
+    text-decoration: none;
+    border: solid 1px #e5e5e5;
+    background-color: black;
+}
+
+
+#page-container > .page.selected {
+    /*background-color: rgb(66, 81, 95);*/
+    border: solid 1px #e5e5e5;
+    background-color: black;
+    color: white;
+}
+
+#page-container > .page:hover {
+    color: white;
+    background-color: rgb(0,0,0,20%);
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: 글 수정</title>
+    <script th:if="${result.equals('NO_SUCH_ARTICLE')}">
+        alert('존재하지 않는 게시글입니다.');
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.close();
+        }
+    </script>
+    <script th:if="${result.equals('NOT_ALLOWED')}">
+        alert('해당 게시글을 수정할 권한이 없습니다.');
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.close();
+        }
+    </script>
+    <script th:if="${result.equals('NOT_SIGNED')}">
+        window.location.href = '../member/login'
+    </script>
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/modify.css}">
+    <script defer th:src="@{/resources/libraries/ckeditor.js}"></script>
+    <script defer th:src="@{/basicBbs/resources/scripts/modify.js}"></script>
+</head>
+<body th:if="${result eq T(com.emptybeer.etb.enums.CommonResult).SUCCESS.name()}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main class="--main main">
+    <form class="content --content" id="form">
+        <h1 class="title" th:text="${board.getText() + ' - 글 수정'}"></h1>
+        <input name="bid" type="hidden" th:value="${board.getId()}">
+        <input name="aid" type="hidden" th:value="${basicArticle.getIndex()}">
+        <table class="table" id="table">
+            <tbody>
+            <tr>
+                <th>제목</th>
+                <td>
+                    <label class="label email">
+                        <span hidden>제목</span>
+                        <input class="title-input input" autofocus maxlength="100" name="title" placeholder="제목을 입력해 주세요." type="text" th:value="${basicArticle.getTitle()}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>
+                    <label class="label">
+                        <span hidden>내용</span>
+                        <textarea class="--object-input input" maxlength="10000" name="content"
+                                  placeholder="내용을 입력해 주세요." th:text="${basicArticle.getContent()}"></textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr class="warning-row" rel="warningRow">
+                <th></th>
+                <td>
+                    <span class="warning" name="warning">
+                        <i class="icon fa-solid fa-triangle-exclamation"></i>
+                        <span rel="warningText">제목을 입력해 주세요.</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <div class="button-container">
+                        <input class="--object-button" name="back" type="button" value="돌아가기">
+                        <input class="--object-button" name="submit" type="submit" value="수정하기">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

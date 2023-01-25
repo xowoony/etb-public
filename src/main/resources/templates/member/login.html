@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: login</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <!--  login.css 연결  -->
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/login.css}">
+    <!--  login.js 연결  -->
+    <script defer th:src="@{/member/resources/scripts/login.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main>
+    <form name="form" id="form">
+        <table class="table">
+            <caption class="title">로그인</caption>
+            <tbody>
+            <!--이메일 입력창-->
+            <tr>
+                <td>
+                    <label class="email">
+                        <input autofocus class="email-input" maxlength="50" name="email" id="email"
+                               placeholder="이메일 주소를 입력해 주세요." type="email">
+                    </label>
+                </td>
+            </tr>
+            <!-- 비밀번호 입력창-->
+            <tr>
+                <td>
+                    <label class="password">
+                        <input autofocus class="password-input" maxlength="50" name="password" id="password"
+                               placeholder="비밀번호를 입력해 주세요." type="password">
+                    </label>
+                </td>
+            </tr>
+            <!--경고창 - 이메일 or 비밀번호를 입력해주세요-->
+            <tr class="warning-row" rel="warningRow">
+                <td>
+                    <span class="warning">
+                        <span class="text">이메일을 입력해 주세요.</span>
+                    </span>
+                </td>
+            </tr>
+            <!--로그인 버튼-->
+            <tr>
+                <td>
+                    <label class="login-container">
+                        <input class="login-button" id="login-button" name="loginButton"
+                               type="submit" value="로그인" href="#">
+                    </label>
+                </td>
+            </tr>
+            <!-- 회원가입 & 이메일 찾기 & 비밀번호 재설정-->
+            <tr>
+                <td>
+                    <label>
+                        <span class="register" id="registerButton"
+                              type="submit" value="회원가입">
+                            <a th:href="@{/member/register}">회원가입 |</a>
+                        </span>
+                        <span class="forgetEml" id="forgetEml" name="forgetEml"
+                              type="submit" value="이메일 찾기">
+                            <a th:href="@{/member/recoverEmail}"> 이메일 찾기 |</a>
+                        </span>
+                        <span class="forgetPswd" id="forgetPswd" name="forgetPswd"
+                              type="submit" value="비밀번호 재설정하기">
+                            <a th:href="@{/member/recoverPassword}"> 비밀번호 재설정</a>
+                        </span>
+                    </label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

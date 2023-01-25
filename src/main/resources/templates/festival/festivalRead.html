@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: FESTIVAL INFO</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalRead.css}">
+    <script defer th:src="@{/bbs/resources/scripts/festivalRead.js}"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8a4e7818536b52ee031c365250072a9"></script>
+</head>
+<body>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main>
+    <!--    margin top 10rem 지정-->
+
+    <!--  데이터관련 컨테이너(hidden이므로 보이지 않음)  -->
+    <form id="festivalDataForm">
+
+        <div class="arrow">
+            <a th:href="@{/festival}"><i class="fa-solid fa-circle-chevron-left"></i></a>
+        </div>
+        <div>
+            <input type="hidden" name="longitude" th:value="${festivalArticles.getLongitude()}">
+            <input type="hidden" name="latitude" th:value="${festivalArticles.getLatitude()}">
+            <div>
+                <input type="hidden" name="festivalTitle" th:text="${festivalArticles.getTitle()}">
+            </div>
+        </div>
+    </form>
+
+    <div class="festival-container">
+        <!--  페스티벌 관련 이미지 컨테이너  -->
+        <div class="festival-imageContainer">
+            <div class="main-imageContainer">
+                <img th:src="@{/image (index=${festivalArticles.getIndex()})}">
+            </div>
+        </div>
+
+        <!--    페스티벌 관련 내용    -->
+        <div class="festival-infoContainer">
+<!--            <br>-->
+            <span>Period: </span>
+            <span th:text="${#dates.format(festivalArticles.getDateFrom(), 'yyyy-MM-dd')}"></span>
+            <span> ~ </span>
+            <span th:text="${#dates.format(festivalArticles.getDateTo(), 'yyyy-MM-dd')}"></span>
+            <br><br>
+
+            <span>Time: </span>
+            <span th:text="${#dates.format(festivalArticles.getTimeFrom(), 'HH:mm')}"></span>
+            <span> ~ </span>
+            <span th:text="${#dates.format(festivalArticles.getTimeTo(), 'HH:mm')}"></span>
+            <br><br>
+
+            <span>Introduction: </span>
+            <br>
+            <span th:text="${festivalArticles.getDescription()}"></span>
+            <br><br>
+
+            <span>Address: </span>
+            <br>
+            <span th:text="${festivalArticles.getAddress()}"></span>
+        </div>
+    </div>
+    <!-- 페스티벌 댓글 컨테이너  -->
+    <div class="review-container">
+        <span class="review-comment">Comment</span>
+        <form id="festivalReviewForm" th:if="${session.user != null}">
+            <div>
+                <input class="festivalRead-input" maxlength="200" name="content" type="text"
+                       placeholder="댓글을 입력하세요(최대200자)">
+                <div>
+                    <input class="festivalRead-button" type="submit" value="입력">
+                </div>
+            </div>
+            <!--      버튼이 아닌 hidden으로 된 input은 인덱스 값을 가져오기 위한 input으로 이를 js로 보내 data를 처리해야한다.     -->
+            <input name="aid" type="hidden" th:value="${festivalArticles.getIndex()}">
+
+        </form>
+        <!--    댓글리스트, 로그인이 되지 않아도 볼 수 있다.    -->
+        <div id="comment" rel="commentList" class="review-list" th:each="festivalComment : ${festivalComments}">
+            <div class="festival-comment">
+                <div class="comment-nickname" th:text="${festivalComment.getNickname()}"></div>
+                <div rel="commentContent" class="comment-content"  th:text="${festivalComment.getContent()}"></div>
+                <!--        a태그를 이용하여 수정을 할 수 있게 로직들을 작성하였으나        -->
+                <!--        수정된 텍스를 전송하기 위해서는 form을        -->
+                <form id="modifyByIndex" class="modify-content" method="get" action="/festival/festivalModify">
+                    <div class="modify-form" rel="modifyForm">
+                        <input class="comment-modifyInput" type="text" placeholder="수정할 내용을 입력하세요.(최대200자)"
+                               rel="modifyContent" maxlength="200" name="content" th:value="${festivalComment.getContent()}">
+                        <a class="cancel" rel="cancelButton" href="#">취소</a>
+                        <input rel="modifyIndex" type="hidden" name="index" th:value="${festivalComment.getIndex()}">
+                        <input rel="modifyCheck" class="check" type="submit" value="확인">
+                    </div>
+                </form>
+                <div rel="commentWritten" class="comment-written"
+                     th:text="${#dates.format(festivalComment.getWrittenOn(), 'YYYY-MM-DD')}"></div>
+                <form class="button">
+                    <div rel="commentButton" class="comment-button">
+<!-- 관리자일시 댓글 수정 삭제에 접근할 수 있게하는 로직을 구성하는 동안 생긴 시행착오를 정리하면 먼저 초기에는-->
+<!-- session.user != null && session.user.getEmail().equals(festivalComment.getUserEmail())-->
+<!-- || session.user.getEmail().equals('admin@admin') 라고 생각을 하였으나, 로그인시 페이지에서 정상적으로 작동하였으나 로그인을 하지 않고 접근시 오류가 발생하였다.-->
+<!-- 팀원의 조언에 따라 session.user != null을 하나 더 추가를 하였더니 정상적으로 작동하였다. -->
+<!-- 오류의 원인을 분석해본 결과 session.user.getEmail.equals('admin@admin')의 반환값에서 발생한 문제였었다. 기존 참, 거짓을 확인하기 위해서는 0, 그 이외의 수로 참, 거짓을 판별하나,-->
+<!-- session.user.getEmail.equals('admin@admin')에서 관리자 접속이 되지 않았을 시 null값이 반환이 되어서 발생한문제였다. 다른 이메일로 접속시에는 '1 || null'이 되어 참이 되어 실행이 되었으나,-->
+<!-- 접속하지 않을 시 '0 || null'이 수행이 되어 실행이 되지 않았던 것이다.-->
+<!-- 이를 session.user != null을 하나 더 추가 해주면서, `1 || 0` `0 || 0` 같은 로직이 되면서 오류도 해결하고 기능도 정상적으로 작동하였다. -->
+                        <a class="delete" rel="deleteButton" href="#"
+                           th:if="${session.user != null &&
+                           session.user.getEmail().equals(festivalComment.getUserEmail())
+                           || session.user != null && session.user.getEmail().equals('admin@admin')}"
+                           th:data-index="${festivalComment.getIndex()}">삭제</a>
+                        <a class="modify" rel="modifyButton" href="#"
+                           th:if="${session.user != null &&
+                           session.user.getEmail().equals(festivalComment.getUserEmail())
+                           || session.user != null && session.user.getEmail().equals('admin@admin')}"
+                           th:data-index="${festivalComment.getIndex()}">수정</a>
+                        <input type="hidden" name="commentIndex" th:value="${festivalComment.getIndex()}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--  페이징 컨테이너  -->
+
+
+    <div class="foot-container" id="foot-container">
+        <div class="page-container" id="page-container"
+             th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angles-left"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+               th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+               th:text="${page}"
+               th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angles-right"></i>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="map-container">
+        <div class="title">Map</div>
+        <div id="map"></div>
+    </div>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

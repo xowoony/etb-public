@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: BEER</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/data/resources/stylesheets/beer.css}">
+    <script defer th:src="@{/data/resources/scripts/beer.js}"></script>
+</head>
+<body>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main>
+    <!--  beerSection1  -->
+    <section class="beer-section" id="beerSection">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">BEER</div>
+            <div class="title-content">다양한 맥주를 소개합니다.
+            </div>
+            <div class="beer-select-border">
+                <form class="search-form" id="searchForm" method="get">
+                    <!--  맥주 검색   -->
+                    <label class="label">
+                        <span hidden>검색어</span>
+                        <input type="text" class="--object-input" maxlength="25" name="keyword"
+                               placeholder="검색할 맥주를 입력해 주세요."
+                               th:value="${#request.getParameter('keyword')}">
+                        <input type="submit" class="search-button" value="찾기">
+                    </label>
+                    <!--맥주 종류 선택-->
+                    <select name="beerCategory" id="beerCategory" th:with="beerCategory = ${#request.getParameter('beerCategory')}">
+                        <option value="" selected disabled>맥주 카테고리별 보기
+                        </option>
+                        <option class="domestic" value="domestic" th:selected="${beerCategory != null && beerCategory.equals('domestic')}">국내맥주</option>
+                        <option class="foreign" value="foreign" th:selected="${beerCategory != null && beerCategory.equals('foreign')}">해외맥주</option>
+                    </select>
+
+                    <label class="label">
+                        <span hidden>검색 기준</span>
+                        <select hidden name="criterion" class="--object-input"
+                                th:with="criterion = ${#request.getParameter('criterion')}">
+                            <!-- th:with는 변수 선언임 -->
+                            <option value="name" th:selected="${criterion == null || criterion.equals('name')}">맥주
+                            </option>
+                        </select>
+                    </label>
+
+                </form>
+            </div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <ul class="item-container">
+                <!-- 맥주 1개당  box -->
+                <li class="item" th:each="beer : ${beers}">
+                    <a class="link" th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td><img alt="" class="image"
+                                         th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"></td>
+                                <td th:text="${beer.getName()}">1866 블론드</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </a>
+                </li>
+            </ul>
+            <!--     페이징       -->
+            <table>
+                <tbody>
+                <tr>
+                    <td colspan="6">
+                        <div class="page-container"
+                             th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                            <!-- 페이징-->
+                            <!--  <<  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+                               th:if="${paging.requestPage > 1}">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </a>
+                            <!--  <  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage -1).build().toUriString()}}"
+                               th:if="${paging.requestPage > 1}">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </a>
+
+                            <!-- 얘가 기준 - 요청한 페이지 -->
+                            <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                               th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+                               th:text="${page}"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+                            <!-- 얘가 기준 - 요청한 페이지-->
+
+                            <!--  >  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+                               th:if="${paging.requestPage < paging.maxPage}">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </a>
+
+                            <!--  >>  -->
+                            <a class="page"
+                               th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+                               th:if="${paging.requestPage < paging.maxPage}">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

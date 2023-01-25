@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: PRODUCT</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/product.css}">
+    <script defer th:src="@{/home/resources/scripts/product.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main>
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">PRODUCT</div>
+            <div class="title-content">다양한 맥주에 대한 정보와
+                리뷰를 한 눈에 볼 수 있는 공간을 소개합니다.
+            </div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="free">
+                        <div class="free-title">
+                            BEER
+                        </div>
+                        <div class="free-content">
+                            <div>다양한 맥주가 소개되어 있으며</div>
+                            <div>맥주에 대한 상세한 설명을 볼 수 있습니다.</div>
+                            <div class="free-button">
+                                <a th:href="@{/data/beer}">GO</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="team">
+                        <div class="team-title">
+                            REVIEW
+                        </div>
+                        <div class="team-content">
+                            <div>맥주 관련 리뷰를</div>
+                            <div>한눈에 볼 수 있는 공간입니다.</div>
+                            <div class="team-button">
+                                <a th:href="@{/bbs/review}">GO</a>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

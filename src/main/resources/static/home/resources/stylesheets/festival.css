@@ -1,0 +1,201 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+/*COMMUNITY 타이틀 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+/*GO 버튼*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+/*축제 타이틀*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #181515;
+}
+
+/*main*/
+body > main {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+/*상단 타이틀 section*/
+body > main > .home-section1 {
+    width: 100%;
+    height: 100%;
+    /* margin-bottom: 3rem;*/
+}
+
+/*homeSection1*/
+body > main > .home-section1 > .title-box1 {
+    background-image: url("/resources/images/home-background.jpg");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47%;
+    /*position: fixed;*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+/*FESTIVAL 타이틀 글씨체*/
+body > main > .home-section1 > .title-box1 > .title {
+    font-size: 3rem;
+    font-family: 'Secular One', sans-serif;
+}
+
+/*다양한 맥주에 대 ~*/
+body > main > .home-section1 > .title-box1 > .title-content {
+    font-family: 'Gowun Batang', serif;
+    margin-bottom: 4.5rem;
+}
+
+
+/*section2 파트, product, community 파트 참조*/
+body > main > .home-section1 > .title-box2 {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    display: grid;
+    object-fit: fill;
+    color: black;
+    margin-left: 9rem;
+    margin-right: 9rem;
+}
+
+body > main > .home-section1 > .title-box2 > .festival-container {
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    width: 17.5rem;
+    height: 21.5rem;
+    color: rgb(0, 0, 0);
+    border-radius: 0.5rem;
+}
+
+body > main > .home-section1 > .title-box2 > .festival-container > div {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*페스티벌 타이틀*/
+body > main > .home-section1 > .title-box2 > .festival-container > div > .festival-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(197 197 197);
+}
+
+
+/*페스티벌 그림 크기 설정*/
+body > main > .home-section1 > .title-box2 > .festival-container > div > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+}
+
+
+/*body > main > .home-section1 > .title-box2 > .festival-container > .festival-title {*/
+/*    font-size: 1.5rem;*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*    font-weight: 1000;*/
+/*    font-family: 'Jua', sans-serif;*/
+/*}*/
+
+
+body > main > .home-section1 > .title-box1 > .festival-admin {
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    padding: 0.2rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+
+body > main > .home-section1 > .title-box1 > .festival-admin:hover {
+    background-color: #00000061;
+
+}
+
+
+/*페이징*/
+
+#foot-container {
+    background-color: #181515;
+    padding-bottom: 6rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#foot-container > div:last-of-type {
+    width: 100%;
+    border-top: 1px solid #181515;
+}
+
+#page-container {
+    /*margin: 0.3rem;*/
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#page-container > .page {
+    /* border-left: 0.0625rem solid rgb(76, 91, 105); */
+    color: white;
+    font-size: 13px;
+    padding: 0.3rem 0.55rem;
+    margin: 0.1rem;
+    text-decoration: none;
+    border: solid 1px #e5e5e5;
+    /* background-color: #fff;*/
+}
+
+
+#page-container > .page.selected {
+    border: solid 1px #e5e5e5;
+    background-color: rgb(187 162 60 / 61%);
+    color: #ffffff;
+}
+
+#page-container > .page:hover {
+    color: white;
+    background-color: rgb(255 255 255 / 20%);
+}
+
+
+
+

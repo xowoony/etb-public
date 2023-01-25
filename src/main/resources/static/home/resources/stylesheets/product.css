@@ -1,0 +1,227 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+/*COMMUNITY 타이틀 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+/*GO 버튼*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/*main*/
+body > main {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*상단 타이틀 section*/
+body > main > .home-section1 {
+    width: 100%;
+    height: 100%;
+    /* margin-bottom: 3rem;*/
+}
+
+/*homeSection1*/
+body > main > .home-section1 > .title-box1 {
+    background-image: url("/resources/images/home-background.jpg");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47%;
+    /*position: fixed;*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+/*PRODUCT 타이틀 글씨체*/
+body > main > .home-section1 > .title-box1 > .title {
+    font-size: 3rem;
+    font-family: 'Secular One', sans-serif;
+}
+
+/*다양한 맥주에 대 ~*/
+body > main > .home-section1 > .title-box1 > .title-content {
+    font-family: 'Gowun Batang', serif;
+    margin-bottom: 4.5rem;
+}
+
+
+/*section2*/
+body > main > .home-section1 > .title-box2 {
+    width: 100%;
+    height: 53%;
+    background-color: rgba(0, 0, 0, 0.78);
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*테이블 전체 크기*/
+body > main > .home-section1 > .title-box2 > table {
+    width: 100%;
+    height: 100%;
+}
+
+/*tr 전체 정렬*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+/*BEER*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    height: 100%;
+    background-image: url("/home/resources/images/beer-category.png");
+    background-position: center;
+    background-size: cover;
+    border-top: 0.02rem solid rgb(159 159 159);
+    border-right: 0.02rem solid rgb(159, 159, 159);
+}
+
+/*BEER 텍스트*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-title {
+    margin-top: 6.5rem;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 3rem;
+    color: rgb(0,0,0);
+}
+
+
+/*BEER 타이틀 아래 설명*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-content {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1rem;
+    color: rgb(0,0,0);
+    font-weight: 600;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*BEER 버튼*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-content > .free-button {
+    margin-top: 2.5rem;
+}
+
+
+
+/*BEER 버튼 안 글씨체*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-content > .free-button > a {
+    border: 0.0625rem solid rgb(0, 0, 0);
+    padding: 0.5rem 3rem;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 600;
+}
+
+/*BEER 버튼 안 글씨체 hover 시*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .free > .free-content > .free-button > a:hover{
+    background-color: rgb(0,0,0, 25%);
+}
+
+
+
+
+/*REVIEW*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 50%;
+    height: 100%;
+
+    background-image: url("/home/resources/images/review-category.jpg");
+    background-position: center;
+    background-size: cover;
+
+    border-top: 0.02rem solid rgb(159 159 159);
+}
+
+/*REVIEW 안 텍스트*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-title {
+    margin-top: 6.5rem;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 3rem;
+    color: rgb(0,0,0);
+}
+
+
+/*REVIEW 타이틀 아래 설명*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-content {
+    font-family: 'Gowun Batang', serif;
+    font-size: 1rem;
+    color: rgb(0,0,0);
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*REVIEW 버튼*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-content > .team-button {
+    margin-top: 2.5rem;
+    color: rgb(0,0,0);
+}
+
+/*REVIEW 타이틀 밑 상세설명 폰트 조절1*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-content{
+    font-weight: 600;
+}
+
+
+/*REVIEW 버튼 안 글씨체*/
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-content > .team-button > a {
+    border: 0.0625rem solid rgb(0, 0, 0);
+    padding: 0.5rem 3rem;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 600;
+}
+
+/*REVIEW 버튼 안 글씨체 hover 시 */
+body > main > .home-section1 > .title-box2 > table > tbody > tr > .team > .team-content > .team-button > a:hover{
+    background-color: rgb(0,0,0, 25%);
+}

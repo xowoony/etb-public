@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: Review 수정</title>
+    <script th:if="${reviewArticle.getContentGood() == null || reviewArticle.getContentBad() == null}">
+        alert('존재하지 않거나 권한이 없는 게시글 입니다.');
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.close();
+        }
+    </script>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewModify.css}">
+    <script defer th:src="@{/bbs/resources/scripts/reviewModify.js}"></script>
+</head>
+<body th:if="${reviewArticle.getContentGood() != null && reviewArticle.getContentBad() != null}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main>
+    <form class="review-form" id="reviewForm">
+        <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
+        <input name="aid" type="hidden" th:value="${reviewArticle.getIndex()}">
+        <input type="hidden" name="score" th:value="${reviewArticle.getScore()}">
+        <div class="button-container">
+            <div class="button" rel="backButton">
+                    <span class="icon">
+                        <i class="fa-solid fa-circle-chevron-left"></i>
+                    </span>
+            </div>
+        </div>
+        <h2 class="title">리뷰 수정</h2>
+        <table>
+            <tbody>
+            <tr>
+                <th>
+                    <div class="beer-container">
+                        <div class="beer-image">
+                            <a class="beer-contact-button" th:href="@{/bbs/reviewList (beerIndex=${reviewArticle.getBeerIndex()})}">
+                                <img th:src="@{/bbs/beerImage (beerIndex=${reviewArticle.getBeerIndex()})}" alt="">
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="beer-name" th:text="${reviewArticle.getBeerName()}">바르슈타이너 프리미엄 필스너 500ml</div>
+                            <div id="smallButton">
+                                <input class="small-button" type="button" name="beerSelectButton" value="제품 변경">
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <td>
+                    <div class="score-container">
+                        <span class="score" rel="score" th:text="${reviewArticle.getScore()}">-</span>
+                        <span class="full-score">/ 5</span>
+                        <div class="star-container" rel="starContainer">
+                            <i class="star fa-solid fa-star" th:classappend="${reviewArticle.getScore() >= 1 ? 'selected' : ''}"></i>
+                            <i class="star fa-solid fa-star" th:classappend="${reviewArticle.getScore() >= 2 ? 'selected' : ''}"></i>
+                            <i class="star fa-solid fa-star" th:classappend="${reviewArticle.getScore() >= 3 ? 'selected' : ''}"></i>
+                            <i class="star fa-solid fa-star" th:classappend="${reviewArticle.getScore() >= 4 ? 'selected' : ''}"></i>
+                            <i class="star fa-solid fa-star" th:classappend="${reviewArticle.getScore() >= 5 ? 'selected' : ''}"></i>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="title">
+                        <span class="icon">
+                            <i class="fa-solid fa-face-smile"></i>
+                        </span>
+                        <span class="text">좋았던 점</span>
+                        <span class="text-limit">(최소 20자 이상)</span>
+                    </div>
+                </th>
+                <td>
+                    <div class="title">
+                        <span class="icon">
+                            <i class="fa-solid fa-face-frown"></i>
+                        </span>
+                        <span class="text">아쉬운 점</span>
+                        <span class="text-limit">(최소 20자 이상)</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="content" rel="contentGood">
+                        <textarea id="inputGood" autofocus maxlength="5000" placeholder="좋았던 점을 작성해 주세요." th:text="${reviewArticle.getContentGood()}"></textarea>
+                    </div>
+                </th>
+                <td>
+                    <div class="content" rel="contentBad">
+                        <textarea id="inputBad" maxlength="5000" placeholder="아쉬운 점을 작성해 주세요." th:text="${reviewArticle.getContentBad()}"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="text-count">
+                        <span class="color" id="goodTextCount" th:text="${reviewArticle.getContentGood().length()}">0</span>
+                        <span class="normal">/</span>
+                        <span class="normal">5000</span>
+                    </div>
+                </th>
+                <td>
+                    <div class="text-count">
+                        <span class="color" id="badTextCount" th:text="${reviewArticle.getContentBad().length()}">0</span>
+                        <span class="normal">/</span>
+                        <span class="normal">5000</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <input type="submit" id="ModifyButton" class="modify-button button1" value="수정하기">
+        </div>
+    </form>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: FESTIVAL WRITE</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalAdminFestivalWrite.css}">
+    <script defer th:src="@{/bbs/resources/scripts/festivalAdminFestivalWrite.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <form id="form">
+            <div class="page-title">페스티벌 입력하기</div>
+            <div class="festival-inputContainer">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th colspan="1" class="festival-title">축제명</th>
+                        <td>
+                            <label class="label-festivalTitle">
+                                <span hidden>축제명</span>
+                                <input autofocus class="festival-input" maxlength="50" name="festivalTitle"
+                                       placeholder="축제명을 입력해주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="festival-title">축제사진</th>
+                        <td>
+                            <label class="label-festivalImage">
+                                <span hidden>축제사진</span>
+                                <input id="fImage" autofocus class="festival-fileInput" maxlength="50" name="festivalImage"
+                                       placeholder="축제사진을 업로드해주세요." type="file">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="festival-title">소개</th>
+                        <td>
+                            <label class="label-festivalDescription">
+                                <span hidden>소개</span>
+                                <textarea class="festival-descriptionInput" maxlength="100" name="festivalDescription"
+                                          placeholder="소개내용을 입력해주세요."></textarea>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="festival-title">주소</th>
+                        <td>
+                            <label class="label-festivalAddress">
+                                <span hidden>주소</span>
+                                <input class="festival-addressInput" maxlength="100" name="festivalAddress"
+                                       placeholder="주소를 입력해 주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="festival-title">축제일정</th>
+                        <td>
+                            <label class="label-festivalDateFrom">
+                                <span hidden>축제시작</span>
+                                <input class="festival-input" maxlength="100" name="festivalDateFrom"
+                                       placeholder="축제 일정을 입력해주세요." type="date">
+                            </label>
+                            <label class="label-festivalDateTo">
+                                <span hidden>축제종료</span>
+                                <input class="festival-input" maxlength="100" name="festivalDateTo"
+                                       placeholder="축제 일정을 입력해주세요." type="date">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="festival-title">축제시간</th>
+                        <td>
+                            <label class="label-festivalDateFrom">
+                                <span hidden>축제시작시간</span>
+                                <input class="festival-input" maxlength="100" name="festivalTimeFrom"
+                                       placeholder="축제 시간을 입력해주세요." type="time">
+                            </label>
+                            <label class="label-festivalDateTo">
+                                <span hidden>축제종료</span>
+                                <input class="festival-input" maxlength="100" name="festivalTimeTo"
+                                       placeholder="축제 시간을 입력해주세요." type="time">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="festival-title">축제장소</th>
+                        <td>
+                            <label class="label-festivalLatitude">
+                                <span hidden>위도</span>
+                                <input class="festival-input" maxlength="100" name="festivalLatitude"
+                                       placeholder="위도를 입력해주세요." type="number" step="0.000001">
+                            </label>
+                            <label class="label-festivalLongitude">
+                                <span hidden>경도</span>
+                                <input class="festival-input" maxlength="100" name="festivalLongitude"
+                                       placeholder="경도를 입력해주세요." type="number" step="0.000001">
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="festival-submit-container">
+                    <input class="festival-submit" type="submit" value="입력">
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

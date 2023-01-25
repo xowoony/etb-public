@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.emptybeer.etb.mappers.IMemberMapper">
+    <!--인서트-->
+    <insert id="insertEmailAuth"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.member.EmailAuthEntity">
+        INSERT INTO `etb_member`.`email_auths` (`email`, `code`, `salt`, `created_on`, `expires_on`, `expired_flag`)
+        VALUES (#{email}, #{code}, #{salt}, #{createdOn}, #{expiresOn}, #{isExpired})
+    </insert>
+
+    <insert id="insertUser"
+            keyColumn="email"
+            keyProperty="email"
+            parameterType="com.emptybeer.etb.entities.member.UserEntity">
+
+        INSERT INTO `etb_member`.`users` (`email`, `password`, `nickname`, `name`, `contact`, `address_postal`,
+                                          `address_primary`, `address_secondary`)
+        VALUES (#{email}, #{password}, #{nickname}, #{name}, #{contact}, #{addressPostal}, #{addressPrimary},
+                #{addressSecondary})
+    </insert>
+
+
+    <select id="selectEmailAuthByEmailCodeSalt"
+            resultType="com.emptybeer.etb.entities.member.EmailAuthEntity">
+        SELECT `index`        AS `index`,
+               `email`        AS `email`,
+               `code`         AS `code`,
+               `salt`         AS `salt`,
+               `created_on`   AS `createdOn`,
+               `expires_on`   AS `expiresOn`,
+               `expired_flag` AS `isExpired`
+        FROM `etb_member`.`email_auths`
+        WHERE BINARY `email` = #{email}
+          AND BINARY `code` = #{code}
+          AND BINARY `salt` = #{salt}
+        LIMIT 1
+    </select>
+
+
+    <select id="selectEmailAuthByIndex"
+            resultType="com.emptybeer.etb.entities.member.EmailAuthEntity">
+        SELECT `index`        AS `index`,
+               `email`        AS `email`,
+               `code`         AS `code`,
+               `salt`         AS `salt`,
+               `created_on`   AS `createdOn`,
+               `expires_on`   AS `expiresOn`,
+               `expired_flag` AS `isExpired`
+        FROM `etb_member`.`email_auths`
+        WHERE BINARY `index` = #{index}
+    </select>
+
+    <select id="selectUserByEmailPassword"
+            resultType="com.emptybeer.etb.entities.member.UserEntity">
+        SELECT `email`             AS `email`,
+               `password`          AS `password`,
+               `nickname`          AS `nickname`,
+               `name`              AS `name`,
+               `contact`           AS `contact`,
+               `address_postal`    AS `addressPostal`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `registered_on`     AS `registeredOn`
+        FROM `etb_member`.`users`
+        WHERE BINARY `email` = #{email}
+          AND BINARY `password` = #{password}
+        LIMIT 1
+    </select>
+
+
+    <!--  세션 유저 닉네임 받아오기 -->
+    <select id="selectUserNickname"
+            resultType="com.emptybeer.etb.entities.member.UserEntity">
+        SELECT `email`             AS `email`,
+               `password`          AS `password`,
+               `nickname`          AS `nickname`,
+               `name`              AS `name`,
+               `contact`           AS `contact`,
+               `address_postal`    AS `addressPostal`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `registered_on`     AS `registeredOn`
+        FROM `etb_member`.`users`
+        WHERE BINARY `nickname` = #{nickname}
+        LIMIT 1
+
+    </select>
+
+    <!--회원탈퇴, 닉네임 변경-->
+    <select id="selectUserByEmail"
+            resultType="com.emptybeer.etb.entities.member.UserEntity">
+        SELECT `email`             AS `email`,
+               `password`          AS `password`,
+               `nickname`          AS `nickname`,
+               `name`              AS `name`,
+               `contact`           AS `contact`,
+               `address_postal`    AS `addressPostal`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `registered_on`     AS `registeredOn`
+        FROM `etb_member`.`users`
+        WHERE BINARY `email` = #{email}
+        LIMIT 1
+    </select>
+
+
+    <update id="updateEmailAuth"
+            parameterType="com.emptybeer.etb.entities.member.EmailAuthEntity">
+        UPDATE `etb_member`.`email_auths`
+        SET `email`        = #{email},
+            `code`         = #{code},
+            `salt`         = #{salt},
+            `created_on`   = #{createdOn},
+            `expires_on`   = #{expiresOn},
+            `expired_flag` = #{isExpired}
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </update>
+
+
+    <update id="updateUser"
+            parameterType="com.emptybeer.etb.entities.member.UserEntity">
+        UPDATE `etb_member`.`users`
+        SET `password`          = #{password},
+            `nickname`          = #{nickname},
+            `name`              = #{name},
+            `contact`           = #{contact},
+            `address_postal`    = #{addressPostal},
+            `address_primary` = #{addressPrimary},
+            `address_secondary` = #{addressSecondary},
+            `registered_on`     = #{registeredOn}
+        WHERE BINARY `email` = #{email}
+        LIMIT 1
+    </update>
+
+    <!--이메일 찾기-->
+    <select id="selectUserByNameContact"
+            resultType="com.emptybeer.etb.entities.member.UserEntity">
+        SELECT `email`             AS `email`,
+               `password`          AS `password`,
+               `nickname`          AS `nickname`,
+               `name`              AS `name`,
+               `contact`           AS `contact`,
+               `address_postal`    AS `addressPostal`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `registered_on`     AS `registeredOn`
+        FROM `etb_member`.`users`
+        WHERE BINARY `name` = #{name}
+          AND BINARY `contact` = #{contact}
+        LIMIT 1
+    </select>
+
+    <!--  회원탈퇴  -->
+    <delete id="deleteUser">
+        DELETE
+        FROM `etb_member`.`users`
+        WHERE `email` = #{email}
+        LIMIT 1
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emptybeer.etb.mappers.IDataMapper">
+    <!-- 맥주 이미지 가져오기 BeerIndex 기준으로 1개-->
+    <select id="selectBeerByIndex"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index`          AS `index`,
+               `beer`.`name`           AS `name`,
+               `beer`.image            AS `image`,
+               `beer`.image_type       AS `imageType`,
+               `beer`.`category_index` AS `categoryIndex`,
+               `beerCategory`.`text`   AS `categoryText`,
+               `beer`.created_on       AS `createdOn`,
+               `beer`.modified_on      AS `modifiedOn`
+        FROM `etb_data`.`beers` AS `beer`
+                 LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+                           ON `beer`.`category_index` = `beerCategory`.`index`
+        WHERE `beer`.`index` = #{beerIndex}
+    </select>
+
+    <!--  맥주 정보 배열로 가져오기 + 맥주 카테고리별 보기  -->
+    <select id="selectBeer"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index` AS `index`,
+        `beer`.`name` AS `name`,
+        `beer`.image AS `image`,
+        `beer`.image_type AS `imageType`,
+        `beer`.`category_index` AS `categoryIndex`,
+        `beerCategory`.`text` AS `categoryText`,
+        `beer`.created_on AS `createdOn`,
+        `beer`.modified_on AS `modifiedOn`
+        FROM `etb_data`.`beers` AS `beer`
+        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+        ON `beer`.`category_index` = `beerCategory` .`index`
+        WHERE `beer`.`index`
+        <if test="criterion != null and criterion.equals('name')">
+            AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('domestic')">
+            AND `beer`.`category_index` = 1
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('foreign')">
+            AND `beer`.`category_index` = 2
+        </if>
+        LIMIT 9 OFFSET #{offset}
+
+    </select>
+
+
+    <!-- 페이징 -->
+<!--    <select id="selectBeerCountByBeerIndex"-->
+<!--            resultType="int">-->
+<!--        SELECT COUNT(0)-->
+<!--        FROM `etb_data`.`beers` AS `beer`-->
+<!--        WHERE `beer`.`index`-->
+<!--        <if test="criterion != null and criterion.equals('name')">-->
+<!--            AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')-->
+<!--        </if>-->
+
+<!--    </select>-->
+
+
+    <select id="selectBeerCountByBeerIndex"
+            resultType="int">
+        SELECT COUNT(0)
+        FROM `etb_data`.`beers` AS `beer`
+        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`
+        ON `beer`.`category_index` = `beerCategory` .`index`
+        WHERE `beer`.`index`
+        <if test="criterion != null and criterion.equals('name')">
+            AND REPLACE(`name`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('domestic')">
+            AND `beer`.`category_index` = 1
+        </if>
+        <if test="beerCategory != null and beerCategory.equals('foreign')">
+            AND `beer`.`category_index` = 2
+        </if>
+
+    </select>
+
+
+
+    <!--  맥주 카테고리별 보기  -->
+    <!--    <select id="selectBeerCategory"-->
+    <!--            resultType="com.emptybeer.etb.vos.BeerVo">-->
+    <!--        SELECT-->
+    <!--        `beer`.`index` AS `index`,-->
+    <!--        `beer`.`name` AS `name`,-->
+    <!--        `beer`.image AS `image`,-->
+    <!--        `beer`.image_type AS `imageType`,-->
+    <!--        `beer`.`category_index` AS `categoryIndex`,-->
+    <!--        `beerCategory`.`text` AS `categoryText`,-->
+    <!--        `beer`.created_on AS `createdOn`,-->
+    <!--        `beer`.modified_on AS `modifiedOn`-->
+    <!--        FROM `etb_data`.`beers` AS `beer`-->
+    <!--        LEFT JOIN `etb_data`.`beer_categories` AS `beerCategory`-->
+    <!--        ON `beer`.`category_index` = `beerCategory` .`index`-->
+    <!--        WHERE `beer`.`index`-->
+    <!--        <if test="beerCategory != null and beerCategory.equals('domestic')">-->
+    <!--            AND `beer`.`category_index` = 1-->
+    <!--        </if>-->
+    <!--        <if test="beerCategory != null and beerCategory.equals('foreign')">-->
+    <!--            AND `beer`.`category_index` = 2-->
+    <!--        </if>-->
+    <!--    </select>-->
+
+    <!--  맥주 인기순 정보 배열로 가져오기 -->
+    <select id="selectBeerRanking"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index`                      AS `index`,
+               `beer`.`name`                       AS `name`,
+               `beer`.image                        AS `image`,
+               `beer`.image_type                   AS `imageType`,
+               `beer`.`category_index`             AS `categoryIndex`,
+               `beer`.created_on                   AS `createdOn`,
+               `beer`.modified_on                  AS `modifiedOn`,
+               COUNT(`beerLikeCount`.`beer_index`) AS `likeCount`,
+               ROW_NUMBER() over (ORDER BY COUNT(`beerLikeCount`.`beer_index`) DESC) AS `rank`
+        FROM `etb_data`.`beers` AS `beer`
+                 LEFT JOIN `etb_data`.`beer_likes` AS `beerLikeCount`
+                           ON `beer`.`index` = `beerLikeCount`.`beer_index`
+        WHERE `beer`.`index`
+        GROUP BY beer.`index`
+        ORDER BY likeCount DESC
+    </select>
+
+
+
+
+
+    <!--  관리자  -->
+
+
+
+
+    <!--  관리자 페이지용 맥주 정보  -->
+    <select id="selectBeerForAdmin"
+            resultType="com.emptybeer.etb.vos.BeerVo">
+        SELECT `beer`.`index`          AS `index`,
+               `beer`.`name`           AS `name`,
+               `beer`.`image`          AS `image`,
+               `beer`.`image_type`     AS `imageType`,
+               `beer`.`mfr`            AS `mfr`,
+               `beer`.`volume`         AS `volume`,
+               `beer`.`degree`         AS `degree`,
+               `beer`.`description`    AS `description`,
+               `beer`.`category_index` AS `categoryIndex`,
+               `beer`.`created_on`     AS `createdOn`,
+               `beer`.`modified_on`    AS `modifiedOn`
+        FROM `etb_data`.`beers` AS `beer`
+        GROUP BY `beer`.`index`
+--         ORDER BY `festivalArticle`.`index` DESC
+            LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+
+
+    <!--  관리자 페이지에서 맥주 정보를 입력  -->
+    <insert id="insertBeer"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.data.BeerEntity">
+        INSERT INTO `etb_data`.`beers`
+        (`name`, `image`, `image_type`, `mfr`, `volume`,
+         `degree`, `description`, `category_index`, `created_on`)
+        VALUES (#{name}, #{image}, #{imageType},
+                #{mfr}, #{volume}, #{degree}, #{description}, #{categoryIndex},
+                IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+
+
+    <!--  관리자 페이지 수정  -->
+    <select id="selectBeerFromAdminByIndex"
+        resultType="com.emptybeer.etb.entities.data.BeerEntity">
+        SELECT `beer`.`index`          AS `index`,
+               `beer`.`name`           AS `name`,
+               `beer`.`image`          AS `image`,
+               `beer`.`mfr`            AS `mfr`,
+               `beer`.`volume`         AS `volume`,
+               `beer`.`degree`         AS `degree`,
+               `beer`.`description`    AS `description`,
+               `beer`.`category_index` AS `categoryIndex`,
+               `beer`.`created_on`     AS `createdOn`,
+               `beer`.`modified_on`    AS `modifiedOn`
+        FROM `etb_data`.`beers` AS `beer`
+WHERE `beer`.`index` =#{index}
+    </select>
+
+
+    <!--  수정할 이미지가 존재할 시  -->
+    <update id="updateBeer"
+            parameterType="com.emptybeer.etb.entities.data.BeerEntity">
+        UPDATE `etb_data`.`beers`
+        SET `beers`.`name`       = #{name},
+            `beers`.`image`      = #{image},
+            `beers`.`image_type` = #{imageType},
+            `beers`.`mfr` = #{mfr},
+            `beers`.`volume` = #{volume},
+            `beers`.`degree` = #{degree},
+            `beers`.`description` = #{description},
+            `beers`.`category_index` = #{categoryIndex},
+            `beers`.`modified_on` = NOW()
+        WHERE `beers`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <!--  수정하는 이미지가 존재하지 않을 시  -->
+    <update id="updateBeerExceptImage"
+            parameterType="com.emptybeer.etb.entities.data.BeerEntity">
+        UPDATE `etb_data`.`beers`
+        SET `beers`.`name`    = #{name},
+            `beers`.`mfr` = #{mfr},
+            `beers`.`volume` = #{volume},
+            `beers`.`degree` = #{degree},
+            `beers`.`description` = #{description},
+            `beers`.`category_index` = #{categoryIndex},
+            `beers`.`modified_on` = NOW()
+        WHERE `beers`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <!--  맥주 정보들을 삭제  -->
+    <delete id="deleteBeerByIndex">
+        DELETE
+        FROM `etb_data`.`beers`
+        WHERE `index` = #{index} LIMIT 1
+    </delete>
+
+
+    <select id="selectBeerCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM `etb_data`.`beers` AS `beer`
+    </select>
+
+
+</mapper>

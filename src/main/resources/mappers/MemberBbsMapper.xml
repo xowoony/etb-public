@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emptybeer.etb.mappers.IMemberBbsMapper">
+
+    <!--   email로 내 글 조회-->
+    <select id="selectArticlesByEmail"
+            resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`        AS `index`,
+               `basicArticle`.user_email     AS `userEmail`,
+               `basicArticle`.board_id       AS `boardId`,
+               `board`.text                  AS `boardName`,
+               `basicArticle`.title          AS `title`,
+               `basicArticle`.view           AS `view`,
+               `basicArticle`.written_on     AS `writtenOn`,
+               `basicArticle`.modified_on    AS `modifiedOn`,
+               `user`.`nickname`             AS `usernickname`,
+               COUNT(`basicComment`.`index`) AS `commentCount`
+        FROM etb_bbs.basic_articles AS `basicArticle`
+                 LEFT JOIN etb_bbs.boards AS `board` ON board.id = `basicArticle`.board_id
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticle`.`user_email`
+                 LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
+                           ON `basicArticle`.`index` = `basicComment`.`article_index`
+        WHERE `user`.`email` = #{email}
+        GROUP BY `basicArticle`.`index`
+        ORDER BY `basicArticle`.`index` DESC
+    </select>
+
+    <!--    내 리뷰 리스트 조회-->
+    <select id="selectReviewsByEmail"
+            resultType="com.emptybeer.etb.vos.ReviewArticleVo">
+        SELECT `reviewArticle`.`index`         AS `index`,
+               `reviewArticle`.`user_email`    AS `userEmail`,
+               `reviewArticle`.`board_id`      AS `boardId`,
+               `reviewArticle`.`beer_index`    AS `beerIndex`,
+               `beer`.`name`                   AS `beerName`,
+               `reviewArticle`.`score`         AS `score`,
+               `reviewArticle`.`content_good`  AS `contentGood`,
+               `reviewArticle`.`content_bad`   AS `contentBad`,
+               `reviewArticle`.`declaration`   AS `declaration`,
+               `reviewArticle`.`written_on`    AS `writtenOn`,
+               `reviewArticle`.`modified_on`   AS `modifiedOn`,
+               `user`.`nickname`               AS `usernickname`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`review_article_likes`
+                WHERE `etb_bbs`.`review_article_likes`.`article_index` =
+                      `reviewArticle`.`index`) AS `likeCount`
+        FROM etb_bbs.review_articles AS `reviewArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
+                 LEFT JOIN `etb_data`.`beers` AS `beer` ON `beer`.`index` = `reviewArticle`.beer_index
+        WHERE user.email = #{email}
+        GROUP BY `reviewArticle`.`index`
+        ORDER BY `reviewArticle`.`index` DESC
+    </select>
+
+    <!--   email로 내 댓글 조회-->
+    <select id="selectCommentsByEmail"
+            resultType="com.emptybeer.etb.vos.BasicCommentVo">
+        SELECT `basicComment`.`index`       AS `index`,
+               `basicComment`.user_email    AS `userEmail`,
+               `basicComment`.board_id      AS `boardId`,
+               `board`.text                 AS `boardName`,
+               `basicComment`.article_index AS `articleIndex`,
+               `basicArticle`.title         AS `articleTitle`,
+               `basicComment`.content       AS `content`,
+               `basicComment`.written_on    AS `writtenOn`,
+               `user`.`nickname`            AS `usernickname`
+        FROM etb_bbs.basic_comments AS `basicComment`
+                 LEFT JOIN etb_bbs.boards AS `board` ON board.id = `basicComment`.board_id
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicComment`.`user_email`
+                 LEFT JOIN `etb_bbs`.basic_articles AS `basicArticle`
+                           ON `basicArticle`.`index` = `basicComment`.article_index
+        WHERE `user`.`email` = #{email}
+        ORDER BY `basicComment`.`index` DESC
+    </select>
+
+    <!--  좋아요 한 기본 게시글 조회-->
+    <select id="selectArticlesByLike"
+            resultType="com.emptybeer.etb.vos.BasicArticleLikeVo">
+        SELECT `basicArticleLike`.user_email    AS `userEmail`,
+               `basicArticleLike`.board_id      AS `boardId`,
+               `board`.text                     AS `boardName`,
+               `basicArticleLike`.article_index AS `articleIndex`,
+               `basicArticle`.title             AS `title`,
+               `basicArticleLike`.created_on    AS `createdOn`,
+               `user`.`nickname`                AS `usernickname`,
+               COUNT(`basicComment`.`index`)    AS `commentCount`
+        FROM etb_bbs.basic_article_likes AS `basicArticleLike`
+                 LEFT JOIN etb_bbs.boards AS `board` ON board.id = `basicArticleLike`.board_id
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticleLike`.`user_email`
+                 LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
+                           ON `basicArticleLike`.`article_index` = `basicComment`.`article_index`
+                 LEFT JOIN `etb_bbs`.basic_articles AS `basicArticle`
+                           ON basicArticle.`index` = basicArticleLike.article_index
+        WHERE `user`.`email` = #{email}
+        GROUP BY `basicArticleLike`.`article_index`
+        ORDER BY `basicArticleLike`.`article_index` DESC
+    </select>
+
+    <!--  좋아요 한 리뷰 게시글 조회-->
+    <select id="selectReviewsByLike"
+            resultType="com.emptybeer.etb.vos.ReviewArticleLikeVo">
+        SELECT `reviewArticleLike`.user_email    AS `userEmail`,
+               `reviewArticleLike`.article_index AS `articleIndex`,
+               `beer`.`name`                     AS `beerName`,
+               `reviewArticle`.`score`           AS `score`,
+               `reviewArticle`.`content_good`    AS `contentGood`,
+               `reviewArticle`.`content_bad`     AS `contentBad`,
+               `user`.`nickname`                 AS `usernickname`
+        FROM etb_bbs.review_article_likes AS `reviewArticleLike`
+                 LEFT JOIN `etb_bbs`.review_articles AS `reviewArticle`
+                           ON reviewArticle.`index` = reviewArticleLike.article_index
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `reviewArticle`.`user_email`
+                 LEFT JOIN `etb_data`.`beers` AS beer ON beer.`index` = reviewArticle.beer_index
+        WHERE `reviewArticleLike`.`user_email` = #{email}
+        GROUP BY `reviewArticleLike`.`article_index`
+        ORDER BY `reviewArticleLike`.`article_index` DESC
+    </select>
+
+</mapper>

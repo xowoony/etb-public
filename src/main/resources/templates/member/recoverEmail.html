@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 이메일 찾기</title>
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <script defer th:src="@{/resources/scripts/common.js}"></script>
+    <script defer th:src="@{/member/resources/scripts/recoverEmail.js}"></script>
+    <link rel="stylesheet" th:href="@{/resources/stylesheets/common.css}">
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/recoverEmail.css}">
+</head>
+<body>
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main class="--main main">
+    <form name="form" id="form" rel="form">
+<!--        <form name="form" id="form">-->
+        <div class="title-container">
+            <h1 class="title">이메일 찾기</h1>
+        </div>
+        <table class="table">
+            <tbody>
+            <!--이름 입력창-->
+            <tr>
+                <th rowspan="1" id="name">이름</th>
+                <td>
+                    <label class="label name">
+                        <input autofocus class="--object-input input" maxlength="50" name="name"
+                               placeholder="이름을 입력해 주세요." type="text">
+                    </label>
+                </td>
+            </tr>
+            <!-- 연락처 입력창-->
+            <tr>
+                <th rowspan="1" id="contact">연락처</th>
+                <td>
+                    <label class="label contact">
+                        <span hidden>연락처</span>
+                        <input autofocus class="--object-input input" maxlength="50" name="contact"
+                               placeholder="연락처를 입력해 주세요." type="text">
+                    </label>
+                </td>
+            </tr>
+            <!--이메일 찾기 버튼-->
+            <tr>
+                <th id="login"></th>
+                <td>
+                    <label>
+                        <input class="login-button" id="login-button" name="loginButton"
+                               type="submit" value="이메일 찾기" href="#">
+                    </label>
+                </td>
+            </tr>
+            <!--입력하신 이메일은 ~입니다.-->
+            <tr class="emailAlert" rel="emailAlert">
+                <th></th>
+                <td>
+                    <span>
+                        <span class="emailAlertText">찾으시는 회원님의 이메일은<b rel="message"><div>입니다</div></b></span>
+                    </span>
+                </td>
+            </tr>
+
+            <!--로그인하러 가기-->
+            <tr class="warning-login">
+                <th></th>
+                <td>
+                    <label class="warningLogin">
+                        <input class="goLoginText" id="goLoginText" name="goLoginText"
+                               type="submit" value="로그인하기" onclick="location.href='login'">
+                    </label>
+                </td>
+            </tr>
+            <!--경고창 - 이름 or 연락처를 입력해주세요-->
+            <tr class="warning-row" rel="warningRow">
+                <th></th>
+                <td>
+                    <span class="warning">
+<!--                        <i class="icon fa-solid fa-triangle-exclamation"></i>-->
+                        <span class="text"></span>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

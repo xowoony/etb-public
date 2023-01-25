@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: 글 읽기</title>
+    <script th:if="${basicArticle==null}">
+        alert('존재하지 않는 게시글 입니다.');
+        window.history.back();
+    </script>
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/basicBbs/resources/stylesheets/read.css}">
+    <script defer th:src="@{/basicBbs/resources/scripts/read.js}"></script>
+</head>
+<body th:if="${basicArticle != null}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main class="--main main">
+    <div class="--content content">
+        <a class="title" th:href="@{./list (bid=${basicArticle.getBoardId()})}" id="title">
+            <span th:text="${board.getText()}"></span>
+            <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <div class="article-title" th:text="${basicArticle.getTitle()}"></div>
+        <div class="user">
+            <div class="nickname" th:text="${basicArticle.getUserNickname()}"></div>
+            <div th:text="${#dates.format(basicArticle.getWrittenOn(),'yyyy-MM-dd HH:mm:ss')}"></div>
+            <div th:text="${'조회 ' + basicArticle.getView()}"></div>
+            <div class="go-comment" id="goComment">
+                <i class="fa-regular fa-comment-dots"></i>
+                <span>댓글</span>
+                <span class="comment-count" id="commentCount" th:text="${basicArticle.getCommentCount()}"></span>
+            </div>
+        </div>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td colspan="6">
+                    <input class="report-button" rel="reportButton" type="button" value="신고하기" th:if="${session.user == null || !session.user.getEmail().equals(basicArticle.getUserEmail())}" th:classappend="${basicArticle.isSigned() == true ? '' : 'prohibited'}" th:value="${basicArticle.isReported() == true ? '신고완료' : '신고하기'}">
+                    <div class="content-container">
+                        <p th:utext="${basicArticle.getContent()}">제가... 보이시나요...?</p>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div class="button-container">
+                        <span class="basic-like-button" rel="basicLikeButton"
+                              th:classappend="${basicArticle.isLiked() == true ? 'liked' : ''}">
+                            <input class="basic-like toggle" type="button"
+                                   th:value="${basicArticle.isLiked() == true ? '추천 취소' : '추천'}" rel="basicToggle"
+                                   th:classappend="${basicArticle.isSigned() == true ? '' : 'prohibited'}">
+                        </span>
+                        <span class="like-count" th:text="${basicArticle.getLikeCount()}">추천 개수</span>
+                        <span class="spring"></span>
+                        <a class="--object-button modify" th:href="@{./modify (aid=${basicArticle.getIndex()})}"
+                           th:if="${session.user != null && session.user.getEmail().equals(basicArticle.getUserEmail())}">수정</a>
+                        <a class="--object-button delete" href="#" id="deleteButton"
+                           th:if="${session.user != null && session.user.getEmail().equals(basicArticle.getUserEmail()) || session.user != null && session.user.getEmail().equals('admin@admin')}">삭제</a>
+                    </div>
+                </td>
+            </tr>
+            <tr class="comment-row">
+                <td colspan="6">
+                    <div class="comment-container" id="commentContainer">
+                        <div class="comment modifying liked mine">
+                            <div class="head">
+                                <span class="writer">관리자</span>
+                                <span class="dt">2022-01-01 00:00:00</span>
+                                <span class="spring"></span>
+                                <span class="action-container">
+                                    <a class="action modify" href="#">수정</a>
+                                    <a class="action delete" href="#">삭제</a>
+                                    <a class="action cancel" href="#">취소</a>
+                                </span>
+                            </div>
+                            <div class="body">
+                                <div class="content">
+                                    <span class="text">댓글 내용임!</span>
+                                </div>
+                                <form class="modify-form">
+                                    <label class="label">
+                                        <span hidden>댓글 수정</span>
+                                        <input class="--object-input" maxlength="100" name="content"
+                                               placeholder="댓글을 입력해 주세요." type="text">
+                                    </label>
+                                    <input class="--object-button" type="submit" value="수정">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="comment-form" id="commentForm" th:if="${session.user != null}">
+                        <label class="label">
+                            <div class="nickname" th:text="${session.userNickname}">바꿔야함</div>
+                            <span hidden>댓글 작성</span>
+                            <textarea class="--object-input" maxlength="100" name="content" placeholder="댓글을 남겨보세요"></textarea>
+                        </label>
+                        <input name="aid" type="hidden" th:value="${basicArticle.getIndex()}">
+                        <input name="bid" type="hidden" th:value="${basicArticle.getBoardId()}">
+                        <div>
+                            <input class="comment-write" type="submit" value="등록">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="foot">
+            <a class="--object-button write" th:href="@{./write (bid=${board.getId()})}">
+                <i class="fa-solid fa-pen"></i>
+                <span>글쓰기</span>
+            </a>
+            <a class="--object-button list" th:href="@{./list (bid=${basicArticle.getBoardId()})}">목록</a>
+            <span class="--object-button top" id="topButton">
+                <i class="fa-solid fa-caret-up"></i>
+                <span>TOP</span>
+            </span>
+        </div>
+    </div>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emptybeer.etb.mappers.IFestivalMapper">
+    <!--  festival관련 DAO  -->
+
+    <select id="selectFestivalArticleByIndex"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`       AS `index`,
+               `festivalArticle`.`board_id`    AS `boardId`,
+               `festivalArticle`.`user_email`  AS `userEmail`,
+               `festivalArticle`.`title`       AS `title`,
+               `festivalArticle`.`address`     AS `address`,
+               `festivalArticle`.`description` AS `description`,
+               `festivalArticle`.`date_from`   AS `dateFrom`,
+               `festivalArticle`.`date_to`     AS `dateTo`,
+               `festivalArticle`.`time_from`   AS `timeFrom`,
+               `festivalArticle`.`time_to`     AS `timeTo`,
+               `festivalArticle`.`latitude`    AS `latitude`,
+               `festivalArticle`.`longitude`   AS `longitude`,
+               `festivalArticle`.`created_on`  AS `createdOn`,
+               `festivalArticle`.`modified_on` AS `modifiedOn`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        WHERE `festivalArticle`.`index` = #{index}
+    </select>
+
+
+    <select id="selectFestivalArticle"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`       AS `index`,
+               `festivalArticle`.`board_id`    AS `boardId`,
+               `festivalArticle`.`user_email`  AS `userEmail`,
+               `festivalArticle`.`title`       AS `title`,
+               `festivalArticle`.`description` AS `description`,
+               `festivalArticle`.`address`     AS `address`,
+               `festivalArticle`.`date_from`   AS `dateFrom`,
+               `festivalArticle`.`date_to`     AS `dateTo`,
+               `festivalArticle`.`time_from`   AS `timeFrom`,
+               `festivalArticle`.`time_to`     AS `timeTo`,
+               `festivalArticle`.`latitude`    AS `latitude`,
+               `festivalArticle`.`longitude`   AS `longitude`,
+               `festivalArticle`.`created_on`  AS `createdOn`,
+               `festivalArticle`.`modified_on` AS `modifiedOn`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        GROUP BY `festivalArticle`.`index`
+--         ORDER BY `festivalComment`.`index` DESC
+            LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+
+
+    <select id="selectFestivalCommentByArticleIndex"
+            resultType="com.emptybeer.etb.vos.FestivalCommentVo">
+        SELECT `festivalComment`.`index`      AS `index`,
+               `festivalComment`.`content`    AS `content`,
+               `festivalComment`.`written_on` AS `writtenOn`,
+               `festivalComment`.`user_email` AS `userEmail`,
+               `user`.`nickname`              AS `nickname`
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `festivalComment`.`user_email`
+        WHERE `festivalComment`.`article_index` = #{index}
+        GROUP BY `festivalComment`.`index`
+        ORDER BY `festivalComment`.`index` DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+
+    <select id="selectFestivalArticleImage"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`title_image`      AS `titleImage`,
+               `festivalArticle`.`title_image_type` AS `titleImageType`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+    </select>
+
+<!--    <select id="selectImageByIndex"-->
+<!--            resultType="com.emptybeer.etb.entities.bbs.ImageEntity">-->
+<!--        SELECT `image`.`index`     AS `index`,-->
+<!--               `image`.`file_name` AS `fileName`,-->
+<!--               `image`.`file_mime` AS `fileMime`,-->
+<!--               `image`.`data`      AS `data`-->
+<!--        FROM `etb_bbs`.`images` AS `image`-->
+<!--        WHERE `image`.`index` = #{index} LIMIT 1-->
+
+<!--    </select>-->
+
+    <select id="selectImageByIndex"
+            resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
+        SELECT `festivalArticle`.`index`     AS `index`,
+               `festivalArticle`.`title` AS `fileName`,
+               `festivalArticle`.`title_image_type` AS `fileMime`,
+               `festivalArticle`.`title_image`      AS `data`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        WHERE `festivalArticle`.`index` = #{index} LIMIT 1
+    </select>
+
+
+    <select id="selectFestivalCommentByCommentIndex"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        SELECT `festivalComment`.`index`      AS `index`,
+               `festivalComment`.`content`    AS `content`,
+               `festivalComment`.`written_on` AS `writtenOn`,
+               `festivalComment`.`user_email` AS `userEmail`,
+               `festivalComment`.`written_on` AS `writtenOn`
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+        WHERE `festivalComment`.`index` = #{index}
+    </select>
+
+
+    <insert id="insertFestivalComment"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        INSERT INTO `etb_bbs`.`festival_comments` (`user_email`, `article_index`, `content`, `written_on`)
+        VALUES (#{userEmail}, #{articleIndex}, #{content}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)))
+    </insert>
+
+
+    <delete id="deleteFestivalCommentByIndex">
+        DELETE
+        FROM `etb_bbs`.`festival_comments`
+        WHERE `index` = #{index} LIMIT 1
+    </delete>
+
+    <update id="updateFestivalCommentByIndex"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        UPDATE `etb_bbs`.`festival_comments`
+        SET `festival_comments`.`content`    = #{content},
+            `festival_comments`.`written_on` = NOW()
+        WHERE `festival_comments`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <update id="updateFestivalCommentByIndexFromFestivalModify"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        UPDATE `etb_bbs`.`festival_comments`
+        SET `festival_comments`.`content`    = #{content},
+            `festival_comments`.`written_on` = NOW()
+        WHERE `festival_comments`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <select id="selectFestivalArticleIndexByIndexFromFestivalModify"
+            resultType="com.emptybeer.etb.entities.bbs.FestivalCommentEntity">
+        SELECT `festivalComment`.`article_index` AS `articleIndex`
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+        WHERE `festivalComment`.`index` = #{index}
+    </select>
+
+    <select id="selectFestivalCommentCountByFestivalArticleIndex"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM `etb_bbs`.`festival_comments` AS `festivalComment`
+        WHERE `festivalComment`.`article_index` = #{index}
+    </select>
+
+
+
+    <select id="selectFestivalArticleForCount"
+    resultType="int">
+        SELECT COUNT(*)
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+    </select>
+
+
+
+    <select id="selectFestivalArticleForPaging"
+        resultType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        SELECT `festivalArticle`.`index`      AS `index`,
+               `festivalArticle`.`title`    AS `title`,
+               `festivalArticle`.`description` AS `description`,
+               `festivalArticle`.`address` AS `address`
+        FROM `etb_bbs`.`festival_articles` AS `festivalArticle`
+        GROUP BY `festivalArticle`.`index`
+--         ORDER BY `festivalArticle`.`index` DESC
+            LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+
+
+    <insert id="insertFestivalArticle"
+    useGeneratedKeys="true"
+    keyColumn="index"
+    keyProperty="index"
+    parameterType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        INSERT INTO `etb_bbs`.`festival_articles`
+        (`board_id`, `user_email`, `title`, `title_image`, `title_image_type`,
+         `description`, `address`, `date_from`, `date_to`, `time_from`, `time_to`,
+         `latitude`, `longitude`, `created_on`)
+        VALUES (#{boardId}, #{userEmail}, #{title}, #{titleImage}, #{titleImageType}, #{description},
+                #{address}, #{dateFrom}, #{dateTo}, #{timeFrom}, #{timeTo}, #{latitude}, #{longitude},
+                IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+
+
+
+    <!--  수정하는 이미지가 존재할 시  -->
+    <update id="updateFestivalArticle"
+    parameterType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        UPDATE `etb_bbs`.`festival_articles`
+        SET `festival_articles`.`board_id`    = #{boardId},
+            `festival_articles`.`user_email` = #{userEmail},
+            `festival_articles`.`title` = #{title},
+            `festival_articles`.`title_image_type` = #{titleImageType},
+            `festival_articles`.`description` = #{description},
+            `festival_articles`.`address` = #{address},
+            `festival_articles`.`date_from` = #{dateFrom},
+            `festival_articles`.`date_to` = #{dateTo},
+            `festival_articles`.`time_from` = #{timeFrom},
+            `festival_articles`.`time_to` = #{timeTo},
+            `festival_articles`.`latitude` = #{latitude},
+            `festival_articles`.`longitude` = #{longitude},
+            `festival_articles`.`modified_on` = NOW(),
+            `festival_articles`.`title_image` = #{titleImage}
+        WHERE `festival_articles`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <!--  수정하는 이미지가 존재하지 않을 시  -->
+    <update id="updateFestivalArticleExceptImage"
+            parameterType="com.emptybeer.etb.entities.bbs.FestivalArticleEntity">
+        UPDATE `etb_bbs`.`festival_articles`
+        SET `festival_articles`.`board_id`    = #{boardId},
+            `festival_articles`.`user_email` = #{userEmail},
+            `festival_articles`.`title` = #{title},
+            `festival_articles`.`description` = #{description},
+            `festival_articles`.`address` = #{address},
+            `festival_articles`.`date_from` = #{dateFrom},
+            `festival_articles`.`date_to` = #{dateTo},
+            `festival_articles`.`time_from` = #{timeFrom},
+            `festival_articles`.`time_to` = #{timeTo},
+            `festival_articles`.`latitude` = #{latitude},
+            `festival_articles`.`longitude` = #{longitude},
+            `festival_articles`.`modified_on` = NOW()
+        WHERE `festival_articles`.`index` = #{index} LIMIT 1
+    </update>
+
+
+    <!--  인덱스가 일치하는 축제 삭제  -->
+    <delete id="deleteFestivalArticleByIndex">
+        DELETE
+        FROM `etb_bbs`.`festival_articles`
+        WHERE `index` = #{index} LIMIT 1
+    </delete>
+
+
+
+</mapper>

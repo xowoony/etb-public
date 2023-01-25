@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 회원가입</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <!--    <link rel="stylesheet" th:href="@{/resources/stylesheets/common.css}">-->
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/register.css}">
+    <script src="https://kit.fontawesome.com/08367f1c3f.js" crossorigin="anonymous"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!--    <script defer th:src="@{/resources/scripts/common.js}"></script>-->
+    <script defer th:src="@{/member/resources/scripts/register.js}"></script>
+</head>
+<body>
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main class="--main main" id="smoothScroll">
+    <div class="--content content">
+        <form class="form step1" id="form">
+            <div class="title-container">
+                <h2 class="title">잔이비어 회원가입</h2>
+            </div>
+            <!--     step 1, 2, 3       -->
+            <table class="step-container">
+                <tbody>
+                <tr class="step-box">
+                    <td class="step step1">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <div>1. 약관동의</div>
+                    </td>
+                    <td class="step step2">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div>2. 개인정보 입력</div>
+                    </td>
+                    <td class="step step3">
+                        <i class="fa-solid fa-user-check"></i>
+                        <div>3. 회원가입 완료</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--     step1       -->
+            <div class="step step1">
+                <label class="label">
+                    <span class="title">회원가입을 위해 아래 약관을 읽고 동의해 주세요.
+                    </span>
+                    <textarea class="term" readonly>
+어떤 용도와 방식으로 이용되고 있으며 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 알려 드립니다.
+
+1. 수집하는 개인정보항목 및 수집방법
+(1) 수집항목 : 성명, 이메일, 연락처
+(2) 수집방법 : 웹사이트 내 고객 관리를 위해 고객정보를 수집하고 있습니다.
+
+2. 개인정보의 수집 및 이용목적
+회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.
+- 잔이비어 이용에 대한 의견접수 및 문의 안내 등을 위한 원활한 의사소통 경로의 확보
+
+3. 개인정보의 보유·이용 기간 및 파기방법
+다음 기간 동안 개인정보를 보유하며 그 이후는 지체 없이 파기합니다.
+(1) 보유 기간 : 1년
+(2) 파기절차 : 법정 보유기간 후 파기방법에 의하여 파기
+(3) 파기방법 : 전자적 파일은 재생할 수 없는 기술적 방법을 사용하여 삭제하고 종이자료는 분쇄기로 분쇄하거나 소각합니다.
+
+4. 이용자 및 법정대리인의 권리와 그 행사방법
+(1) 이용자 및 법정대리인은 개인정보와 관련하여 전화, 서면 등을 이용하여 개인정보 열람·정정·삭제· 처리정지 등의 권리를 행사할 수 있습니다.
+(2) 웹사이트를 통해 개인정보의 수집, 이용에 대해 고객께서 동의하신 내용을 언제든지 철회하실 수 있습니다. 동의철회는 개인정보 운영책임자에게
+서면, 전화, 이메일로 연락하시면 즉시 개인정보의 삭제 등 필요한 조치를 하겠습니다.
+(3) 동의철회를 하고 개인정보를 파기하는 등의 조치를 취한 경우에는 그 사실을 고객께 지체 없이 통지하도록 하겠습니다.
+
+5. 개인정보 수집 동의
+이용자는 개인정보 수집 동의를 거부할 권리가 있으며, 개인정보 수집에 대한 미동의 시 문의를 진행하실 수 없습니다.
+
+6. 개인정보보호 / 운영책임자
+개인정보보호책임자
+- 성명 : 정소운
+- 소속 : 잔이비어 관리부
+개인정보운영책임자
+- 성명 : 강나래
+- 소속 : 잔이비어 관리부
+개인정보운영책임자
+- 성명 : 정일호
+- 소속 : 잔이비어 관리부
+- 전화번호 : 000 - 111 - 2222
+- 이메일 : etb@beer.com
+
+7. 고지 의무
+잔이비어 웹사이트의 개인정보처리방침은 2022년 9월 30일에 제정되었으며, 법령, 정보의 정책 또는 보안기술의 변경에 따라
+내용의 추가·삭제 및 수정이 있을 시에는 홈페이지에 게재할 것입니다.
+- 개인정보처리방침 버전번호 : v1.3
+- 개인정보처리방침 시행일 : 2022-09-30
+- 개인정보처리방침 3차 변경 시행일 : 2022-12-19
+                    </textarea>
+                </label>
+                <label class="--object-check">
+                    <input name="termAgree" type="checkbox">
+                    <span class="--checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+                    <span class="--text">위 이용약관을 읽어보았고 이해하였으며 동의합니다.</span>
+                </label>
+            </div>
+            <!--     step2       -->
+            <div class="step step2">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <label class="label email">
+                                <span hidden>이메일</span>
+                                <input class="--object-input input" maxlength="50" name="email"
+                                       placeholder="이메일 주소를 입력해 주세요." type="email">
+                                <input class="--object-button" name="emailSend" value="인증번호 전송" type="button">
+                            </label>
+                            <label class="label email">
+                                <span hidden>인증번호</span>
+                                <input class="--object-input input" disabled maxlength="6" name="emailAuthCode"
+                                       placeholder="이메일 인증번호를 입력해 주세요." type="text">
+                                <input name="emailAuthSalt" type="hidden">
+                                <input class="--object-button" disabled name="emailVerify" value="인증번호 확인"
+                                       type="button">
+                            </label>
+                            <span class="warning" rel="emailWarning">이메일 주소를 입력해 주세요.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td>
+                            <label class="label password">
+                                <span hidden>비밀번호</span>
+                                <input class="--object-input input" maxlength="50" name="password"
+                                       placeholder="비밀번호를 입력해 주세요." type="password">
+                            </label>
+                            <label class="label password">
+                                <span hidden>비밀번호 재입력</span>
+                                <input class="--object-input input" maxlength="50" name="passwordCheck"
+                                       placeholder="비밀번호를 한 번 더 입력해 주세요." type="password">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td>
+                            <label class="label">
+                                <span hidden>닉네임</span>
+                                <input class="--object-input input" maxlength="10" name="nickname"
+                                       placeholder="닉네임을 입력해 주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td>
+                            <label class="label">
+                                <span hidden>이름</span>
+                                <input class="--object-input input" maxlength="50" name="name"
+                                       placeholder="이름을 입력해 주세요." type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td>
+                            <label class="label">
+                                <span hidden>연락처</span>
+                                <input class="--object-input input" maxlength="12" name="contact"
+                                       placeholder="연락처를 ' - ' 없이 입력해 주세요" type="text">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>
+                            <label class="label address">
+                                <span hidden>우편번호</span>
+                                <input class="--object-input input" maxlength="6" name="addressPostal"
+                                       placeholder="우편번호" readonly type="text">
+                                <input class="--object-button address-button" name="addressFind" value="주소 찾기" type="button">
+                            </label>
+                            <label class="label address">
+                                <span hidden>기본 주소</span>
+                                <input class="--object-input input" maxlength="100" name="addressPrimary"
+                                       placeholder="주소 찾기를 통해 주소를 입력해 주세요" readonly type="text">
+                            </label>
+                            <label class="label address">
+                                <span hidden>상세 주소</span>
+                                <input class="--object-input input" maxlength="100" name="addressSecondary"
+                                       placeholder="상세주소를 입력해 주세요" type="text">
+                            </label>
+                            <div class="panel address" rel="addressFindPanel">
+                                <div class="dialog" rel="addressFindPanelDialog"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="step step3">
+                <span class="title">회원가입이 완료되었습니다.</span>
+                <span class="message">잔이비어의 다양한 서비스를 이용해 보세요.</span>
+            </div>
+
+            <div class="warning" rel="warning">
+                <!--                <i class=" icon fa-solid fa-circle-exclamation"></i>-->
+                <div class="text" rel="warningText">서비스 이용약관 및 개인정보 처리방침을 읽고 동의해 주세요.</div>
+            </div>
+
+            <div class="button-container">
+                <div class="button green" rel="nextButton">
+                    <span class="text">NEXT</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>
+

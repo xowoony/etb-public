@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: FESTIVALCONTROL</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/festivalAdminFestivalRead.css}">
+    <script defer th:src="@{/bbs/resources/scripts/festivalAdminFestivalRead.js}"></script>
+</head>
+<body id="smoothScroll">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+
+<!--  main  -->
+<main th:if="${session.user != null && session.user.getEmail().equals('admin@admin')}">
+    <!--  productSection1  -->
+    <section class="home-section1" id="homeSection1">
+
+        <!--   board_id, user_email, title_image_type은 고정     -->
+
+
+        <!--        <a class="festival-input" th:href="@{/festival/festivalAdminFestivalWrite}">페스티벌 입력</a>-->
+        <div>
+            <div class="festivalForm" id="festivalForm">
+                <div class="festivalForm-title">입력된 페스티벌 정보</div>
+                <!--    festival입력페이지    -->
+                <div class="insert-button">
+                    <a class="festival-input" th:href="@{/festival/festivalAdminFestivalWrite}">페스티벌 입력</a>
+                </div>
+                <div rel="festivalContainer" class="festival-container"
+                     th:each=" festivalArticle : ${festivalArticles}">
+                    <div class="festival-image">
+                        <img th:src="@{/image (index=${festivalArticle.getIndex()})}">
+                    </div>
+
+                    <div class="festival-content">
+                        <span>축제명 : <span th:text="${festivalArticle.getTitle()}"></span></span>
+                        <br><br>
+
+
+                        <!--  대체적으로 소개글이 아닌 다른 내용들은 짧으므로 이 부분만 따로 클래스를 지정해서 크기를 조절함       -->
+                        <span>소개 : <div class="description" th:text="${festivalArticle.getDescription()}"></div></span>
+                        <br><br>
+
+                        <span>주소 : <span th:text="${festivalArticle.getAddress()}"></span></span>
+                        <br><br>
+
+                        <span>축제일정 :
+                        <span th:text="${#dates.format(festivalArticle.getDateFrom(), 'yyyy-MM-dd')}">
+                        </span>
+                        <span> ~ </span>
+                        <span th:text="${#dates.format(festivalArticle.getDateTo(), 'yyyy-MM-dd')}">
+                        </span>
+                    </span>
+                        <br><br>
+
+                        <span>시간 :
+                        <span th:text="${#dates.format(festivalArticle.getTimeFrom(), 'HH:mm')}">
+                        </span>
+                        <span> ~ </span>
+                        <span th:text="${#dates.format(festivalArticle.getTimeTo(), 'HH:mm')}">
+                        </span>
+                    </span>
+                        <br><br>
+
+                        <span>위도(latitude) : <span th:text="${festivalArticle.getLatitude()}"></span></span>
+                        <br><br>
+
+                        <span>경도(longitude) : <span th:text="${festivalArticle.getLongitude()}"></span></span>
+                        <br><br>
+
+                        <div rel="festivalButton" class="festival-button">
+                            <a class="modify" rel="modifyButton" href="#"
+                               th:href="@{/festival/festivalAdminFestivalModify (index=${festivalArticle.getIndex()})}"
+                               th:data-index="${festivalArticle.getIndex()}">수정</a>
+
+
+                            <a class="delete" rel="deleteButton" href="#"
+                               th:data-index="${festivalArticle.getIndex()}">삭제</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--    페이징    -->
+        <div class="foot-container" id="foot-container">
+            <div class="page-container" id="page-container"
+                 th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+                   th:if="${paging.requestPage > 1}">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+                   th:if="${paging.requestPage > 1}">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+                <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                   th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+                   th:text="${page}"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+                   th:if="${paging.requestPage < paging.maxPage}">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+                <a class="page"
+                   th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+                   th:if="${paging.requestPage < paging.maxPage}">
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

@@ -1,0 +1,156 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: unset;
+    width: 100%;
+    /* color: rgb(255, 255, 255); */
+    background-color: black;
+}
+
+.home-section1 {
+    height: 100%;
+    width: 100%;
+}
+
+.home-section1 > div {
+    width: 100%;
+    height: 100%;
+    margin-top: 11rem;
+}
+
+#festivalForm {
+    width: 63rem;
+}
+
+#festivalForm > .festivalForm-title {
+    margin-bottom: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 2.5rem;
+    border-bottom: 0.0625rem solid rgb(255,255,255);
+    font-family: 'Do Hyeon', sans-serif;
+    /* margin-bottom: 1rem; */
+    padding-bottom: 2rem;
+}
+
+
+.festival-container {
+    display: flex;
+
+    margin-bottom: 6rem;
+}
+
+.festival-image > img {
+    width: 20rem;
+    height: 20rem;
+}
+
+.festival-content {
+    color: white;
+    font-weight: bold;
+    margin-left: 2rem;
+}
+
+
+.festival-input {
+    color: white;
+    /* background-color: #ffffff; */
+    border: 1px solid #ffffff;
+    /* position: absolute; */
+    padding: 10px 20px;
+    /* right: 20%; */
+    /* top: 15%; */
+    text-decoration: none;
+}
+
+.festival-input:hover {
+    background-color: rgb(0 63 255 / 22%);
+}
+
+
+.festival-button > .modify,
+.festival-button > .delete {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0.0625rem solid #ffffff;
+    padding: 4px 10px;
+}
+
+
+.festival-button > .modify:hover{
+    background-color: rgba(95, 184, 192, 0.22);
+}
+.festival-button > .delete:hover {
+    background-color: rgba(232, 28, 28, 0.15);
+    border: 0.0625rem solid #ffffff;
+}
+
+.festivalForm > .insert-button {
+    margin-bottom: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+
+
+
+
+
+/*페이징*/
+
+#foot-container {
+    background-color: black;
+    padding-bottom: 6rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#foot-container > div:last-of-type {
+    width: 100%;
+    border-top: 1px solid black;
+}
+
+#page-container {
+    /*margin: 0.3rem;*/
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#page-container > .page {
+    /*border-left: 0.0625rem solid rgb(76, 91, 105);*/
+    color: white;
+    font-size: 13px;
+    padding: 0.3rem 0.55rem;
+    margin: 0.1rem;
+    text-decoration: none;
+    border: solid 1px #e5e5e5;
+    background-color: black;
+}
+
+
+#page-container > .page.selected {
+    /*background-color: rgb(66, 81, 95);*/
+    border: solid 1px #e5e5e5;
+    background-color: black;
+    color: white;
+}
+
+#page-container > .page:hover {
+    color: white;
+    background-color: rgb(0,0,0,20%);
+}

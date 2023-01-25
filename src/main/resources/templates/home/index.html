@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: HOME</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <!--  index.css 연결  -->
+    <link rel="stylesheet" th:href="@{/home/resources/stylesheets/index.css}">
+    <!--  index.js 연결  -->
+    <script defer th:src="@{/home/resources/scripts/index.js}"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<!--지우기-->
+
+<!--  main  -->
+<main id="smoothScroll">
+    <!--  homeSection1  -->
+    <section class="home-section1" id="homeSection1">
+        <div class="title-box1" id="titleBox1">
+            <span class="title1">옥같은 잔치를 벌여</span>
+            <span class="title2">꽃에 앉고 달에 취하니</span>
+            <div class="home-button">
+                <a class="commonButton" href="#homeSection2">NEXT</a>
+            </div>
+        </div>
+    </section>
+    <!--  homeSection2  -->
+    <section class="home-section2" id="homeSection2">
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="title">Best Beer</td>
+                </tr>
+                <tr>
+                    <td class="title-content">잔이비어 사용자에게 인기있는 맥주들을 소개합니다.</td>
+                </tr>
+                <tr class="image-slide">
+                    <td>
+                        <!-- =이미지 슬라이드-->
+                        <div class="slide_wrap">
+                            <div class="slide_show">
+                                <div class="slide_img">
+                                    <div class="slide" th:each="beer : ${beers}">
+                                        <a th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
+                                            <img th:src="@{/data/beerImage (beerIndex=${beer.getIndex()})}"  alt="이미지2">
+                                        </a>
+                                        <img class="rank 1st" th:src="@{/resources/images/1st.png}" th:if="${beer.getRank() != null && beer.getRank() == 1}" alt="1위">
+                                        <img class="rank 2nd" th:src="@{/resources/images/2nd.png}" th:if="${beer.getRank() != null && beer.getRank() == 2}" alt="2위">
+                                        <img class="rank 3rd" th:src="@{/resources/images/3rd.png}" th:if="${beer.getRank() != null && beer.getRank() == 3}" alt="3위">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   좌우 슬라이드 버튼  -->
+                            <div class="slide_btn">
+                                <a href="#" class="prev"><i class="fas fa-angle-left"></i></a>
+                                <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- 다음섹션 이동 NEXT 버튼-->
+                <tr class="next">
+                    <td>
+                        <div class="home-button">
+                            <a class="commonButton" href="#homeSection3">NEXT</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+    <!--  homeSection3  -->
+    <section class="home-section3" id="homeSection3">
+        <div class="title-box3" id="titleBox3">
+            <div class="footer1">
+                <div class="sky">
+                    “천지미록”
+                </div>
+                <div>
+                    天之美祿
+                </div>
+                <div class="bless">
+                    술이라는 것은 하늘이 내려준 경사스러운 복이다.
+                </div>
+            </div>
+            <div class="footer2">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">
+                                <div class="contact-us">Contact Us</div>
+                                <div>
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <span class="email-contact">etb@emptybeer.com</span>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span class="phone-contact">010-1234-5678</span>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span class="address-contact">서울특별시 서초구 테헤란로 131 13층 잔이비어</span>
+                                </div>
+
+                            </td>
+                            <td class="wide-spring"></td>
+                            <td class="spring"></td>
+                        </tr>
+                        <tr>
+                            <td class="spring"></td>
+                            <td class="footer-logo">잔이비어</td>
+
+                        </tr>
+                        <tr>
+                            <td class="spring empty">©2023 by Empty Beer</td>
+                            <td></td>
+                            <td>
+                                <div class="home-button top">
+                                    <a class="commonButton" href="#homeSection1">↑ Back to top</a>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

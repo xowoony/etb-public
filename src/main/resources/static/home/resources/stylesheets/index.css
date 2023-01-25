@@ -1,0 +1,344 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
+/*best beer 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
+/*잔이비어 로고 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
+/*연락처 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+
+/*main*/
+body > main {
+    background-image: url("/resources/images/home-background.png");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+/*homeSection1*/
+body > main > .home-section1 {
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*commonButton*/
+body > main > .home-section1 > .title-box1 > .home-button {
+    margin-top: 3rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+body > main > .home-section1 > .title-box1 > .home-button > .commonButton {
+    text-decoration: none;
+    padding: 1rem 3rem;
+}
+
+
+/*옥같은 잔치를 벌여*/
+body > main > .home-section1 > .title-box1 > .title1 {
+    font-size: 3rem;
+    font-family: 'Gowun Batang', serif;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*꽃에 앉고 달에 취하니*/
+body > main > .home-section1 > .title-box1 > .title2 {
+    font-size: 3rem;
+    font-family: 'Gowun Batang', serif;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*homeSection2*/
+body > main > .home-section2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /*background-color: rgb(47 6 0 / 34%);*/
+}
+
+body > main > .home-section2 > .title-box2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-top: 2rem;
+}
+
+/*table*/
+body > main > .home-section2 > .title-box2 > table {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*tbody*/
+body > main > .home-section2 > .title-box2 > table > tbody {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*이미지 슬라이드*/
+body > main > .home-section2 > .title-box2 > table > tbody > .image-slide {
+    margin-top: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*best Beer 글씨체*/
+body > main > .home-section2 > .title-box2 > table > tbody > tr > .title {
+    font-size: 3rem;
+    font-family: 'PT Serif', serif;
+    margin-bottom: 1rem;
+}
+
+body > main > .home-section2 > .title-box2 > table > tbody > tr > .title-content {
+    font-family: 'Gowun Batang', serif;
+}
+
+
+body > main > .home-section2 > .title-box2 > table > tbody > .next {
+    margin-top: 2rem;
+}
+
+/*두번째 next 버튼*/
+body > main > .home-section2 > .title-box2 > table > tbody > .next > td > .home-button > .commonButton {
+    text-decoration: none;
+    padding: 1rem 3rem;
+}
+
+/*이미지 슬라이드*/
+img {
+    width: 100%;
+}
+
+body {
+    background: #333;
+}
+
+h2 {
+    color: #2edf19;
+    font-family: 'Lato';
+    font-weight: 300;
+    padding: 20px;
+}
+
+.slide_wrap {
+    width: 100%;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.slide_show {
+    width: 860px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+}
+
+.slide_show .slide_img {
+    width: 15000px;
+    height: 18.5rem;
+    overflow: hidden;
+}
+
+.slide_show .slide_img > .slide {
+    float: left;
+    width: 280px;
+    height: 280px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.slide_show .slide_img > .slide > .rank {
+    position: absolute;
+    z-index: 9;
+    width: 3rem;
+    margin: -0.2rem 0 0 -17.2rem;
+}
+
+.slide_btn a {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 75%);
+    width: 60px;
+    height: 60px;
+    line-height: 58px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2.5rem;
+    transition: all 0.3s;
+    padding: 0.7rem;
+}
+
+
+.slide_btn a.prev {
+    left: 10px
+}
+
+.slide_btn a.next {
+    right: 10px;
+}
+
+/*homeSection3 */
+body > main > .home-section3 > .title-box3 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+body > main > .home-section3 > .title-box3 > .footer1 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 12, 28, 0.8);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*술이라른 것은~*/
+body > main > .home-section3 > .title-box3 > .footer1 > .bless {
+    margin-top: 1rem;
+    color: rgb(112 147 157);
+}
+
+/*천지미록*/
+body > main > .home-section3 > .title-box3 > .footer1 > .sky {
+    margin-top: 7rem;
+    font-family: 'PT Serif', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+body > main > .home-section3 > .title-box3 > .footer2 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(220, 213, 215, 0.77);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    white-space: nowrap;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table {
+    margin-bottom: 5rem;
+}
+
+/*body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td{*/
+/*    width: 20rem;*/
+/*}*/
+
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .empty {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .spring {
+    height: 6rem;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .wide-spring {
+    width: 35rem;
+}
+
+/*contact us*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .contact-us {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    margin-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid rgb(0, 0, 0);
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/*이메일 contact 정보*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > div > .email-contact {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/*연락처 contact 정보*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > div > .phone-contact {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/*주소 contact 정보*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > div > .address-contact {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 100;
+}
+
+/*footer 로고*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > .footer-logo {
+    font-size: 2.5rem;
+    font-family: 'Gowun Batang', serif;
+
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*top 버튼*/
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .top > .commonButton {
+    border: none;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Quicksand', sans-serif;
+}
+
+body > main > .home-section3 > .title-box3 > .footer2 > table > tbody > tr > td > .top > .commonButton:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(220 252 9);
+}

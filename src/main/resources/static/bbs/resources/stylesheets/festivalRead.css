@@ -1,0 +1,360 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+}
+
+body > main {
+    margin-top: 10rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*festival-imageContainer 아래 info-container도 width와 margin-left속성을 동일하게 적용*/
+
+
+.festival-container {
+    display: flex;
+    width: 80rem;
+    height: 30rem;
+}
+
+#festivalDataForm {
+    color: #000000;
+    font-size: 2.4rem;
+    font-weight: 200;
+    margin-bottom: 3rem;
+    font-family: 'Do Hyeon', sans-serif;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+#festivalDataForm > .arrow {
+    position: absolute;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    left: 15%;
+}
+
+#festivalDataForm > .arrow > a{
+    color: #8080808f;
+}
+
+#festivalDataForm > .arrow > a:hover{
+    color: #808080;
+}
+
+body > main > .festival-container > .festival-imageContainer {
+    width: 41rem;
+    height: 50rem;
+}
+
+
+body > main > .festival-container > .festival-imageContainer > .main-imageContainer {
+    margin-left: 12rem;
+    align-items: flex-start;
+    display: block;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+
+}
+
+
+body > main > .festival-container > .festival-imageContainer > .main-imageContainer > img {
+    /* padding-left: 7rem; */
+    /* margin-left: 12rem; */
+    width: 22rem;
+    height: 25rem;
+    border-radius: 0.5rem;
+}
+
+
+body > main > .festival-container > .festival-infoContainer {
+    /* margin-top: 0rem; */
+    color: black;
+    font-size: 1.05rem;
+    /* font-weight: 500; */
+    /* padding-left: 3rem; */
+    height: 75%;
+    width: 25rem;
+    font-family: 'Jua', sans-serif;
+}
+
+
+body > main > .review-container {
+    min-width: 56rem;
+    color: #000000;
+    font-size: 2rem;
+    font-family: 'Varela Round', sans-serif;
+    margin-bottom: 1rem;
+}
+
+
+body > main > .review-container > .review-comment {
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/*댓글*/
+#festivalReviewForm {
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+}
+
+
+#festivalReviewForm > div > .festivalRead-input {
+    margin-right: 1rem;
+    width: 890px;
+    height: 50px;
+    margin-bottom: 0.3rem;
+}
+
+#festivalReviewForm > div {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+
+#festivalReviewForm > div > div > .festivalRead-button {
+    border: 0.0625rem solid rgb(0, 0, 0);
+    /* border-radius: 20%; */
+    color: rgb(0, 0, 0);
+    background-color: rgba(30, 144, 255, 0);
+    padding: 0.5rem 1.5rem;
+    /* text-align: center; */
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+
+#festivalReviewForm > div > div > .festivalRead-button:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(160 160 160 / 29%);
+}
+
+
+/*리뷰관련*/
+
+#comment {
+    width: 100%;
+    border-top: 0.0625rem solid rgb(0, 0, 0);
+    /* position: relative;*/
+}
+
+#comment:last-child {
+    border-bottom: 0.0625rem solid rgb(0, 0, 0);
+}
+
+
+#comment > .festival-comment {
+    position: relative;
+    margin-bottom: 0.3rem;
+}
+
+
+#comment > .festival-comment > .comment-nickname {
+    color: black;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+
+#comment > .festival-comment > .comment-content {
+    color: black;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+#comment > .festival-comment > .comment-content.hidden {
+    display: none;
+}
+
+#comment > .festival-comment > .comment-written {
+    color: #575656;
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#comment > .festival-comment > .comment-written.hidden {
+    display: none;
+}
+
+#comment > .festival-comment > .button > .comment-button {
+    bottom: 55px;
+}
+
+
+#comment > .festival-comment > .button > .comment-button.hidden {
+    display: none;
+}
+
+
+#comment > .festival-comment > .button > .comment-button > .delete,
+#comment > .festival-comment > .button > .comment-button > .modify {
+    font-size: 0.8rem;
+    color: grey;
+    text-decoration-line: none;
+    /* margin-right: 0.5rem;*/
+}
+
+
+#comment > .festival-comment > .modify-content > .modify-form {
+    display: none;
+    position: relative;
+}
+
+
+#comment > .festival-comment > .modify-content > .modify-form.visible {
+    display: flex;
+    color: black;
+    font-size: 1rem;
+    position: relative;
+}
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .cancel {
+    font-size: 0.8rem;
+    color: grey;
+    position: absolute;
+    right: 36px;
+    bottom: 60px;
+    text-decoration-line: none;
+}
+
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .check {
+    font-size: 0.8rem;
+    color: grey;
+    position: absolute;
+    right: 0px;
+    bottom: 60px;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    background-color: white;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/*#comment > .festival-comment > .modify-content > .modify-form.visible > .check:focus {*/
+/*    font-size: 0.8rem;*/
+/*    color: grey;*/
+/*    position: absolute;*/
+/*    right: 0px;*/
+/*    bottom: 27px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    width: 35px;*/
+/*    outline: none;*/
+/*    background-color: white;*/
+
+/*    -webkit-appearance: none;*/
+/*    -moz-appearance: none;*/
+/*    appearance: none;*/
+/*}*/
+
+
+#comment > .festival-comment > .modify-content > .modify-form.visible > .comment-modifyInput {
+    width: 51rem;
+    height: 3rem;
+}
+
+
+/*페이징*/
+#foot-container {
+    background-color: #f9f9f8;
+    margin-bottom: 7rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#foot-container > div:last-of-type {
+    width: 100%;
+    border-top: 1px solid #ebebea;
+}
+
+#page-container {
+    /*margin: 0.3rem;*/
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#page-container > .page {
+    /*border-left: 0.0625rem solid rgb(76, 91, 105);*/
+    color: black;
+    font-size: 13px;
+    padding: 0.3rem 0.55rem;
+    margin: 0.1rem;
+    text-decoration: none;
+    border: solid 1px #e5e5e5;
+    background-color: #fff;
+}
+
+
+#page-container > .page.selected {
+    background-color: rgb(187 162 60 / 61%);
+    border: solid 1px #e5e5e5;
+    color: #000000;
+}
+
+#page-container > .page:hover {
+    color: #000000;
+    background-color: rgb(0, 0, 0, 20%);
+}
+
+
+/*맵 관련*/
+.map-container {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: black;
+    margin-bottom: 15rem;
+}
+
+.map-container > #map {
+    /*margin-left: 10rem;*/
+    width: 890px;
+    height: 600px;
+    z-index: 0;
+    margin-top: 1rem;
+}
+
+.map-container > .title {
+    font-family: 'Quicksand', sans-serif;
+}

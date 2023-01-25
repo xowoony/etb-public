@@ -1,0 +1,129 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+html {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+#form{
+    min-width: 38rem;
+    height: 29rem;
+}
+
+
+.page-title {
+    font-size: 2.3rem;
+    font-family: 'Do Hyeon', sans-serif;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid rgb(255, 255, 255);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.table {
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.festival-input {
+    width: 15rem;
+    height: 2rem;
+    font-size: 15px;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 15px; */
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233 233 233 / 0%);
+    color: rgb(255, 255, 255);
+}
+
+.festival-fileInput{
+    margin-bottom: 0.5rem;
+}
+
+
+.festival-descriptionInput{
+    color: rgb(255, 255, 255);
+    width: 96.5%;
+    height: 6rem;
+    font-size: 15px;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 15px; */
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233 233 233 / 0%);
+    margin-bottom: 0.3rem;
+}
+
+.festival-addressInput {
+    color: rgb(255, 255, 255);
+    width: 96.5%;
+    height: 1.5rem;
+    font-size: 15px;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    /* border-radius: 15px; */
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233 233 233 / 0%);
+    margin-bottom: 0.3rem;
+}
+
+
+.festival-submit-container{
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.festival-submit {
+    color: white;
+    background-color: #00000000;
+    border: 0.0625rem solid #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+    padding: 0.5rem 1.4rem;
+}
+
+
+.festival-submit:hover {
+    background-color: rgba(95, 184, 192, 0.22);
+    cursor: pointer;
+}
+
+
+.festival-image {
+    width: 100px;
+    height: 100px;
+    margin-top: 1rem;
+}
+
+.festival-title {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+}

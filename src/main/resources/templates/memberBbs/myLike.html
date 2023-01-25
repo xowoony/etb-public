@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 마이페이지</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <!--  myPage.css 연결  -->
+    <link rel="stylesheet" th:href="@{/memberBbs/resources/stylesheets/myLike.css}">
+    <!--  myPage.js 연결  -->
+    <script defer th:src="@{/memberBbs/resources/scripts/myLike.js}"></script>
+    <script th:if="${session.user == null}">
+        alert("로그인이 필요한 페이지입니다.")
+        window.location.href = '../member/login'
+    </script>
+</head>
+<body th:if="${session.user != null}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main>
+    <!--  beerSection1  -->
+    <section class="beer-section" id="beerSection">
+        <!--  Section1  -->
+        <div class="title-box1" id="titleBox1">
+            <div class="title">MY PAGE</div>
+            <div class="title-content">잔이비어 마이페이지</div>
+        </div>
+        <!--  Section2  -->
+        <div class="title-box2" id="titleBox2">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="category-tab">
+                        <table>
+                            <tbody>
+                            <tr class="category-title home">
+                                <td class="my-page-home">
+                                    <a th:href="@{/member/myPage}">
+                                        MY PAGE
+                                    </a>
+
+                                </td>
+                            </tr>
+                            <tr class="category-title">
+                                <td>모아보기</td>
+                            </tr>
+                            <tr class="category-content content1">
+                                <td>
+                                    <a th:href="@{/memberBbs/myArticle}">
+                                        <div>작성한 글 보기</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content2">
+                                <td>
+                                    <a th:href="@{/memberBbs/myComment}">
+                                        <div>작성한 댓글 보기</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content3">
+                                <td>
+                                    <a th:href="@{/memberBbs/myLike}">
+                                        <div>추천한 글 보기</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="category-title">
+                                <td>
+                                    회원정보 수정
+                                </td>
+                            </tr>
+                            <tr class="category-content content4">
+                                <td>
+                                    <a th:href="@{/member/changeNickname}">
+                                        <div>닉네임 변경</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content5">
+                                <td>
+                                    <a th:href="@{/member/changeContact}">
+                                        <div>연락처 변경</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content6">
+                                <td>
+                                    <a th:href="@{/member/changeAddress}">
+                                        <div>주소 변경</div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="category-content content7">
+                                <td><a th:href="@{/member/delete}">
+                                    <div>회원 탈퇴</div>
+                                </a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="category-tab2">
+                        <div class="article-nick-container">
+                            <div class="article-nick">
+                                <div>
+                                    <span class="nick" th:text="${session.userNickname}">양파쿵야
+                                    </span>
+                                    <span>님</span>
+                                    <div class="email" th:text="${session.userEmail}">xowoony@gmail.com</div>
+                                </div>
+                                <form>
+                                    <table id="contentTable">
+                                        <thead>
+                                        <tr class="header-border">
+                                            <td colspan="3">
+                                                <div class="header-title">추천한 글</div>
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <!--    게시물 1개     -->
+                                        <tr th:each="basicArticleLike : ${basicArticleLikes}">
+                                            <td class="check-box-container">
+                                                <input type='checkbox'
+                                                       name='myArticle'
+                                                       onclick='checkSelectAll()'
+                                                       th:data-aid="${basicArticleLike.getArticleIndex()}"
+                                                       th:data-bid="${basicArticleLike.getBoardId()}"/>
+                                            </td>
+                                            <td class="board-name-container">
+                                                <div th:text="${basicArticleLike.getBoardName()}" class="index"></div>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/basicBbs/read (aid=${basicArticleLike.getArticleIndex()})}"
+                                                   th:text="${basicArticleLike.getTitle()}" class="title">아아아아아아아아아주 좋아요
+                                                    이 맥주</a>
+                                                <span class="count"
+                                                      th:text="${'[' + basicArticleLike.getCommentCount() + ']'}">[5]</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr class="tfoot-header">
+                                            <td class="tfoot-header-td"><input class="check-box" type='checkbox'
+                                                       name='selectall'
+                                                       value='selectall'
+                                                       onclick='selectAll(this)'/></td>
+                                            <td class="total-check">전체선택</td>
+                                            <!--                                            <td></td>-->
+                                            <td class="delete-container">
+                                                <a href="#" rel="basicLikeDeleteButton">추천 취소</a>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </form>
+                                <form>
+                                    <table id="secondTable">
+                                        <thead>
+                                        <tr class="header-border">
+                                            <td colspan="3" class="like-review-td">
+                                                <div class="header-title">추천한 리뷰</div>
+                                            </td>
+                                            <td class="star-td">
+                                                <div class="view">평점</div>
+                                            </td>
+                                            <td class="writer-td">
+                                                <div class="writer">작성자</div>
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <!--    게시물 1개     -->
+                                        <tr th:each="reviewArticleLike : ${reviewArticleLikes}">
+                                            <td>
+                                                <input type='checkbox'
+                                                       name='myReview'
+                                                       onclick='checkSelectAll2()'
+                                                       th:data-aid2="${reviewArticleLike.getArticleIndex()}"/>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/bbs/reviewRead (aid=${reviewArticleLike.getArticleIndex()})}"
+                                                   class="title" th:text="${reviewArticleLike.getBeerName()}">아아아아아아아아아주
+                                                    좋아요 이 맥주</a>
+                                            </td>
+                                            <td class="left">
+                                                <div th:text="${reviewArticleLike.getContentGood()}"></div>
+                                                <div th:text="${reviewArticleLike.getContentBad()}"></div>
+                                            </td>
+                                            <td>
+                                                <div th:text="${reviewArticleLike.getScore()}" class="hits">3</div>
+                                            </td>
+                                            <td>
+                                                <div th:text="${reviewArticleLike.getUserNickname()}"></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr class="tfoot-header">
+                                            <td class="check-box-td"><input class="check-box" type='checkbox'
+                                                                            name='selectall2'
+                                                                            value='selectall2'
+                                                                            onclick='selectAll2(this)'/></td>
+                                            <td class="all-check-td">전체선택</td>
+                                            <td class="content-td"></td>
+                                            <td class="created-on-td"></td>
+                                            <td class="delete-container">
+                                                <a href="#" rel="reviewDeleteButton">추천 취소</a>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

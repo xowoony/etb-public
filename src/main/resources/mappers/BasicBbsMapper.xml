@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emptybeer.etb.mappers.IBasicBbsMapper">
+
+    <select id="selectBoardById" resultType="com.emptybeer.etb.entities.bbs.BoardEntity">
+        SELECT `id`   AS `id`,
+               `text` AS `text`
+        FROM `etb_bbs`.`boards`
+        WHERE BINARY `id` = #{id}
+        LIMIT 1
+    </select>
+
+    <insert id="insertArticle"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleEntity">
+        INSERT INTO `etb_bbs`.`basic_articles` (`user_email`, `board_id`, `title`, `content`, `view`, `written_on`,
+                                                `modified_on`)
+        VALUES (#{userEmail}, #{boardId}, #{title}, #{content}, #{view}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)),
+                IFNULL(#{modifiedOn}, DEFAULT(`modified_on`)))
+    </insert>
+
+    <insert id="insertImage"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.bbs.ImageEntity">
+        INSERT INTO `etb_bbs`.images (file_name, file_mime, data)
+        VALUES (#{fileName}, #{fileMime}, #{data})
+    </insert>
+
+    <select id="selectImageByIndex"
+            resultType="com.emptybeer.etb.entities.bbs.ImageEntity">
+        SELECT `index`   AS `index`,
+               file_name AS `fileName`,
+               file_mime AS `fileMime`,
+               data      AS `data`
+        FROM `etb_bbs`.images
+        WHERE `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <select id="selectIndex" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`       AS `index`,
+               `basicArticle`.`user_email`  AS `userEmail`,
+               `basicArticle`.`board_id`    AS `boardId`,
+               `basicArticle`.`title`       AS `title`,
+               `basicArticle`.`content`     AS `content`,
+               `basicArticle`.`view`        AS `view`,
+               `basicArticle`.`written_on`  AS `writtenOn`,
+               `basicArticle`.`modified_on` AS `modifiedOn`,
+               `user`.`nickname`            AS `userNickname`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <select id="selectIndexUser" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`                                                             AS `index`,
+               `basicArticle`.`user_email`                                                        AS `userEmail`,
+               `basicArticle`.`board_id`                                                          AS `boardId`,
+               `basicArticle`.`title`                                                             AS `title`,
+               `basicArticle`.`content`                                                           AS `content`,
+               `basicArticle`.`view`                                                              AS `view`,
+               `basicArticle`.`written_on`                                                        AS `writtenOn`,
+               `basicArticle`.`modified_on`                                                       AS `modifiedOn`,
+               `user`.`nickname`                                                                  AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                                                         AS `isSigned`,
+               COUNT(`basicArticleLike`.`article_index`) > 0                                      AS `isLiked`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`basic_article_likes`
+                WHERE `etb_bbs`.`basic_article_likes`.`article_index` =
+                      `basicArticle`.`index`)                                                     AS `likeCount`,
+               COUNT(`basicReport`.article_index) > 0                                             AS `isReported`,
+               (SELECT COUNT(0)
+                FROM `etb_bbs`.`basic_article_reports`
+                WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`,
+               (SELECT COUNT(0)
+                FROM etb_bbs.basic_comments
+                WHERE etb_bbs.basic_comments.article_index = basicArticle.`index`) AS `commentCount`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+                 LEFT JOIN `etb_bbs`.`basic_article_likes` AS `basicArticleLike`
+                           ON `basicArticle`.`index` = `basicArticleLike`.`article_index`
+                               AND `basicArticleLike`.user_email = IFNULL(#{userEmail}, '')
+                 LEFT JOIN `etb_bbs`.`basic_article_reports` AS `basicReport`
+                           ON `basicArticle`.`index` = `basicReport`.`article_index`
+                               AND `basicReport`.user_email = IFNULL(#{userEmail}, '')
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <update id="updateArticle" parameterType="com.emptybeer.etb.vos.BasicArticleVo">
+        update `etb_bbs`.`basic_articles`
+        SET `user_email`  = #{userEmail},
+            `board_id`    = #{boardId},
+            `title`       = #{title},
+            `content`     = #{content},
+            `view`        = #{view} + 1,
+            `written_on`  = #{writtenOn},
+            `modified_on` = #{modifiedOn}
+        WHERE `index` = #{index}
+        LIMIT 1
+    </update>
+
+    <insert id="insertComment"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicCommentEntity">
+        INSERT INTO `etb_bbs`.`basic_comments` (`user_email`, `board_id`, `article_index`, `content`, `written_on`)
+        VALUES (#{userEmail}, #{boardId}, #{articleIndex}, #{content}, IFNULL(#{writtenOn}, DEFAULT(`written_on`)))
+    </insert>
+
+    <select id="selectCommentsByArticleIndex"
+            resultType="com.emptybeer.etb.vos.BasicCommentVo">
+        SELECT `comment`.`index`                                   AS `index`,
+               `comment`.`user_email`                              AS `userEmail`,
+               `comment`.`board_id`                                AS `boardId`,
+               `comment`.`article_index`                           AS `articleIndex`,
+               `comment`.`content`                                 AS `content`,
+               `comment`.`written_on`                              AS `writtenOn`,
+               `user`.`nickname`                                   AS `userNickname`,
+               (#{userEmail} IS NOT NULL)                          AS `isSigned`,
+               (IFNULL(#{userEmail}, '') = `comment`.`user_email`) AS `isMine`
+        FROM `etb_bbs`.`basic_comments` AS `comment`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `comment`.`user_email`
+        WHERE `article_index` = #{articleIndex}
+        GROUP BY `comment`.`index`
+        ORDER BY `comment`.`index`
+    </select>
+
+    <select id="selectCommentByIndex" resultType="com.emptybeer.etb.vos.BasicCommentVo">
+        SELECT `index`         AS `index`,
+               `user_email`    AS `userEmail`,
+               `board_id`      AS `boardId`,
+               `article_index` AS `articleIndex`,
+               `content`       AS `content`,
+               `written_on`    AS `writtenOn`
+        FROM `etb_bbs`.`basic_comments`
+        WHERE BINARY `index` = #{index}
+        LIMIT 1
+    </select>
+
+    <delete id="deleteCommentByIndex">
+        DELETE
+        FROM `etb_bbs`.`basic_comments`
+        WHERE `index` = #{index}
+        LIMIT 1
+    </delete>
+
+    <update id="modifyCommentByIndex" parameterType="com.emptybeer.etb.vos.BasicCommentVo">
+        update `etb_bbs`.`basic_comments`
+        SET `index`        = #{index},
+            `user_email`   = #{userEmail},
+            `article_index`= #{articleIndex},
+            `content`      = #{content},
+            `written_on`   = #{writtenOn}
+        WHERE BINARY `index` = #{index}
+    </update>
+
+    <delete id="deleteArticleByIndex">
+        DELETE
+        FROM `etb_bbs`.basic_articles
+        WHERE `index` = #{index}
+    </delete>
+
+<!-- 게시글 리스트 카운트   -->
+    <select id="selectArticleCountByBoardId"
+            resultType="int">
+        SELECT COUNT(*) FROM (SELECT COUNT(`basicArticle`.`index`)
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+            LEFT JOIN `etb_bbs`.basic_article_reports AS `reportCount` ON `basicArticle`.`index` = `reportCount`.`article_index`
+        <if test="criterion != null and criterion.equals('nickname')">
+            LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        </if>
+        WHERE basicArticle.board_id = #{boardId}
+        <if test="criterion != null and criterion.equals('title')">
+            AND REPLACE(`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="criterion != null and criterion.equals('all')">
+            AND (REPLACE(`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(`content`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.nickname = #{keyword}
+        </if>
+        GROUP BY basicArticle.`index` HAVING COUNT(reportCount.article_index) <![CDATA[ < ]]> 5) A;
+    </select>
+
+    <select id="selectArticlesByBoardId"
+            resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT * FROM (SELECT `basicArticle`.`index` AS `index`,
+        `basicArticle`.user_email AS `userEmail`,
+        `basicArticle`.board_id AS `boardId`,
+        `basicArticle`.title AS `title`,
+        `basicArticle`.view AS `view`,
+        `basicArticle`.written_on AS `writtenOn`,
+        `basicArticle`.modified_on AS `modifiedOn`,
+        `user`.`nickname` AS `usernickname`,
+        COUNT(`basicComment`.`index`) AS `commentCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`basic_article_likes`
+        WHERE `etb_bbs`.`basic_article_likes`.`article_index` =
+        `basicArticle`.`index`)                                                     AS `likeCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`basic_article_reports`
+        WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`
+        FROM etb_bbs.basic_articles AS `basicArticle`
+        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticle`.`user_email`
+        LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
+        ON `basicArticle`.`index` = `basicComment`.`article_index`
+        WHERE `basicArticle`.`board_id` = #{boardId}
+        <if test="criterion != null and criterion.equals('title')">
+            AND REPLACE(basicArticle.`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="criterion != null and criterion.equals('all')">
+            AND (REPLACE(basicArticle.`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(basicArticle.`content`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.nickname = #{keyword}
+        </if>
+        GROUP BY `basicArticle`.`index`
+        ORDER BY `basicArticle`.`index` DESC) AS `basicList`
+        WHERE basicList.reportCount <![CDATA[ < ]]> 5
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <insert id="insertBasicArticleLike"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleLikeEntity">
+        INSERT INTO `etb_bbs`.`basic_article_likes` (`user_email`, `board_id`, article_index, `created_on`)
+        VALUES (#{userEmail}, #{boardId}, #{articleIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+
+    <delete id="deleteBasicLike"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleLikeEntity">
+        DELETE
+        FROM `etb_bbs`.`basic_article_likes`
+        WHERE `user_email` = #{userEmail}
+          AND `article_index` = #{articleIndex}
+        LIMIT 1
+    </delete>
+
+    <!-- 게시글 신고 -->
+    <insert id="insertArticleReport"
+            parameterType="com.emptybeer.etb.entities.bbs.BasicArticleReportEntity">
+        INSERT INTO `etb_bbs`.`basic_article_reports` (`user_email`, `article_index`, `created_on`)
+        VALUES (#{userEmail}, #{articleIndex}, IFNULL(#{createdOn}, DEFAULT(`created_on`)))
+    </insert>
+
+    <!--  신고 게시글 리스트  -->
+    <select id="selectReportedArticlesByBoardId"
+            resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT * FROM (SELECT `basicArticle`.`index` AS `index`,
+        `basicArticle`.user_email AS `userEmail`,
+        `basicArticle`.board_id AS `boardId`,
+        `basicArticle`.title AS `title`,
+        `basicArticle`.view AS `view`,
+        `basicArticle`.written_on AS `writtenOn`,
+        `basicArticle`.modified_on AS `modifiedOn`,
+        `user`.`nickname` AS `usernickname`,
+        COUNT(`basicComment`.`index`) AS `commentCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`basic_article_likes`
+        WHERE `etb_bbs`.`basic_article_likes`.`article_index` =
+        `basicArticle`.`index`)                                                     AS `likeCount`,
+        (SELECT COUNT(0)
+        FROM `etb_bbs`.`basic_article_reports`
+        WHERE `etb_bbs`.`basic_article_reports`.`article_index` = `basicArticle`.`index`) AS `reportCount`
+        FROM etb_bbs.basic_articles AS `basicArticle`
+        LEFT JOIN `etb_member`.`users` AS `user` ON `user`.`email` = `basicArticle`.`user_email`
+        LEFT JOIN `etb_bbs`.`basic_comments` AS `basicComment`
+        ON `basicArticle`.`index` = `basicComment`.`article_index`
+        WHERE `basicArticle`.`board_id` = #{boardId}
+        <if test="criterion != null and criterion.equals('title')">
+            AND REPLACE(basicArticle.`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="criterion != null and criterion.equals('all')">
+            AND (REPLACE(basicArticle.`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(basicArticle.`content`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.nickname = #{keyword}
+        </if>
+        GROUP BY `basicArticle`.`index`
+        ORDER BY `basicArticle`.`index` DESC) AS `basicList`
+        WHERE basicList.reportCount > 0
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 신고 게시글 count -->
+    <select id="selectReportedArticleCountByBoardId"
+            resultType="int">
+        SELECT COUNT(*) FROM (SELECT COUNT(`basicArticle`.`index`)
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+        LEFT JOIN `etb_bbs`.basic_article_reports AS `reportCount` ON `basicArticle`.`index` = `reportCount`.`article_index`
+        <if test="criterion != null and criterion.equals('nickname')">
+            LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        </if>
+        WHERE basicArticle.board_id = #{boardId}
+        <if test="criterion != null and criterion.equals('title')">
+            AND REPLACE(`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+        </if>
+        <if test="criterion != null and criterion.equals('all')">
+            AND (REPLACE(`title`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%')
+            OR REPLACE(`content`, ' ', '') LIKE CONCAT('%', REPLACE(#{keyword}, ' ', ''), '%'))
+        </if>
+        <if test="criterion != null and criterion.equals('nickname')">
+            AND BINARY `user`.nickname = #{keyword}
+        </if>
+        GROUP BY basicArticle.`index` HAVING COUNT(reportCount.article_index) > 0) A;
+    </select>
+
+<!--   체크된 게시글 -->
+    <select id="selectCheckedArticlesByIndex" resultType="com.emptybeer.etb.vos.BasicArticleVo">
+        SELECT `basicArticle`.`index`       AS `index`,
+               `basicArticle`.`user_email`  AS `userEmail`,
+               `basicArticle`.`board_id`    AS `boardId`,
+               `basicArticle`.`title`       AS `title`,
+               `basicArticle`.`content`     AS `content`,
+               `basicArticle`.`view`        AS `view`,
+               `basicArticle`.`written_on`  AS `writtenOn`,
+               `basicArticle`.`modified_on` AS `modifiedOn`,
+               `user`.`nickname`            AS `userNickname`
+        FROM `etb_bbs`.`basic_articles` AS `basicArticle`
+                 LEFT JOIN `etb_member`.`users` AS `user` ON `basicArticle`.`user_email` = `user`.`email`
+        WHERE BINARY `index` = #{index}
+    </select>
+
+<!-- 신고 수 삭제(리셋 )-->
+    <delete id="deleteReportByArticleIndex">
+        DELETE
+        FROM `etb_bbs`.basic_article_reports
+        WHERE `article_index` = #{articleIndex}
+    </delete>
+
+</mapper>

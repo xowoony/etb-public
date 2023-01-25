@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>잔이비어 :: 마이페이지</title>
+    <!--  common.css + common.js 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <!--  myPage.css 연결  -->
+    <link rel="stylesheet" th:href="@{/member/resources/stylesheets/myPage.css}">
+    <!--  myPage.js 연결  -->
+    <script defer th:src="@{/member/resources/scripts/myPage.js}"></script>
+    <script th:if="${session.user == null}">
+        alert("로그인이 필요한 페이지입니다.")
+        window.location.href = '../member/login'
+    </script>
+</head>
+<body th:if="${session.user != null}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<!--  main  -->
+<main>
+    <form>
+        <!--  beerSection1  -->
+        <section class="beer-section" id="beerSection">
+            <!--  Section1  -->
+            <div class="title-box1" id="titleBox1">
+                <div class="title">MY PAGE</div>
+                <div class="title-content">잔이비어 마이페이지</div>
+            </div>
+            <!--  Section2  -->
+            <div class="title-box2" id="titleBox2">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td class="category-tab">
+                            <table>
+                                <tbody>
+                                    <tr class="category-title home">
+                                        <td class="my-page-home">
+                                            <a th:href="@{/member/myPage}">
+                                                <span class="house-emo">
+                                                </span>
+                                                <span>MY PAGE</span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="category-title">
+                                        <td>모아보기</td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/memberBbs/myArticle}">
+                                                <div>작성한 글 보기</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/memberBbs/myComment}">
+                                                <div>작성한 댓글 보기</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content content3">
+                                        <td>
+                                            <a th:href="@{/memberBbs/myLike}">
+                                                <div>
+                                                    추천한 글 보기
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-title">
+                                        <td>
+                                            회원정보 수정
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/member/changeNickname}">
+                                                <div>닉네임 변경</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/member/changeContact}">
+                                                <div>연락처 변경</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td>
+                                            <a th:href="@{/member/changeAddress}">
+                                                <div>주소 변경</div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="category-content">
+                                        <td><a th:href="@{/member/delete}">
+                                            <div>회원 탈퇴</div>
+                                        </a></td>
+                                    </tr>
+                            </table>
+                        </td>
+                        <td class="category-tab2">
+                            <div class="profile-container">
+                                <div class="profile-title">내 프로필</div>
+                                <table>
+                                    <tbody>
+                                    <!--유저 닉네임, 이메일-->
+                                    <tr>
+                                        <td class="user-container">
+                                            <div>
+                                                <span class="user-nickname"
+                                                      th:text="${session.user.getNickname()}"></span>
+                                                <span class="user-nickname2">님</span>
+                                            </div>
+                                            <div class="user-email" th:text="${session.user.getEmail()}"></div>
+                                        </td>
+                                        <td class="change-nick-container">
+                                            <div class="change-nick">
+                                                <a th:href="@{/member/changeNickname}" class="red">닉네임 변경</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!--유저 연락처-->
+                                    <tr>
+                                        <td class="change-contact-container">
+                                            <div class="user-contact" th:text="${session.user.getContact()}"></div>
+                                        </td>
+                                        <td class="contact">
+                                            <div class="change-contact">
+                                                <a th:href="@{/member/changeContact}" class="red">연락처 변경</a></div>
+                                        </td>
+                                    </tr>
+                                    <!--유저 주소-->
+                                    <tr>
+                                        <td class="change-address-container">
+                                            <div class="user-address">
+                                                <span th:text="${session.user.getAddressPostal()}"></span>
+                                                <span th:text="${session.user.getAddressPrimary()}"></span>
+                                                <span th:text="${session.user.getAddressSecondary()}"></span>
+                                            </div>
+                                        </td>
+                                        <td class="address">
+                                            <div class="change-address">
+                                                <a th:href="@{/member/changeAddress}" class="red">주소 변경</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="service-title">잔이비어의 다양한 서비스를 만나보세요.</div>
+                                <div class="service-container">
+                                    <div class="service">
+                                        <span>
+                                            <div class="first-icon">
+                                                <a th:href="@{/data/beer}"><img
+                                                        src="/member/resources/images/icons8-clinking-beer-mugs-96.png"
+                                                        alt=""></a>
+                                            </div>
+                                            <div class="beer">beer</div>
+                                        </span>
+                                        <span>
+                                            <div class="second-icon">
+                                                <a th:href="@{/bbs/review}"> <img
+                                                        src="/member/resources/images/review.png" alt=""></a>
+                                            </div>
+                                            <div class="review">review</div>
+                                        </span>
+                                        <span>
+                                            <div class="third-icon">
+                                                <a th:href="@{/community}"><img
+                                                        src="/member/resources/images/community.png" alt=""></a>
+                                            </div>
+                                            <div class="community">community</div>
+                                        </span>
+                                        <span>
+                                            <div class="forth-icon">
+                                                <a th:href="@{/festival}"><img
+                                                        src="/member/resources/images/festival.jpg" alt=""></a>
+                                            </div>
+                                            <div class="festival">festival</div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </form>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

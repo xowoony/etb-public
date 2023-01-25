@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: BEER REVIEW</title>
+    <script th:if="${beer.getName() == null}">
+        alert('존재하지 않는 맥주 정보 입니다.');
+        window.history.back();
+    </script>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewList.css}">
+    <script defer th:src="@{/bbs/resources/scripts/reviewList.js}"></script>
+</head>
+<body th:if="${beer.getName() != null}">
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main id="smoothScroll">
+    <section class="beer-detail">
+        <div class="part-1">
+            <div class="button-container">
+                <div class="button" rel="backButton">
+                    <span class="icon">
+                        <i class="fa-solid fa-circle-chevron-left"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="beer-image">
+                <img th:src="@{/bbs/beerImage (beerIndex=${beer.getIndex()})}" alt="">
+            </div>
+            <div class="content-container">
+                <div class="title">
+                    <div class="beer-name" th:text="${beer.getName()}">바르슈타이너 프리미엄 필스너 500ml</div>
+                    <span class="like-button" id="beerLikeButton"
+                          th:classappend="${beer.isLiked() == true ? 'liked' : ''}">
+                        <a href="#" class="toggle" rel="likeToggle"
+                           th:classappend="${beer.isSigned() == true ? '' : 'prohibited'}">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                        <div class="like-count" th:text="${beer.getLikeCount()}">20</div>
+                    </span>
+                </div>
+                <div class="content">
+                    <div class="page-1 visible" th:text="${beer.getDescriptionShort()}">
+                        세계적 명성의 수제맥주 브랜드 미켈러(Mikkeller)와 더부스가 함께 만든 페일에일로, 대동강 물이 들어가지 않았다는 이유로
+                    </div>
+                    <div class="page-2" th:text="${beer.getDescription()}">
+                        세계적 명성의 수제맥주 브랜드 미켈러(Mikkeller)와 더부스가 함께 만든 페일에일로, 대동강 물이 들어가지 않았다는 이유로 중간의 '동' 자를
+                        Censored(검열되었다) 스티커로 가린 채 '대강 페일에일'로 판매되고 있다. 오렌지, 감귤, 청포도를 연상시키는 홉의 향기가 기분 좋게 후각을 자극하며, 가볍고 고소한
+                        몰트의 맛과 쌉싸름한 끝 맛이 깔끔하게 이어지는 훌륭한 밸런스의 맥주. 가벼운 바디감과 적은 쓴맛으로 수제맥주에 익숙하지 않은 사람도 부담 없이 마실 수 있다.
+                    </div>
+                    <input type="button" class="detail-button" rel="detailButton" value="자세히보기">
+                </div>
+            </div>
+        </div>
+        <table class="content-table part-2">
+            <tbody>
+            <tr>
+                <th>제조사</th>
+                <td th:text="${beer.getMfr()}">바르슈타이너</td>
+            </tr>
+            <tr>
+                <th class="even">용량</th>
+                <td th:text="${beer.getVolume() == null ? '-' : beer.getVolume()}">500ml</td>
+            </tr>
+            <tr>
+                <th> 도수</th>
+                <td th:text="${beer.getDegree()}">4.8%</td>
+            </tr>
+            <tr>
+                <th class="even">카테고리</th>
+                <td th:text="${beer.getCategoryText()}">해외맥주</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="review-list">
+        <div class="first">
+            REVIEW
+            <div class="button-container" id="buttonContainer">
+                <a class="write-button" th:href="@{/bbs/reviewWrite (beerIndex=${beer.getIndex()})}">
+                    <i class="fa-solid fa-square-pen"></i>
+                </a>
+            </div>
+        </div>
+        <span class="rating-container">
+            <span class="star-container">
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 1 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 2 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 3 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 4 ? 'filled' : ''}"></i>
+                <i class="star fa-solid fa-star" th:classappend="${avgReview >= 5 ? 'filled' : ''}"></i>
+            </span>
+            <span class="score" th:text="${avgReview}">4.1</span>
+            <span class="review-count" th:text="${totalCount}">2,700</span>
+            <!--            <span class="detail-review">자세히보기></span>-->
+        </span>
+        <div class="form-container">
+            <div class="sort" name="sort">
+                <span class="sort1" name="sortGood" id="sortGood" value="sortGood">추천순</span>
+                <div class="sort-bar">|</div>
+                <span class="sort2" name="sortNew" value="sortNew" id="sortNew">최신순</span>
+            </div>
+            <form class="search-form" id="searchForm" method="get">
+                <label class="label">
+                    <span hidden>검색 기준</span>
+                    <select name="criterion" class="--object-input"
+                            th:with="criterion = ${#request.getParameter('criterion')}">
+                        <!--                    th:with는 변수 선언임-->
+                        <option value="content" th:selected="${criterion == null || criterion.equals('content')}">내용
+                        </option>
+                        <option value="nickname" th:selected="${criterion != null && criterion.equals('nickname')}">
+                            작성자
+                        </option>
+                    </select>
+                </label>
+                <label class="label">
+                    <span hidden>검색어</span>
+                    <input type="text" class="--object-input" maxlength="25" name="keyword" placeholder="검색어를 입력해 주세요."
+                           th:value="${#request.getParameter('keyword')}">
+                    <input type="image" class="search-button"
+                           src="https://img1a.coupangcdn.com/image/productreview/web/pdp/article/search-btn_v1.png">
+                </label>
+                <input type="hidden" name="beerIndex" th:value="${beer.getIndex()}">
+            </form>
+            <select name="starRank" id="starRank" th:with="starRank = ${#request.getParameter('starRank')}">
+                <option value="all" th:selected="${starRank == null || starRank.equals('all')}">
+                    <div>모든 별점 보기</div>
+                    <div th:text="${reviewCount.getAll()}">6,608</div>
+                </option>
+                <option value="star5" th:selected="${starRank != null && starRank.equals('star5')}">
+                    <div>최고</div>
+                    <span class="star-container">
+                        ★★★★★
+                    </span>
+                    <div th:text="${reviewCount.getStar5()}">6,192</div>
+                </option>
+                <option value="star4" th:selected="${starRank != null && starRank.equals('star4')}">
+                    <div>좋음</div>
+                    <span class="star-container">
+                        ★★★★
+                    </span>
+                    <div th:text="${reviewCount.getStar4()}">297</div>
+                </option>
+                <option value="star3" th:selected="${starRank != null && starRank.equals('star3')}">
+                    <div>보통</div>
+                    <span class="star-container">
+                        ★★★
+                    </span>
+                    <div th:text="${reviewCount.getStar3()}">67</div>
+                </option>
+                <option value="star2" th:selected="${starRank != null && starRank.equals('star2')}">
+                    <div>별로</div>
+                    <span class="star-container">
+                        ★★
+                    </span>
+                    <div th:text="${reviewCount.getStar2()}">12</div>
+                </option>
+                <option value="star1" th:selected="${starRank != null && starRank.equals('star1')}">
+                    <div>나쁨</div>
+                    <span class="star-container">
+                        ★
+                    </span>
+                    <div th:text="${reviewCount.getStar1()}">40</div>
+                </option>
+            </select>
+        </div>
+        <div class="review-container blank" th:if="${avgReview} == 0">
+            <div>
+                등록된 리뷰가 없습니다.
+            </div>
+        </div>
+        <form class="review-container" id="reviewContainer" rel="reviewListForm" th:each="reviewArticle : ${reviewArticles}">
+            <input name="beerIndex" hidden th:value="${reviewArticle.getBeerIndex()}">
+            <input name="aid" type="hidden" th:value="${reviewArticle.getIndex()}">
+            <div class="head-container">
+                <div class="user-info">
+                    <div class="nickname" th:text="${reviewArticle.getUserNickname()}">양파쿵야</div>
+                    <span class="star-container">
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reviewArticle.getScore() >= 1 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reviewArticle.getScore() >= 2 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reviewArticle.getScore() >= 3 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reviewArticle.getScore() >= 4 ? 'filled' : ''}"></i>
+                        <i class="star fa-solid fa-star"
+                           th:classappend="${reviewArticle.getScore() >= 5 ? 'filled' : ''}"></i>
+                    </span>
+                    <span class="created-on" th:text="${#dates.format(reviewArticle.getModifiedOn(), 'yyyy-MM-dd')}">2022.12.15</span>
+                </div>
+                <span class="menu-icon"
+                      th:if="${session.user != null && session.user.getEmail().equals(reviewArticle.getUserEmail())}">
+                    <i class="fa-solid fa-bars" rel="menuIcon"></i>
+                    <div class="box" id="menuBox">
+                        <div class="back">
+                            <a href="#" class="xButton" rel="xButton">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                        <a class="modify" th:href="@{/bbs/reviewModify (aid=${reviewArticle.getIndex()})}">수정하기</a>
+                        <a href="#" class="delete" id="deleteButton">삭제하기</a>
+                    </div>
+                </span>
+            </div>
+            <div class="beer-info" th:text="${reviewArticle.getBeerName()}">바르슈타이너 프리미엄 필스너 500ml</div>
+            <div class="review-content">
+                <div class="good-review">
+                    <div class="icon">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <div class="text" th:text="${reviewArticle.getContentGood()}">진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서
+                        쟁여둘 예정임
+                        독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                        독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                        독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                        독일 맥주 믿고 먹음진짜 너무 맛있고요 산미도 적당하고 탄산 미쳤슴니다. 편의점에서 쟁여둘 예정임
+                        독일 맥주 믿고 먹음
+                    </div>
+                </div>
+                <div class="bad-review">
+                    <div class="icon">
+                        <i class="fa-solid fa-face-frown"></i>
+                    </div>
+                    <div class="text" th:text="${reviewArticle.getContentBad()}">탄산이 넘 쎄서 목이 좀 따가워용 ㅠㅠ 그래도 시원해서 큰 단점은
+                        아닌듯
+                    </div>
+                </div>
+            </div>
+            <div class="foot">
+                <span class="like-count review-like-count" th:text="${reviewArticle.likeCount}">7</span>
+                <span>명이 추천 함</span>
+                <!--                여기 주의-->
+                <span class="review-like-button" rel="reviewLikeButton"
+                      th:classappend="${reviewArticle.isLiked() == true ? 'liked' : ''}">
+                    <input class="review-like review-toggle" type="button" th:value="${reviewArticle.isLiked() == true ? '추천취소' : '추천하기'}" rel="reviewToggle"
+                           th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}"
+                    th:data-aid="${reviewArticle.getIndex()}">
+                </span>
+                <input type="button" class="declaration" rel="declaButton"
+                       th:if="${session.user == null || !session.user.getEmail().equals(reviewArticle.getUserEmail())}"
+                       th:classappend="${reviewArticle.isSigned() == true ? '' : 'prohibited'}" th:value="${reviewArticle.isDeclared() == true ? '신고완료' : '신고하기'}">
+                <input type="hidden" name="declaration" th:value="${reviewArticle.getDeclaCount()}">
+            </div>
+        </form>
+        <div class="page-container"
+             th:with="urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.minPage).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angles-left"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage - 1).build().toUriString()}}"
+               th:if="${paging.requestPage > 1}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            <a th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+               th:class="${'page ' + (page == paging.requestPage ? 'selected' : '')}"
+               th:text="${page}"
+               th:href="@{${urlBuilder.replaceQueryParam('page', page).build().toUriString()}}"></a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.requestPage + 1).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+            <a class="page"
+               th:href="@{${urlBuilder.replaceQueryParam('page', paging.maxPage).build().toUriString()}}"
+               th:if="${paging.requestPage < paging.maxPage}">
+                <i class="fa-solid fa-angles-right"></i>
+            </a>
+        </div>
+    </section>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

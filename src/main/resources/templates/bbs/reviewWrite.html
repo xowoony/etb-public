@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잔이비어 :: Review 글쓰기</title>
+    <!--  common.css 연결  -->
+    <th:block th:replace="~{fragments/head :: common}"></th:block>
+    <link rel="stylesheet" th:href="@{/bbs/resources/stylesheets/reviewWrite.css}">
+    <script defer th:src="@{/bbs/resources/scripts/reviewWrite.js}"></script>
+</head>
+<body>
+<!--  header  -->
+<th:block th:replace="~{fragments/body :: header}"></th:block>
+<!--무언가를 불러오고 있습니다 loading-->
+<th:block th:replace="~{fragments/body :: cover}"></th:block>
+<main>
+    <!--    <div class="review-unsigned" th:if="${session.user == null}">로그인 후 리뷰를 작성할 수 있어요.</div>-->
+    <form class="review-form" id="reviewForm">
+        <!--/*@thymesVar id="getIndex" type="com.emptybeer.etb.entities.data.BeerEntity"*/-->
+        <input name="beerIndex" hidden th:value="${beer.getIndex()}">
+        <input type="hidden" name="score" value="0">
+        <div class="button-container">
+            <div class="button" rel="backButton">
+                    <span class="icon">
+                        <i class="fa-solid fa-circle-chevron-left"></i>
+                    </span>
+            </div>
+        </div>
+        <h2 class="title">리뷰 작성</h2>
+        <table>
+            <tbody>
+            <tr>
+                <th>
+                    <div class="beer-container">
+                        <div class="beer-image">
+                            <a class="beer-contact-button" th:href="@{/bbs/reviewList (beerIndex=${beer.getIndex()})}">
+                                <img th:src="@{/bbs/beerImage (beerIndex=${beer.getIndex()})}" alt="">
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="beer-name" th:text="${beer.getName()}">바르슈타이너 프리미엄 필스너 500ml</div>
+                            <div id="smallButton">
+                                <input class="small-button" type="button" name="beerSelectButton" value="제품 변경">
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <td>
+                    <div class="score-container">
+                        <span class="score" rel="score">-</span>
+                        <span class="full-score">/ 5</span>
+                        <div class="star-container" rel="starContainer">
+                            <i class="star fa-solid fa-star"></i>
+                            <i class="star fa-solid fa-star"></i>
+                            <i class="star fa-solid fa-star"></i>
+                            <i class="star fa-solid fa-star"></i>
+                            <i class="star fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="title">
+                        <span class="icon">
+                            <i class="fa-solid fa-face-smile"></i>
+                        </span>
+                        <span class="text">좋았던 점</span>
+                        <span class="text-limit">(최소 20자 이상)</span>
+                    </div>
+                </th>
+                <td>
+                    <div class="title">
+                        <span class="icon">
+                            <i class="fa-solid fa-face-frown"></i>
+                        </span>
+                        <span class="text">아쉬운 점</span>
+                        <span class="text-limit">(최소 20자 이상)</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="content" rel="contentGood">
+                        <textarea id="inputGood" autofocus maxlength="5000" placeholder="좋았던 점을 작성해 주세요."></textarea>
+                    </div>
+                </th>
+                <td>
+                    <div class="content" rel="contentBad">
+                        <textarea id="inputBad" maxlength="5000" placeholder="아쉬운 점을 작성해 주세요."></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="text-count">
+                        <span class="color" id="goodTextCount">0</span>
+                        <span class="normal">/</span>
+                        <span class="normal">5000</span>
+                    </div>
+                </th>
+                <td>
+                    <div class="text-count">
+                        <span class="color" id="badTextCount">0</span>
+                        <span class="normal">/</span>
+                        <span class="normal">5000</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <input type="submit" class="submit-button" value="등록">
+        </div>
+    </form>
+</main>
+<!--  footer  -->
+<th:block th:replace="~{fragments/body :: footer}"></th:block>
+</body>
+</html>

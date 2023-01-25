@@ -1,0 +1,545 @@
+@charset "UTF-8";
+/*타이틀 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+/*카테고리 메뉴 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/*카테고리 content 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+}
+
+/*main*/
+body > main {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    overflow: auto;
+}
+
+/*상단 타이틀 section*/
+body > main > .beer-section {
+    width: 100%;
+    height: 100%;
+    /* margin-bottom: 3rem;*/
+}
+
+/*beerSection1*/
+body > main > .beer-section > .title-box1 {
+    background-image: url("/resources/images/home-background.png");
+    background-position: center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 36%;
+    border-bottom: 0.0625rem solid rgb(63 56 56 / 41%);
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+/*타이틀 글씨*/
+body > main > .beer-section > .title-box1 > .title {
+    font-size: 3rem;
+    font-family: 'Secular One', sans-serif;
+}
+
+
+body > main > .beer-section > .title-box1 > .title-content {
+    margin-bottom: 2.5rem;
+    font-family: 'Gowun Batang', serif;
+}
+
+
+/*section2*/
+body > main > .beer-section > .title-box2 {
+    width: 100%;
+    /*background-color: #151213;*/
+    height: 100%;
+    white-space: nowrap;
+}
+
+body > main > .beer-section > .title-box2 > table {
+    /*background-color: rgb(56 28 35);*/
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody {
+    width: 100%;
+    height: 100%;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr {
+    width: 100%;
+    height: 100%;
+}
+
+/*카테고리 탭*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab {
+    background-color: rgb(0 0 0);
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*카테고리 타이틀 - 모아보기, 회원정보 수정*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title {
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Gowun Batang', serif;
+    width: 100%;
+    height: 4rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(70 70 70 / 35%);
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home {
+    background-color: #9d9d9d42;
+    font-size: 1.5rem;
+    font-family: 'Secular One', sans-serif;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-title > .my-page-home > a {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #ffffffb5;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+/*카테고리 content*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content {
+    width: 100%;
+    height: 4rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: rgb(0, 0, 0, 33%);
+
+}
+
+/*북마크*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .content3 {
+    background-color: rgb(131 140 22 / 34%);
+}
+
+/*카테고리 content hover시*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content:hover {
+    background-color: rgb(220, 213, 215, 10%);
+    cursor: pointer;
+
+}
+
+/*카테고리 content 안 td margin */
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td {
+    /*font-family: 'Do Hyeon', sans-serif;*/
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .category-content > td > a > div {
+    margin-right: 3rem;
+    font-family: 'Gowun Batang', serif;
+}
+
+/*잔이비어 contact 정보*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody > .contact {
+    height: 15rem;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
+    width: 80%;
+    background-color: #080506;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-collapse: collapse;
+    border: 0.125rem solid rgb(100 93 38 / 21%);
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 {
+    width: 80%;
+    background-color: #080506;
+}
+
+/*양파쿵야*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick {
+    width: 100%;
+}
+
+/*작성 글 테이블 전체*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table {
+    border-top: 0.0625rem solid #7c7373;
+    border-bottom: 0.0625rem solid #7c7373;
+    margin-top: 1.5rem;
+    margin-left: 6rem;
+    width: 62rem;
+    border-collapse: collapse;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div {
+    width: 15rem;
+    margin-left: 6rem;
+    margin-top: 3rem;
+    border-left: 0.2rem solid #383737;
+    /*background-color: rgb(202 129 129 / 8%);*/
+    padding: 0.1rem 0.9rem 0.7rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > .email{
+    color: #ffffffb5;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > div > span {
+    color: #ffffffb5;
+    font-size: 2rem;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-collapse: collapse;
+    border: 0.125rem solid rgb(100 93 38 / 21%);
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab > table > tbody {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/*header-border*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > .header-border {
+    border-bottom: 0.02rem solid rgb(147 140 140);
+}
+
+
+/* 작성한 글 테이블 thead*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .header-title {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .created-on {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > thead > tr > td > .view {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+
+/*tbody*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody {
+    background-color: rgb(85 147 44 / 8%);
+    color: #b9b9b9;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td {
+    height: 2.5rem;
+    padding: 0.6rem 0.5rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .check-box-container {
+    width: 1rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .board-name-container {
+    width: 5rem;
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > input {
+    cursor: pointer;
+}
+
+/*게시글 제목*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title {
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(166, 164, 164);
+}
+
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td:not(.left) > div {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*게시글 제목 hover시*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .title:hover {
+    text-decoration: underline;
+}
+
+/*리뷰글 내용 정렬*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .left {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .left > div + div {
+    margin-top: 0.3rem;
+}
+
+/*댓글 갯수*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > td > .count {
+    color: #e07f7fe6;
+}
+
+/*작성한 글 테이블 thead 안 체크박스 간격*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .check-box {
+    width: 3rem;
+
+}
+
+/*작성한 글 테이블 thead 안 index 간격*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .index {
+    width: 6rem;
+}
+
+/*작성한 글 테이블 thead 안 글 제목 간격*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .article-title {
+    width: 33rem;
+}
+
+/*작성한 글 테이블 thead 안 작성일 간격*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .created-on {
+    width: 15rem;
+}
+
+/*작성한 글 테이블 thead 안 조회수 간격*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tbody > tr > .hits {
+    width: 4rem;
+}
+
+/*tfoot*/
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > tr > .delete-container {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > tr > .delete-container > a {
+    margin-top: 0.8rem;
+    width: 5rem;
+    height: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 0.0625rem solid rgb(206 205 205);
+    padding: 0.5rem 0.1rem;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > tr > .delete-container > a:hover {
+    background-color: rgba(232, 28, 28, 0.15);
+
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header {
+    margin-top: 1rem;
+    height: 4rem;
+    border-top: 0.02rem solid rgb(147 140 140);
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .check-box-td {
+    width: 2rem;
+    padding: 0.6rem 0.5rem;
+}
+
+body > main > .beer-section > .title-box2 > table > tbody > tr > .category-tab2 > .article-nick-container > .article-nick > form > table > tfoot > .tfoot-header > .all-check-td {
+    width: 5rem;
+    padding: 0.6rem 0.5rem;
+}
+
+/*contentTable 아래 간격 설정(footer 가림 방지)*/
+#contentTable {
+    margin-bottom: 3rem;
+}
+
+#secondTable {
+    margin-top: 2rem;
+    margin-bottom: 10rem;
+}
+
+#secondTable > thead > .header-border > .like-review-td {
+    width: 27rem;
+}
+
+#secondTable > thead > .header-border > .star-td {
+    width: 3rem;
+}
+
+#secondTable > thead > .header-border > .writer-td {
+    width: 15rem;
+}
+
+#secondTable .writer {
+    text-align: center;
+}
+
+#contentTable > tfoot > .tfoot-header > .tfoot-header-td {
+    width: 2rem;
+    padding: 0.6rem 0.5rem;
+}
+
+#contentTable > tfoot > .tfoot-header > .total-check{
+    width: 5rem;
+    padding: 0.6rem 0.5rem;
+}
+
+
+/*체크박스*/
+.--object-check {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    user-select: none;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.--object-check > input[type=checkbox] {
+    display: none;
+}
+
+.--object-check > .--checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    border-radius: 0.25rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex: 0 0 1.125rem;
+    /*flex-grow, shrink, basis = 0  == > 모바일*/
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0.75rem;
+    overflow: hidden;
+}
+
+.--object-check > input[type=checkbox]:checked ~ .--checkbox {
+    background-color: rgba(22, 113, 241, 0);
+    border: 0.0625rem solid rgb(220, 213, 215);
+}

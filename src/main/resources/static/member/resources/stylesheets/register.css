@@ -1,0 +1,497 @@
+@charset "UTF-8";
+
+/*로그인 글씨체*/
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+body > main {
+    width: 100%;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-image: url("/resources/images/home-background.png");
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    /*height: 100%;*/
+}
+
+/*회원가입 폼 전체 정렬*/
+body > .main > .content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 70rem;
+
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+
+body > .main > .content > .form {
+    width: 100%;
+    max-width: 50rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 6rem;
+}
+
+
+body > .main > .content > .form > .title-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*회원가입 글씨*/
+body > .main > .content > .form > .title-container > .title {
+    flex: 1;
+    font-weight: 500;
+
+    color: rgb(255, 255, 255);
+    font-size: 2.5rem;
+    font-family: 'Do Hyeon', sans-serif;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid rgb(255, 255, 255);
+}
+
+body > .main > .content > .form > .step-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    margin-bottom: 2rem;
+}
+
+/*스텝 표시 전체 폰트 크기 조절*/
+body > .main > .content > .form > .step-container > tbody > .step-box > td {
+    margin: 1.1rem;
+    font-size: 1rem;
+}
+
+body > .main > .content > .form > .step-container > .step {
+    width: 2rem;
+    height: 2rem;
+    border: 0.125rem solid rgb(213, 216, 220);
+    box-sizing: border-box;
+    color: rgb(128, 139, 150);
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+/*step1 정렬*/
+body > .main > .content > .form > .step-container > tbody > tr > .step1 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*step2 정렬*/
+body > .main > .content > .form > .step-container > tbody > tr > .step2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*step3 정렬*/
+body > .main > .content > .form > .step-container > tbody > tr > .step3 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*스텝 표시*/
+body > .main > .content > .form.step1 > .step-container > tbody > .step-box > .step.step1,
+body > .main > .content > .form.step2 > .step-container > tbody > .step-box >.step.step2,
+body > .main > .content > .form.step3 > .step-container > tbody > .step-box >.step.step3 {
+    /*background-color: rgb(0, 0, 0);*/
+    /*border: 0.125rem solid rgb(0, 0, 0);*/
+    color: rgba(245, 253, 24, 70%);
+}
+
+body > .main > .content > .form.step2 > .step-container > tbody > .step-box >.step.step1,
+body > .main > .content > .form.step3 > .step-container > tbody > .step-box >.step.step1,
+body > .main > .content > .form.step3 > .step-container > tbody > .step-box >.step.step2 {
+    /* background-color: rgb(213, 216, 220); */
+    /* border: 0.125rem solid rgb(213, 216, 220); */
+    color: rgb(252 252 252);
+}
+
+/*body > .main > .content > .form.step2 > .step-container >tbody > .step-box > .step.step1 + .line,*/
+/*body > .main > .content > .form.step3 > .step-container > tbody > .step-box >.step.step1 + .line,*/
+/*body > .main > .content > .form.step3 > .step-container > tbody > .step-box >.step.step2 + .line {*/
+/*    background-color: rgb(213, 216, 220);*/
+/*}*/
+
+
+/**/
+body > .main > .content > .form > .step-container > .line {
+    width: 0.375rem;
+    height: 0.125rem;
+    background-color: rgb(171, 178, 185);
+}
+
+/*body > .main > .content > .form > .step-container > .text {*/
+/*    color: rgb(86, 101, 115);*/
+/*    font-size: 0.95rem;*/
+/*    margin-right: 0.75rem;*/
+/*}*/
+
+body > .main > .content > .form > .step {
+    /*align-items: stretch;*/
+    /*display: none;*/
+    /*flex-direction: column;*/
+    /*justify-content: flex-start;*/
+
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > .main > .content > .form.step1 > .step.step1,
+body > .main > .content > .form.step2 > .step.step2,
+body > .main > .content > .form.step3 > .step.step3 {
+    display: flex;
+    width: 100%;
+}
+
+
+/*단계 표시*/
+body > .main > .content > .form > .step-container > tbody > .step-box {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    font-family: 'Do Hyeon', sans-serif
+}
+
+
+/*약관 박스*/
+body > .main > .content > .form > .step.step1 > .label > .term {
+    /*padding-top: 1rem;*/
+    height: 20rem;
+    resize: none;
+
+    width: 40rem;
+
+    background-color: rgba(0, 0, 0, 25%);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    /*border-radius: 0.375rem;*/
+    padding: 0.625rem 0.875rem;
+}
+
+/*약관 스크롤 바*/
+.term::-webkit-scrollbar {
+    width: 10px;
+}
+.term::-webkit-scrollbar-track {
+    background-color: #000000;
+}
+.term::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgb(220, 252, 9);
+}
+
+/*약관에 동의해주세요*/
+body > .main > .content > .form > .step.step1 > .label > .title {
+    font-size: 1.1rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin-bottom: 1rem;
+}
+
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > th {
+    padding-right: 1rem;
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr:not(:last-child) > th,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr:not(:last-child) > td {
+    padding-bottom: 0.75rem;
+}
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.address {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*주소찾기 버튼*/
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.address > .address-button{
+    margin-left: 1rem;
+    padding: 1rem 1.6rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email > .input {
+    margin-right: 0.5rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label {
+    display: block;
+}
+
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.email + label.email,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.password + label.password,
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label.address + label.address {
+    margin-top: 0.375rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .label > input + input {
+    margin-left: 0.5rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .warning {
+    color: rgba(193, 246, 78, 0.79);
+    display: none;
+    font-size: 90%;
+    margin-top: 0.5rem;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .warning.visible {
+    display: block;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .panel.address {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 70%);
+    display: none;
+    position: fixed;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .panel.address.visible {
+    display: block;
+}
+
+body > .main > .content > .form > .step.step2 > .table > tbody > tr > td > .panel.address > .dialog {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    max-width: 27.5rem;
+    max-height: 30rem;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+body > .main > .content > .form > .step.step3 {
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+body > .main > .content > .form.step3 > .step.step3 {
+    display: flex;
+}
+
+body > .main > .content > .form > .step.step3 > .title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+    margin-top: 1rem;
+}
+
+body > .main > .content > .form > .step.step3 > .message {
+    line-height: 150%;
+    text-align: center;
+}
+
+body > .main > .content > .form > .warning {
+    align-items: center;
+    background-color: rgb(222 225 45 / 40%);
+    color: rgb(255, 255, 255);
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem 1.125rem;
+}
+
+body > .main > .content > .form > .warning > .text {
+    flex: 1;
+}
+
+body > .main > .content > .form > .warning.visible {
+    display: flex;
+}
+
+body > .main > .content > .form > .button-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+body > .main > .content > .form > .button-container > .button {
+    background-color: rgb(0, 0, 0);
+    /*border-radius: 0.5rem;*/
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 1rem 3rem;
+    user-select: unset;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+body > .main > .content > .form > .button-container > .button:hover {
+    background-color: rgb(0, 0, 0, 25%);
+}
+
+
+body > .main > .content > .form > .button-container > .button:active {
+    background-color: rgb(0, 0, 0, 25%);
+}
+
+
+/*common css*/
+
+h1, h2, h3, h4, h5, h6 {
+    font: inherit;
+    margin: unset;
+    padding: unset;
+}
+
+input, select, textarea {
+    appearance: none;
+    background-color: unset;
+    border: unset;
+    color: unset;
+    font: inherit;
+    margin: unset;
+    outline: none;
+    padding: unset;
+}
+
+.--object-input {
+    /*width: 40rem;*/
+    width: 30rem;
+    background-color: rgba(0, 0, 0, 25%);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    /*border-radius: 0.375rem;*/
+    padding: 0.625rem 0.875rem;
+
+}
+
+.--object-input:disabled {
+    background-color: rgb(234, 236, 238);
+    color: rgb(171, 178, 185);
+    /*filter:brightness(90%);*/
+}
+
+.--object-check {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    user-select: none;
+
+    margin-top: 1rem;
+}
+
+.--object-check > input[type=checkbox] {
+    display: none;
+}
+
+.--object-check > .--checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 0.0625rem solid rgb(213, 216, 220);
+    border-radius: 0.25rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex: 0 0 1.125rem;
+    /*flex-grow, shrink, basis = 0  == > 모바일*/
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0.75rem;
+    overflow: hidden;
+}
+
+.--object-check > input[type=checkbox]:checked ~ .--checkbox {
+    background-color: rgb(0, 0, 0);
+    border: 0.0625rem solid rgb(220, 213, 215);
+}
+
+
+.--object-button {
+    background-color: rgb(0, 0, 0);
+    /* border-radius: 0.5rem; */
+    /* box-sizing: border-box; */
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+.--object-button:hover {
+    background-color: rgb(0, 0, 0, 25%);
+
+}
+
+.--object-button:active {
+    background-color: rgb(0, 0, 0, 25%);
+}
+
+.--object-button:disabled {
+    background-color: rgb(213, 216, 220);
+    color: rgb(171, 178, 185);
+    cursor: default;
+    pointer-events: none;
+}
+
+body > .--main {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+body > .--main {
+    flex: 1;
+}
+
+
