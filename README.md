@@ -9,11 +9,11 @@
 
 # 2. 인원 및 주요업무
 ### 총원: 3명
-😺 xowoony(정소운/본인, 팀 리더)  -  백엔드, 회원가입, 로그인, Beer페이지, 마이페이지(회원정보 수정 파트) 구축 및 잔이비어 프로젝트 디자인 및 구성 총괄(프론트)
+😺 xowoony(정소운/팀 리더)  -  백엔드, 회원가입, 로그인, Beer페이지, 마이페이지(회원정보 수정 파트) 구축 및 잔이비어 프로젝트 디자인 및 구성 총괄(프론트)
 <br>
-🐻 ilhojung0815(정일호/팀원)  -  백엔드, Festival페이지 및 관리자 페이지 파트 Beer, Festival 구축 
+🐻 ilhojung0815(정일호/팀원)  -  백엔드, Festival페이지, 카카오맵 API연동, 관리자 페이지 홈화면, 관리자 페이지 Beer, Festival 파트 구축
 <br>
-🐰 riverwings(강나래/팀원)  -  백엔드, Community페이지 및 관리자 페이지 파트 Community 구축
+🐰 riverwings(강나래/팀원)  -  Community페이지, Review페이지, 마이페이지(게시판 파트), 관리자 페이지 Community, Review 파트 구축
 
 # 3. 기술 스택
 ### Backend: <img height="18px" src="https://img.shields.io/badge/Java-blue">
