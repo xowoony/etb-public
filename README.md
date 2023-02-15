@@ -13,7 +13,7 @@
 <br>
 🐻 ilhojung0815(정일호/팀원)  -  백엔드, Festival페이지, 카카오맵 API연동, 관리자 페이지 홈화면, 관리자 페이지 Beer, Festival 파트 구축
 <br>
-🐰 riverwings(강나래/팀원)  -  Community페이지, Review페이지, 마이페이지(게시판 파트), 관리자 페이지 Community, Review 파트 구축
+🐰 riverwings(강나래/팀원)  -  Community페이지, 제품(Beer)상세 페이지 및 Review페이지, 마이페이지(게시판 파트), 관리자 페이지 Community, Review 파트 구축, DB 구축
 
 # 3. 기술 스택
 ### Backend: <img height="18px" src="https://img.shields.io/badge/Java-blue">
