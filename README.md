@@ -80,8 +80,3 @@
 <a><b>Festival-delete</a><br>
 ![festival_delete](https://user-images.githubusercontent.com/58130791/215688685-7133ea9d-11d1-4488-a742-86d9efc66f23.gif)
 <br><br><br>
- 
-
-# 6. 주요 이슈 및 해결책
-
-# 7. 결론
